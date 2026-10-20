@@ -6,9 +6,9 @@
 
 ![メニュー](docs/screenshots/menu.png)
 
-| ようじ ひらがな なぞり | ようじ しりとり |
+| ようじ ひらがな なぞり | ようじ え を みて かこう |
 |---|---|
-| ![ようじ ひらがな](docs/screenshots/print-youji-hira.png) | ![ようじ しりとり](docs/screenshots/print-youji-shiri.png) |
+| ![ようじ ひらがな](docs/screenshots/print-youji-hira.png) | ![ようじ え](docs/screenshots/print-youji-pic.png) |
 
 | 小2 漢字の 読み書き | 小5 漢字 ＋ 長文読解 |
 |---|---|
@@ -26,16 +26,19 @@
 
 ### ようじ(3〜6さい)
 
-学年で「ようじ」を えらぶと、ようじ用の 4種類に かわります(見出しや 説明も ぜんぶ ひらがな)。
+学年で「ようじ」を えらぶと、ようじ用の 5種類に かわります(見出しや 説明も ぜんぶ ひらがな)。
 
 | 種類 | 中身 | まい数 |
 |---|---|---|
 | ひらがな なぞり | 1行に 1字。お手本(黄色の ます)→ うすい字 2つ → じぶんで 2つ。右に その字の ことば(あり・いぬ・うし …)を なぞる | あ行〜わ行・が行〜ぱ行の 15まい |
 | カタカナ なぞり | ひらがなと 同じ 形。ことばは アイス・ケーキ・テレビ など | ア行〜パ行の 15まい |
 | ことば なぞり | 1まいに 7語。うすい字を なぞって、となりの ますに じぶんで 書く | どうぶつ・くだもの・やさい・のりもの・からだ・むし・うみの いきもの・いろ・てんき・はる・なつ・あき・ふゆ・いえの なか・かぞく・ようちえん の 16テーマ |
+| え を みて かこう | 絵を 見て、その なまえを ますに 書く(こあら・りんご・でんしゃ …)。1まいに 8つ。ひらがな・カタカナ、テーマ(どうぶつ・いきもの・たべもの・のりもの・もの・しぜん・からだ)、ヒント(さいしょの 字を なぞる/ぜんぶ なぞる/なし)を えらべる。こたえの ページつき | ひらがな 114・カタカナ 49の 絵から シードで 何まいでも |
 | ことば あそび | しりとり(5語×4つ)・ことば さがし(6×6の ますに 6語)・たりない 字(8問)・ならべかえ(6問)。こたえの ページつき | シードで 何まいでも |
 
 - 「れんしゅうする 行」「テーマ」「あそび」は「じゅんばんに」に すると、シード1 → あ行、2 → か行 … と かわります。「まとめて作る」で 15まい 作れば ひらがな 1さつに なります。
+- プリントには キャラクターを 入れません(キャラクターは 画面だけ)。
+- 「え を みて かこう」の 絵は Microsoft の [Fluent Emoji](https://github.com/microsoft/fluentui-emoji)(フラット。MIT ライセンス)です(`assets/pics/`)。
 - ますには 十字の 点線が 入ります。なぞり書きの 字は 教科書体に ちかい [Klee One](https://github.com/fontworks-fonts/Klee)(SIL Open Font License)の かなだけを アプリに 入れて あります(`vendor/klee-kana.woff2`)。
 - ことば あそびは、答えが 1つに なるように 作ります(たりない 字は ほかの 字で ことばに ならない ものだけ、ならべかえは ほかの ことばに ならない ものだけ)。`node tools/test/youji.js` で ぜんぶ 調べます。
 - ことばは `tools/make_youji.py` の 表に あります。直したら `python3 tools/make_youji.py && python3 tools/build.py` を 走らせてください。
@@ -112,6 +115,7 @@
 │     ├─ ruby.json                  ← 長文の ふりがな(tools/furigana.py が 作る)
 │     ├─ youji.json                 ← ようじの 行・ことば(tools/make_youji.py が 作る)
 │     └─ kanji_grades.json          ← 学年別漢字配当表(平成29年告示。小1 80・小2 160・小3 200・小4 202・小5 193・小6 191 字)
+├─ assets/pics/         ← ようじ「え を みて かこう」の 絵(Fluent Emoji。MIT)
 ├─ assets/chara/        ← 画面の キャラクター画像(webp。book・guide・cheer・think・idea・maru・banzai の 7枚)
 ├─ vendor/              ← PDF・JPG・zip 用の 道具(html2canvas / jsPDF / JSZip)、ようじの なぞり書きの フォント(Klee One の かなだけ)と ライセンス
 ├─ tools/
@@ -195,7 +199,7 @@ node tools/test/shots.js         # README 用の 画像を とり直す
 
 - プログラムと 語いバンクは [MIT ライセンス](LICENSE) です。だれでも 自由に 使う・コピーする・書きかえる・配ることが できます(著作権表示と LICENSE の 文は のこしてください)。
 - `assets/chara/` の キャラクター画像は MIT ライセンスに ふくまれません。著作権は 落合聡一に あり、許可なく 使うことは できません。
-- `vendor/` の html2canvas(MIT)・jsPDF(MIT)・JSZip(MIT または GPLv3)・Klee One(SIL Open Font License 1.1)は 落合聡一の 作ったもので は ないため、それぞれの 作者の ライセンスに したがいます(`vendor/licenses/`)。
+- `assets/pics/` の 絵(Fluent Emoji。© Microsoft・MIT)と、`vendor/` の html2canvas(MIT)・jsPDF(MIT)・JSZip(MIT または GPLv3)・Klee One(SIL Open Font License 1.1)は 落合聡一の 作ったもので は ないため、それぞれの 作者の ライセンスに したがいます(`vendor/licenses/`)。
 
 ## 1枚に 入るかの 見つもり
 

@@ -44,6 +44,7 @@ const path = require('path');
   await p.screenshot({ path: 'docs/screenshots/menu-youji.png' });
   await yshot('hira', 1, 'print-youji-hira');
   await yshot('play', 1, 'print-youji-shiri');
+  await yshot('pic', 3, 'print-youji-pic');
   await b.close();
   console.log('shots done');
 })();

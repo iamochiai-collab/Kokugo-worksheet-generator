@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="app-version" content="第3版(2026-10-20)">
+<meta name="app-version" content="第4版(2026-10-20)">
 <title>国語プリント</title>
 <style>
 :root {
@@ -168,6 +168,10 @@ body[data-view="home"] #sheets { display: none; }
 .kind-card[data-kind="read"] { --k: var(--k-read); }
 .kind-card[data-kind="write"] { --k: var(--k-write); }
 .kind-card[data-kind="long"] { --k: var(--k-long); }
+.kind-card[data-kind="pic"] { --k: #e0861b; }
+body[data-youji="1"] .kinds { grid-template-columns: repeat(auto-fill, minmax(196px, 1fr)); }
+body[data-youji="1"] .kind-card { min-height: 240px; }
+@media (max-width: 760px) { body[data-youji="1"] .kind-card { min-height: 170px; } }
 .kind-card:hover { transform: translateY(-3px); box-shadow: 0 8px 18px rgba(31,42,64,.13); border-color: var(--k); border-top-color: var(--k); }
 .kind-card::before {
   content: ""; position: absolute; right: -30px; bottom: -30px; width: 130px; height: 130px; border-radius: 50%;
@@ -366,6 +370,13 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
 }
 .yj-wrow { display: flex; align-items: center; gap: 3mm; }
 .yj-arrow { font-size: 14pt; color: #777; flex: none; }
+/* え を みて かこう */
+.yj-rows.pics { display: grid; grid-template-columns: 1fr 1fr; align-content: space-evenly; gap: 2mm 8mm; }
+.pic-item { position: relative; display: flex; flex-direction: column; align-items: center; gap: 2mm; }
+.pic-item .yn { position: absolute; left: 0; top: 0; }
+.pic-item .pic { width: 27mm; height: 27mm; object-fit: contain; }
+.pic-item .wline .mb { width: 14mm; height: 14mm; font-size: 10.5mm; }
+.yj .pic-item .wline.long .mb { width: 12.5mm; height: 12.5mm; font-size: 9.5mm; }
 /* しりとり */
 .shiri { display: flex; gap: 3mm; align-items: flex-start; }
 .shiri-line { display: flex; flex-wrap: wrap; align-items: center; gap: 3mm 2mm; }
@@ -399,13 +410,12 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
   width: 11mm; height: 11mm; border-radius: 50%; background: #eef3fb; border: 1.2px solid #8aa3c8;
   display: inline-flex; align-items: center; justify-content: center; font-size: 8mm; line-height: 1;
 }
-/* した:ほしと キャラクター */
+/* した:ほし(プリントには キャラクターを 入れない) */
 .yj-foot { display: flex; align-items: center; justify-content: flex-end; gap: 3mm; margin-top: 4mm; font-size: 11pt; color: #444; }
 .yj-star {
   width: 11mm; height: 11mm; flex: none;
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 1.8l3 6.4 7 .9-5.1 4.8 1.3 6.9L12 17.4l-6.2 3.4 1.3-6.9L2 9.1l7-.9z' fill='none' stroke='%23e2a50b' stroke-width='1.4' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
 }
-.yj-foot .chara { width: 16mm; height: 18mm; flex: none; }
 .sheet.yj .sheet-foot { padding-top: 1mm; }
 
 @page { size: A4 portrait; margin: 0; }
@@ -445,6 +455,15 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
   </label>
   <label class="sheet-only yj-only">あそび
     <select id="f-yplay"></select>
+  </label>
+  <label class="sheet-only yj-only">ひらがな・カタカナ
+    <select id="f-yscript"><option value="hira">ひらがな</option><option value="kata">カタカナ</option></select>
+  </label>
+  <label class="sheet-only yj-only">え の テーマ
+    <select id="f-ycat"></select>
+  </label>
+  <label class="sheet-only yj-only">ヒント
+    <select id="f-yhint"></select>
   </label>
   <label class="sheet-only kk-only">種類
     <select id="f-kind">
@@ -508,7 +527,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       <div class="home-hero">
         <h1><span class="masu" aria-label="国語プリント"><span class="c1">国</span><span class="c2">語</span><span class="c3">プ</span><span class="c4">リ</span><span class="c5">ン</span><span class="c6">ト</span></span><span class="version" id="home-version"></span></h1>
         <p class="kk-only">小学1年から 中学までの 漢字の 読み書きと 長文読解の プリントを、ブラウザだけで 作れます。学年と むずかしさを えらんで、プリントの 種類を おしてください。</p>
-        <p class="yj-only">ようじ(3〜6さい)の ひらがな・カタカナの なぞり書きと、ことば あそびの プリントです。おうちの かたが えらんで、いっしょに やって みてください。</p>
+        <p class="yj-only">ようじ(3〜6さい)の ひらがな・カタカナの なぞり書き、絵を みて ことばを かく プリント、ことば あそびです。おうちの かたが えらんで、いっしょに やって みてください。</p>
       </div>
       <div class="home-steps">
         <p class="home-step"><span class="n">1</span>学年</p>
@@ -552,8 +571,14 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       <span class="desc">どうぶつ・くだもの・のりもの・はる・なつ・あき・ふゆ など 16の テーマ。なぞってから となりに かきます。</span>
       <span class="go">作る ▶</span>
     </button>
+    <button class="kind-card yj-card" data-kind="pic" data-ykind="pic">
+      <span class="name"><span class="n">4</span>え と ことば</span>
+      <span class="chara chara-guide" aria-hidden="true"></span>
+      <span class="desc">こあら・りんご などの 絵を みて、なまえを ますに かきます。こたえの ページつき。</span>
+      <span class="go">作る ▶</span>
+    </button>
     <button class="kind-card yj-card" data-kind="long" data-ykind="play">
-      <span class="name"><span class="n">4</span>ことば あそび</span>
+      <span class="name"><span class="n">5</span>ことば あそび</span>
       <span class="chara chara-think" aria-hidden="true"></span>
       <span class="desc">しりとり・ことば さがし・たりない 字・ならべかえ。シードを かえると 何まいでも。こたえの ページつき。</span>
       <span class="go">作る ▶</span>
@@ -976,10 +1001,14 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
      ひらがな・カタカナの なぞり書き、ことば なぞり、ことば あそび(しりとり・ことば さがし・たりない 字・ならべかえ)。
      データは src/data/youji.json(tools/make_youji.py が 作る)。 */
   const YD = typeof youjiData !== "undefined" ? youjiData : { hira: [], kata: [], themes: [], extra: [] };
-  const YKINDS = [["hira", "ひらがな なぞり"], ["kata", "カタカナ なぞり"], ["word", "ことば なぞり"], ["play", "ことば あそび"]];
+  const YKINDS = [["hira", "ひらがな なぞり"], ["kata", "カタカナ なぞり"], ["word", "ことば なぞり"], ["pic", "え と ことば(絵を みて かく)"], ["play", "ことば あそび"]];
+  const YPICS = typeof youjiPics !== "undefined" ? youjiPics : {};
+  const YHINTS = [["first", "さいしょの 字を なぞる"], ["all", "ぜんぶ なぞる(うすい字)"], ["none", "ヒント なし"]];
+  // え を みて かこう の テーマ(その 字の しゅるいに ある ものだけ 出す)
+  const picCats = (script) => [...new Set(((YD.pics || {})[script] || []).map((x) => x.cat))];
   const YPLAYS = [["mix", "じゅんばんに(シードで かわる)"], ["shiri", "しりとり"], ["search", "ことば さがし"],
                   ["miss", "たりない 字"], ["sort", "ならべかえ"]];
-  const YTITLE = { hira: "ひらがな れんしゅう", kata: "カタカナ れんしゅう", word: "ことば れんしゅう", play: "ことば あそび" };
+  const YTITLE = { hira: "ひらがな れんしゅう", kata: "カタカナ れんしゅう", word: "ことば れんしゅう", pic: "え と ことば", play: "ことば あそび" };
   const SMALL = { "ゃ": "や", "ゅ": "ゆ", "ょ": "よ", "っ": "つ", "ぁ": "あ", "ぃ": "い", "ぅ": "う", "ぇ": "え", "ぉ": "お" };
   const FILL = "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわ";
   // あそびに 使う ことば(テーマ・行の ことば・あそび用)。テーマの ことばには カテゴリ(ヒント)が つく
@@ -1083,12 +1112,19 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
   const PLAY_ORDER = ["shiri", "search", "miss", "sort"];
 
   // 行・テーマ・あそびは "auto"/"mix" なら シードで じゅんばんに かわる(シード1 → あ行、2 → か行 …)
-  function buildYoujiSheet({ ykind, yrow, ytheme, yplay, seed, no }) {
+  function buildYoujiSheet({ ykind, yrow, ytheme, yplay, yscript, ycat, yhint, seed, no }) {
     const rng = makeRng(seed * 7919 + 4243);
     const s = { youji: true, ykind, seed, no };
     if (ykind === "hira" || ykind === "kata") {
       const rows = YD[ykind];
       s.row = rows[yrow === "auto" || yrow == null ? (seed - 1) % rows.length : Number(yrow) % rows.length];
+    } else if (ykind === "pic") {
+      // 絵を 8つ(テーマを しぼって 8つ ない ときは ある だけ)。同じ ことばは 1回だけ
+      s.script = yscript === "kata" ? "kata" : "hira";
+      s.hint = yhint || "first";
+      const all = ((YD.pics || {})[s.script] || []).filter((x) => !ycat || ycat === "all" || x.cat === ycat);
+      const seen = new Set();
+      s.items = shuffled(all, rng).filter((x) => !seen.has(x.w) && seen.add(x.w)).slice(0, 8);
     } else if (ykind === "word") {
       const t = YD.themes;
       s.theme = t[ytheme === "auto" || ytheme == null ? (seed - 1) % t.length : Number(ytheme) % t.length];
@@ -1117,6 +1153,20 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       body = `<h3 class="yj-h"><span class="yj-badge">${esc(s.row.name.replace("行", " ぎょう"))}</span>を かこう</h3>` +
         `<p class="yj-inst">いちばん ひだりの じを よく みて、うすい じを なぞってから、じぶんで かいて みよう。</p>` +
         `<div class="yj-rows">${rows}</div>`;
+    } else if (s.ykind === "pic") {
+      const items = s.items.map((it, i) => {
+        const boxes = [...it.w].map((ch, j) => {
+          const show = ans || s.hint === "all" || (s.hint === "first" && j === 0);
+          return ybox(show ? ch : "", ans ? "ans" : show ? "trace" : "");
+        }).join("");
+        return `<div class="pic-item"><span class="yn">${i + 1}</span>` +
+          `<img class="pic" src="${YPICS[it.pic] || ""}" alt="">` +
+          `<span class="wline${it.w.length >= 6 ? " long" : ""}">${boxes}</span></div>`;
+      }).join("");
+      const inst = { all: "えの なまえを、うすい じを なぞって かこう。", first: "えの なまえを ますに かこう。さいしょの じは なぞってね。",
+                     none: "えの なまえを ますに かこう。ますの かずが じの かずだよ。" }[s.hint];
+      body = `<h3 class="yj-h"><span class="yj-badge">え を みて かこう</span></h3>` +
+        `<p class="yj-inst">${inst}</p><div class="yj-rows pics">${items}</div>`;
     } else if (s.ykind === "word") {
       const rows = s.theme.words.map((w, i) =>
         `<div class="yj-wrow"><span class="yn">${i + 1}</span>` +
@@ -1165,8 +1215,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       `<span class="field name"><i>なまえ</i><b></b></span></span></div>` +
       body +
       `<div class="yj-foot"><span class="yj-star" aria-hidden="true"></span>` +
-      `<span>${ans ? "まるを つけて あげてね" : "できたら ほしに いろを ぬろう"}</span>` +
-      `<span class="chara ${ans ? "chara-maru" : "chara-cheer"}" aria-hidden="true"></span></div>` +
+      `<span>${ans ? "まるを つけて あげてね" : "できたら ほしに いろを ぬろう"}</span></div>` +
       `<div class="sheet-foot"><span class="seed">シード ${s.seed}</span></div></div>`;
   }
 
@@ -1174,7 +1223,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
   const $ = (id) => document.getElementById(id);
   const state = { grade: 3, gRead: 3, gWrite: 3, gStory: 3, furi: "none", genre: "all",
                   kind: "both", level: 2, nRead: 8, nWrite: 8, seed: 1,
-                  ykind: "hira", yrow: "auto", ytheme: "auto", yplay: "mix" };
+                  ykind: "hira", yrow: "auto", ytheme: "auto", yplay: "mix", yscript: "hira", ycat: "all", yhint: "first" };
   // 学年 0 は ようじ
   const gradeLabel = (g) => (g === 0 ? "ようじ" : BANKS[g - 1].label);
 
@@ -1208,6 +1257,10 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       state.yrow = $("f-yrow").value || "auto";
       state.ytheme = $("f-ytheme").value || "auto";
       state.yplay = $("f-yplay").value || "mix";
+      state.yscript = $("f-yscript").value || "hira";
+      state.ycat = $("f-ycat").value || "all";
+      state.yhint = $("f-yhint").value || "first";
+      if (!picCats(state.yscript).includes(state.ycat)) state.ycat = "all";
       if (changedId === "f-ykind") state.yrow = "auto";
       state.seed = Math.max(1, Math.min(999999, Number($("f-seed").value) || 1));
       setMsg("");
@@ -1265,11 +1318,17 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       $("f-ytheme").value = state.ytheme;
       $("f-yplay").innerHTML = opts(YPLAYS);
       $("f-yplay").value = state.yplay;
+      $("f-yscript").value = state.yscript;
+      $("f-ycat").innerHTML = opts([["all", "すべて"]].concat(picCats(state.yscript).map((c) => [c, c])));
+      $("f-ycat").value = state.ycat;
+      $("f-yhint").innerHTML = opts(YHINTS);
+      $("f-yhint").value = state.yhint;
+      for (const id of ["f-yscript", "f-ycat", "f-yhint"]) $(id).closest("label").hidden = state.ykind !== "pic";
       $("f-yrow").closest("label").hidden = !["hira", "kata"].includes(state.ykind);
       $("f-ytheme").closest("label").hidden = state.ykind !== "word";
       $("f-yplay").closest("label").hidden = state.ykind !== "play";
-      // こたえの ページは ことば あそびだけ
-      $("f-ans").closest("label").hidden = state.ykind !== "play";
+      // こたえの ページは ことば あそびと え を みて かこう だけ
+      $("f-ans").closest("label").hidden = !["play", "pic"].includes(state.ykind);
       $("f-seed").value = String(state.seed);
       return;
     }
@@ -1305,7 +1364,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       for (let i = 0; i < n; i++) {
         const s = buildYoujiSheet(Object.assign({}, state, { seed: startSeed + i, no: i + 1 }));
         out.push(youjiSheetHtml(s, {}));
-        if (withAns && s.ykind === "play") out.push(youjiSheetHtml(s, { answer: true }));
+        if (withAns && ["play", "pic"].includes(s.ykind)) out.push(youjiSheetHtml(s, { answer: true }));
       }
       return out;
     }
@@ -1432,7 +1491,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       $("b-seed").value = String(state.seed);
       $("batch").showModal();
     });
-    for (const id of ["f-grade", "f-gread", "f-gwrite", "f-gstory", "f-genre", "f-furi", "f-kind", "f-ykind", "f-yrow", "f-ytheme", "f-yplay", "f-level",
+    for (const id of ["f-grade", "f-gread", "f-gwrite", "f-gstory", "f-genre", "f-furi", "f-kind", "f-ykind", "f-yrow", "f-ytheme", "f-yplay", "f-yscript", "f-ycat", "f-yhint", "f-level",
                       "f-read", "f-write", "f-seed", "f-model", "f-ans", "f-anslist"]) {
       $(id).addEventListener("change", () => {
         readControls(id);

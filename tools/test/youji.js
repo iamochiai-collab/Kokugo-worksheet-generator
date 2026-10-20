@@ -22,11 +22,19 @@ const path = require('path');
     T.YD.hira.forEach((_, i) => jobs.push({ ykind: 'hira', yrow: String(i), seed: 1 }));
     T.YD.kata.forEach((_, i) => jobs.push({ ykind: 'kata', yrow: String(i), seed: 1 }));
     T.YD.themes.forEach((_, i) => jobs.push({ ykind: 'word', ytheme: String(i), seed: 1 }));
+    for (const yscript of ['hira', 'kata'])
+      for (const ycat of ['all', ...new Set(T.YD.pics[yscript].map((x) => x.cat))])
+        for (const yhint of ['first', 'all', 'none'])
+          for (let seed = 1; seed <= 6; seed++) jobs.push({ ykind: 'pic', yscript, ycat, yhint, seed });
     for (const yplay of ['shiri', 'search', 'miss', 'sort'])
       for (let seed = 1; seed <= 60; seed++) jobs.push({ ykind: 'play', yplay, seed });
     for (const j of jobs) {
       const s = T.buildYoujiSheet(Object.assign({ no: 1 }, j));
-      const where = `${j.ykind} ${j.yrow || j.ytheme || j.yplay || ''} seed${j.seed}`;
+      const where = `${j.ykind} ${j.yrow || j.ytheme || j.yplay || ''}${j.yscript ? j.yscript + ' ' + j.ycat + ' ' + j.yhint : ''} seed${j.seed}`;
+      if (s.ykind === 'pic') {
+        if (s.items.length < 6) bad.push(`${where}: 絵が ${s.items.length}`);
+        if (new Set(s.items.map((x) => x.w)).size !== s.items.length) bad.push(`${where}: 同じ ことば`);
+      }
       // 答えの しらべ
       if (s.play === 'shiri') {
         if (s.data.chains.length !== 4) bad.push(`${where}: しりとりが ${s.data.chains.length} つ`);
@@ -46,7 +54,7 @@ const path = require('path');
         for (const it of s.data.items) if (it.letters.join('') === it.w || [...it.letters].sort().join('') !== [...it.w].sort().join('')) bad.push(`${where}: ${it.w}`);
       }
       for (const answer of [false, true]) {
-        if (answer && j.ykind !== 'play') continue;
+        if (answer && !['play', 'pic'].includes(j.ykind)) continue;
         host.innerHTML = T.youjiSheetHtml(s, { answer });
         const el = host.querySelector('.sheet');
         el.style.transform = '';
@@ -55,6 +63,13 @@ const path = require('path');
         if (h > maxH) { maxH = h; worst = where + (answer ? ' こたえ' : ''); }
         if (h > 297.5) bad.push(`${where}${answer ? ' こたえ' : ''}: ${h.toFixed(1)}mm`);
         if (el.scrollWidth > el.clientWidth + 2) bad.push(`${where}: よこに はみ出し`);
+        if (s.ykind === 'pic') {
+          const imgs = [...el.querySelectorAll('img.pic')];
+          if (imgs.some((im) => !im.getAttribute('src'))) bad.push(`${where}: 絵が ない`);
+          el.querySelectorAll('.pic-item').forEach((it, k) => {
+            if (it.querySelectorAll('.mb').length !== [...s.items[k].w].length) bad.push(`${where}: ${s.items[k].w} の ます`);
+          });
+        }
       }
     }
     return { n, maxH, worst, bad };

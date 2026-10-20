@@ -781,5 +781,826 @@
   "すな",
   "なべ",
   "べにしょうが"
- ]
+ ],
+ "pics": {
+  "hira": [
+   {
+    "w": "こあら",
+    "cat": "どうぶつ",
+    "pic": "koala"
+   },
+   {
+    "w": "いぬ",
+    "cat": "どうぶつ",
+    "pic": "dog-face"
+   },
+   {
+    "w": "ねこ",
+    "cat": "どうぶつ",
+    "pic": "cat-face"
+   },
+   {
+    "w": "ぞう",
+    "cat": "どうぶつ",
+    "pic": "elephant"
+   },
+   {
+    "w": "きりん",
+    "cat": "どうぶつ",
+    "pic": "giraffe"
+   },
+   {
+    "w": "さる",
+    "cat": "どうぶつ",
+    "pic": "monkey-face"
+   },
+   {
+    "w": "くま",
+    "cat": "どうぶつ",
+    "pic": "bear"
+   },
+   {
+    "w": "うさぎ",
+    "cat": "どうぶつ",
+    "pic": "rabbit-face"
+   },
+   {
+    "w": "ぶた",
+    "cat": "どうぶつ",
+    "pic": "pig-face"
+   },
+   {
+    "w": "うし",
+    "cat": "どうぶつ",
+    "pic": "cow-face"
+   },
+   {
+    "w": "うま",
+    "cat": "どうぶつ",
+    "pic": "horse-face"
+   },
+   {
+    "w": "ひつじ",
+    "cat": "どうぶつ",
+    "pic": "ewe"
+   },
+   {
+    "w": "らいおん",
+    "cat": "どうぶつ",
+    "pic": "lion"
+   },
+   {
+    "w": "とら",
+    "cat": "どうぶつ",
+    "pic": "tiger-face"
+   },
+   {
+    "w": "ぱんだ",
+    "cat": "どうぶつ",
+    "pic": "panda"
+   },
+   {
+    "w": "かめ",
+    "cat": "どうぶつ",
+    "pic": "turtle"
+   },
+   {
+    "w": "へび",
+    "cat": "どうぶつ",
+    "pic": "snake"
+   },
+   {
+    "w": "かえる",
+    "cat": "どうぶつ",
+    "pic": "frog"
+   },
+   {
+    "w": "ねずみ",
+    "cat": "どうぶつ",
+    "pic": "mouse-face"
+   },
+   {
+    "w": "きつね",
+    "cat": "どうぶつ",
+    "pic": "fox"
+   },
+   {
+    "w": "しか",
+    "cat": "どうぶつ",
+    "pic": "deer"
+   },
+   {
+    "w": "わに",
+    "cat": "どうぶつ",
+    "pic": "crocodile"
+   },
+   {
+    "w": "かば",
+    "cat": "どうぶつ",
+    "pic": "hippopotamus"
+   },
+   {
+    "w": "らくだ",
+    "cat": "どうぶつ",
+    "pic": "camel"
+   },
+   {
+    "w": "りす",
+    "cat": "どうぶつ",
+    "pic": "chipmunk"
+   },
+   {
+    "w": "はりねずみ",
+    "cat": "どうぶつ",
+    "pic": "hedgehog"
+   },
+   {
+    "w": "さかな",
+    "cat": "いきもの",
+    "pic": "fish"
+   },
+   {
+    "w": "たこ",
+    "cat": "いきもの",
+    "pic": "octopus"
+   },
+   {
+    "w": "かに",
+    "cat": "いきもの",
+    "pic": "crab"
+   },
+   {
+    "w": "えび",
+    "cat": "いきもの",
+    "pic": "shrimp"
+   },
+   {
+    "w": "いか",
+    "cat": "いきもの",
+    "pic": "squid"
+   },
+   {
+    "w": "くじら",
+    "cat": "いきもの",
+    "pic": "spouting-whale"
+   },
+   {
+    "w": "いるか",
+    "cat": "いきもの",
+    "pic": "dolphin"
+   },
+   {
+    "w": "ぺんぎん",
+    "cat": "いきもの",
+    "pic": "penguin"
+   },
+   {
+    "w": "にわとり",
+    "cat": "いきもの",
+    "pic": "rooster"
+   },
+   {
+    "w": "ひよこ",
+    "cat": "いきもの",
+    "pic": "baby-chick"
+   },
+   {
+    "w": "あひる",
+    "cat": "いきもの",
+    "pic": "duck"
+   },
+   {
+    "w": "ふくろう",
+    "cat": "いきもの",
+    "pic": "owl"
+   },
+   {
+    "w": "はと",
+    "cat": "いきもの",
+    "pic": "dove"
+   },
+   {
+    "w": "はち",
+    "cat": "いきもの",
+    "pic": "honeybee"
+   },
+   {
+    "w": "ちょう",
+    "cat": "いきもの",
+    "pic": "butterfly"
+   },
+   {
+    "w": "あり",
+    "cat": "いきもの",
+    "pic": "ant"
+   },
+   {
+    "w": "てんとうむし",
+    "cat": "いきもの",
+    "pic": "lady-beetle"
+   },
+   {
+    "w": "かたつむり",
+    "cat": "いきもの",
+    "pic": "snail"
+   },
+   {
+    "w": "くも",
+    "cat": "いきもの",
+    "pic": "spider"
+   },
+   {
+    "w": "さめ",
+    "cat": "いきもの",
+    "pic": "shark"
+   },
+   {
+    "w": "りんご",
+    "cat": "たべもの",
+    "pic": "red-apple"
+   },
+   {
+    "w": "みかん",
+    "cat": "たべもの",
+    "pic": "tangerine"
+   },
+   {
+    "w": "ぶどう",
+    "cat": "たべもの",
+    "pic": "grapes"
+   },
+   {
+    "w": "いちご",
+    "cat": "たべもの",
+    "pic": "strawberry"
+   },
+   {
+    "w": "すいか",
+    "cat": "たべもの",
+    "pic": "watermelon"
+   },
+   {
+    "w": "もも",
+    "cat": "たべもの",
+    "pic": "peach"
+   },
+   {
+    "w": "ばなな",
+    "cat": "たべもの",
+    "pic": "banana"
+   },
+   {
+    "w": "めろん",
+    "cat": "たべもの",
+    "pic": "melon"
+   },
+   {
+    "w": "さくらんぼ",
+    "cat": "たべもの",
+    "pic": "cherries"
+   },
+   {
+    "w": "なし",
+    "cat": "たべもの",
+    "pic": "pear"
+   },
+   {
+    "w": "くり",
+    "cat": "たべもの",
+    "pic": "chestnut"
+   },
+   {
+    "w": "なす",
+    "cat": "たべもの",
+    "pic": "eggplant"
+   },
+   {
+    "w": "にんじん",
+    "cat": "たべもの",
+    "pic": "carrot"
+   },
+   {
+    "w": "とまと",
+    "cat": "たべもの",
+    "pic": "tomato"
+   },
+   {
+    "w": "きのこ",
+    "cat": "たべもの",
+    "pic": "mushroom"
+   },
+   {
+    "w": "たまねぎ",
+    "cat": "たべもの",
+    "pic": "onion"
+   },
+   {
+    "w": "じゃがいも",
+    "cat": "たべもの",
+    "pic": "potato"
+   },
+   {
+    "w": "おにぎり",
+    "cat": "たべもの",
+    "pic": "rice-ball"
+   },
+   {
+    "w": "すし",
+    "cat": "たべもの",
+    "pic": "sushi"
+   },
+   {
+    "w": "ぱん",
+    "cat": "たべもの",
+    "pic": "bread"
+   },
+   {
+    "w": "たまご",
+    "cat": "たべもの",
+    "pic": "egg"
+   },
+   {
+    "w": "あめ",
+    "cat": "たべもの",
+    "pic": "candy"
+   },
+   {
+    "w": "だんご",
+    "cat": "たべもの",
+    "pic": "dango"
+   },
+   {
+    "w": "くるま",
+    "cat": "のりもの",
+    "pic": "automobile"
+   },
+   {
+    "w": "ばす",
+    "cat": "のりもの",
+    "pic": "bus"
+   },
+   {
+    "w": "でんしゃ",
+    "cat": "のりもの",
+    "pic": "railway-car"
+   },
+   {
+    "w": "ふね",
+    "cat": "のりもの",
+    "pic": "sailboat"
+   },
+   {
+    "w": "ひこうき",
+    "cat": "のりもの",
+    "pic": "airplane"
+   },
+   {
+    "w": "じてんしゃ",
+    "cat": "のりもの",
+    "pic": "bicycle"
+   },
+   {
+    "w": "ろけっと",
+    "cat": "のりもの",
+    "pic": "rocket"
+   },
+   {
+    "w": "とけい",
+    "cat": "もの",
+    "pic": "alarm-clock"
+   },
+   {
+    "w": "かぎ",
+    "cat": "もの",
+    "pic": "key"
+   },
+   {
+    "w": "ほん",
+    "cat": "もの",
+    "pic": "open-book"
+   },
+   {
+    "w": "えんぴつ",
+    "cat": "もの",
+    "pic": "pencil"
+   },
+   {
+    "w": "はさみ",
+    "cat": "もの",
+    "pic": "scissors"
+   },
+   {
+    "w": "めがね",
+    "cat": "もの",
+    "pic": "glasses"
+   },
+   {
+    "w": "くつ",
+    "cat": "もの",
+    "pic": "running-shoe"
+   },
+   {
+    "w": "くつした",
+    "cat": "もの",
+    "pic": "socks"
+   },
+   {
+    "w": "てぶくろ",
+    "cat": "もの",
+    "pic": "gloves"
+   },
+   {
+    "w": "てがみ",
+    "cat": "もの",
+    "pic": "envelope"
+   },
+   {
+    "w": "でんわ",
+    "cat": "もの",
+    "pic": "telephone"
+   },
+   {
+    "w": "たいこ",
+    "cat": "もの",
+    "pic": "drum"
+   },
+   {
+    "w": "ふうせん",
+    "cat": "もの",
+    "pic": "balloon"
+   },
+   {
+    "w": "かさ",
+    "cat": "もの",
+    "pic": "umbrella"
+   },
+   {
+    "w": "かばん",
+    "cat": "もの",
+    "pic": "backpack"
+   },
+   {
+    "w": "たこ",
+    "cat": "もの",
+    "pic": "kite"
+   },
+   {
+    "w": "やま",
+    "cat": "しぜん",
+    "pic": "mountain"
+   },
+   {
+    "w": "つき",
+    "cat": "しぜん",
+    "pic": "crescent-moon"
+   },
+   {
+    "w": "ほし",
+    "cat": "しぜん",
+    "pic": "star"
+   },
+   {
+    "w": "たいよう",
+    "cat": "しぜん",
+    "pic": "sun"
+   },
+   {
+    "w": "にじ",
+    "cat": "しぜん",
+    "pic": "rainbow"
+   },
+   {
+    "w": "ゆき",
+    "cat": "しぜん",
+    "pic": "snowflake"
+   },
+   {
+    "w": "くも",
+    "cat": "しぜん",
+    "pic": "cloud"
+   },
+   {
+    "w": "かみなり",
+    "cat": "しぜん",
+    "pic": "high-voltage"
+   },
+   {
+    "w": "さくら",
+    "cat": "しぜん",
+    "pic": "cherry-blossom"
+   },
+   {
+    "w": "ひまわり",
+    "cat": "しぜん",
+    "pic": "sunflower"
+   },
+   {
+    "w": "もみじ",
+    "cat": "しぜん",
+    "pic": "maple-leaf"
+   },
+   {
+    "w": "ゆきだるま",
+    "cat": "しぜん",
+    "pic": "snowman"
+   },
+   {
+    "w": "はな",
+    "cat": "しぜん",
+    "pic": "tulip"
+   },
+   {
+    "w": "き",
+    "cat": "しぜん",
+    "pic": "deciduous-tree"
+   },
+   {
+    "w": "いえ",
+    "cat": "しぜん",
+    "pic": "house"
+   },
+   {
+    "w": "はなび",
+    "cat": "しぜん",
+    "pic": "fireworks"
+   },
+   {
+    "w": "め",
+    "cat": "からだ",
+    "pic": "eye"
+   },
+   {
+    "w": "みみ",
+    "cat": "からだ",
+    "pic": "ear-default"
+   },
+   {
+    "w": "はな",
+    "cat": "からだ",
+    "pic": "nose-default"
+   },
+   {
+    "w": "くち",
+    "cat": "からだ",
+    "pic": "mouth"
+   },
+   {
+    "w": "て",
+    "cat": "からだ",
+    "pic": "raised-hand-default"
+   },
+   {
+    "w": "あし",
+    "cat": "からだ",
+    "pic": "leg-default"
+   }
+  ],
+  "kata": [
+   {
+    "w": "コアラ",
+    "cat": "どうぶつ",
+    "pic": "koala"
+   },
+   {
+    "w": "ライオン",
+    "cat": "どうぶつ",
+    "pic": "lion"
+   },
+   {
+    "w": "パンダ",
+    "cat": "どうぶつ",
+    "pic": "panda"
+   },
+   {
+    "w": "ペンギン",
+    "cat": "どうぶつ",
+    "pic": "penguin"
+   },
+   {
+    "w": "ゴリラ",
+    "cat": "どうぶつ",
+    "pic": "gorilla"
+   },
+   {
+    "w": "カンガルー",
+    "cat": "どうぶつ",
+    "pic": "kangaroo"
+   },
+   {
+    "w": "フラミンゴ",
+    "cat": "どうぶつ",
+    "pic": "flamingo"
+   },
+   {
+    "w": "インコ",
+    "cat": "どうぶつ",
+    "pic": "parrot"
+   },
+   {
+    "w": "ハムスター",
+    "cat": "どうぶつ",
+    "pic": "hamster"
+   },
+   {
+    "w": "イルカ",
+    "cat": "どうぶつ",
+    "pic": "dolphin"
+   },
+   {
+    "w": "ラッコ",
+    "cat": "どうぶつ",
+    "pic": "otter"
+   },
+   {
+    "w": "バナナ",
+    "cat": "たべもの",
+    "pic": "banana"
+   },
+   {
+    "w": "メロン",
+    "cat": "たべもの",
+    "pic": "melon"
+   },
+   {
+    "w": "トマト",
+    "cat": "たべもの",
+    "pic": "tomato"
+   },
+   {
+    "w": "ケーキ",
+    "cat": "たべもの",
+    "pic": "shortcake"
+   },
+   {
+    "w": "パン",
+    "cat": "たべもの",
+    "pic": "bread"
+   },
+   {
+    "w": "レモン",
+    "cat": "たべもの",
+    "pic": "lemon"
+   },
+   {
+    "w": "キウイ",
+    "cat": "たべもの",
+    "pic": "kiwi-fruit"
+   },
+   {
+    "w": "ピーマン",
+    "cat": "たべもの",
+    "pic": "bell-pepper"
+   },
+   {
+    "w": "ドーナツ",
+    "cat": "たべもの",
+    "pic": "doughnut"
+   },
+   {
+    "w": "クッキー",
+    "cat": "たべもの",
+    "pic": "cookie"
+   },
+   {
+    "w": "アイス",
+    "cat": "たべもの",
+    "pic": "ice-cream"
+   },
+   {
+    "w": "ピザ",
+    "cat": "たべもの",
+    "pic": "pizza"
+   },
+   {
+    "w": "プリン",
+    "cat": "たべもの",
+    "pic": "custard"
+   },
+   {
+    "w": "ミルク",
+    "cat": "たべもの",
+    "pic": "glass-of-milk"
+   },
+   {
+    "w": "チョコ",
+    "cat": "たべもの",
+    "pic": "chocolate-bar"
+   },
+   {
+    "w": "バス",
+    "cat": "のりもの",
+    "pic": "bus"
+   },
+   {
+    "w": "ロケット",
+    "cat": "のりもの",
+    "pic": "rocket"
+   },
+   {
+    "w": "トラック",
+    "cat": "のりもの",
+    "pic": "delivery-truck"
+   },
+   {
+    "w": "タクシー",
+    "cat": "のりもの",
+    "pic": "taxi"
+   },
+   {
+    "w": "バイク",
+    "cat": "のりもの",
+    "pic": "motorcycle"
+   },
+   {
+    "w": "ヨット",
+    "cat": "のりもの",
+    "pic": "sailboat"
+   },
+   {
+    "w": "テレビ",
+    "cat": "もの",
+    "pic": "television"
+   },
+   {
+    "w": "カメラ",
+    "cat": "もの",
+    "pic": "camera"
+   },
+   {
+    "w": "ピアノ",
+    "cat": "もの",
+    "pic": "musical-keyboard"
+   },
+   {
+    "w": "ギター",
+    "cat": "もの",
+    "pic": "guitar"
+   },
+   {
+    "w": "ボール",
+    "cat": "もの",
+    "pic": "soccer-ball"
+   },
+   {
+    "w": "ベッド",
+    "cat": "もの",
+    "pic": "bed"
+   },
+   {
+    "w": "ペン",
+    "cat": "もの",
+    "pic": "pen"
+   },
+   {
+    "w": "ノート",
+    "cat": "もの",
+    "pic": "notebook"
+   },
+   {
+    "w": "クレヨン",
+    "cat": "もの",
+    "pic": "crayon"
+   },
+   {
+    "w": "ベル",
+    "cat": "もの",
+    "pic": "bell"
+   },
+   {
+    "w": "スプーン",
+    "cat": "もの",
+    "pic": "spoon"
+   },
+   {
+    "w": "コップ",
+    "cat": "もの",
+    "pic": "cup-with-straw"
+   },
+   {
+    "w": "フォーク",
+    "cat": "もの",
+    "pic": "fork-and-knife"
+   },
+   {
+    "w": "シャツ",
+    "cat": "もの",
+    "pic": "t-shirt"
+   },
+   {
+    "w": "ネクタイ",
+    "cat": "もの",
+    "pic": "necktie"
+   },
+   {
+    "w": "ラッパ",
+    "cat": "もの",
+    "pic": "trumpet"
+   },
+   {
+    "w": "バイオリン",
+    "cat": "もの",
+    "pic": "violin"
+   }
+  ]
+ }
 }

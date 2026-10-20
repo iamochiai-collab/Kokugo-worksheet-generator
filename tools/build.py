@@ -58,6 +58,11 @@ for name, var in [('ruby.json', 'rubyData'), ('kanji_grades.json', 'kanjiGrades'
     if f.exists():
         blocks.append(f'  var {var} = {json.dumps(json.loads(f.read_text(encoding="utf-8")), ensure_ascii=False)};')
 
+# --- ようじの「え を みて かこう」の 絵(assets/pics/*.svg。Fluent Emoji フラット・MIT) ---
+pics = {f.stem: 'data:image/svg+xml;base64,' + base64.b64encode(f.read_bytes()).decode()
+        for f in sorted((root / 'assets' / 'pics').glob('*.svg'))}
+blocks.append(f'  var youjiPics = {json.dumps(pics)};')
+
 assert tpl.count('{{DATA}}') == 1
 out = tpl.replace('{{DATA}}', '\n'.join(blocks).strip())
 
