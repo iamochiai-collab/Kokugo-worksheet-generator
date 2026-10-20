@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="app-version" content="第6版(2026-10-20)">
+<meta name="app-version" content="第7版(2026-10-20)">
 <title>国語プリント</title>
 <style>
 :root {
@@ -274,21 +274,9 @@ body[data-youji="1"] .kind-card { min-height: 240px; }
 .sheet.answer .sheet-head .label::after { content: "（答え）"; font-size: 11pt; margin-left: 6px; }
 .model { color: #bbb; }
 
-/* ふつうの プリント(長文 いがい):字を 大きく、読みの 答えは 漢字の 上の 四角に 書く */
-.sheet:not(.long) .item { font-size: 13pt; line-height: 2; }
-.sheet:not(.long) .item > .n { font-size: 11pt; }
-.sheet:not(.long) .q-group > .instruction { font-size: 11pt; }
-.sheet:not(.long) .wbox .ruby { font-size: 11pt; }
-.sheet:not(.long) .wbox .cell { width: 13mm; height: 12.5mm; }
-.sheet:not(.long) .wbox.small .cell { width: 11mm; height: 11mm; }
-.sheet:not(.long) .wbox .cell .ans { font-size: 15pt; }
-.rbox { display: inline-flex; flex-direction: column; align-items: center; vertical-align: bottom; margin: 0 2px; }
-.rbox .rcell {
-  display: flex; align-items: center; justify-content: center; height: 11mm; min-width: 12mm;
-  border: 1.6px solid var(--rule); border-radius: 2px; line-height: 1; white-space: nowrap;
-}
-.rbox .rcell .ans, .rbox .rcell .model { font-size: 13pt; font-weight: bold; letter-spacing: 0.02em; }
-.rbox .target { line-height: 1.5; }
+/* ふつうの プリント(長文 いがい):レイアウトは そのまま、ねらいの 字(読みの 漢字・書きの 読みがな)だけ 大きく */
+.sheet:not(.long) .item .target { font-size: 1.2em; text-underline-offset: 5px; }
+.sheet:not(.long) .wbox .ruby { font-size: 13pt; }
 
 /* ふりがな */
 ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height: 1; }
@@ -793,8 +781,8 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
   }
 
   /* ===== 1枚に 入るかの 見つもり =====
-     実測した 高さ(mm)。読みは 漢字の 上に 答えの 四角が あるので 1行(2問)で 約24mm、
-     書きは ますが あるので 約23.5mm。この 差を もとに、読みと 書きの 数の
+     実測した 高さ(mm)。読みは 1行(2問)で 約17mm、
+     書きは ますが あるので 約23mm。この 差を もとに、読みと 書きの 数の
      くみあわせが A4 1枚に 入るかを 決める。 */
   // 長文の プリントは、本文の 長さが 学年で ちがうので、土台(漢字の 問題 なし)の 高さを
   // 学年ごとに 実測して 使う(tools/measure_layout.js が src/data/layout.json に 書く)
@@ -803,7 +791,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
   const LONG_BASE = LD.longBase || {}, LONG_BASE_R = LD.longBaseR || {};
   const STORY_H = LD.storyH || {}, STORY_HR = LD.storyHR || {};
   const LAYOUT = {
-    normal: { base: 48.5, group: 23.2, read: 24.3, write: 23.5, limit: 292, cap: 12, top: 30 },
+    normal: { base: 48.5, group: 22.5, read: 16.8, write: 22.9, limit: 292, cap: 12, top: 30 },
     long:   { base: 193, group: 16.7, read: 6.9, write: 13.4, limit: 294.5, cap: 2.5, top: 12 }
   };
   const DEFAULTS = { both: [8, 8], read: [16, 0], write: [0, 12], long: [4, 8] };
@@ -873,7 +861,6 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       title: "国語 プリント", date: "日付", name: "名前",
       readTitle: "漢字の 読みがなを 書きましょう",
       readInst: "――（下線の 漢字）の 読みがなを （　）に 書きましょう。",
-      readInstBox: "――（下線の 漢字）の 読みがなを、上の 四角に 書きましょう。",
       writeTitle: "漢字を 書きましょう",
       writeInst: "かこみの 読み方に なるように、ますに 漢字を 書きましょう。",
       story: "次の 文章を 読んで、後の 問いに 答えましょう",
@@ -883,7 +870,6 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       title: "こくご プリント", date: "ひづけ", name: "なまえ",
       readTitle: "かんじの よみかたを かきましょう",
       readInst: "――（せんの かんじ）の よみかたを （　）に かきましょう。",
-      readInstBox: "――（せんの かんじ）の よみかたを、上の しかくに かきましょう。",
       writeTitle: "かんじを かきましょう",
       writeInst: "上の よみかたに なるように、ますに かんじを かきましょう。",
       story: "つぎの ぶんしょうを よんで、もんだいに こたえましょう",
@@ -893,7 +879,6 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       date: "日づけ",
       readTitle: "かん字の 読みがなを 書きましょう",
       readInst: "――（線の かん字）の 読みがなを （　）に 書きましょう。",
-      readInstBox: "――（線の かん字）の 読みがなを、上の 四角に 書きましょう。",
       writeTitle: "かん字を 書きましょう",
       writeInst: "上の 読み方に なるように、ますに かん字を 書きましょう。",
       story: "つぎの 文しょうを 読んで、もんだいに 答えましょう",
@@ -922,14 +907,6 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
 
   function itemHtml(item, type, opt, long) {
     const n = `<span class="n">(${item.no})</span>`;
-    if (type === "read" && !long) {
-      // ふつうの プリント:漢字の 上に 四角。読みの 字数ぶんの はば(1字 5.2mm)
-      const inside = opt.answer ? `<span class="ans">${esc(item.r)}</span>`
-        : opt.model && item.no === 1 ? `<span class="model">${esc(item.r)}</span>` : "";
-      const box = `<span class="rbox"><span class="rcell" style="width:${Math.max(2, item.r.length) * 5.2 + 2}mm">${inside}</span>` +
-        `<span class="target">${esc(item.w)}</span></span>`;
-      return `<div class="item">${n}<span class="body">${esc(item.s).replace("{}", box)}</span></div>`;
-    }
     if (type === "read") {
       const sentence = esc(item.s).replace("{}", `<span class="target">${esc(item.w)}</span>`);
       // 答えの 読みが 長いときは 字を 小さく して、問題の ページと 同じ はばに おさめる
@@ -983,7 +960,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       const items = g.items.map((it) => itemHtml(it, g.type, opt, sheet.kind === "long")).join("");
       return `<section class="q-group">` +
         `<h3><em>${i + 1}</em>${g.type === "read" ? lab.readTitle : lab.writeTitle}</h3>` +
-        `<p class="instruction">${g.type === "read" ? (sheet.kind === "long" ? lab.readInst : lab.readInstBox) : lab.writeInst}</p>` +
+        `<p class="instruction">${g.type === "read" ? lab.readInst : lab.writeInst}</p>` +
         `<div class="items">${items}</div></section>`;
     }).join("");
     const furi = sheet.furi || "none";
