@@ -7,8 +7,8 @@
   themes      : ことば なぞりの テーマと ことば(1テーマ 7語・5字まで)
   extra       : ことば あそび(しりとり など)に だけ 使う ことば
   pics        : え を みて かこう の ことばと 絵(assets/pics/<名前>.svg)。
-                絵は Microsoft の Fluent Emoji の 白黒版(High Contrast。MIT ライセンス)。
-                新しい 絵を 足す ときは、fluentui-emoji の icons/high-contrast/ から assets/pics/ に コピーする
+                絵は Microsoft の Fluent Emoji(フラット。MIT ライセンス)。ビルドの ときに 白黒(うすい 灰色 + 黒い りんかく)に する(tools/lineart.py)。
+                新しい 絵を 足す ときは、fluentui-emoji の icons/flat/ から assets/pics/ に コピーする。白黒で わかりにくい 絵は 使わない
 """
 import json, pathlib
 
@@ -93,28 +93,27 @@ PICS_HIRA = '''
 どうぶつ ぶた pig-face|うし cow-face|うま horse-face|ひつじ ewe|らいおん lion|とら tiger-face|ぱんだ panda|かめ turtle
 どうぶつ へび snake|かえる frog|ねずみ mouse-face|きつね fox|しか deer|わに crocodile|かば hippopotamus|らくだ camel
 どうぶつ りす chipmunk|はりねずみ hedgehog
-いきもの さかな fish|たこ octopus|かに crab|えび shrimp|いか squid|くじら spouting-whale|いるか dolphin|ぺんぎん penguin
+いきもの さかな fish|たこ octopus|かに crab|えび shrimp|くじら spouting-whale|いるか dolphin|ぺんぎん penguin
 いきもの にわとり rooster|ひよこ baby-chick|あひる duck|ふくろう owl|はと dove|はち honeybee|ちょう butterfly|あり ant
 いきもの てんとうむし lady-beetle|かたつむり snail|くも spider|さめ shark
-たべもの りんご red-apple|みかん tangerine|ぶどう grapes|いちご strawberry|すいか watermelon|もも peach|ばなな banana|めろん melon
-たべもの さくらんぼ cherries|なし pear|くり chestnut|なす eggplant|にんじん carrot|とまと tomato|きのこ mushroom|たまねぎ onion
-たべもの じゃがいも potato|おにぎり rice-ball|すし sushi|ぱん bread|たまご egg|あめ candy|だんご dango
+たべもの りんご red-apple|ぶどう grapes|いちご strawberry|すいか watermelon|もも peach|ばなな banana
+たべもの さくらんぼ cherries|なし pear|なす eggplant|にんじん carrot|とまと tomato|きのこ mushroom|たまねぎ onion
+たべもの じゃがいも potato|おにぎり rice-ball|ぱん bread|たまご egg|あめ candy|だんご dango
 のりもの くるま automobile|ばす bus|でんしゃ railway-car|ふね sailboat|ひこうき airplane|じてんしゃ bicycle|ろけっと rocket
 もの とけい alarm-clock|かぎ key|ほん open-book|えんぴつ pencil|はさみ scissors|めがね glasses|くつ running-shoe|くつした socks
 もの てぶくろ gloves|てがみ envelope|でんわ telephone|たいこ drum|ふうせん balloon|かさ umbrella|かばん backpack|たこ kite
-しぜん やま mountain|つき crescent-moon|ほし star|たいよう sun|にじ rainbow|ゆき snowflake|くも cloud|かみなり high-voltage
-しぜん さくら cherry-blossom|ひまわり sunflower|もみじ maple-leaf|ゆきだるま snowman|はな tulip|き deciduous-tree|いえ house|はなび fireworks
+しぜん やま mountain|つき crescent-moon|ほし star|にじ rainbow|ゆき snowflake|くも cloud|かみなり high-voltage
+しぜん さくら cherry-blossom|ひまわり sunflower|もみじ maple-leaf|はな tulip|き deciduous-tree|いえ house
 からだ め eye|みみ ear-default|はな nose-default|くち mouth|て raised-hand-default|あし leg-default
 '''
 PICS_KATA = '''
 どうぶつ コアラ koala|ライオン lion|パンダ panda|ペンギン penguin|ゴリラ gorilla|カンガルー kangaroo|フラミンゴ flamingo|インコ parrot
-どうぶつ ハムスター hamster|イルカ dolphin|ラッコ otter
-たべもの バナナ banana|メロン melon|トマト tomato|ケーキ shortcake|パン bread|レモン lemon|キウイ kiwi-fruit|ピーマン bell-pepper
-たべもの ドーナツ doughnut|クッキー cookie|アイス ice-cream|ピザ pizza|プリン custard|ミルク glass-of-milk|チョコ chocolate-bar
+どうぶつ ハムスター hamster|イルカ dolphin
+たべもの バナナ banana|トマト tomato|ケーキ shortcake|パン bread
+たべもの ドーナツ doughnut|クッキー cookie|ピザ pizza|ミルク glass-of-milk|チョコ chocolate-bar
 のりもの バス bus|ロケット rocket|トラック delivery-truck|タクシー taxi|バイク motorcycle|ヨット sailboat
 もの テレビ television|カメラ camera|ピアノ musical-keyboard|ギター guitar|ボール soccer-ball|ベッド bed|ペン pen|ノート notebook
-もの クレヨン crayon|ベル bell|スプーン spoon|コップ cup-with-straw|フォーク fork-and-knife|シャツ t-shirt|ネクタイ necktie|ラッパ trumpet
-もの バイオリン violin
+もの クレヨン crayon|ベル bell|スプーン spoon|フォーク fork-and-knife|シャツ t-shirt|ネクタイ necktie|ラッパ trumpet
 '''
 
 
