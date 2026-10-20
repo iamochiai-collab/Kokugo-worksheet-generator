@@ -1,0 +1,20 @@
+{
+  "name": "kokugo-print",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ようじ・小学1年から中学までの 国語プリントを ブラウザだけで 作れる アプリ",
+  "scripts": {
+    "build": "python3 tools/build.py",
+    "test": "python3 tools/check_words.py && python3 tools/check_reads.py && node tools/test/layout.js && node tools/test/counts.js && node tools/test/youji.js",
+    "test:layout": "node tools/test/layout.js",
+    "test:words": "python3 tools/check_words.py",
+    "test:counts": "node tools/test/counts.js",
+    "test:reads": "python3 tools/check_reads.py",
+    "measure": "python3 tools/build.py && node tools/measure_layout.js && python3 tools/build.py",
+    "test:youji": "node tools/test/youji.js",
+    "youji": "python3 tools/make_youji.py && python3 tools/build.py"
+  },
+  "devDependencies": {
+    "playwright": "^1.56.0"
+  }
+}

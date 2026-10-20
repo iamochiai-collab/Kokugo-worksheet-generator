@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="app-version" content="第3版(2026-10-20)">
+<title>国語プリント</title>
+<style>
+:root {
+  --ink: #111;
+  --rule: #444;
+  --light: #999;
+  --accent: #2b3a55;
+  --answer: #e8700a;
+  --paper-w: 210mm;
+  --paper-h: 297mm;
+  --margin: 14mm;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body {
+  font-family: "BIZ UDPGothic", "BIZ UDゴシック", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", "Noto Sans JP", sans-serif;
+  color: var(--ink);
+  font-size: 13pt;
+  line-height: 1.7;
+  background: #e9e9ec;
+}
+
+/* ===== 画面(メニュー・操作パネル)=====
+   算数プリントと 同じ 形。学年ごとに 色が あり、えらんだ 学年の 色(--gc)が 画面ぜんたいの 色に なる。
+   プリント(.sheet)の 見た目には かかわらない。 */
+:root {
+  --ui-bg: #eef0f5; --ui-card: #ffffff; --ui-ink: #1f2a40; --ui-sub: #5a6070; --ui-line: #d5d8e2;
+  --gc: #3b8a4c; --gc-soft: #e9f4ec;
+  --k-both: #e0533f; --k-read: #2f7fd1; --k-write: #2b9a5d; --k-long: #8a54cf;
+}
+body.gc0 { --gc: #c9457f; --gc-soft: #fbe9f1; }
+body[data-youji="1"] .kk-card, body:not([data-youji="1"]) .yj-card { display: none; }
+body[data-youji="1"] .level-step { display: none; }
+.hg .name.yo { font-size: 19px; line-height: 1.55; }
+body.gc1 { --gc: #d4473b; --gc-soft: #fcebea; } body.gc2 { --gc: #d5761a; --gc-soft: #fdf0e3; }
+body.gc3 { --gc: #3b8a4c; --gc-soft: #e9f4ec; } body.gc4 { --gc: #1f8580; --gc-soft: #e4f3f2; }
+body.gc5 { --gc: #2f67b1; --gc-soft: #e8eff9; } body.gc6 { --gc: #7150a6; --gc-soft: #f0ebf8; }
+body.gc7 { --gc: #b0476b; --gc-soft: #f8eaf0; }
+.c0 { --c: #c9457f; } .c1 { --c: #d4473b; } .c2 { --c: #d5761a; } .c3 { --c: #3b8a4c; } .c4 { --c: #1f8580; }
+.c5 { --c: #2f67b1; } .c6 { --c: #7150a6; } .c7 { --c: #b0476b; }
+body { background: var(--ui-bg); }
+.chara { background-size: contain; background-repeat: no-repeat; background-position: center bottom; }
+.chara-book { background-image: url({{CHARA:book}}); }
+.chara-guide { background-image: url({{CHARA:guide}}); }
+.chara-cheer { background-image: url({{CHARA:cheer}}); }
+.chara-maru { background-image: url({{CHARA:maru}}); }
+.chara-idea { background-image: url({{CHARA:idea}}); }
+.chara-think { background-image: url({{CHARA:think}}); }
+.chara-banzai { background-image: url({{CHARA:banzai}}); }
+@keyframes chara-pop { 0% { transform: translateY(0) scale(1); } 40% { transform: translateY(-10px) scale(1.04); } 100% { transform: translateY(0) scale(1); } }
+.chara.pop { animation: chara-pop .45s ease; }
+@media (prefers-reduced-motion: reduce) { .chara.pop { animation: none; } }
+
+/* タイトル:原稿用紙の ますめに 1字ずつ */
+.masu { display: inline-flex; gap: 3px; margin: 0; font-size: inherit; }
+.masu span {
+  display: inline-flex; align-items: center; justify-content: center; width: 1.35em; height: 1.35em;
+  border: 2px solid var(--c); color: var(--c); background: #fff; border-radius: 4px; font-weight: bold; line-height: 1;
+}
+.masu span:nth-child(odd) { transform: rotate(-3deg); }
+.masu span:nth-child(even) { transform: rotate(2deg); }
+
+/* ===== 操作パネル(プリントの 画面) ===== */
+.panel {
+  background: var(--ui-card); border-bottom: 1px solid var(--ui-line); border-top: 5px solid var(--gc);
+  padding: 10px 16px 12px; display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: flex-end;
+  position: sticky; top: 0; z-index: 5; font-size: 14px; color: var(--ui-ink);
+}
+.panel .title-row { width: 100%; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.panel .title-row .chara { width: 38px; height: 44px; flex: none; }
+.panel h1 { font-size: 15px; }
+.panel .subtitle { font-size: 12px; color: var(--ui-sub); }
+.panel .version { margin-left: auto; font-size: 12px; color: var(--ui-sub); }
+body[data-view="home"] .panel { display: none; }
+.panel label { display: flex; flex-direction: column; gap: 3px; font-size: 12px; color: var(--ui-sub); font-weight: bold; }
+.panel label[hidden] { display: none; }
+.panel select, .panel input[type=number] {
+  font: inherit; font-size: 15px; padding: 5px 8px; border: 1.5px solid var(--ui-line); border-radius: 8px;
+  background: #fff; color: var(--ui-ink); min-width: 120px; height: 34px;
+}
+.panel select:focus, .panel input:focus { outline: 2px solid var(--gc); outline-offset: 1px; border-color: var(--gc); }
+.panel input[type=number] { width: 96px; min-width: 0; }
+.panel .check { flex-direction: row; align-items: center; gap: 6px; font-size: 14px; color: var(--ui-ink); font-weight: normal; padding-bottom: 6px; }
+.panel .check input { accent-color: var(--gc); width: 16px; height: 16px; }
+.panel .buttons { display: flex; gap: 8px; margin-left: auto; flex-wrap: wrap; }
+.panel button, .batch-form button {
+  font: inherit; font-size: 15px; font-weight: bold; padding: 7px 16px; border-radius: 10px; border: 2px solid var(--gc);
+  background: var(--gc); color: #fff; cursor: pointer;
+}
+.panel button.secondary, .batch-form button.secondary { background: #fff; color: var(--gc); }
+.panel button:hover, .batch-form button:hover { filter: brightness(1.08); }
+.panel button:focus-visible, .batch-form button:focus-visible, .hg:focus-visible, .level-btn:focus-visible, .kind-card:focus-visible { outline: 3px solid var(--ui-ink); outline-offset: 2px; }
+.panel button:disabled { opacity: 0.4; cursor: default; }
+.panel .msg { width: 100%; font-size: 13px; min-height: 0; }
+.panel .msg:not(:empty) {
+  display: flex; align-items: center; gap: 8px; color: #8a2d4a; background: #fdeef3; border: 1px solid #f2c4d3;
+  border-radius: 10px; padding: 6px 12px;
+}
+.panel .msg:not(:empty)::before {
+  content: ""; width: 26px; height: 30px; flex: none; background: url({{CHARA:think}}) center / contain no-repeat;
+}
+body[data-view="home"] .panel .sheet-only { display: none; }
+body[data-youji="1"] .kk-only, body:not([data-youji="1"]) .yj-only { display: none !important; }
+body[data-view="sheet"] #home { display: none; }
+body[data-view="home"] #sheets { display: none; }
+
+/* ===== メニュー ===== */
+#home { max-width: 1100px; margin: 0 auto; padding: 26px 16px 30px; color: var(--ui-ink); }
+.home-top { display: flex; align-items: flex-end; gap: 20px; }
+.home-main { flex: 1; min-width: 0; }
+.home-hero h1 { font-size: 30px; display: flex; align-items: center; flex-wrap: wrap; gap: 6px 14px; margin: 0; }
+.home-hero .version { font-size: 12px; color: var(--ui-sub); font-weight: normal; }
+.home-hero p { margin: 10px 0 0; color: var(--ui-sub); font-size: 14px; max-width: 46em; }
+.home-step { font-size: 14px; color: var(--ui-ink); font-weight: bold; margin: 20px 0 8px; display: flex; align-items: center; }
+.home-step .n {
+  display: inline-flex; width: 22px; height: 22px; border-radius: 50%; background: var(--gc); color: #fff;
+  font-size: 12px; align-items: center; justify-content: center; margin-right: 7px;
+}
+.grades { display: flex; flex-wrap: wrap; gap: 8px; }
+.hg {
+  font: inherit; width: 84px; padding: 6px 0 5px; border-radius: 14px; border: 2px solid var(--c); background: #fff;
+  color: var(--c); cursor: pointer; display: flex; flex-direction: column; align-items: center; line-height: 1.15;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.hg .name { font-size: 25px; font-weight: bold; }
+.hg .name small { font-size: 14px; margin-right: 1px; }
+.hg .count { font-size: 10.5px; opacity: .8; margin-top: 2px; }
+.hg:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(31,42,64,.12); }
+.hg[aria-pressed="true"] { background: var(--c); color: #fff; box-shadow: 0 3px 8px rgba(31,42,64,.22); }
+.levels { display: inline-flex; border: 2px solid var(--ui-ink); border-radius: 12px; overflow: hidden; background: #fff; }
+.level-btn {
+  font: inherit; font-size: 15px; padding: 8px 18px; border: 0; border-right: 1.5px solid var(--ui-ink);
+  background: #fff; color: var(--ui-ink); cursor: pointer;
+}
+.level-btn:last-child { border-right: 0; }
+.level-btn .st { color: #e2a50b; letter-spacing: 1px; }
+.level-btn[aria-pressed="true"] { background: var(--ui-ink); color: #fff; }
+.home-mascot { flex: none; width: 230px; display: flex; flex-direction: column; align-items: center; }
+.home-mascot .chara { width: 170px; height: 175px; }
+.bubble {
+  position: relative; background: #fff; border: 2.5px solid var(--gc); border-radius: 18px; padding: 9px 16px;
+  font-size: 15px; font-weight: bold; color: var(--ui-ink); line-height: 1.5; text-align: center; margin-bottom: 14px;
+  box-shadow: 0 3px 0 var(--gc-soft);
+}
+.bubble::after {
+  content: ""; position: absolute; left: 50%; bottom: -10px; width: 15px; height: 15px; background: #fff;
+  border-right: 2.5px solid var(--gc); border-bottom: 2.5px solid var(--gc); transform: translateX(-50%) rotate(45deg);
+}
+.bubble b { color: var(--gc); }
+.kinds-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 10px; margin: 26px 0 10px; }
+.kinds-head h2 { font-size: 19px; margin: 0; color: var(--gc); }
+.kinds-head > span { font-size: 13px; color: var(--ui-sub); }
+.kinds { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+.kind-card {
+  --k: var(--k-both); position: relative; overflow: hidden;
+  background: var(--ui-card); border: 1.5px solid var(--ui-line); border-top: 6px solid var(--k); border-radius: 14px;
+  padding: 14px 16px 14px; text-align: left; cursor: pointer; font: inherit; color: var(--ui-ink);
+  display: flex; flex-direction: column; gap: 6px; min-height: 214px;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.kind-card[data-kind="read"] { --k: var(--k-read); }
+.kind-card[data-kind="write"] { --k: var(--k-write); }
+.kind-card[data-kind="long"] { --k: var(--k-long); }
+.kind-card:hover { transform: translateY(-3px); box-shadow: 0 8px 18px rgba(31,42,64,.13); border-color: var(--k); border-top-color: var(--k); }
+.kind-card::before {
+  content: ""; position: absolute; right: -30px; bottom: -30px; width: 130px; height: 130px; border-radius: 50%;
+  background: var(--k); opacity: .1;
+}
+.kind-card .name { font-size: 18px; font-weight: bold; display: flex; align-items: center; gap: 8px; position: relative; }
+.kind-card .name .n {
+  flex: none; width: 26px; height: 26px; border-radius: 50%; background: var(--k); color: #fff; font-size: 14px;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.kind-card .chara { position: absolute; right: 8px; bottom: 6px; width: 66px; height: 72px; transition: transform .15s ease; }
+.kind-card:hover .chara { transform: translateY(-4px) rotate(-4deg); }
+.kind-card .desc { padding-right: 4px; font-size: 12.5px; color: var(--ui-sub); display: block; line-height: 1.65; position: relative; }
+.kind-card .only { display: block; margin-top: 3px; color: var(--k); }
+.kind-card .go {
+  margin-top: auto; align-self: flex-start; font-size: 13px; font-weight: bold; color: #fff;
+  background: var(--k); border-radius: 999px; padding: 3px 14px;
+}
+.note { font-size: 12.5px; color: var(--ui-sub); margin-top: 12px; }
+.home-cheer { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 26px 0 0; color: var(--ui-sub); font-size: 14px; }
+.home-cheer .chara { width: 70px; height: 74px; }
+@media (max-width: 760px) {
+  .home-top { flex-direction: column; align-items: stretch; gap: 0; }
+  .home-main { display: contents; }
+  .home-hero { order: 1; } .home-mascot { order: 2; } .home-steps { order: 3; }
+  .home-mascot { width: auto; flex-direction: row-reverse; justify-content: flex-end; align-items: flex-end; gap: 6px; margin-top: 12px; }
+  .home-mascot .chara { width: 80px; height: 86px; }
+  .bubble { margin-bottom: 26px; font-size: 14px; }
+  .bubble::after { left: -10px; bottom: 16px; transform: rotate(135deg); }
+  .home-hero h1 { font-size: 24px; }
+  .hg { width: calc(25% - 6px); }
+  .levels { display: flex; } .level-btn { flex: 1; padding: 8px 4px; font-size: 13px; white-space: nowrap; }
+  .kind-card { min-height: 150px; }
+}
+
+/* ===== まとめて作る ===== */
+.batch { border: 0; border-top: 6px solid var(--gc); border-radius: 16px; padding: 0; max-width: 540px; width: calc(100% - 32px); box-shadow: 0 10px 40px rgba(0,0,0,0.25); color: var(--ui-ink); }
+.batch::backdrop { background: rgba(20, 25, 40, 0.45); }
+.batch-form { padding: 18px 20px; font-size: 15px; display: flex; flex-direction: column; gap: 12px; }
+.batch-form h2 { margin: 0; font-size: 19px; color: var(--gc); display: flex; align-items: center; gap: 8px; }
+.batch-form h2 .chara { width: 40px; height: 46px; flex: none; }
+.batch-form label { display: flex; flex-direction: column; gap: 3px; font-size: 13px; color: var(--ui-sub); font-weight: bold; }
+.batch-form input { font: inherit; font-size: 15px; padding: 5px 8px; border: 1.5px solid var(--ui-line); border-radius: 8px; width: 120px; }
+.batch-form .row { display: flex; gap: 12px; align-items: flex-end; flex-wrap: wrap; }
+.batch-form .actions { display: flex; gap: 8px; justify-content: flex-end; flex-wrap: wrap; }
+.batch-form .state { font-size: 13px; color: var(--ui-sub); min-height: 1.3em; }
+
+/* ===== プリント ===== */
+#sheets { padding: 18px 0 60px; }
+.sheet {
+  width: var(--paper-w); min-height: var(--paper-h); margin: 0 auto 18px;
+  background: #fff; padding: var(--margin); position: relative;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+  display: flex; flex-direction: column;
+}
+.sheet-head { display: flex; align-items: flex-end; gap: 12px; border-bottom: 2.5px double var(--rule); padding-bottom: 6px; }
+.sheet-head .label { font-size: 15pt; font-weight: bold; letter-spacing: 0.04em; }
+.sheet-head .no {
+  margin-left: 2px; font-size: 11pt; min-width: 2.4em; height: 2.4em; line-height: 2.4em;
+  text-align: center; border: 1.5px solid var(--rule); border-radius: 50%;
+}
+.sheet-head .fields { margin-left: auto; display: flex; gap: 10px; font-size: 10pt; }
+.sheet-head .field { display: flex; align-items: center; gap: 4px; }
+.sheet-head .field i { font-style: normal; color: #333; }
+.sheet-head .field b { display: block; border: 1.2px solid var(--rule); border-radius: 2px; height: 9mm; width: 30mm; }
+.sheet-head .field.name b { width: 44mm; }
+
+.q-group { margin-top: calc(9mm + var(--row-extra, 0mm)); }
+.q-group > h3 {
+  font-size: 12.5pt; margin: 0 0 2mm; display: flex; align-items: center; gap: 7px;
+}
+.q-group > h3 em {
+  font-style: normal; background: var(--ink); color: #fff; font-size: 11pt;
+  width: 1.75em; height: 1.75em; line-height: 1.75em; text-align: center; border-radius: 4px;
+}
+.q-group > .instruction { font-size: 10pt; color: #222; margin: 0 0 4mm; }
+.items { display: grid; grid-template-columns: 1fr 1fr; row-gap: calc(6mm + var(--row-extra, 0mm)); column-gap: 7mm; }
+.item { display: flex; align-items: baseline; gap: 3px; font-size: 11pt; line-height: 2.3; }
+.item > .n { flex: 0 0 auto; }
+.item > .n { font-size: 10pt; color: #333; min-width: 2.2em; }
+.item > .body { flex: 1; }
+.target { font-weight: bold; font-size: 1.04em; text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 4px; }
+.paren { display: inline-block; text-align: center; white-space: nowrap; margin-left: 2px; }
+.paren u { text-decoration: none; display: inline-block; width: 18mm; white-space: nowrap; border-bottom: 1px solid #bbb; }
+
+/* 書き取りのます */
+.wbox { display: inline-flex; flex-direction: column; align-items: center; vertical-align: bottom; margin: 0 2px; }
+.wbox .ruby { font-size: 10pt; font-weight: bold; line-height: 1.25; color: var(--ink); letter-spacing: 0.04em; }
+.wbox .cells { display: flex; gap: 1.5px; }
+.wbox .cell { width: 13mm; height: 11mm; border: 1.6px solid var(--rule); border-radius: 2px; display: block; }
+.wbox.small .cell { width: 10mm; height: 10mm; }
+
+/* 答え */
+.ans { color: var(--answer); }
+.item .ans { font-weight: bold; }
+.wbox .cell .ans {
+  display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;
+  font-size: 13pt; font-weight: bold; color: var(--answer);
+}
+.sheet.answer .sheet-head .label::after { content: "（答え）"; font-size: 11pt; margin-left: 6px; }
+.model { color: #bbb; }
+
+/* ふりがな */
+ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height: 1; }
+.sheet.sheet.long.furi .reading-box { line-height: 1.9; }
+.sheet.sheet.long.furi .q-read .q, .sheet.sheet.long.furi .q-read .choices { line-height: 1.8; }
+.sheet.sheet.long.furi .vocab .v { line-height: 2; }
+/* 長文読解: 低学年ほど 本文の 字を 大きく する */
+.sheet.long.g1 .reading-box, .sheet.long.g2 .reading-box { font-size: 12.5pt; line-height: 2; padding: 3.5mm 5mm; letter-spacing: 0.03em; }
+.sheet.long.g1 .q-read, .sheet.long.g2 .q-read { gap: 2.6mm; margin-top: 3mm; }
+.sheet.long.g1 .q-read .q, .sheet.long.g2 .q-read .q { font-size: 11pt; line-height: 1.6; }
+.sheet.long.g1 .q-read .choices, .sheet.long.g2 .q-read .choices { font-size: 10.5pt; line-height: 1.75; gap: 1mm 6mm; }
+.sheet.long.g1 .q-read .mark, .sheet.long.g2 .q-read .mark { font-size: 9pt; }
+.sheet.long.g3 .reading-box { font-size: 10.5pt; line-height: 1.8; padding: 3mm 4mm; }
+.sheet.long.g4 .reading-box { font-size: 9.5pt; line-height: 1.65; padding: 2.6mm 3.6mm; }
+.sheet.long.g3 .q-read .q, .sheet.long.g4 .q-read .q { font-size: 10pt; line-height: 1.5; }
+.sheet.long.g3 .q-read .choices, .sheet.long.g4 .q-read .choices { font-size: 9.5pt; line-height: 1.55; }
+/* 中学は 本文が 長い(〜980字)ので すこし 小さく */
+.sheet.long.g7 .reading-box { font-size: 8pt; line-height: 1.5; padding: 2.2mm 3mm; }
+.sheet.long.g7 .q-read { gap: 0.6mm; }
+.sheet.long.g7 .q-read .q { font-size: 9pt; line-height: 1.4; }
+.sheet.long.g7 .q-read .choices { font-size: 8pt; line-height: 1.45; }
+/* 長文読解(1枚に 4つの 大問が 入るので 全体を つめる) */
+.sheet.long { padding: 8mm 11mm; }
+.sheet.long .q-group { margin-top: calc(3.4mm + var(--row-extra, 0mm)); }
+.sheet.long .q-group > h3 { font-size: 11pt; margin-bottom: 1mm; }
+.sheet.long .q-group > h3 em { font-size: 9.5pt; }
+.sheet.long .instruction { font-size: 8.5pt; margin-bottom: 2mm; }
+.sheet.long .item { font-size: 9.5pt; line-height: 1.45; }
+.sheet.long .items { row-gap: calc(1.5mm + var(--row-extra, 0mm)); column-gap: 6mm; }
+.sheet.long .wbox .cell { width: 12mm; height: 8.5mm; }
+.sheet.long .wbox.small .cell { width: 9mm; height: 7.5mm; }
+.sheet.long .wbox .ruby { font-size: 8.5pt; line-height: 1.1; }
+.reading-box {
+  border: 1.2px solid var(--rule); background: #fcfcfc; border-radius: 3px;
+  padding: 2.2mm 3.2mm; font-size: 8.5pt; line-height: 1.5; text-align: justify;
+}
+.q-read { margin-top: 1.8mm; display: flex; flex-direction: column; gap: 0.8mm; }
+.q-read .q { font-size: 9.5pt; line-height: 1.45; display: flex; gap: 4px; align-items: baseline; }
+.q-read .q .n { min-width: 2.3em; font-size: 9pt; color: #333; }
+.q-read .q .paren { margin-left: auto; min-width: 16mm; }
+.q-read .choices { display: flex; flex-wrap: wrap; gap: 0.6mm 4mm; padding-left: 2.4em; font-size: 8.5pt; line-height: 1.5; }
+.q-read .choice { display: flex; gap: 3px; align-items: baseline; }
+.q-read .mark {
+  display: inline-block; background: var(--ink); color: #fff; font-size: 8pt; font-weight: bold;
+  width: 1.7em; height: 1.7em; line-height: 1.7em; text-align: center; border-radius: 50%; flex: 0 0 auto;
+}
+.vocab { display: grid; grid-template-columns: 1fr; gap: 1.2mm; margin-top: 1mm; }
+.vocab .v { display: flex; align-items: flex-end; gap: 6px; font-size: 10pt; }
+.vocab .v .n { min-width: 2.3em; font-size: 9pt; color: #333; }
+.vocab .v .word { min-width: 6em; font-weight: bold; }
+.vocab .v .line { flex: 1; border-bottom: 1.2px solid var(--rule); height: 5mm; }
+
+.ans-list { margin-top: 8mm; }
+.ans-list h3 { font-size: 12pt; margin: 0 0 3mm; }
+.ans-list ol { margin: 0; padding-left: 1.6em; columns: 2; column-gap: 10mm; font-size: 11pt; }
+
+.sheet-foot { margin-top: auto; padding-top: 4mm; font-size: 8pt; color: var(--light); display: flex; }
+.sheet-foot .seed { margin-left: auto; }
+
+/* ===== ようじの プリント(.sheet.yj)=====
+   なぞり書きの 字は 教科書体に ちかい Klee One(かなだけ)。ますは 十字の 点線つき */
+@font-face { font-family: "KleeKana"; font-weight: 400; src: url({{FONT:klee-kana.woff2}}) format("woff2"); }
+.sheet.yj { font-family: "KleeKana", "UD デジタル 教科書体 NK-R", "UD Digi Kyokasho NK-R", "YuKyokasho", "BIZ UDPGothic", sans-serif; }
+.sheet.yj .sheet-head .label { font-size: 17pt; }
+.sheet.yj .sheet-head .field i { font-size: 11pt; }
+.sheet.yj.answer .sheet-head .label::after { content: "（こたえ）"; }
+.yj-h { font-size: 15pt; margin: 6mm 0 1mm; display: flex; align-items: center; gap: 2mm; font-weight: normal; }
+.yj-badge { background: var(--ink); color: #fff; border-radius: 3mm; padding: 0.5mm 3.5mm 1mm; font-weight: bold; }
+.yj-inst { font-size: 11pt; margin: 0 0 2mm; color: #333; }
+.yj-rows { flex: 1; display: flex; flex-direction: column; justify-content: space-evenly; gap: 3mm; }
+.yj .mb {
+  position: relative; display: inline-flex; align-items: center; justify-content: center; flex: none;
+  width: 24mm; height: 24mm; border: 1.4px solid #444; font-size: 19mm; line-height: 1; background: #fff;
+}
+.yj .mb + .mb { margin-left: -1.4px; }
+.yj .mb::before, .yj .mb::after { content: ""; position: absolute; border: 0 dashed #bdbdbd; }
+.yj .mb::before { left: 50%; top: 0; bottom: 0; border-left-width: 1px; }
+.yj .mb::after { top: 50%; left: 0; right: 0; border-top-width: 1px; }
+.yj .mb > i { position: relative; z-index: 1; font-style: normal; transform: translateY(-0.04em); }
+.yj .mb.model { background: #fff7dc; color: #111; }
+.yj .mb.trace { color: #c4c4c4; }
+.yj .mb.plain { color: #111; }
+.yj .mb.blank { border-width: 2.4px; border-color: #111; }
+.yj .mb.ans { color: var(--answer); font-weight: bold; }
+.yj .wline { display: inline-flex; }
+.yj .wline .mb { width: 15mm; height: 15mm; font-size: 11.5mm; }
+.yj .wline.small .mb { width: 13mm; height: 13mm; font-size: 10mm; }
+.yj-row { display: flex; align-items: center; gap: 6mm; }
+.masu-line { display: flex; align-items: flex-start; }
+.yj-word { display: flex; flex-direction: column; gap: 1mm; }
+.yj-word .lbl { font-size: 9pt; color: #666; }
+.yn {
+  flex: none; width: 7mm; height: 7mm; border-radius: 50%; border: 1.2px solid #333; font-size: 10pt;
+  display: inline-flex; align-items: center; justify-content: center; font-family: "BIZ UDPGothic", sans-serif;
+}
+.yj-wrow { display: flex; align-items: center; gap: 3mm; }
+.yj-arrow { font-size: 14pt; color: #777; flex: none; }
+/* しりとり */
+.shiri { display: flex; gap: 3mm; align-items: flex-start; }
+.shiri-line { display: flex; flex-wrap: wrap; align-items: center; gap: 3mm 2mm; }
+.yj-shiri .wline .mb { width: 13mm; height: 13mm; font-size: 10mm; }
+/* ことば さがし */
+.yj-rows.search { justify-content: flex-start; align-items: center; gap: 8mm; padding-top: 4mm; }
+.ygrid { border-collapse: collapse; }
+.ygrid td {
+  width: 20mm; height: 20mm; border: 1.4px solid #444; text-align: center; vertical-align: middle;
+  font-size: 13mm; line-height: 1;
+}
+.ygrid td.hit { background: #ffe2c2; color: var(--answer); font-weight: bold; }
+.chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 3mm 5mm; max-width: 160mm; }
+.chip { display: inline-flex; align-items: center; gap: 2mm; font-size: 17pt; border: 1.2px solid #444; border-radius: 99px; padding: 1mm 5mm 1.5mm 3mm; }
+.chip .ck { width: 5mm; height: 5mm; border: 1.2px solid #444; border-radius: 50%; }
+/* たりない 字 */
+.yj-rows.two { display: grid; grid-template-columns: 1fr 1fr; align-content: space-evenly; gap: 6mm 6mm; }
+.miss { display: flex; flex-direction: column; align-items: flex-start; gap: 2.5mm; }
+.miss .yn { margin-bottom: -1mm; }
+.opts { display: flex; gap: 4mm; padding-left: 2mm; }
+.opt {
+  width: 12mm; height: 12mm; border: 1.2px solid #777; border-radius: 50%; display: inline-flex;
+  align-items: center; justify-content: center; font-size: 8.5mm; line-height: 1;
+}
+.opt.ans { border: 2.4px solid var(--answer); color: var(--answer); font-weight: bold; }
+/* ならべかえ */
+.sort { display: flex; align-items: center; gap: 3mm; }
+.sort .hint { flex: none; width: 30mm; font-size: 10pt; border: 1px solid #999; border-radius: 2mm; padding: 1mm 2mm; text-align: center; font-family: "BIZ UDPGothic", sans-serif; }
+.letters { display: flex; gap: 1.5mm; width: 50mm; }
+.ball {
+  width: 11mm; height: 11mm; border-radius: 50%; background: #eef3fb; border: 1.2px solid #8aa3c8;
+  display: inline-flex; align-items: center; justify-content: center; font-size: 8mm; line-height: 1;
+}
+/* した:ほしと キャラクター */
+.yj-foot { display: flex; align-items: center; justify-content: flex-end; gap: 3mm; margin-top: 4mm; font-size: 11pt; color: #444; }
+.yj-star {
+  width: 11mm; height: 11mm; flex: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 1.8l3 6.4 7 .9-5.1 4.8 1.3 6.9L12 17.4l-6.2 3.4 1.3-6.9L2 9.1l7-.9z' fill='none' stroke='%23e2a50b' stroke-width='1.4' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.yj-foot .chara { width: 16mm; height: 18mm; flex: none; }
+.sheet.yj .sheet-foot { padding-top: 1mm; }
+
+@page { size: A4 portrait; margin: 0; }
+@media print {
+  body { background: #fff; }
+  .panel, #home, .batch { display: none !important; }
+  #sheets { padding: 0; }
+  .sheet { box-shadow: none; margin: 0 auto; page-break-after: always; break-after: page; }
+  .sheet:last-child { page-break-after: auto; break-after: auto; }
+}
+@media (max-width: 820px) {
+  .sheet { transform-origin: top center; }
+}
+</style>
+</head>
+<body data-view="home">
+
+<header class="panel">
+  <div class="title-row">
+    <div class="chara chara-guide" aria-hidden="true"></div>
+    <h1 class="masu" aria-label="国語プリント"><span class="c1">国</span><span class="c2">語</span><span class="c3">プ</span><span class="c4">リ</span><span class="c5">ン</span><span class="c6">ト</span></h1>
+    <span class="subtitle">学年と 種類を えらぶと、そのたびに 問題が かわります</span>
+    <span class="version" id="version"></span>
+  </div>
+
+  <label class="sheet-only">子どもの 学年
+    <select id="f-grade"></select>
+  </label>
+  <label class="sheet-only yj-only">しゅるい
+    <select id="f-ykind"></select>
+  </label>
+  <label class="sheet-only yj-only">れんしゅうする 行
+    <select id="f-yrow"></select>
+  </label>
+  <label class="sheet-only yj-only">テーマ
+    <select id="f-ytheme"></select>
+  </label>
+  <label class="sheet-only yj-only">あそび
+    <select id="f-yplay"></select>
+  </label>
+  <label class="sheet-only kk-only">種類
+    <select id="f-kind">
+      <option value="both">漢字の 読み書き</option>
+      <option value="read">漢字の 読み</option>
+      <option value="write">漢字の 書き</option>
+      <option value="long">漢字 ＋ 長文読解</option>
+    </select>
+  </label>
+  <label class="sheet-only kk-only">むずかしさ
+    <select id="f-level">
+      <option value="1">★☆☆</option>
+      <option value="2" selected>★★☆</option>
+      <option value="3">★★★</option>
+    </select>
+  </label>
+  <label class="sheet-only kk-only">読みの 学年
+    <select id="f-gread"></select>
+  </label>
+  <label class="sheet-only kk-only">書きの 学年
+    <select id="f-gwrite"></select>
+  </label>
+  <label class="sheet-only kk-only">長文の 学年
+    <select id="f-gstory"></select>
+  </label>
+  <label class="sheet-only kk-only">長文の ジャンル
+    <select id="f-genre"></select>
+  </label>
+  <label class="sheet-only kk-only">ふりがな
+    <select id="f-furi">
+      <option value="none">なし</option>
+      <option value="over">習っていない 漢字だけ</option>
+      <option value="all">すべての 漢字</option>
+    </select>
+  </label>
+  <label class="sheet-only kk-only">読みの 数
+    <select id="f-read"></select>
+  </label>
+  <label class="sheet-only kk-only">書きの 数
+    <select id="f-write"></select>
+  </label>
+  <label class="sheet-only">シード
+    <input id="f-seed" type="number" min="1" max="999999" value="1">
+  </label>
+  <label class="check sheet-only kk-only"><input id="f-model" type="checkbox"> お手本（うすい字）</label>
+  <label class="check sheet-only"><input id="f-ans" type="checkbox" checked> 答えのページ</label>
+  <label class="check sheet-only kk-only"><input id="f-anslist" type="checkbox"> 答えは 一覧で</label>
+
+  <div class="buttons">
+    <button class="secondary sheet-only" id="btn-home">← メニュー</button>
+    <button class="secondary sheet-only" id="btn-again">べつの問題</button>
+    <button class="secondary sheet-only" id="btn-batch">まとめて作る・保存</button>
+    <button class="sheet-only" id="btn-print">印刷</button>
+  </div>
+  <div class="msg" id="msg"></div>
+</header>
+
+<main id="home">
+  <div class="home-top">
+    <div class="home-main">
+      <div class="home-hero">
+        <h1><span class="masu" aria-label="国語プリント"><span class="c1">国</span><span class="c2">語</span><span class="c3">プ</span><span class="c4">リ</span><span class="c5">ン</span><span class="c6">ト</span></span><span class="version" id="home-version"></span></h1>
+        <p class="kk-only">小学1年から 中学までの 漢字の 読み書きと 長文読解の プリントを、ブラウザだけで 作れます。学年と むずかしさを えらんで、プリントの 種類を おしてください。</p>
+        <p class="yj-only">ようじ(3〜6さい)の ひらがな・カタカナの なぞり書きと、ことば あそびの プリントです。おうちの かたが えらんで、いっしょに やって みてください。</p>
+      </div>
+      <div class="home-steps">
+        <p class="home-step"><span class="n">1</span>学年</p>
+        <div class="grades" id="home-grades"></div>
+        <div class="level-step">
+        <p class="home-step"><span class="n">2</span>むずかしさ</p>
+        <div class="levels" id="home-levels">
+          <button class="level-btn" data-level="1"><span class="st">★☆☆</span> やさしい</button>
+          <button class="level-btn" data-level="2" aria-pressed="true"><span class="st">★★☆</span> ふつう</button>
+          <button class="level-btn" data-level="3"><span class="st">★★★</span> むずかしい</button>
+        </div>
+        </div>
+      </div>
+    </div>
+    <div class="home-mascot">
+      <div class="bubble" id="home-bubble">こんにちは！<br>学年と むずかしさを<br>えらんでね</div>
+      <div class="chara chara-book" id="home-chara" aria-hidden="true"></div>
+    </div>
+  </div>
+
+  <div class="kinds-head">
+    <h2><span id="kinds-title">プリントの 種類</span></h2>
+    <span>おすと すぐに プリントが できます。数や 学年は あとから かえられます。</span>
+  </div>
+  <div class="kinds" id="home-kinds">
+    <button class="kind-card yj-card" data-kind="both" data-ykind="hira">
+      <span class="name"><span class="n">1</span>ひらがな なぞり</span>
+      <span class="chara chara-cheer" aria-hidden="true"></span>
+      <span class="desc">あ行から ぱ行まで 15まい。お手本を みて、うすい 字を なぞって、じぶんで かいて、ことばも なぞります。</span>
+      <span class="go">作る ▶</span>
+    </button>
+    <button class="kind-card yj-card" data-kind="read" data-ykind="kata">
+      <span class="name"><span class="n">2</span>カタカナ なぞり</span>
+      <span class="chara chara-idea" aria-hidden="true"></span>
+      <span class="desc">ア行から パ行まで 15まい。ひらがなと おなじ 形で、アイス・ケーキ などの ことばも なぞります。</span>
+      <span class="go">作る ▶</span>
+    </button>
+    <button class="kind-card yj-card" data-kind="write" data-ykind="word">
+      <span class="name"><span class="n">3</span>ことば なぞり</span>
+      <span class="chara chara-book" aria-hidden="true"></span>
+      <span class="desc">どうぶつ・くだもの・のりもの・はる・なつ・あき・ふゆ など 16の テーマ。なぞってから となりに かきます。</span>
+      <span class="go">作る ▶</span>
+    </button>
+    <button class="kind-card yj-card" data-kind="long" data-ykind="play">
+      <span class="name"><span class="n">4</span>ことば あそび</span>
+      <span class="chara chara-think" aria-hidden="true"></span>
+      <span class="desc">しりとり・ことば さがし・たりない 字・ならべかえ。シードを かえると 何まいでも。こたえの ページつき。</span>
+      <span class="go">作る ▶</span>
+    </button>
+    <button class="kind-card kk-card" data-kind="both">
+      <span class="name"><span class="n">1</span>漢字の 読み書き</span>
+      <span class="chara chara-cheer" aria-hidden="true"></span>
+      <span class="desc">大問1が 読み、大問2が 書き。ふだんの 練習に いちばん 使いやすい 形です。</span>
+      <span class="go">作る ▶</span>
+    </button>
+    <button class="kind-card kk-card" data-kind="read">
+      <span class="name"><span class="n">2</span>漢字の 読み</span>
+      <span class="chara chara-think" aria-hidden="true"></span>
+      <span class="desc">下線の 漢字の 読みがなを （　）に 書きます。</span>
+      <span class="go">作る ▶</span>
+    </button>
+    <button class="kind-card kk-card" data-kind="write">
+      <span class="name"><span class="n">3</span>漢字の 書き</span>
+      <span class="chara chara-idea" aria-hidden="true"></span>
+      <span class="desc">かこみの 読み方に なるように、ますに 漢字を 書きます。</span>
+      <span class="go">作る ▶</span>
+    </button>
+    <button class="kind-card kk-card" data-kind="long">
+      <span class="name"><span class="n">4</span>漢字 ＋ 長文読解</span>
+      <span class="chara chara-book" aria-hidden="true"></span>
+      <span class="desc">漢字の 読み・書きの あとに、長文(物語・説明文・評論)と 三択の 問い、言葉の 意味。1枚で ひととおり できます。<b class="only"></b></span>
+      <span class="go">作る ▶</span>
+    </button>
+  </div>
+  <p class="note">プリントの 右下に シードが 小さく 入ります。同じ シードで もう一度 作ると、同じ プリントに なります。答えの ページも いっしょに できます。</p>
+
+  <div class="home-cheer">
+    <div class="chara chara-banzai" aria-hidden="true"></div>
+    <span>まいにち すこしずつ、いっしょに がんばろう！</span>
+  </div>
+</main>
+
+<main id="sheets"></main>
+
+<dialog class="batch" id="batch">
+  <form class="batch-form" id="batch-form" method="dialog">
+    <h2><span class="chara chara-maru" aria-hidden="true"></span>まとめて作る・保存</h2>
+    <div class="row">
+      <label>問題のページ数
+        <input id="b-pages" type="number" min="1" max="100" value="10">
+      </label>
+      <label>はじめのシード
+        <input id="b-seed" type="number" min="1" max="999999" value="1">
+      </label>
+    </div>
+    <div class="state" id="b-state">1ページごとに シードを 1つ ずつ ふやして 作ります。</div>
+    <div class="actions">
+      <button type="button" class="secondary" id="b-close">とじる</button>
+      <button type="button" class="secondary" id="b-make">画面に 出す</button>
+      <button type="button" class="secondary" id="b-jpg">JPG(zip)</button>
+      <button type="button" id="b-pdf">PDF</button>
+    </div>
+  </form>
+</dialog>
+
+<script>
+(() => {
+  "use strict";
+
+  {{DATA}}
+
+  const BANKS = [words1, words2, words3, words4, words5, words6, words7];
+  // 長文読解の 話(学年ごと)。無い 学年は 空。
+  const READS = {};
+  for (const [g, v] of [[1, typeof read1 !== "undefined" ? read1 : null],
+                        [2, typeof read2 !== "undefined" ? read2 : null],
+                        [3, typeof read3 !== "undefined" ? read3 : null],
+                        [4, typeof read4 !== "undefined" ? read4 : null],
+                        [5, typeof read5 !== "undefined" ? read5 : null],
+                        [6, typeof read6 !== "undefined" ? read6 : null],
+                        [7, typeof read7 !== "undefined" ? read7 : null]]) {
+    if (v && v.length) READS[g] = v;
+  }
+  // 小6は 小5と 同じ 話(5・6年用に 書かれた もの)に、小6だけの 話(read6)を 足して 使う
+  if (READS[5]) READS[6] = READS[5].concat(READS[6] || []);
+  const hasLong = (g) => Boolean(READS[g] && READS[g].length);
+  // ジャンル(物語・説明文・評論)。"all" は ぜんぶ
+  const GENRES = [["all", "すべて"], ["story", "物語"], ["expo", "説明文"], ["essay", "評論"]];
+  const storiesOf = (g, genre) => (READS[g] || []).filter((s) => !genre || genre === "all" || s.genre === genre);
+  // その 学年に ある ジャンル(2つ いじょう あれば 「すべて」も)
+  function genresOf(g) {
+    const have = GENRES.filter(([k]) => k !== "all" && storiesOf(g, k).length);
+    return have.length > 1 ? [GENRES[0]].concat(have) : have;
+  }
+  // えらべない ジャンルなら 「すべて」に もどす
+  const genreFor = (g, genre) => (genre && genresOf(g).some(([k]) => k === genre) ? genre : "all");
+  const KANJI = /[㐀-䶿一-鿿豈-﫿]/;
+
+  /* ===== 乱数(シードで 同じものが 作れる) ===== */
+  function makeRng(seed) {
+    let a = (seed >>> 0) || 1;
+    return function () {
+      a += 0x6d2b79f5;
+      let t = a;
+      t = Math.imul(t ^ (t >>> 15), t | 1);
+      t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+  function shuffled(list, rng) {
+    const a = list.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(rng() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
+  /* ===== 語を 漢字の ぶぶんと おくりがなに 分ける ===== */
+  function splitWord(w, r) {
+    let i = w.length;
+    while (i > 0 && !KANJI.test(w[i - 1])) i--;
+    const tail = w.slice(i);
+    const head = w.slice(0, i);
+    let ruby = r;
+    if (tail && r.endsWith(tail)) ruby = r.slice(0, r.length - tail.length);
+    return { head, tail, ruby };
+  }
+
+  /* ===== 問題を えらぶ ===== */
+  function pickEntries(bank, level, n, rng, used) {
+    const order = level === 1 ? [1, 2, 3] : level === 3 ? [3, 2, 1] : [2, 1, 3];
+    const out = [];
+    for (const lv of order) {
+      const pool = bank.filter((e) => e.lv === lv && !used.has(e.w));
+      for (const e of shuffled(pool, rng)) {
+        if (out.length >= n) break;
+        out.push(e);
+        used.add(e.w);
+      }
+      if (out.length >= n) break;
+    }
+    return out;
+  }
+
+  /* ===== プリント1枚ぶんの 中身を 作る ===== */
+  // grade は 子どもの 学年(見出しの 字と ふりがなの 基準)。
+  // gRead・gWrite・gStory は 読み・書き・長文の 学年(なければ grade と 同じ)。
+  function buildSheet({ grade, kind, level, count, seed, no, nRead, nWrite, gRead, gWrite, gStory, furi, genre }) {
+    gRead = gRead || grade; gWrite = gWrite || grade; gStory = gStory || grade; furi = furi || "none";
+    genre = genreFor(gStory, genre);
+    const bankRead = BANKS[gRead - 1].entries;
+    const bankWrite = BANKS[gWrite - 1].entries;
+    const rng = makeRng(seed * 7919 + grade * 101 + level * 7 + (kind === "read" ? 1 : kind === "write" ? 2 : 3) +
+                        (gRead - grade) * 1009 + (gWrite - grade) * 2003 + (gStory - grade) * 3001);
+    const used = new Set();
+    const groups = [];
+    // 読み・書きの 問題数(指定が なければ 種類ごとの きまった 数)
+    let nr, nw;
+    if (typeof nRead === "number" || typeof nWrite === "number") {
+      nr = nRead || 0;
+      nw = nWrite || 0;
+    } else if (kind === "both") {
+      nr = Math.max(2, Math.round(count / 2));
+      nw = count - nr;
+    } else if (kind === "long") {
+      nr = 4; nw = 8;
+    } else {
+      nr = kind === "read" ? count : 0;
+      nw = kind === "write" ? count : 0;
+    }
+    if (nr) groups.push({ type: "read", entries: pickEntries(bankRead, level, nr, rng, used) });
+    if (nw) groups.push({ type: "write", entries: pickEntries(bankWrite, level, nw, rng, used) });
+    let n = 0;
+    for (const g of groups) {
+      g.items = g.entries.map((e) => {
+        n += 1;
+        return Object.assign({ no: n }, e, splitWord(e.w, e.r));
+      });
+    }
+    const sheet = { grade, gRead, gWrite, gStory, furi, genre, kind, level, count, seed, no, groups,
+                    label: BANKS[grade - 1].label };
+    if (kind === "long" && hasLong(gStory)) {
+      // えらんだ 漢字の 数と いっしょに 1枚に 入る 話だけから えらぶ
+      const L = layoutOf("long", gStory, furi, genre);
+      const kanji = estHeight("long", nr, nw, gStory, furi, genre) - L.base;
+      const H = furi === "none" ? STORY_H : STORY_HR;
+      const fitsStory = (st) => (H[st.id] || L.base) + kanji <= L.limit;
+      const pool = storiesOf(gStory, genre);
+      const ok = pool.filter(fitsStory);
+      const list = ok.length ? ok : pool;
+      const story = list[(seed - 1) % list.length];
+      sheet.storyH = H[story.id] || L.base;
+      sheet.story = {
+        id: story.id,
+        genre: story.genre,
+        passage: story.passage,
+        vocab: story.vocab,
+        questions: story.questions.map((q) => {
+          // 選択肢を シードで 並べかえて、正解の かたよりを なくす
+          const order = shuffled([0, 1, 2].slice(0, q.c.length), rng);
+          return { q: q.q, c: order.map((i) => q.c[i]), a: order.indexOf(q.a) };
+        })
+      };
+    }
+    return sheet;
+  }
+
+  /* ===== 1枚に 入るかの 見つもり =====
+     tools/test/layout.js で 実測した 高さ(mm)。読みは 1行(2問)で 約16mm、
+     書きは ますが あるので 約21.5mm。この 差を もとに、読みと 書きの 数の
+     くみあわせが A4 1枚に 入るかを 決める。 */
+  // 長文の プリントは、本文の 長さが 学年で ちがうので、土台(漢字の 問題 なし)の 高さを
+  // 学年ごとに 実測して 使う(tools/measure_layout.js が src/data/layout.json に 書く)
+  // ふりがなを つけると 行が 高く なるので、ふりがな あり(すべての 漢字)の 高さも 別に 測って ある
+  const LD = typeof layoutData !== "undefined" ? layoutData : {};
+  const LONG_BASE = LD.longBase || {}, LONG_BASE_R = LD.longBaseR || {};
+  const STORY_H = LD.storyH || {}, STORY_HR = LD.storyHR || {};
+  const LAYOUT = {
+    normal: { base: 48.5, group: 22.5, read: 15.8, write: 21.5, limit: 292, cap: 12, top: 30 },
+    long:   { base: 193, group: 16.7, read: 6.9, write: 13.4, limit: 294.5, cap: 2.5, top: 12 }
+  };
+  const DEFAULTS = { both: [8, 8], read: [16, 0], write: [0, 12], long: [4, 8] };
+  // grade は 長文の 学年。furi は ふりがな("none" / "over" / "all")。genre は ジャンル(なければ すべて)
+  // 土台は「学年:ジャンル」ごとにも 測って あるので、ジャンルを しぼると その ジャンルの 話の 長さで 見つもる
+  function layoutOf(kind, grade, furi, genre) {
+    if (kind !== "long") return LAYOUT.normal;
+    const table = furi && furi !== "none" ? LONG_BASE_R : LONG_BASE;
+    const key = genre && genre !== "all" ? `${grade}:${genre}` : null;
+    const base = (key && table[key]) || table[grade] || LONG_BASE[grade] || LAYOUT.long.base;
+    return Object.assign({}, LAYOUT.long, { base });
+  }
+  const rowsOf = (n) => Math.ceil(n / 2);
+  function estHeight(kind, nr, nw, grade, furi, genre) {
+    const L = layoutOf(kind, grade, furi, genre);
+    let h = L.base;
+    if (nr) h += L.group + L.read * rowsOf(nr);
+    if (nw) h += L.group + L.write * rowsOf(nw);
+    return h;
+  }
+  const fits = (kind, nr, nw, grade, furi, genre) =>
+    estHeight(kind, nr, nw, grade, furi, genre) <= layoutOf(kind, grade, furi, genre).limit;
+  // もう一方を other 問に したとき、which("read" か "write")は 何問まで 入るか
+  function maxFor(kind, which, other, grade, furi, genre) {
+    let best = 0;
+    for (let n = 2; n <= layoutOf(kind, grade, furi, genre).top; n += 2) {
+      if (which === "read" ? fits(kind, n, other, grade, furi, genre) : fits(kind, other, n, grade, furi, genre)) best = n;
+    }
+    return best;
+  }
+  // 種類を えらんだ ときの 数。長文は 学年ごとに 入る 中で いちばん 多い くみあわせ
+  function defaultCounts(kind, grade, furi, genre) {
+    if (kind !== "long") return DEFAULTS[kind].slice();
+    for (const c of [[4, 8], [4, 6], [4, 4], [2, 4], [2, 2], [2, 0], [0, 0]]) {
+      if (fits(kind, c[0], c[1], grade, furi, genre)) return c;
+    }
+    return [0, 0];
+  }
+
+  /* ===== ふりがな =====
+     src/data/ruby.json(tools/furigana.py が 作る)に「もとの 文 → {漢字|かんじ} つきの 文」が ある。
+     "over" は、子どもの 学年までに 習わない 漢字が 1字でも ある ところに だけ つける。 */
+  const RUBY = typeof rubyData !== "undefined" ? rubyData : {};
+  const KGRADE = {};
+  if (typeof kanjiGrades !== "undefined") {
+    for (const g of Object.keys(kanjiGrades)) for (const c of kanjiGrades[g]) KGRADE[c] = Number(g);
+  }
+  const KANJI_ALL = /[\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff]/;
+  function learned(word, grade) {
+    for (const c of word) if (KANJI_ALL.test(c) && (KGRADE[c] || 7) > grade) return false;
+    return true;
+  }
+  function rubyHtml(text, furi, grade) {
+    const m = furi && furi !== "none" ? RUBY[text] : null;
+    if (!m) return esc(text);
+    return m.split(/(\{[^|}]+\|[^}]+\})/).map((part) => {
+      const r = /^\{([^|}]+)\|([^}]+)\}$/.exec(part);
+      if (!r) return esc(part);
+      if (furi === "over" && learned(r[1], grade)) return esc(r[1]);
+      return `<ruby>${esc(r[1])}<rt>${esc(r[2])}</rt></ruby>`;
+    }).join("");
+  }
+
+  // 学年に 合わせた 見出し。小1・小2 は その 学年までに 習う 字だけで 書く
+  function labelsFor(grade) {
+    const std = {
+      title: "国語 プリント", date: "日付", name: "名前",
+      readTitle: "漢字の 読みがなを 書きましょう",
+      readInst: "――（下線の 漢字）の 読みがなを （　）に 書きましょう。",
+      writeTitle: "漢字を 書きましょう",
+      writeInst: "かこみの 読み方に なるように、ますに 漢字を 書きましょう。",
+      story: "次の 文章を 読んで、後の 問いに 答えましょう",
+      vocab: "次の 言葉の 意味を 調べて 書きましょう"
+    };
+    if (grade === 1) return Object.assign(std, {
+      title: "こくご プリント", date: "ひづけ", name: "なまえ",
+      readTitle: "かんじの よみかたを かきましょう",
+      readInst: "――（せんの かんじ）の よみかたを （　）に かきましょう。",
+      writeTitle: "かんじを かきましょう",
+      writeInst: "上の よみかたに なるように、ますに かんじを かきましょう。",
+      story: "つぎの ぶんしょうを よんで、もんだいに こたえましょう",
+      vocab: "つぎの ことばの いみを しらべて かきましょう"
+    });
+    if (grade === 2) return Object.assign(std, {
+      date: "日づけ",
+      readTitle: "かん字の 読みがなを 書きましょう",
+      readInst: "――（線の かん字）の 読みがなを （　）に 書きましょう。",
+      writeTitle: "かん字を 書きましょう",
+      writeInst: "上の 読み方に なるように、ますに かん字を 書きましょう。",
+      story: "つぎの 文しょうを 読んで、もんだいに 答えましょう",
+      vocab: "つぎの ことばの いみを しらべて 書きましょう"
+    });
+    if (grade === 3) return Object.assign(std, {
+      date: "日づけ",
+      vocab: "次の 言葉の 意味を 国語じてんで 調べて 書きましょう"
+    });
+    return std;
+  }
+
+  // 計測用: 漢字の 問題 なしで、きまった 話の 長文プリントを 作る
+  function longSheetFor(grade, story, furi) {
+    const s = buildSheet({ grade, kind: "long", level: 2, seed: 1, no: 1, nRead: 0, nWrite: 0, furi: furi || "none" });
+    s.story = { passage: story.passage, vocab: story.vocab,
+                questions: story.questions.map((q) => ({ q: q.q, c: q.c, a: q.a })) };
+    s.storyH = 0;
+    return s;
+  }
+
+  /* ===== 組み立て ===== */
+  function esc(s) {
+    return String(s).replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
+  }
+
+  function itemHtml(item, type, opt) {
+    const n = `<span class="n">(${item.no})</span>`;
+    if (type === "read") {
+      const sentence = esc(item.s).replace("{}", `<span class="target">${esc(item.w)}</span>`);
+      // 答えの 読みが 長いときは 字を 小さく して、問題の ページと 同じ はばに おさめる
+      const fit = item.r.length > 4 ? ` style="font-size:${(4.4 / item.r.length).toFixed(2)}em"` : "";
+      const inside = opt.answer ? `<span class="ans"${fit}>${esc(item.r)}</span>` : "&nbsp;";
+      const model = !opt.answer && opt.model && item.no === 1
+        ? `<span class="model">${esc(item.r)}</span>` : inside;
+      return `<div class="item">${n}<span class="body">${sentence}` +
+        `<span class="paren">（<u>${model}</u>）</span></span></div>`;
+    }
+    const cells = [...item.head].map((ch) => {
+      let inner = "";
+      if (opt.answer) inner = `<span class="ans">${esc(ch)}</span>`;
+      else if (opt.model && item.no === 1) inner = `<span class="ans model">${esc(ch)}</span>`;
+      return `<span class="cell">${inner}</span>`;
+    }).join("");
+    const box = `<span class="wbox${item.head.length > 3 ? " small" : ""}">` +
+      `<span class="ruby">${esc(item.ruby)}</span><span class="cells">${cells}</span></span>`;
+    const sentence = esc(item.s).replace("{}", box + esc(item.tail));
+    return `<div class="item">${n}<span class="body">${sentence}</span></div>`;
+  }
+
+  const MARK = ["ア", "イ", "ウ", "エ"];
+
+  function storyHtml(story, n, opt, lab, furi, grade) {
+    const R = (s) => rubyHtml(s, furi, grade);
+    const qs = story.questions.map((q, i) => {
+      const choices = q.c.map((c, j) =>
+        `<span class="choice"><span class="mark">${MARK[j]}</span><span>${R(c)}</span></span>`).join("");
+      const inside = opt.answer ? `<span class="ans">${MARK[q.a]}</span>` : "&nbsp;";
+      return `<div class="q-item"><div class="q"><span class="n">(${i + 1})</span>` +
+        `<span>${R(q.q)}</span><span class="paren">（<u>${inside}</u>）</span></div>` +
+        `<div class="choices">${choices}</div></div>`;
+    }).join("");
+    const vocab = story.vocab.map((w, i) =>
+      `<div class="v"><span class="n">(${i + 1})</span><span class="word">${R(w)}</span>` +
+      `<span class="line"></span></div>`).join("");
+    return `<section class="q-group"><h3><em>${n}</em>${lab.story}</h3>` +
+      `<div class="reading-box">${R(story.passage)}</div>` +
+      `<div class="q-read">${qs}</div></section>` +
+      (story.vocab.length
+        ? `<section class="q-group"><h3><em>${n + 1}</em>${lab.vocab}</h3>` +
+          `<div class="vocab">${vocab}</div></section>`
+        : "");
+  }
+
+  function sheetHtml(sheet, opt) {
+    opt = opt || {};
+    const lab = labelsFor(sheet.grade);
+    const groups = sheet.groups.map((g, i) => {
+      const items = g.items.map((it) => itemHtml(it, g.type, opt)).join("");
+      return `<section class="q-group">` +
+        `<h3><em>${i + 1}</em>${g.type === "read" ? lab.readTitle : lab.writeTitle}</h3>` +
+        `<p class="instruction">${g.type === "read" ? lab.readInst : lab.writeInst}</p>` +
+        `<div class="items">${items}</div></section>`;
+    }).join("");
+    const furi = sheet.furi || "none";
+    const story = sheet.story ? storyHtml(sheet.story, sheet.groups.length + 1, opt, lab, furi, sheet.grade) : "";
+    // 問題が 少ないときは、あまった 高さを 行の あいだと 大問の あいだに 同じだけ くばる
+    const nr = sheet.groups.filter((g) => g.type === "read").reduce((s, g) => s + g.items.length, 0);
+    const nw = sheet.groups.filter((g) => g.type === "write").reduce((s, g) => s + g.items.length, 0);
+    let slots = sheet.groups.reduce((s, g) => s + rowsOf(g.items.length), 0);
+    if (sheet.story) slots += sheet.story.vocab.length ? 2 : 1;
+    const gs = sheet.gStory || sheet.grade;
+    const L = layoutOf(sheet.kind, gs, furi, sheet.genre);
+    let used = estHeight(sheet.kind, nr, nw, gs, furi, sheet.genre);
+    if (sheet.kind === "long" && sheet.storyH) used += sheet.storyH - L.base;
+    const extra = slots ? Math.max(0, Math.min(L.cap, (L.limit - used) / slots)) : 0;
+    return `<div class="sheet g${gs}${opt.answer ? " answer" : ""}${sheet.kind === "long" ? " long" : ""}` +
+      `${sheet.story && furi !== "none" ? " furi" : ""}"` +
+      ` style="--row-extra:${extra.toFixed(2)}mm">` +
+      `<div class="sheet-head"><span class="label">${lab.title}</span>` +
+      `<span class="no">${sheet.no}</span>` +
+      `<span class="fields">` +
+      `<span class="field"><i>${lab.date}</i><b></b></span>` +
+      `<span class="field name"><i>${lab.name}</i><b></b></span></span></div>` +
+      groups + story +
+      (opt.answer && opt.list ? ansListHtml(sheet) : "") +
+      `<div class="sheet-foot"><span class="seed">シード ${sheet.seed}</span></div></div>`;
+  }
+
+  function ansListHtml(sheet) {
+    const all = sheet.groups.flatMap((g) =>
+      g.items.map((it) => `<li>${esc(g.type === "read" ? it.r : it.w)}</li>`));
+    if (sheet.story) all.push(...sheet.story.questions.map((q) => `<li>${MARK[q.a]}</li>`));
+    return `<section class="ans-list"><h3>答え</h3><ol>${all.join("")}</ol></section>`;
+  }
+
+  /* ===== ようじ(幼児)の プリント =====
+     ひらがな・カタカナの なぞり書き、ことば なぞり、ことば あそび(しりとり・ことば さがし・たりない 字・ならべかえ)。
+     データは src/data/youji.json(tools/make_youji.py が 作る)。 */
+  const YD = typeof youjiData !== "undefined" ? youjiData : { hira: [], kata: [], themes: [], extra: [] };
+  const YKINDS = [["hira", "ひらがな なぞり"], ["kata", "カタカナ なぞり"], ["word", "ことば なぞり"], ["play", "ことば あそび"]];
+  const YPLAYS = [["mix", "じゅんばんに(シードで かわる)"], ["shiri", "しりとり"], ["search", "ことば さがし"],
+                  ["miss", "たりない 字"], ["sort", "ならべかえ"]];
+  const YTITLE = { hira: "ひらがな れんしゅう", kata: "カタカナ れんしゅう", word: "ことば れんしゅう", play: "ことば あそび" };
+  const SMALL = { "ゃ": "や", "ゅ": "ゆ", "ょ": "よ", "っ": "つ", "ぁ": "あ", "ぃ": "い", "ぅ": "う", "ぇ": "え", "ぉ": "お" };
+  const FILL = "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわ";
+  // あそびに 使う ことば(テーマ・行の ことば・あそび用)。テーマの ことばには カテゴリ(ヒント)が つく
+  const YPOOL = (() => {
+    const m = new Map();
+    for (const t of YD.themes) for (const w of t.words) if (!m.has(w)) m.set(w, t.name);
+    for (const r of YD.hira) for (const w of r.words) if (w !== "-" && w !== "えをかく" && !m.has(w)) m.set(w, "");
+    for (const w of YD.extra) if (!m.has(w)) m.set(w, "");
+    return [...m].map(([w, cat]) => ({ w, cat })).filter((x) => x.w.length >= 2 && x.w.length <= 5);
+  })();
+  const YWORDS = new Set(YPOOL.map((x) => x.w));
+  const plainWord = (w) => !/[ゃゅょっぁぃぅぇぉー]/.test(w);
+  const lastKana = (w) => { const c = w[w.length - 1]; return SMALL[c] || c; };
+  const sortedKey = (w) => [...w].sort().join("");
+
+  // しりとり:5語の しりとりを 4つ。2語めからは 1字めが □(前の ことばの さいごの 字)
+  function playShiri(rng) {
+    const ok = YPOOL.filter((x) => !x.w.endsWith("ん") && !x.w.endsWith("ー") && x.w.length <= 4).map((x) => x.w);
+    const byHead = {};
+    for (const w of ok) (byHead[w[0]] = byHead[w[0]] || []).push(w);
+    const used = new Set(), chains = [];
+    for (let tries = 0; chains.length < 4 && tries < 600; tries++) {
+      const start = ok[Math.floor(rng() * ok.length)];
+      if (used.has(start)) continue;
+      const chain = [start], seen = new Set([start]);
+      while (chain.length < 5) {
+        const next = shuffled((byHead[lastKana(chain[chain.length - 1])] || []).filter((w) => !seen.has(w) && !used.has(w)), rng);
+        // つぎに つながる ことばが ある ものを さきに えらぶ
+        const pick = next.find((w) => (byHead[lastKana(w)] || []).some((v) => !seen.has(v) && v !== w)) || next[0];
+        if (!pick) break;
+        chain.push(pick); seen.add(pick);
+      }
+      if (chain.length < 5) continue;
+      chain.forEach((w) => used.add(w));
+      chains.push(chain);
+    }
+    return { chains };
+  }
+
+  // ことば さがし:6×6の ますに 6語(よこ・たて)
+  function playSearch(rng) {
+    const N = 6;
+    for (let attempt = 0; attempt < 200; attempt++) {
+      const grid = Array.from({ length: N }, () => Array(N).fill(""));
+      const cand = shuffled(YPOOL.filter((x) => plainWord(x.w) && x.w.length >= 2 && x.w.length <= 4).map((x) => x.w), rng);
+      const placed = [];
+      for (const w of cand) {
+        if (placed.length >= 6) break;
+        if (placed.some((p) => p.w === w || p.w.includes(w) || w.includes(p.w))) continue;
+        let done = false;
+        for (let k = 0; k < 40 && !done; k++) {
+          const dir = rng() < 0.5 ? "h" : "v";
+          const r = Math.floor(rng() * (dir === "v" ? N - w.length + 1 : N));
+          const c = Math.floor(rng() * (dir === "h" ? N - w.length + 1 : N));
+          const cells = [...w].map((ch, i) => [dir === "v" ? r + i : r, dir === "h" ? c + i : c, ch]);
+          if (cells.every(([y, x, ch]) => grid[y][x] === "" || grid[y][x] === ch)) {
+            cells.forEach(([y, x, ch]) => { grid[y][x] = ch; });
+            placed.push({ w, cells: cells.map(([y, x]) => [y, x]) });
+            done = true;
+          }
+        }
+      }
+      if (placed.length < 6) continue;
+      for (let y = 0; y < N; y++) for (let x = 0; x < N; x++)
+        if (!grid[y][x]) grid[y][x] = FILL[Math.floor(rng() * FILL.length)];
+      return { grid, words: placed };
+    }
+    return { grid: [], words: [] };
+  }
+
+  // たりない 字:8語(3〜4字)。□に 入る 字を 3つから えらぶ(ほかの 字では ことばに ならない ものだけ。2字の ことばは 「いね」「おの」の ように べつの ことばが できやすいので 使わない)
+  function playMiss(rng) {
+    const items = [];
+    for (const { w } of shuffled(YPOOL.filter((x) => plainWord(x.w) && x.w.length >= 3 && x.w.length <= 4), rng)) {
+      if (items.length >= 8) break;
+      const at = Math.floor(rng() * w.length);
+      const others = shuffled([...FILL].filter((ch) => ch !== w[at] && !YWORDS.has(w.slice(0, at) + ch + w.slice(at + 1))), rng).slice(0, 2);
+      if (others.length < 2) continue;
+      const choices = shuffled([w[at], ...others], rng);
+      items.push({ w, at, choices, a: choices.indexOf(w[at]) });
+    }
+    return { items };
+  }
+
+  // ならべかえ:6語。字の じゅんばんを かえた ものから ことばを 作る(ヒントに テーマ)
+  function playSort(rng) {
+    const keys = {};
+    for (const { w } of YPOOL) keys[sortedKey(w)] = (keys[sortedKey(w)] || 0) + 1;
+    const items = [];
+    for (const { w, cat } of shuffled(YPOOL.filter((x) => x.cat && plainWord(x.w) && x.w.length >= 3 && x.w.length <= 4), rng)) {
+      if (items.length >= 6) break;
+      if (keys[sortedKey(w)] > 1 || new Set(w).size < 2) continue;
+      let letters = [...w];
+      for (let k = 0; k < 10 && letters.join("") === w; k++) letters = shuffled([...w], rng);
+      if (letters.join("") === w) continue;
+      items.push({ w, cat, letters });
+    }
+    return { items };
+  }
+  const PLAYS = { shiri: playShiri, search: playSearch, miss: playMiss, sort: playSort };
+  const PLAY_ORDER = ["shiri", "search", "miss", "sort"];
+
+  // 行・テーマ・あそびは "auto"/"mix" なら シードで じゅんばんに かわる(シード1 → あ行、2 → か行 …)
+  function buildYoujiSheet({ ykind, yrow, ytheme, yplay, seed, no }) {
+    const rng = makeRng(seed * 7919 + 4243);
+    const s = { youji: true, ykind, seed, no };
+    if (ykind === "hira" || ykind === "kata") {
+      const rows = YD[ykind];
+      s.row = rows[yrow === "auto" || yrow == null ? (seed - 1) % rows.length : Number(yrow) % rows.length];
+    } else if (ykind === "word") {
+      const t = YD.themes;
+      s.theme = t[ytheme === "auto" || ytheme == null ? (seed - 1) % t.length : Number(ytheme) % t.length];
+    } else {
+      s.play = yplay && yplay !== "mix" ? yplay : PLAY_ORDER[(seed - 1) % PLAY_ORDER.length];
+      s.data = PLAYS[s.play](rng);
+    }
+    return s;
+  }
+
+  // ますめ 1つ(十字の 点線つき)。cls: model(お手本)・trace(うすい字)・blank(書く ところ)・ans(答え)
+  const ybox = (ch, cls) => `<span class="mb ${cls || ""}"><i>${ch ? esc(ch) : ""}</i></span>`;
+  const ywordBoxes = (w, cls) => [...w].map((ch) => ybox(ch, cls)).join("");
+
+  function youjiSheetHtml(s, opt) {
+    const ans = !!opt.answer;
+    let body = "";
+    if (s.ykind === "hira" || s.ykind === "kata") {
+      const rows = s.row.chars.map((ch, i) => {
+        const w = s.row.words[i];
+        return `<div class="yj-row">` +
+          `<div class="masu-line">${ybox(ch, "model")}${ybox(ch, "trace")}${ybox(ch, "trace")}${ybox("", "")}${ybox("", "")}</div>` +
+          `<div class="yj-word">${w && w !== "-" ? `<span class="lbl">なぞろう</span><span class="wline small">${ywordBoxes(w, "trace")}</span>` : ""}</div>` +
+          `</div>`;
+      }).join("");
+      body = `<h3 class="yj-h"><span class="yj-badge">${esc(s.row.name.replace("行", " ぎょう"))}</span>を かこう</h3>` +
+        `<p class="yj-inst">いちばん ひだりの じを よく みて、うすい じを なぞってから、じぶんで かいて みよう。</p>` +
+        `<div class="yj-rows">${rows}</div>`;
+    } else if (s.ykind === "word") {
+      const rows = s.theme.words.map((w, i) =>
+        `<div class="yj-wrow"><span class="yn">${i + 1}</span>` +
+        `<span class="wline">${ywordBoxes(w, "trace")}</span><span class="yj-arrow">→</span>` +
+        `<span class="wline">${[...w].map(() => ybox("", "")).join("")}</span></div>`).join("");
+      body = `<h3 class="yj-h"><span class="yj-badge">${esc(s.theme.name)}</span>の ことば</h3>` +
+        `<p class="yj-inst">うすい じを なぞってから、みぎの ますに じぶんで かいて みよう。</p>` +
+        `<div class="yj-rows">${rows}</div>`;
+    } else if (s.play === "shiri") {
+      const chains = s.data.chains.map((c, k) => `<div class="shiri"><span class="yn">${k + 1}</span><div class="shiri-line">` +
+        c.map((w, i) => (i ? `<span class="yj-arrow">→</span>` : "") + `<span class="wline">` +
+          [...w].map((ch, j) => i > 0 && j === 0 ? ybox(ans ? ch : "", ans ? "blank ans" : "blank") : ybox(ch, "plain")).join("") +
+          `</span>`).join("") + `</div></div>`).join("");
+      body = `<h3 class="yj-h"><span class="yj-badge">しりとり</span></h3>` +
+        `<p class="yj-inst">まえの ことばの さいごの じを、□に かこう。しりとりが つながるよ。</p>` +
+        `<div class="yj-rows">${chains}</div>`;
+    } else if (s.play === "search") {
+      const hit = new Set(s.data.words.flatMap((p) => p.cells.map(([y, x]) => `${y},${x}`)));
+      const grid = s.data.grid.map((row, y) => `<tr>${row.map((ch, x) =>
+        `<td class="${ans && hit.has(`${y},${x}`) ? "hit" : ""}">${esc(ch)}</td>`).join("")}</tr>`).join("");
+      const list = s.data.words.map((p) => `<span class="chip"><b class="ck"></b>${esc(p.w)}</span>`).join("");
+      body = `<h3 class="yj-h"><span class="yj-badge">ことば さがし</span></h3>` +
+        `<p class="yj-inst">したの ことばを ますの なかから さがして、○で かこもう。(よこ と たて に かくれて いるよ)</p>` +
+        `<div class="yj-rows search"><table class="ygrid">${grid}</table><div class="chips">${list}</div></div>`;
+    } else if (s.play === "miss") {
+      const items = s.data.items.map((it, i) => `<div class="miss"><span class="yn">${i + 1}</span>` +
+        `<span class="wline">${[...it.w].map((ch, j) => j === it.at ? ybox(ans ? ch : "", ans ? "blank ans" : "blank") : ybox(ch, "plain")).join("")}</span>` +
+        `<span class="opts">${it.choices.map((c, j) => `<span class="opt${ans && j === it.a ? " ans" : ""}">${esc(c)}</span>`).join("")}</span></div>`).join("");
+      body = `<h3 class="yj-h"><span class="yj-badge">たりない じ</span>は どれ？</h3>` +
+        `<p class="yj-inst">□に はいる じを みぎから えらんで、○で かこもう。□にも かいて みよう。</p>` +
+        `<div class="yj-rows two">${items}</div>`;
+    } else if (s.play === "sort") {
+      const items = s.data.items.map((it, i) => `<div class="sort"><span class="yn">${i + 1}</span>` +
+        `<span class="hint">${esc(it.cat)}</span>` +
+        `<span class="letters">${it.letters.map((c) => `<span class="ball">${esc(c)}</span>`).join("")}</span>` +
+        `<span class="yj-arrow">→</span><span class="wline">${[...it.w].map((ch) => ybox(ans ? ch : "", ans ? "ans" : "")).join("")}</span></div>`).join("");
+      body = `<h3 class="yj-h"><span class="yj-badge">ならべかえ</span></h3>` +
+        `<p class="yj-inst">じの じゅんばんを かえて、ことばを つくろう。ひだりの ことばが ヒントだよ。</p>` +
+        `<div class="yj-rows">${items}</div>`;
+    }
+    const kindCls = s.ykind === "play" ? `yj-${s.play}` : `yj-${s.ykind}`;
+    return `<div class="sheet yj ${kindCls}${ans ? " answer" : ""}">` +
+      `<div class="sheet-head"><span class="label">${YTITLE[s.ykind]}</span>` +
+      `<span class="no">${s.no}</span>` +
+      `<span class="fields"><span class="field"><i>ひづけ</i><b></b></span>` +
+      `<span class="field name"><i>なまえ</i><b></b></span></span></div>` +
+      body +
+      `<div class="yj-foot"><span class="yj-star" aria-hidden="true"></span>` +
+      `<span>${ans ? "まるを つけて あげてね" : "できたら ほしに いろを ぬろう"}</span>` +
+      `<span class="chara ${ans ? "chara-maru" : "chara-cheer"}" aria-hidden="true"></span></div>` +
+      `<div class="sheet-foot"><span class="seed">シード ${s.seed}</span></div></div>`;
+  }
+
+  /* ===== 画面 ===== */
+  const $ = (id) => document.getElementById(id);
+  const state = { grade: 3, gRead: 3, gWrite: 3, gStory: 3, furi: "none", genre: "all",
+                  kind: "both", level: 2, nRead: 8, nWrite: 8, seed: 1,
+                  ykind: "hira", yrow: "auto", ytheme: "auto", yplay: "mix" };
+  // 学年 0 は ようじ
+  const gradeLabel = (g) => (g === 0 ? "ようじ" : BANKS[g - 1].label);
+
+  function setMsg(t) { $("msg").textContent = t || ""; }
+
+  // 読みと 書きの 数を そろえる。入らない ときは、さわって いない ほうを へらす
+  function settleCounts(changed) {
+    const kind = state.kind;
+    let note = "";
+    if (!fits(kind, state.nRead, state.nWrite, state.gStory, state.furi, state.genre)) {
+      if (changed === "write") {
+        state.nRead = maxFor(kind, "read", state.nWrite, state.gStory, state.furi, state.genre);
+        note = `読みを ${state.nRead}問`;
+      } else {
+        state.nWrite = maxFor(kind, "write", state.nRead, state.gStory, state.furi, state.genre);
+        note = `書きを ${state.nWrite}問`;
+      }
+    }
+    if (kind !== "long") {
+      if (!state.nRead && !state.nWrite) state.nRead = 2;
+      state.kind = state.nRead && state.nWrite ? "both" : state.nRead ? "read" : "write";
+    }
+    return note ? `1枚に 入るように、${note}に しました。` : "";
+  }
+
+  function readControls(changedId) {
+    state.grade = Number($("f-grade").value);
+    if (state.grade === 0) {
+      // ようじ:しゅるい・行・テーマ・あそびと シードだけ
+      state.ykind = $("f-ykind").value || "hira";
+      state.yrow = $("f-yrow").value || "auto";
+      state.ytheme = $("f-ytheme").value || "auto";
+      state.yplay = $("f-yplay").value || "mix";
+      if (changedId === "f-ykind") state.yrow = "auto";
+      state.seed = Math.max(1, Math.min(999999, Number($("f-seed").value) || 1));
+      setMsg("");
+      return;
+    }
+    if (changedId === "f-grade") {
+      // 子どもの 学年を かえたら、読み・書き・長文の 学年も そろえる
+      state.gRead = state.gWrite = state.gStory = state.grade;
+    } else {
+      state.gRead = Number($("f-gread").value) || state.grade;
+      state.gWrite = Number($("f-gwrite").value) || state.grade;
+      state.gStory = Number($("f-gstory").value) || state.grade;
+    }
+    state.furi = $("f-furi").value || "none";
+    // 長文の 学年に ない ジャンルなら 「すべて」に もどす
+    state.genre = genreFor(state.gStory, changedId === "f-grade" ? state.genre : ($("f-genre").value || state.genre));
+    state.level = Number($("f-level").value);
+    state.seed = Math.max(1, Math.min(999999, Number($("f-seed").value) || 1));
+    let kind = $("f-kind").value;
+    if (kind === "long" && !hasLong(state.gStory)) kind = "both";
+    const longChanged = (kind === "long") !== (state.kind === "long");
+    if (changedId === "f-kind" || longChanged ||
+        (kind === "long" && ["f-grade", "f-gstory", "f-genre"].includes(changedId))) {
+      [state.nRead, state.nWrite] = defaultCounts(kind, state.gStory, state.furi, state.genre);
+    } else {
+      state.nRead = Number($("f-read").value) || 0;
+      state.nWrite = Number($("f-write").value) || 0;
+    }
+    state.kind = kind;
+    const changed = changedId === "f-write" ? "write" : "read";
+    setMsg(settleCounts(changed));
+  }
+
+  function countOptions(kind, which) {
+    const out = [];
+    for (let n = 0; n <= layoutOf(kind, state.gStory, state.furi, state.genre).top; n += 2) {
+      const alone = which === "read" ? fits(kind, n, 0, state.gStory, state.furi, state.genre)
+                                     : fits(kind, 0, n, state.gStory, state.furi, state.genre);
+      if (alone) out.push(`<option value="${n}">${n ? n + "問" : "なし"}</option>`);
+    }
+    return out.join("");
+  }
+
+  function writeControls() {
+    document.body.dataset.youji = state.grade === 0 ? "1" : "";
+    $("f-grade").value = String(state.grade);
+    if (state.grade === 0) {
+      const opts = (list) => list.map(([v, name]) => `<option value="${v}">${name}</option>`).join("");
+      $("f-ykind").innerHTML = opts(YKINDS);
+      $("f-ykind").value = state.ykind;
+      const rows = YD[state.ykind === "kata" ? "kata" : "hira"];
+      $("f-yrow").innerHTML = opts([["auto", "じゅんばんに(シードで かわる)"]].concat(rows.map((r, i) => [String(i), r.name])));
+      $("f-yrow").value = state.yrow;
+      $("f-ytheme").innerHTML = opts([["auto", "じゅんばんに(シードで かわる)"]].concat(YD.themes.map((t, i) => [String(i), t.name])));
+      $("f-ytheme").value = state.ytheme;
+      $("f-yplay").innerHTML = opts(YPLAYS);
+      $("f-yplay").value = state.yplay;
+      $("f-yrow").closest("label").hidden = !["hira", "kata"].includes(state.ykind);
+      $("f-ytheme").closest("label").hidden = state.ykind !== "word";
+      $("f-yplay").closest("label").hidden = state.ykind !== "play";
+      // こたえの ページは ことば あそびだけ
+      $("f-ans").closest("label").hidden = state.ykind !== "play";
+      $("f-seed").value = String(state.seed);
+      return;
+    }
+    $("f-ans").closest("label").hidden = false;
+    $("f-gread").value = String(state.gRead);
+    $("f-gwrite").value = String(state.gWrite);
+    $("f-gstory").value = String(state.gStory);
+    $("f-furi").value = state.furi;
+    const gen = genresOf(state.gStory);
+    $("f-genre").innerHTML = gen.map(([k, name]) =>
+      `<option value="${k}">${name}(${storiesOf(state.gStory, k).length}話)</option>`).join("");
+    $("f-genre").value = state.genre = genreFor(state.gStory, state.genre);
+    const isLong = state.kind === "long";
+    $("f-genre").closest("label").hidden = !isLong;
+    $("f-gstory").closest("label").hidden = !isLong;
+    $("f-furi").closest("label").hidden = !isLong;
+    $("f-gread").closest("label").hidden = !state.nRead;
+    $("f-gwrite").closest("label").hidden = !state.nWrite;
+    $("f-kind").value = state.kind;
+    $("f-level").value = String(state.level);
+    $("f-read").innerHTML = countOptions(state.kind, "read");
+    $("f-write").innerHTML = countOptions(state.kind, "write");
+    $("f-read").value = String(state.nRead);
+    $("f-write").value = String(state.nWrite);
+    $("f-seed").value = String(state.seed);
+  }
+
+  function pages(n, startSeed) {
+    const opt = { model: $("f-model").checked };
+    const withAns = $("f-ans").checked;
+    if (state.grade === 0) {
+      const out = [];
+      for (let i = 0; i < n; i++) {
+        const s = buildYoujiSheet(Object.assign({}, state, { seed: startSeed + i, no: i + 1 }));
+        out.push(youjiSheetHtml(s, {}));
+        if (withAns && s.ykind === "play") out.push(youjiSheetHtml(s, { answer: true }));
+      }
+      return out;
+    }
+    const list = $("f-anslist").checked;
+    const out = [];
+    for (let i = 0; i < n; i++) {
+      const sheet = buildSheet(Object.assign({}, state, { seed: startSeed + i, no: i + 1 }));
+      out.push(sheetHtml(sheet, opt));
+      if (withAns) out.push(sheetHtml(sheet, Object.assign({ answer: true, list }, opt)));
+    }
+    return out;
+  }
+
+  function show(n, startSeed) {
+    const html = pages(n, startSeed).join("");
+    $("sheets").innerHTML = html;
+    document.body.dataset.view = "sheet";
+    fitWidth();
+    window.scrollTo(0, 0);
+  }
+
+  function fitWidth() {
+    const avail = document.documentElement.clientWidth - 24;
+    const paper = 794; // 210mm を 96dpi に したときの ピクセル
+    const scale = Math.min(1, avail / paper);
+    for (const el of document.querySelectorAll("#sheets .sheet")) {
+      el.style.transform = scale < 1 ? `scale(${scale})` : "";
+      el.style.marginBottom = scale < 1 ? `${18 - (1 - scale) * 1122}px` : "";
+    }
+  }
+
+  function longGrades() {
+    return Object.keys(READS).map((g) => BANKS[g - 1].label).join("・");
+  }
+
+  function renderHome() {
+    const g = $("home-grades");
+    // 「小3」は 小さい「小」と 大きい「3」に する
+    const big = (label) => label.replace(/^小(\d)$/, "<small>小</small>$1");
+    g.innerHTML = `<button class="hg c0" data-grade="0" aria-pressed="${state.grade === 0}">` +
+      `<span class="name yo">ようじ</span><span class="count">ひらがな</span></button>` + BANKS.map((b, i) =>
+      `<button class="hg c${i + 1}" data-grade="${i + 1}" aria-pressed="${state.grade === i + 1}">` +
+      `<span class="name">${big(b.label)}</span>` +
+      `<span class="count">${b.entries.length}語</span></button>`).join("");
+    const gradeOptions = BANKS.map((b, i) => `<option value="${i + 1}">${b.label}</option>`).join("");
+    for (const id of ["f-gread", "f-gwrite"]) $(id).innerHTML = gradeOptions;
+    $("f-grade").innerHTML = `<option value="0">ようじ</option>` + gradeOptions;
+    $("f-gstory").innerHTML = BANKS.map((b, i) => hasLong(i + 1)
+      ? `<option value="${i + 1}">${b.label}</option>` : "").join("");
+    writeControls();
+    const only = document.querySelector(".kind-card[data-kind='long'] .only");
+    if (only) only.textContent = Object.keys(READS).length >= BANKS.length ? "" : ` いまは ${longGrades()} のみ。`;
+    $("version").textContent = $("home-version").textContent = document.querySelector('meta[name="app-version"]').content;
+    paintGrade();
+  }
+
+  // えらんだ 学年の 色を 画面ぜんたいに つけ、キャラクターの ふきだしを かえる
+  function paintGrade(pop) {
+    const g = state.grade;
+    for (let i = 0; i <= 7; i++) document.body.classList.toggle(`gc${i}`, i === g);
+    document.body.dataset.youji = g === 0 ? "1" : "";
+    for (const el of document.querySelectorAll(".hg")) el.setAttribute("aria-pressed", String(Number(el.dataset.grade) === g));
+    const label = gradeLabel(g);
+    $("home-bubble").innerHTML = `<b>${label}</b>の プリントを<br>作ろう！`;
+    $("kinds-title").textContent = `${label}の プリント`;
+    const c = $("home-chara");
+    if (pop) { c.classList.remove("pop"); void c.offsetWidth; c.classList.add("pop"); }
+  }
+
+  function bind() {
+    $("home-grades").addEventListener("click", (e) => {
+      const b = e.target.closest(".hg");
+      if (!b) return;
+      state.grade = Number(b.dataset.grade);
+      if (state.grade > 0) state.gRead = state.gWrite = state.gStory = state.grade;
+      for (const el of document.querySelectorAll(".hg"))
+        el.setAttribute("aria-pressed", String(el === b));
+      writeControls();
+      paintGrade(true);
+    });
+    $("home-levels").addEventListener("click", (e) => {
+      const b = e.target.closest(".level-btn");
+      if (!b) return;
+      state.level = Number(b.dataset.level);
+      for (const el of document.querySelectorAll(".level-btn"))
+        el.setAttribute("aria-pressed", String(el === b));
+      writeControls();
+    });
+    $("home-kinds").addEventListener("click", (e) => {
+      const b = e.target.closest(".kind-card");
+      if (!b) return;
+      if (b.dataset.ykind) {
+        state.ykind = b.dataset.ykind;
+        writeControls();
+        setMsg("");
+        show(1, state.seed);
+        return;
+      }
+      if (b.dataset.kind === "long" && !hasLong(state.grade)) {
+        setMsg(`${BANKS[state.grade - 1].label} の 長文は まだ ありません。いまは ${longGrades()} で 作れます。`);
+        document.body.dataset.view = "sheet";
+        return;
+      }
+      state.kind = b.dataset.kind;
+      state.genre = genreFor(state.gStory, state.genre);
+      [state.nRead, state.nWrite] = defaultCounts(state.kind, state.gStory, state.furi, state.genre);
+      writeControls();
+      setMsg("");
+      show(1, state.seed);
+    });
+    $("btn-home").addEventListener("click", () => {
+      document.body.dataset.view = "home";
+      setMsg("");
+    });
+    $("btn-again").addEventListener("click", () => {
+      readControls();
+      state.seed = state.seed % 999999 + 1;
+      writeControls();
+      show(1, state.seed);
+    });
+    $("btn-print").addEventListener("click", () => window.print());
+    $("btn-batch").addEventListener("click", () => {
+      readControls();
+      $("b-seed").value = String(state.seed);
+      $("batch").showModal();
+    });
+    for (const id of ["f-grade", "f-gread", "f-gwrite", "f-gstory", "f-genre", "f-furi", "f-kind", "f-ykind", "f-yrow", "f-ytheme", "f-yplay", "f-level",
+                      "f-read", "f-write", "f-seed", "f-model", "f-ans", "f-anslist"]) {
+      $(id).addEventListener("change", () => {
+        readControls(id);
+        writeControls();
+        paintGrade();
+        if (document.body.dataset.view === "sheet") show(1, state.seed);
+      });
+    }
+    window.addEventListener("resize", fitWidth);
+    $("b-close").addEventListener("click", () => $("batch").close());
+    $("b-make").addEventListener("click", () => {
+      $("batch").close();
+      show(Number($("b-pages").value) || 1, Number($("b-seed").value) || 1);
+    });
+    $("b-pdf").addEventListener("click", () => save("pdf"));
+    $("b-jpg").addEventListener("click", () => save("jpg"));
+  }
+
+  /* ===== PDF・JPG で 保存 ===== */
+  let libsReady = false;
+  function loadLibs() {
+    if (libsReady) return;
+    for (const id of ["lib-html2canvas", "lib-jspdf", "lib-jszip"]) {
+      const el = document.getElementById(id);
+      if (el && el.textContent.trim()) new Function(el.textContent)();
+    }
+    libsReady = true;
+  }
+
+  async function save(format) {
+    const n = Number($("b-pages").value) || 1;
+    const seed = Number($("b-seed").value) || 1;
+    const stateEl = $("b-state");
+    try {
+      stateEl.textContent = "道具を よみこんでいます…";
+      loadLibs();
+      show(n, seed);
+      $("batch").showModal();
+      const sheets = [...document.querySelectorAll("#sheets .sheet")];
+      for (const el of sheets) el.style.transform = "";
+      const canvases = [];
+      for (let i = 0; i < sheets.length; i++) {
+        stateEl.textContent = `${i + 1} / ${sheets.length} ページを 画像に しています…`;
+        await new Promise((r) => setTimeout(r, 0));
+        canvases.push(await window.html2canvas(sheets[i], { scale: 2, backgroundColor: "#fff" }));
+      }
+      const name = `kokugo-${BANKS[state.grade - 1].label}-${state.kind}-seed${seed}`;
+      if (format === "pdf") {
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF({ unit: "mm", format: "a4", orientation: "portrait" });
+        canvases.forEach((c, i) => {
+          if (i) pdf.addPage();
+          pdf.addImage(c.toDataURL("image/jpeg", 0.92), "JPEG", 0, 0, 210, 297);
+        });
+        pdf.save(`${name}.pdf`);
+      } else {
+        const zip = new window.JSZip();
+        canvases.forEach((c, i) => {
+          const b64 = c.toDataURL("image/jpeg", 0.92).split(",")[1];
+          zip.file(`${String(i + 1).padStart(3, "0")}.jpg`, b64, { base64: true });
+        });
+        const blob = await zip.generateAsync({ type: "blob" });
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = `${name}.zip`;
+        a.click();
+        URL.revokeObjectURL(a.href);
+      }
+      stateEl.textContent = "できました。";
+      fitWidth();
+    } catch (err) {
+      stateEl.textContent = "うまく いきませんでした: " + err.message;
+    }
+  }
+
+  renderHome();
+  bind();
+
+})();
+
+</script>
+<!-- PDF・JPG・zip を つくる 道具(html2canvas / jsPDF / JSZip。保存するときだけ よみこむ) -->
+<script type="text/x-lib" id="lib-html2canvas">{{VENDOR:html2canvas.min.js}}</script>
+<script type="text/x-lib" id="lib-jspdf">{{VENDOR:jspdf.umd.min.js}}</script>
+<script type="text/x-lib" id="lib-jszip">{{VENDOR:jszip.min.js}}</script>
+</body>
+</html>

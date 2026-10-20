@@ -1,0 +1,49 @@
+const { chromium } = require('playwright');
+const path = require('path');
+(async () => {
+  const file = 'file://' + path.resolve('docs/index.html');
+  const b = await chromium.launch();
+  const p = await b.newPage({ viewport: { width: 1180, height: 1000 }, deviceScaleFactor: 1.5 });
+  const shot = async (grade, kind, level, seed, name) => {
+    await p.goto(file);
+    await p.click(`.hg[data-grade="${grade}"]`);
+    await p.click(`.level-btn[data-level="${level}"]`);
+    await p.click(`.kk-card[data-kind="${kind}"]`);
+    await p.fill('#f-seed', String(seed));
+    await p.dispatchEvent('#f-seed', 'change');
+    await p.waitForTimeout(400);
+    await p.evaluate(() => { document.querySelector('.panel').style.display = 'none'; for (const el of document.querySelectorAll('.sheet')) el.style.transform = ''; });
+    await p.waitForTimeout(300);
+    const sheets = await p.$$('#sheets .sheet');
+    await sheets[0].screenshot({ path: `docs/screenshots/${name}.png` });
+    if (sheets[1]) await sheets[1].screenshot({ path: `docs/screenshots/${name}-ans.png` });
+  };
+  await p.goto(file);
+  await p.screenshot({ path: 'docs/screenshots/menu.png' });
+  await shot(2, 'both', 2, 1, 'print-g2-both');
+  await shot(5, 'both', 3, 4, 'print-g5-both');
+  await shot(7, 'write', 3, 9, 'print-chu-write');
+  await shot(5, 'long', 2, 4, 'print-g5-long');
+  await shot(1, 'long', 2, 3, 'print-g1-long');
+  // ようじ
+  const yshot = async (ykind, seed, name) => {
+    await p.goto(file);
+    await p.click('.hg[data-grade="0"]');
+    await p.click(`.kind-card[data-ykind="${ykind}"]`);
+    await p.fill('#f-seed', String(seed));
+    await p.dispatchEvent('#f-seed', 'change');
+    await p.waitForTimeout(500);
+    await p.evaluate(() => { document.querySelector('.panel').style.display = 'none'; for (const el of document.querySelectorAll('.sheet')) el.style.transform = ''; });
+    await p.waitForTimeout(300);
+    const sheets = await p.$$('#sheets .sheet');
+    await sheets[0].screenshot({ path: `docs/screenshots/${name}.png` });
+  };
+  await p.goto(file);
+  await p.click('.hg[data-grade="0"]');
+  await p.waitForTimeout(300);
+  await p.screenshot({ path: 'docs/screenshots/menu-youji.png' });
+  await yshot('hira', 1, 'print-youji-hira');
+  await yshot('play', 1, 'print-youji-shiri');
+  await b.close();
+  console.log('shots done');
+})();

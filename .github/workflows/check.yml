@@ -1,0 +1,26 @@
+name: check
+on: [push, pull_request]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: 語いバンクの検査
+        run: python3 tools/check_words.py
+      - name: 長文データの検査
+        run: python3 tools/check_reads.py
+      - name: ビルド
+        run: python3 tools/build.py
+      - name: docs/index.html が最新か
+        run: git diff --exit-code docs/index.html
+      - run: npm install
+      - run: npx playwright install --with-deps chromium
+      - name: レイアウトの検査
+        run: node tools/test/layout.js
+      - name: 問題数のくみあわせの検査
+        run: node tools/test/counts.js
+      - name: ようじの プリントの 検査
+        run: node tools/test/youji.js
