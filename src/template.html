@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="app-version" content="第4版(2026-10-20)">
+<meta name="app-version" content="第5版(2026-10-20)">
 <title>国語プリント</title>
 <style>
 :root {
@@ -11,7 +11,7 @@
   --rule: #444;
   --light: #999;
   --accent: #2b3a55;
-  --answer: #e8700a;
+  --answer: #000;  /* プリントは 白黒(答えの 字も 黒) */
   --paper-w: 210mm;
   --paper-h: 297mm;
   --margin: 14mm;
@@ -352,11 +352,11 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
 .yj .mb::before { left: 50%; top: 0; bottom: 0; border-left-width: 1px; }
 .yj .mb::after { top: 50%; left: 0; right: 0; border-top-width: 1px; }
 .yj .mb > i { position: relative; z-index: 1; font-style: normal; transform: translateY(-0.04em); }
-.yj .mb.model { background: #fff7dc; color: #111; }
+.yj .mb.model { background: #fff; color: #111; border-width: 2.4px; }
 .yj .mb.trace { color: #c4c4c4; }
 .yj .mb.plain { color: #111; }
 .yj .mb.blank { border-width: 2.4px; border-color: #111; }
-.yj .mb.ans { color: var(--answer); font-weight: bold; }
+.yj .mb.ans { color: #000; font-weight: bold; }
 .yj .wline { display: inline-flex; }
 .yj .wline .mb { width: 15mm; height: 15mm; font-size: 11.5mm; }
 .yj .wline.small .mb { width: 13mm; height: 13mm; font-size: 10mm; }
@@ -388,7 +388,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
   width: 20mm; height: 20mm; border: 1.4px solid #444; text-align: center; vertical-align: middle;
   font-size: 13mm; line-height: 1;
 }
-.ygrid td.hit { background: #ffe2c2; color: var(--answer); font-weight: bold; }
+.ygrid td.hit { background: #d9d9d9; color: #000; font-weight: bold; }
 .chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 3mm 5mm; max-width: 160mm; }
 .chip { display: inline-flex; align-items: center; gap: 2mm; font-size: 17pt; border: 1.2px solid #444; border-radius: 99px; padding: 1mm 5mm 1.5mm 3mm; }
 .chip .ck { width: 5mm; height: 5mm; border: 1.2px solid #444; border-radius: 50%; }
@@ -401,20 +401,14 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
   width: 12mm; height: 12mm; border: 1.2px solid #777; border-radius: 50%; display: inline-flex;
   align-items: center; justify-content: center; font-size: 8.5mm; line-height: 1;
 }
-.opt.ans { border: 2.4px solid var(--answer); color: var(--answer); font-weight: bold; }
+.opt.ans { border: 2.8px solid #000; color: #000; font-weight: bold; }
 /* ならべかえ */
 .sort { display: flex; align-items: center; gap: 3mm; }
 .sort .hint { flex: none; width: 30mm; font-size: 10pt; border: 1px solid #999; border-radius: 2mm; padding: 1mm 2mm; text-align: center; font-family: "BIZ UDPGothic", sans-serif; }
 .letters { display: flex; gap: 1.5mm; width: 50mm; }
 .ball {
-  width: 11mm; height: 11mm; border-radius: 50%; background: #eef3fb; border: 1.2px solid #8aa3c8;
+  width: 11mm; height: 11mm; border-radius: 50%; background: #fff; border: 1.2px solid #555;
   display: inline-flex; align-items: center; justify-content: center; font-size: 8mm; line-height: 1;
-}
-/* した:ほし(プリントには キャラクターを 入れない) */
-.yj-foot { display: flex; align-items: center; justify-content: flex-end; gap: 3mm; margin-top: 4mm; font-size: 11pt; color: #444; }
-.yj-star {
-  width: 11mm; height: 11mm; flex: none;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 1.8l3 6.4 7 .9-5.1 4.8 1.3 6.9L12 17.4l-6.2 3.4 1.3-6.9L2 9.1l7-.9z' fill='none' stroke='%23e2a50b' stroke-width='1.4' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
 }
 .sheet.yj .sheet-foot { padding-top: 1mm; }
 
@@ -1214,8 +1208,6 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       `<span class="fields"><span class="field"><i>ひづけ</i><b></b></span>` +
       `<span class="field name"><i>なまえ</i><b></b></span></span></div>` +
       body +
-      `<div class="yj-foot"><span class="yj-star" aria-hidden="true"></span>` +
-      `<span>${ans ? "まるを つけて あげてね" : "できたら ほしに いろを ぬろう"}</span></div>` +
       `<div class="sheet-foot"><span class="seed">シード ${s.seed}</span></div></div>`;
   }
 

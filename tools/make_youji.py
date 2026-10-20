@@ -7,8 +7,8 @@
   themes      : ことば なぞりの テーマと ことば(1テーマ 7語・5字まで)
   extra       : ことば あそび(しりとり など)に だけ 使う ことば
   pics        : え を みて かこう の ことばと 絵(assets/pics/<名前>.svg)。
-                絵は Microsoft の Fluent Emoji(フラット。MIT ライセンス)。
-                新しい 絵を 足す ときは、fluentui-emoji の icons/flat/ から assets/pics/ に コピーする
+                絵は Microsoft の Fluent Emoji の 白黒版(High Contrast。MIT ライセンス)。
+                新しい 絵を 足す ときは、fluentui-emoji の icons/high-contrast/ から assets/pics/ に コピーする
 """
 import json, pathlib
 
