@@ -5,6 +5,7 @@
 src/template.html の つぎの ところを おきかえる。
   {{DATA}}            src/data/words*.tsv を JavaScript の データに して 入れる
   {{CHARA:名前}}      assets/chara/名前.webp を data URI で 入れる
+  {{ICON:大きさ}}      assets/icon/icon-大きさ.png を data URI で 入れる
   {{VENDOR:ファイル}} vendor/ の ファイルを そのまま 入れる
   {{FONT:ファイル}}   vendor/ の フォント(woff2)を data URI で 入れる
 """
@@ -71,6 +72,10 @@ out = tpl.replace('{{DATA}}', '\n'.join(blocks).strip())
 out = re.sub(r'\{\{CHARA:(\w+)\}\}',
              lambda m: 'data:image/webp;base64,' + base64.b64encode(
                  (root / 'assets' / 'chara' / f'{m.group(1)}.webp').read_bytes()).decode(), out)
+# {{ICON:大きさ}} は assets/icon/icon-大きさ.png を data URI で 入れる(タブや ホーム画面の アイコン)
+out = re.sub(r'\{\{ICON:(\d+)\}\}',
+             lambda m: 'data:image/png;base64,' + base64.b64encode(
+                 (root / 'assets' / 'icon' / f'icon-{m.group(1)}.png').read_bytes()).decode(), out)
 # {{FONT:ファイル}} は vendor/ の フォントを data URI で 入れる(ようじの なぞり書き用 Klee One の かなだけ)
 out = re.sub(r'\{\{FONT:([\w.\-]+)\}\}',
              lambda m: 'data:font/woff2;base64,' + base64.b64encode((root / 'vendor' / m.group(1)).read_bytes()).decode(), out)
