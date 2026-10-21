@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="app-version" content="第15版(2026-10-21)">
+<meta name="app-version" content="第16版(2026-10-21)">
 <title>国語プリント</title>
 <link rel="icon" type="image/png" sizes="32x32" href="{{ICON:32}}">
 <link rel="icon" type="image/png" sizes="64x64" href="{{ICON:64}}">
@@ -1831,10 +1831,33 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
     return out;
   }
 
+  // 画面の 切りかえ。プリントを 出す ときに 履歴を 1つ ふやすので、ブラウザの「戻る」で メニューに もどれる
+  let homeScroll = 0;
+  function goSheet() {
+    if (document.body.dataset.view !== "sheet") {
+      homeScroll = window.scrollY;
+      try { history.pushState({ view: "sheet" }, ""); } catch (e) { /* 履歴が 使えなくても 動く */ }
+    }
+    document.body.dataset.view = "sheet";
+  }
+  function goHome(fromHistory) {
+    if (!fromHistory && history.state && history.state.view === "sheet") {
+      try { history.back(); return; } catch (e) { /* そのまま 下へ */ }
+    }
+    document.body.dataset.view = "home";
+    setMsg("");
+    window.scrollTo(0, homeScroll);
+  }
+  window.addEventListener("popstate", (e) => {
+    if (e.state && e.state.view === "sheet") {
+      if ($("sheets").children.length) { document.body.dataset.view = "sheet"; fitWidth(); }
+    } else if (document.body.dataset.view === "sheet") goHome(true);
+  });
+
   function show(n, startSeed) {
     const html = pages(n, startSeed).join("");
     $("sheets").innerHTML = html;
-    document.body.dataset.view = "sheet";
+    goSheet();
     fitWidth();
     window.scrollTo(0, 0);
   }
@@ -2095,13 +2118,13 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       }
       if (b.dataset.kind === "long" && !hasLong(state.grade)) {
         setMsg(`${BANKS[state.grade - 1].label} の 長文は まだ ありません。いまは ${longGrades()} で 作れます。`);
-        document.body.dataset.view = "sheet";
+        goSheet();
         return;
       }
       if (b.dataset.kind === "kimari") {
         if (!hasKimari(state.grade)) {
           setMsg(`${BANKS[state.grade - 1].label} の ことばの きまりは じゅんびちゅうです。いまは ${kimariGrades()} で 作れます。`);
-          document.body.dataset.view = "sheet";
+          goSheet();
           return;
         }
         state.kind = "kimari";
@@ -2118,10 +2141,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       setMsg("");
       show(1, state.seed);
     });
-    $("btn-home").addEventListener("click", () => {
-      document.body.dataset.view = "home";
-      setMsg("");
-    });
+    $("btn-home").addEventListener("click", () => goHome());
     $("btn-again").addEventListener("click", () => {
       readControls();
       state.seed = state.seed % 999999 + 1;
