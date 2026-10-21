@@ -28,9 +28,21 @@ const path = require('path');
           for (let seed = 1; seed <= 6; seed++) jobs.push({ ykind: 'pic', yscript, ycat, yhint, seed });
     for (const yplay of ['shiri', 'search', 'miss', 'sort'])
       for (let seed = 1; seed <= 60; seed++) jobs.push({ ykind: 'play', yplay, seed });
+    // 特別支援の だんかいで つかう せん・むすぶ・なまえ
+    for (const ystep of [1, 2, 3]) for (let seed = 1; seed <= 12; seed++) jobs.push({ ykind: 'line', ystep, seed });
+    for (const ymatch of ['same', 'word', 'kata']) for (const ystep of [1, 2, 3]) for (let seed = 1; seed <= 20; seed++)
+      jobs.push({ ykind: 'match', ymatch, ystep, seed });
+    for (const yname of ['', 'やまだ はな', 'たろう', 'すずき いちろう', 'ヤマダ ハナコ', 'あ']) jobs.push({ ykind: 'name', yname, seed: 1 });
+    for (const ylimit of [1, 5, 10]) jobs.push({ ykind: 'hira', yrow: 'auto', ylimit, seed: 3 });
     for (const j of jobs) {
       const s = T.buildYoujiSheet(Object.assign({ no: 1 }, j));
-      const where = `${j.ykind} ${j.yrow || j.ytheme || j.yplay || ''}${j.yscript ? j.yscript + ' ' + j.ycat + ' ' + j.yhint : ''} seed${j.seed}`;
+      const where = `${j.ykind} ${j.yrow || j.ytheme || j.yplay || j.ymatch || j.yname || ''}${j.yscript ? j.yscript + ' ' + j.ycat + ' ' + j.yhint : ''}${j.ystep ? ' step' + j.ystep : ''} seed${j.seed}`;
+      if (s.ykind === 'match') {
+        const want = [0, 3, 4, 5][j.ystep];
+        if (s.items.length !== want) bad.push(`${where}: ${s.items.length} くみ`);
+        if (s.order.some((k, i) => k === i)) bad.push(`${where}: おなじ たかさに こたえ`);
+        if ([...s.order].sort().join() !== s.items.map((_, i) => i).join()) bad.push(`${where}: ならびが へん`);
+      }
       if (s.ykind === 'pic') {
         if (s.items.length < 6) bad.push(`${where}: 絵が ${s.items.length}`);
         if (new Set(s.items.map((x) => x.w)).size !== s.items.length) bad.push(`${where}: 同じ ことば`);
@@ -54,7 +66,7 @@ const path = require('path');
         for (const it of s.data.items) if (it.letters.join('') === it.w || [...it.letters].sort().join('') !== [...it.w].sort().join('')) bad.push(`${where}: ${it.w}`);
       }
       for (const answer of [false, true]) {
-        if (answer && !['play', 'pic'].includes(j.ykind)) continue;
+        if (answer && !['play', 'pic', 'match'].includes(j.ykind)) continue;
         host.innerHTML = T.youjiSheetHtml(s, { answer });
         const el = host.querySelector('.sheet');
         el.style.transform = '';

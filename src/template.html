@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="app-version" content="第10版(2026-10-21)">
+<meta name="app-version" content="第11版(2026-10-21)">
 <title>国語プリント</title>
 <link rel="icon" type="image/png" sizes="32x32" href="{{ICON:32}}">
 <link rel="icon" type="image/png" sizes="64x64" href="{{ICON:64}}">
@@ -195,6 +195,27 @@ body[data-youji="1"] .kind-card { min-height: 240px; }
   background: var(--k); border-radius: 999px; padding: 3px 14px;
 }
 .note { font-size: 12.5px; color: var(--ui-sub); margin-top: 12px; }
+/* 特別支援学校の 段階 */
+.tk-banner {
+  margin: 16px 0 0; display: flex; align-items: center; gap: 10px; width: 100%; max-width: 640px; text-align: left;
+  font: inherit; cursor: pointer; border: 2px solid #2f67b1; background: #eef4fc; color: var(--ui-ink); border-radius: 14px; padding: 9px 14px;
+}
+.tk-banner:hover { box-shadow: 0 4px 10px rgba(31,42,64,.12); }
+.tk-banner .tk-badge { flex: none; background: #2f67b1; color: #fff; font-weight: bold; font-size: 13px; border-radius: 999px; padding: 3px 10px; }
+.tk-banner b { display: block; font-size: 15px; }
+.tk-banner small { display: block; font-size: 12px; color: var(--ui-sub); margin-top: 1px; }
+.tk-banner .tk-go { margin-left: auto; font-weight: bold; color: #2f67b1; }
+body[data-stage="1"] .tk-banner { border-color: var(--ui-line); background: #fff; }
+body[data-stage="1"] .tk-banner .tk-badge { background: var(--ui-ink); }
+.hg-group { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; width: 100%; }
+.hg-cap { width: 58px; font-size: 13px; font-weight: bold; color: var(--ui-sub); }
+.hg.st { width: 96px; }
+.hg.st .name { font-size: 16px; padding: 4px 0 2px; }
+.stage-note { font-size: 13px; color: var(--ui-sub); margin: 10px 0 0; max-width: 600px; line-height: 1.6; }
+body:not([data-stage="1"]) .tk-only, body[data-stage="1"] .no-tk { display: none !important; }
+.kind-card .tag { position: relative; align-self: flex-start; font-size: 11px; font-weight: bold; color: var(--k); border: 1.5px solid var(--k); border-radius: 999px; padding: 0 8px; }
+.kind-card.tk-card { --k: var(--gc); min-height: 200px; }
+.kind-card.tk-card .desc { padding-right: 34px; }
 .home-cheer { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 26px 0 0; color: var(--ui-sub); font-size: 14px; }
 .home-cheer .chara { width: 70px; height: 74px; }
 @media (max-width: 760px) {
@@ -288,6 +309,18 @@ body[data-youji="1"] .kind-card { min-height: 240px; }
 /* ふつうの プリント(長文 いがい):レイアウトは そのまま、ねらいの 字(読みの 漢字・書きの 読みがな)だけ 大きく */
 .sheet:not(.long) .item .target { font-size: 1.2em; text-underline-offset: 5px; }
 .sheet:not(.long) .wbox .ruby { font-size: 13pt; }
+/* 大きい 字(特別支援学校むけ):1れつに 1問。字も ますも 大きく */
+.sheet.tk .items { grid-template-columns: 1fr; row-gap: calc(3.5mm + var(--row-extra, 0mm)); }
+.sheet.tk .q-group > h3 { font-size: 15pt; }
+.sheet.tk .q-group > .instruction { font-size: 12pt; }
+.sheet.tk .item { font-size: 16pt; line-height: 1.9; letter-spacing: 0.04em; }
+.sheet.tk .item > .n { font-size: 13pt; min-width: 2.4em; }
+.sheet.tk .item.r .paren u { min-width: 45mm; }
+.sheet.tk .wbox .ruby { font-size: 14pt; line-height: 1.15; }
+.sheet.tk .wbox .cell { width: 20mm; height: 17mm; }
+.sheet.tk .wbox.mid .cell { width: 17mm; height: 15.5mm; }
+.sheet.tk .wbox.small .cell { width: 15mm; height: 14.5mm; }
+.sheet.tk .wbox .cell .ans { font-size: 22pt; }
 
 /* ふりがな */
 ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height: 1; }
@@ -427,6 +460,19 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
   display: inline-flex; align-items: center; justify-content: center; font-size: 8mm; line-height: 1;
 }
 .sheet.yj .sheet-foot { padding-top: 1mm; }
+/* せんを なぞろう・せんで むすぼう・なまえ */
+.yj-rows.lines { justify-content: space-evenly; gap: 2mm; }
+.line-row { display: flex; align-items: center; gap: 1mm; }
+.line-svg { width: 172mm; height: 38mm; flex: none; }
+.yj-rows.match { justify-content: center; align-items: center; }
+.match-svg { width: 172mm; }
+.match-svg .mt-n { font-size: 5px; font-family: "BIZ UDPGothic", sans-serif; }
+.match-svg .mt-w { font-family: "KleeKana", "UD デジタル 教科書体 NK-R", "YuKyokasho", sans-serif; }
+.yj-rows.names { justify-content: space-evenly; }
+.nm-row { display: flex; align-items: center; gap: 3mm; }
+.nm-lbl { width: 26mm; white-space: nowrap; font-size: 10pt; color: #444; flex: none; }
+.yj .wline.nm .mb { width: var(--mb); height: var(--mb); font-size: calc(var(--mb) * 0.78); }
+.yj .wline.nm .gap { display: inline-block; width: calc(var(--mb) * 0.45); }
 
 @page { size: A4 portrait; margin: 0; }
 @media print {
@@ -475,6 +521,18 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
   <label class="sheet-only yj-only">ヒント
     <select id="f-yhint"></select>
   </label>
+  <label class="sheet-only yj-only">むすぶ もの
+    <select id="f-ymatch"></select>
+  </label>
+  <label class="sheet-only yj-only">むずかしさ
+    <select id="f-ystep"><option value="1">★☆☆</option><option value="2">★★☆</option><option value="3">★★★</option></select>
+  </label>
+  <label class="sheet-only yj-only">なまえ(ひらがな)
+    <input id="f-yname" type="text" maxlength="10" placeholder="れい: やまだ はな">
+  </label>
+  <label class="sheet-only yj-only">じゅんばんに つかう 行
+    <select id="f-ylimit"><option value="0">ぜんぶ(が・ざ・だ・ば・ぱ行も)</option><option value="10">あ〜わ行だけ</option></select>
+  </label>
   <label class="sheet-only kk-only">種類
     <select id="f-kind">
       <option value="both">漢字の 読み書き</option>
@@ -519,6 +577,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
     <input id="f-seed" type="number" min="1" max="999999" value="1">
   </label>
   <label class="check sheet-only kk-only"><input id="f-model" type="checkbox"> お手本（うすい字）</label>
+  <label class="check sheet-only kk-only"><input id="f-tk" type="checkbox"> 大きい 字(1れつ)</label>
   <label class="check sheet-only"><input id="f-ans" type="checkbox" checked> 答えのページ</label>
   <label class="check sheet-only kk-only"><input id="f-anslist" type="checkbox"> 答えは 一覧で</label>
 
@@ -536,12 +595,15 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
     <div class="home-main">
       <div class="home-hero">
         <h1><span class="masu" aria-label="国語プリント"><span class="c1">国</span><span class="c2">語</span><span class="c3">プ</span><span class="c4">リ</span><span class="c5">ン</span><span class="c6">ト</span></span><span class="version" id="home-version"></span></h1>
-        <p class="kk-only">小学1年から 中学までの 漢字の 読み書きと 長文読解の プリントを、ブラウザだけで 作れます。学年と むずかしさを えらんで、プリントの 種類を おしてください。</p>
-        <p class="yj-only">ようじ(3〜6さい)の ひらがな・カタカナの なぞり書き、絵を みて ことばを かく プリント、ことば あそびです。おうちの かたが えらんで、いっしょに やって みてください。</p>
+        <p class="kk-only no-tk">小学1年から 中学までの 漢字の 読み書きと 長文読解の プリントを、ブラウザだけで 作れます。学年と むずかしさを えらんで、プリントの 種類を おしてください。</p>
+        <p class="tk-only">特別支援学校(知的障害)の 国語の 段階に 合わせた プリントです。段階を えらんで、内容の カードを おしてください。問題は 少なめ・字は 大きめです。プリントに 段階の 名前は 出ません。</p>
+        <p class="yj-only no-tk">ようじ(3〜6さい)の ひらがな・カタカナの なぞり書き、絵を みて ことばを かく プリント、ことば あそびです。おうちの かたが えらんで、いっしょに やって みてください。</p>
       </div>
+      <button type="button" class="tk-banner" id="tk-banner"></button>
       <div class="home-steps">
-        <p class="home-step"><span class="n">1</span>学年</p>
+        <p class="home-step"><span class="n">1</span><span id="home-step1">学年</span></p>
         <div class="grades" id="home-grades"></div>
+        <p class="stage-note tk-only" id="stage-note"></p>
         <div class="level-step">
         <p class="home-step"><span class="n">2</span>むずかしさ</p>
         <div class="levels" id="home-levels">
@@ -562,7 +624,8 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
     <h2><span id="kinds-title">プリントの 種類</span></h2>
     <span>おすと すぐに プリントが できます。数や 学年は あとから かえられます。</span>
   </div>
-  <div class="kinds" id="home-kinds">
+  <div class="kinds tk-only" id="tk-kinds"></div>
+  <div class="kinds no-tk" id="home-kinds">
     <button class="kind-card yj-card" data-kind="both" data-ykind="hira">
       <span class="name"><span class="n">1</span>ひらがな なぞり</span>
       <span class="chara chara-cheer" aria-hidden="true"></span>
@@ -732,7 +795,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
   /* ===== プリント1枚ぶんの 中身を 作る ===== */
   // grade は 子どもの 学年(見出しの 字と ふりがなの 基準)。
   // gRead・gWrite・gStory は 読み・書き・長文の 学年(なければ grade と 同じ)。
-  function buildSheet({ grade, kind, level, count, seed, no, nRead, nWrite, gRead, gWrite, gStory, furi, genre }) {
+  function buildSheet({ grade, kind, level, count, seed, no, nRead, nWrite, gRead, gWrite, gStory, furi, genre, tk }) {
     gRead = gRead || grade; gWrite = gWrite || grade; gStory = gStory || grade; furi = furi || "none";
     genre = genreFor(gStory, genre);
     const bankRead = BANKS[gRead - 1].entries;
@@ -765,7 +828,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       });
     }
     const sheet = { grade, gRead, gWrite, gStory, furi, genre, kind, level, count, seed, no, groups,
-                    label: BANKS[grade - 1].label };
+                    tk: !!tk && kind !== "long", label: BANKS[grade - 1].label };
     if (kind === "long" && hasLong(gStory)) {
       // えらんだ 漢字の 数と いっしょに 1枚に 入る 話だけから えらぶ
       const L = layoutOf("long", gStory, furi, genre);
@@ -804,12 +867,18 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
   const STORY_H = LD.storyH || {}, STORY_HR = LD.storyHR || {};
   const LAYOUT = {
     normal: { base: 48.5, group: 22.5, read: 16.8, write: 25.9, limit: 292, cap: 12, top: 30 },
-    long:   { base: 193, group: 16.7, read: 6.9, write: 19.0, limit: 294.5, cap: 2.5, top: 12 }
+    long:   { base: 193, group: 16.7, read: 6.9, write: 19.0, limit: 294.5, cap: 2.5, top: 12 },
+    // 大きい 字(特別支援学校むけ)。1れつに 1問ずつ
+    tk:     { base: 48.5, group: 28, read: 16.6, write: 26.4, limit: 292, cap: 10, top: 12, cols: 1 }
   };
   const DEFAULTS = { both: [8, 8], read: [16, 0], write: [0, 12], long: [4, 8] };
+  const TK_DEFAULTS = { both: [4, 4], read: [8, 0], write: [0, 6] };
+  // 大きい 字の ときは レイアウトの 種類を "tk" に して 見つもる
+  const layoutKind = (kind, tk) => (tk && kind !== "long" ? "tk" : kind);
   // grade は 長文の 学年。furi は ふりがな("none" / "over" / "all")。genre は ジャンル(なければ すべて)
   // 土台は「学年:ジャンル」ごとにも 測って あるので、ジャンルを しぼると その ジャンルの 話の 長さで 見つもる
   function layoutOf(kind, grade, furi, genre) {
+    if (kind === "tk") return LAYOUT.tk;
     if (kind !== "long") return LAYOUT.normal;
     const table = furi && furi !== "none" ? LONG_BASE_R : LONG_BASE;
     const key = genre && genre !== "all" ? `${grade}:${genre}` : null;
@@ -820,8 +889,9 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
   function estHeight(kind, nr, nw, grade, furi, genre) {
     const L = layoutOf(kind, grade, furi, genre);
     let h = L.base;
-    if (nr) h += L.group + L.read * rowsOf(nr);
-    if (nw) h += L.group + L.write * rowsOf(nw);
+    const rows = (n) => Math.ceil(n / (L.cols || 2));
+    if (nr) h += L.group + L.read * rows(nr);
+    if (nw) h += L.group + L.write * rows(nw);
     return h;
   }
   const fits = (kind, nr, nw, grade, furi, genre) =>
@@ -980,14 +1050,15 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
     // 問題が 少ないときは、あまった 高さを 行の あいだと 大問の あいだに 同じだけ くばる
     const nr = sheet.groups.filter((g) => g.type === "read").reduce((s, g) => s + g.items.length, 0);
     const nw = sheet.groups.filter((g) => g.type === "write").reduce((s, g) => s + g.items.length, 0);
-    let slots = sheet.groups.reduce((s, g) => s + rowsOf(g.items.length), 0);
-    if (sheet.story) slots += sheet.story.vocab.length ? 2 : 1;
+    const lk = layoutKind(sheet.kind, sheet.tk);
     const gs = sheet.gStory || sheet.grade;
-    const L = layoutOf(sheet.kind, gs, furi, sheet.genre);
-    let used = estHeight(sheet.kind, nr, nw, gs, furi, sheet.genre);
+    const L = layoutOf(lk, gs, furi, sheet.genre);
+    let slots = sheet.groups.reduce((s, g) => s + Math.ceil(g.items.length / (L.cols || 2)), 0);
+    if (sheet.story) slots += sheet.story.vocab.length ? 2 : 1;
+    let used = estHeight(lk, nr, nw, gs, furi, sheet.genre);
     if (sheet.kind === "long" && sheet.storyH) used += sheet.storyH - L.base;
     const extra = slots ? Math.max(0, Math.min(L.cap, (L.limit - used) / slots)) : 0;
-    return `<div class="sheet g${gs}${opt.answer ? " answer" : ""}${sheet.kind === "long" ? " long" : ""}` +
+    return `<div class="sheet g${gs}${opt.answer ? " answer" : ""}${sheet.kind === "long" ? " long" : ""}${sheet.tk ? " tk" : ""}` +
       `${sheet.story && furi !== "none" ? " furi" : ""}"` +
       ` style="--row-extra:${extra.toFixed(2)}mm">` +
       `<div class="sheet-head"><span class="label">${lab.title}</span>` +
@@ -1011,14 +1082,55 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
      ひらがな・カタカナの なぞり書き、ことば なぞり、ことば あそび(しりとり・ことば さがし・たりない 字・ならべかえ)。
      データは src/data/youji.json(tools/make_youji.py が 作る)。 */
   const YD = typeof youjiData !== "undefined" ? youjiData : { hira: [], kata: [], themes: [], extra: [] };
-  const YKINDS = [["hira", "ひらがな なぞり"], ["kata", "カタカナ なぞり"], ["word", "ことば なぞり"], ["pic", "え と ことば(絵を みて かく)"], ["play", "ことば あそび"]];
+  const YKINDS = [["hira", "ひらがな なぞり"], ["kata", "カタカナ なぞり"], ["word", "ことば なぞり"], ["pic", "え と ことば(絵を みて かく)"], ["play", "ことば あそび"],
+                  ["line", "せんを なぞろう"], ["match", "せんで むすぼう"], ["name", "なまえを かこう"]];
+  const YMATCHES = [["word", "え と ひらがな"], ["kata", "え と カタカナ"], ["same", "おなじ え"]];
   const YPICS = typeof youjiPics !== "undefined" ? youjiPics : {};
   const YHINTS = [["first", "さいしょの 字を なぞる"], ["all", "ぜんぶ なぞる(うすい字)"], ["none", "ヒント なし"]];
   // え を みて かこう の テーマ(その 字の しゅるいに ある ものだけ 出す)
   const picCats = (script) => [...new Set(((YD.pics || {})[script] || []).map((x) => x.cat))];
   const YPLAYS = [["mix", "じゅんばんに(シードで かわる)"], ["shiri", "しりとり"], ["search", "ことば さがし"],
                   ["miss", "たりない 字"], ["sort", "ならべかえ"]];
-  const YTITLE = { hira: "ひらがな れんしゅう", kata: "カタカナ れんしゅう", word: "ことば れんしゅう", pic: "え と ことば", play: "ことば あそび" };
+  const YTITLE = { hira: "ひらがな れんしゅう", kata: "カタカナ れんしゅう", word: "ことば れんしゅう", pic: "え と ことば", play: "ことば あそび",
+                   line: "せんの れんしゅう", match: "むすんで みよう", name: "なまえの れんしゅう" };
+  // ===== せんを なぞろう(うんぴつ)。かたちは viewBox 180×40(mm)の なかの パス =====
+  const LX0 = 34, LX1 = 146, LY = 20;
+  function waveD(amp, n) {
+    const w = (LX1 - LX0) / n;
+    let d = `M${LX0},${LY}`;
+    for (let i = 0; i < n; i++) d += ` Q${LX0 + w * (i + 0.5)},${LY + (i % 2 ? amp : -amp) * 2} ${LX0 + w * (i + 1)},${LY}`;
+    return d;
+  }
+  function zigD(amp, n) {
+    const w = (LX1 - LX0) / n;
+    let d = `M${LX0},${LY + amp}`;
+    for (let i = 1; i <= n; i++) d += ` L${LX0 + w * i},${LY + (i % 2 ? -amp : amp)}`;
+    return d;
+  }
+  function stepsD(n) {
+    const w = (LX1 - LX0) / n;
+    let d = `M${LX0},${LY + 9}`;
+    for (let i = 0; i < n; i++) d += ` H${LX0 + w * (i + 0.5)} V${LY + (i % 2 ? 9 : -9)} H${LX0 + w * (i + 1)}`;
+    return d;
+  }
+  function humpD(n) {
+    const w = (LX1 - LX0) / n;
+    let d = `M${LX0},${LY + 9}`;
+    for (let i = 0; i < n; i++) d += ` A${w / 2},${w / 2 * 0.9} 0 0 1 ${LX0 + w * (i + 1)},${LY + 9}`;
+    return d;
+  }
+  function loopD(n) {
+    const w = (LX1 - LX0) / n;
+    let d = `M${LX0},${LY + 6}`;
+    for (let i = 0; i < n; i++) d += ` c${w * 1.3},0 ${w * 1.3},-14 ${w * 0.4},-14 c${-w * 0.9},0 ${-w * 0.9},14 ${w * 0.6},14`;
+    return d;
+  }
+  const LINE_SHAPES = {
+    1: [() => `M${LX0},${LY} L${LX1},${LY}`, () => `M${LX0},${LY + 8} Q${(LX0 + LX1) / 2},${LY - 24} ${LX1},${LY + 8}`,
+        () => `M${LX0},${LY - 8} Q${(LX0 + LX1) / 2},${LY + 24} ${LX1},${LY - 8}`, () => waveD(5, 2)],
+    2: [() => waveD(8, 4), () => zigD(9, 6), () => humpD(4), () => stepsD(5)],
+    3: [() => loopD(9), () => zigD(10, 12), () => waveD(9, 8), () => stepsD(9)]
+  };
   const SMALL = { "ゃ": "や", "ゅ": "ゆ", "ょ": "よ", "っ": "つ", "ぁ": "あ", "ぃ": "い", "ぅ": "う", "ぇ": "え", "ぉ": "お" };
   const FILL = "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわ";
   // あそびに 使う ことば(テーマ・行の ことば・あそび用)。テーマの ことばには カテゴリ(ヒント)が つく
@@ -1122,12 +1234,39 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
   const PLAY_ORDER = ["shiri", "search", "miss", "sort"];
 
   // 行・テーマ・あそびは "auto"/"mix" なら シードで じゅんばんに かわる(シード1 → あ行、2 → か行 …)
-  function buildYoujiSheet({ ykind, yrow, ytheme, yplay, yscript, ycat, yhint, seed, no }) {
+  // 絵(ひらがな・カタカナの なまえつき)を n こ。同じ ことば・同じ 絵は 1かいだけ
+  function pickPics(script, n, rng, extra) {
+    const seenW = new Set(), seenP = new Set(extra || []);
+    return shuffled((YD.pics || {})[script] || [], rng)
+      .filter((x) => !seenW.has(x.w) && !seenP.has(x.pic) && seenW.add(x.w) && seenP.add(x.pic)).slice(0, n);
+  }
+  function buildYoujiSheet({ ykind, yrow, ytheme, yplay, yscript, ycat, yhint, ymatch, ystep, yname, ylimit, seed, no }) {
     const rng = makeRng(seed * 7919 + 4243);
     const s = { youji: true, ykind, seed, no };
+    const step = Math.max(1, Math.min(3, Number(ystep) || 1));
     if (ykind === "hira" || ykind === "kata") {
-      const rows = YD[ykind];
-      s.row = rows[yrow === "auto" || yrow == null ? (seed - 1) % rows.length : Number(yrow) % rows.length];
+      // ylimit:「じゅんばんに」の ときに つかう 行の かず(10 なら あ〜わ行だけ)
+      const rows = Number(ylimit) > 0 ? YD[ykind].slice(0, Number(ylimit)) : YD[ykind];
+      s.row = yrow === "auto" || yrow == null ? rows[(seed - 1) % rows.length] : YD[ykind][Number(yrow) % YD[ykind].length];
+    } else if (ykind === "line") {
+      s.step = step;
+      const shapes = LINE_SHAPES[step].slice();
+      const pics = pickPics("hira", 8, rng);
+      s.rows = shuffled(shapes, rng).map((f, i) => ({ d: f(), from: pics[i * 2], to: pics[i * 2 + 1] }));
+    } else if (ykind === "match") {
+      s.step = step;
+      s.mode = ["word", "kata", "same"].includes(ymatch) ? ymatch : "word";
+      const n = [0, 3, 4, 5][step];
+      s.items = pickPics(s.mode === "kata" ? "kata" : "hira", n, rng);
+      // みぎの ならびは ひだりと ちがう じゅんばんに する(1つも おなじ ばしょに ならない ように)
+      let order = [];
+      for (let k = 0; k < 50; k++) {
+        order = shuffled(s.items.map((_, i) => i), rng);
+        if (order.every((v, i) => v !== i)) break;
+      }
+      s.order = order;
+    } else if (ykind === "name") {
+      s.name = String(yname || "").replace(/[\u3000\s]+/g, " ").trim().slice(0, 10);
     } else if (ykind === "pic") {
       // 絵を 8つ(テーマを しぼって 8つ ない ときは ある だけ)。同じ ことばは 1回だけ
       s.script = yscript === "kata" ? "kata" : "hira";
@@ -1217,6 +1356,57 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
         `<p class="yj-inst">じの じゅんばんを かえて、ことばを つくろう。ひだりの ことばが ヒントだよ。</p>` +
         `<div class="yj-rows">${items}</div>`;
     }
+    if (s.ykind === "line") {
+      const rows = s.rows.map((r, i) => {
+        const m = /^M([\d.]+),([\d.]+)/.exec(r.d);
+        const img = (pic, x) => pic ? `<image href="${YPICS[pic.pic] || ""}" x="${x}" y="4" width="28" height="28"/>` : "";
+        return `<div class="line-row"><span class="yn">${i + 1}</span>` +
+          `<svg viewBox="0 0 180 40" class="line-svg">${img(r.from, 2)}${img(r.to, 150)}` +
+          `<path d="${r.d}" fill="none" stroke="#8c8c8c" stroke-width="1.1" stroke-dasharray="2.6 1.8" stroke-linecap="round" stroke-linejoin="round"/>` +
+          `<circle cx="${m[1]}" cy="${m[2]}" r="2" fill="#111"/></svg></div>`;
+      }).join("");
+      body = `<h3 class="yj-h"><span class="yj-badge">せんを なぞろう</span></h3>` +
+        `<p class="yj-inst">●から はじめて、ひだりの えから みぎの えまで、てんせんを なぞろう。</p>` +
+        `<div class="yj-rows lines">${rows}</div>`;
+    } else if (s.ykind === "match") {
+      const n = s.items.length, RH = 44, H = n * RH;
+      const L = s.items.map((it, i) => {
+        const y = i * RH;
+        return `<text x="2" y="${y + 9}" class="mt-n">${i + 1}</text>` +
+          `<image href="${YPICS[it.pic] || ""}" x="12" y="${y + 4}" width="34" height="34"/>` +
+          `<circle cx="58" cy="${y + 21}" r="2.4" fill="#111"/>`;
+      }).join("");
+      const R = s.order.map((k, j) => {
+        const it = s.items[k], y = j * RH;
+        let right;
+        if (s.mode === "same") right = `<image href="${YPICS[it.pic] || ""}" x="134" y="${y + 4}" width="34" height="34"/>`;
+        else {
+          const size = Math.min(12, 50 / it.w.length);
+          right = `<text x="130" y="${y + 21 + size * 0.36}" font-size="${size.toFixed(1)}" class="mt-w">${esc(it.w)}</text>`;
+        }
+        return `<circle cx="120" cy="${y + 21}" r="2.4" fill="#111"/>${right}`;
+      }).join("");
+      const lines = ans ? s.items.map((_, i) => {
+        const j = s.order.indexOf(i);
+        return `<line x1="58" y1="${i * RH + 21}" x2="120" y2="${j * RH + 21}" stroke="#000" stroke-width="1.3"/>`;
+      }).join("") : "";
+      const inst = s.mode === "same" ? "ひだりの えと おなじ えを、みぎから さがして ●と ●を せんで むすぼう。"
+        : "えと その なまえを、●と ●を せんで むすぼう。";
+      body = `<h3 class="yj-h"><span class="yj-badge">せんで むすぼう</span></h3>` +
+        `<p class="yj-inst">${inst}</p>` +
+        `<div class="yj-rows match"><svg viewBox="0 -2 180 ${H + 4}" class="match-svg" style="height:${Math.min((H + 4) * 1.05, 200).toFixed(1)}mm">${L}${R}${lines}</svg></div>`;
+    } else if (s.ykind === "name") {
+      const chars = s.name ? [...s.name] : [" ", " ", " ", " ", " "].map(() => "");
+      const nCh = chars.filter((c) => c !== " ").length || 5;
+      const size = nCh <= 4 ? 26 : nCh <= 6 ? 22 : 18;
+      const line = (cls) => `<div class="wline nm" style="--mb:${size}mm">` +
+        chars.map((c) => c === " " ? `<span class="gap"></span>` : ybox(cls === "blank" ? "" : c, cls === "blank" ? "" : cls)).join("") + `</div>`;
+      const rows = [["model", "よく みよう"], ["trace", "なぞろう"], ["trace", "なぞろう"], ["blank", "かいて みよう"], ["blank", "かいて みよう"]]
+        .map(([cls, lbl], i) => `<div class="nm-row"><span class="yn">${i + 1}</span><span class="nm-lbl">${lbl}</span>${line(cls)}</div>`).join("");
+      body = `<h3 class="yj-h"><span class="yj-badge">じぶんの なまえ</span>を かこう</h3>` +
+        `<p class="yj-inst">${s.name ? "おてほんを よく みて、うすい じを なぞってから、じぶんで かいて みよう。" : "（「なまえ」の らんに なまえを いれると、おてほんと なぞりがきが でます）"}</p>` +
+        `<div class="yj-rows names">${rows}</div>`;
+    }
     const kindCls = s.ykind === "play" ? `yj-${s.play}` : `yj-${s.ykind}`;
     return `<div class="sheet yj ${kindCls}${ans ? " answer" : ""}">` +
       `<div class="sheet-head"><span class="label">${YTITLE[s.ykind]}</span>` +
@@ -1231,15 +1421,17 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
   const $ = (id) => document.getElementById(id);
   const state = { grade: 3, gRead: 3, gWrite: 3, gStory: 3, furi: "none", genre: "all",
                   kind: "both", level: 2, nRead: 8, nWrite: 8, seed: 1,
-                  ykind: "hira", yrow: "auto", ytheme: "auto", yplay: "mix", yscript: "hira", ycat: "all", yhint: "first" };
+                  ykind: "hira", yrow: "auto", ytheme: "auto", yplay: "mix", yscript: "hira", ycat: "all", yhint: "first",
+                  ymatch: "word", ystep: 1, yname: "", ylimit: 0, tk: false, stage: 0 };
   // 学年 0 は ようじ
   const gradeLabel = (g) => (g === 0 ? "ようじ" : BANKS[g - 1].label);
 
   function setMsg(t) { $("msg").textContent = t || ""; }
+  const YANS = ["play", "pic", "match"];
 
   // 読みと 書きの 数を そろえる。入らない ときは、さわって いない ほうを へらす
   function settleCounts(changed) {
-    const kind = state.kind;
+    const kind = layoutKind(state.kind, state.tk);
     let note = "";
     if (!fits(kind, state.nRead, state.nWrite, state.gStory, state.furi, state.genre)) {
       if (changed === "write") {
@@ -1250,7 +1442,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
         note = `書きを ${state.nWrite}問`;
       }
     }
-    if (kind !== "long") {
+    if (state.kind !== "long") {
       if (!state.nRead && !state.nWrite) state.nRead = 2;
       state.kind = state.nRead && state.nWrite ? "both" : state.nRead ? "read" : "write";
     }
@@ -1268,6 +1460,10 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       state.yscript = $("f-yscript").value || "hira";
       state.ycat = $("f-ycat").value || "all";
       state.yhint = $("f-yhint").value || "first";
+      state.ymatch = $("f-ymatch").value || "word";
+      state.ystep = Number($("f-ystep").value) || 1;
+      state.yname = $("f-yname").value || "";
+      state.ylimit = Number($("f-ylimit").value) || 0;
       if (!picCats(state.yscript).includes(state.ycat)) state.ycat = "all";
       if (changedId === "f-ykind") state.yrow = "auto";
       state.seed = Math.max(1, Math.min(999999, Number($("f-seed").value) || 1));
@@ -1289,10 +1485,11 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
     state.seed = Math.max(1, Math.min(999999, Number($("f-seed").value) || 1));
     let kind = $("f-kind").value;
     if (kind === "long" && !hasLong(state.gStory)) kind = "both";
+    state.tk = $("f-tk").checked;
     const longChanged = (kind === "long") !== (state.kind === "long");
-    if (changedId === "f-kind" || longChanged ||
+    if (changedId === "f-kind" || changedId === "f-tk" || longChanged ||
         (kind === "long" && ["f-grade", "f-gstory", "f-genre"].includes(changedId))) {
-      [state.nRead, state.nWrite] = defaultCounts(kind, state.gStory, state.furi, state.genre);
+      [state.nRead, state.nWrite] = countsFor(kind);
     } else {
       state.nRead = Number($("f-read").value) || 0;
       state.nWrite = Number($("f-write").value) || 0;
@@ -1302,7 +1499,13 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
     setMsg(settleCounts(changed));
   }
 
+  // 種類を えらんだ ときの 読み・書きの 数(大きい 字なら 少なめ)
+  function countsFor(kind) {
+    if (state.tk && kind !== "long") return TK_DEFAULTS[kind].slice();
+    return defaultCounts(kind, state.gStory, state.furi, state.genre);
+  }
   function countOptions(kind, which) {
+    kind = layoutKind(kind, state.tk);
     const out = [];
     for (let n = 0; n <= layoutOf(kind, state.gStory, state.furi, state.genre).top; n += 2) {
       const alone = which === "read" ? fits(kind, n, 0, state.gStory, state.furi, state.genre)
@@ -1333,10 +1536,19 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       $("f-yhint").value = state.yhint;
       for (const id of ["f-yscript", "f-ycat", "f-yhint"]) $(id).closest("label").hidden = state.ykind !== "pic";
       $("f-yrow").closest("label").hidden = !["hira", "kata"].includes(state.ykind);
+      $("f-ymatch").innerHTML = opts(YMATCHES);
+      $("f-ymatch").value = state.ymatch;
+      $("f-ystep").value = String(state.ystep);
+      if ($("f-yname").value !== state.yname) $("f-yname").value = state.yname;
+      $("f-ylimit").value = String(state.ylimit);
+      $("f-ymatch").closest("label").hidden = state.ykind !== "match";
+      $("f-ystep").closest("label").hidden = !["match", "line"].includes(state.ykind);
+      $("f-yname").closest("label").hidden = state.ykind !== "name";
+      $("f-ylimit").closest("label").hidden = !(["hira", "kata"].includes(state.ykind) && state.yrow === "auto");
       $("f-ytheme").closest("label").hidden = state.ykind !== "word";
       $("f-yplay").closest("label").hidden = state.ykind !== "play";
-      // こたえの ページは ことば あそびと え を みて かこう だけ
-      $("f-ans").closest("label").hidden = !["play", "pic"].includes(state.ykind);
+      // こたえの ページは ことば あそび・え を みて かこう・せんで むすぼう だけ
+      $("f-ans").closest("label").hidden = !YANS.includes(state.ykind);
       $("f-seed").value = String(state.seed);
       return;
     }
@@ -1356,6 +1568,8 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
     $("f-gread").closest("label").hidden = !state.nRead;
     $("f-gwrite").closest("label").hidden = !state.nWrite;
     $("f-kind").value = state.kind;
+    $("f-tk").checked = state.tk;
+    $("f-tk").closest("label").hidden = isLong;
     $("f-level").value = String(state.level);
     $("f-read").innerHTML = countOptions(state.kind, "read");
     $("f-write").innerHTML = countOptions(state.kind, "write");
@@ -1372,7 +1586,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       for (let i = 0; i < n; i++) {
         const s = buildYoujiSheet(Object.assign({}, state, { seed: startSeed + i, no: i + 1 }));
         out.push(youjiSheetHtml(s, {}));
-        if (withAns && ["play", "pic"].includes(s.ykind)) out.push(youjiSheetHtml(s, { answer: true }));
+        if (withAns && YANS.includes(s.ykind)) out.push(youjiSheetHtml(s, { answer: true }));
       }
       return out;
     }
@@ -1408,8 +1622,108 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
     return Object.keys(READS).map((g) => BANKS[g - 1].label).join("・");
   }
 
-  function renderHome() {
+  /* ===== 特別支援学校(知的障害)の 国語の 段階 =====
+     学習指導要領の 段階の ねらいに 合わせて、いまある プリントを ならべなおしたもの。プリントに 段階名は 書かない。
+     p.grade 0 は ようじの プリント(y: しゅるいの せってい)、1〜 は 漢字・長文(tk: 大きい 字)。 */
+  const STAGES = [
+    { key: 21, part: "小学部", name: "小学部1段階", short: "1段階",
+      note: "いろいろな 筆記用具で 書くことに 親しむ。ことばが ものを 表すことに 気づく。",
+      items: [
+        { name: "せんを なぞろう", tag: "書写", desc: "●から えまで、てんせんを なぞります。まっすぐ・やま・なみ など。むずかしさで 線の 形が かわります。", p: { grade: 0, y: { ykind: "line" } } },
+        { name: "おなじ えを むすぼう", tag: "言葉", desc: "ひだりの えと おなじ えを、●と ●を 線で むすびます(3〜5組)。答えの ページつき。", p: { grade: 0, y: { ykind: "match", ymatch: "same" } } },
+        { name: "えの なまえを なぞろう", tag: "言葉", desc: "絵を 見て、なまえを うすい 字で なぞります。", p: { grade: 0, y: { ykind: "pic", yscript: "hira", ycat: "all", yhint: "all" } } }
+      ] },
+    { key: 22, part: "小学部", name: "小学部2段階", short: "2段階",
+      note: "文字などに 関心を もち、読もうと する。文字を 書くことに 興味を もつ。",
+      items: [
+        { name: "せんを なぞろう", tag: "書写", desc: "なみ・ぎざぎざ・かいだん など、すこし むずかしい 線も なぞります。", p: { grade: 0, y: { ykind: "line" } } },
+        { name: "ひらがな なぞり", tag: "書くこと", desc: "あ行から わ行まで。お手本を 見て なぞり、じぶんで 書きます。", p: { grade: 0, y: { ykind: "hira", ylimit: 10 } } },
+        { name: "じぶんの なまえを かこう", tag: "書くこと", desc: "名前を 入れると、お手本・なぞり・書く ますが できます。", p: { grade: 0, y: { ykind: "name" } } },
+        { name: "え と ことばを むすぼう", tag: "読むこと", desc: "絵と その なまえ(ひらがな)を 線で むすびます。答えの ページつき。", p: { grade: 0, y: { ykind: "match", ymatch: "word" } } },
+        { name: "ことば なぞり", tag: "書くこと", desc: "どうぶつ・くだもの など テーマごとの ことばを なぞって 書きます。", p: { grade: 0, y: { ykind: "word" } } }
+      ] },
+    { key: 23, part: "小学部", name: "小学部3段階", short: "3段階",
+      note: "簡単な 語句や 短い 文などを 正しく 読む。簡単な 語句や 短い 文を 平仮名などで 書く。",
+      items: [
+        { name: "ひらがな なぞり", tag: "書くこと", desc: "あ行から ぱ行まで(が・ざ・だ・ば・ぱ行も)。", p: { grade: 0, y: { ykind: "hira", ylimit: 0 } } },
+        { name: "カタカナ なぞり", tag: "書くこと", desc: "ア行から パ行まで。アイス・ケーキ などの ことばも なぞります。", p: { grade: 0, y: { ykind: "kata" } } },
+        { name: "え と ことばを むすぼう", tag: "読むこと", desc: "絵と ことばを 線で むすびます。むずかしさで 組の 数が かわります。", p: { grade: 0, y: { ykind: "match", ymatch: "word" } } },
+        { name: "え を みて ことばを かこう", tag: "書くこと", desc: "絵の なまえを ますに 書きます(さいしょの 字は なぞり)。", p: { grade: 0, y: { ykind: "pic", yscript: "hira", ycat: "all", yhint: "first" } } },
+        { name: "ことば あそび", tag: "言葉あそび", desc: "しりとり・ことば さがし・たりない 字・ならべかえ。", p: { grade: 0, y: { ykind: "play", yplay: "mix" } } },
+        { name: "みじかい おはなしを よもう", tag: "読むこと", desc: "ひらがな中心の 短い 文章と 三択の 問い。", p: { grade: 1, kind: "long", counts: [0, 0] } }
+      ] },
+    { key: 24, part: "中学部", name: "中学部1段階", short: "1段階",
+      note: "簡単な 語句、文、文章を 正しく 読む。身近な 漢字や 片仮名を 読み、書く。",
+      items: [
+        { name: "漢字を よもう", tag: "漢字", desc: "小1の 漢字。大きい 字で 1れつに 1問。", p: { grade: 1, kind: "read", tk: true } },
+        { name: "漢字を かこう", tag: "漢字", desc: "小1の 漢字。大きな ますに 書きます。", p: { grade: 1, kind: "write", tk: true } },
+        { name: "え を みて カタカナを かこう", tag: "書くこと", desc: "絵の なまえを カタカナで 書きます。", p: { grade: 0, y: { ykind: "pic", yscript: "kata", ycat: "all", yhint: "first" } } },
+        { name: "ことば あそび", tag: "言葉あそび", desc: "しりとり・ことば さがし・たりない 字・ならべかえ。", p: { grade: 0, y: { ykind: "play", yplay: "mix" } } },
+        { name: "文章を よもう", tag: "読むこと", desc: "小1の 文章(物語・説明文)と 三択の 問い。漢字の 読み書きも 少し。", p: { grade: 1, kind: "long", counts: [2, 2] } }
+      ] },
+    { key: 25, part: "中学部", name: "中学部2段階", short: "2段階",
+      note: "文や 文章を 読んで 内容を とらえる。日常で よく 使う 漢字を 読み、書く。",
+      items: [
+        { name: "漢字の 読み書き", tag: "漢字", desc: "小2の 漢字。読み 4問・書き 4問。大きい 字で 1れつに 1問。", p: { grade: 2, kind: "both", tk: true } },
+        { name: "漢字を よもう", tag: "漢字", desc: "小2の 漢字の 読み。", p: { grade: 2, kind: "read", tk: true } },
+        { name: "漢字を かこう", tag: "漢字", desc: "小2の 漢字の 書き。", p: { grade: 2, kind: "write", tk: true } },
+        { name: "文章を よもう", tag: "読むこと", desc: "小2の 文章と 三択の 問い。", p: { grade: 2, kind: "long", counts: [2, 2] } }
+      ] },
+    { key: 26, part: "高等部", name: "高等部1段階", short: "1段階",
+      note: "いろいろな 語句、文、文章を 正しく 読み、内容を 読み取る。",
+      items: [
+        { name: "漢字の 読み書き", tag: "漢字", desc: "小3の 漢字。大きい 字で 1れつに 1問。", p: { grade: 3, kind: "both", tk: true } },
+        { name: "漢字を よもう", tag: "漢字", desc: "小3の 漢字の 読み。", p: { grade: 3, kind: "read", tk: true } },
+        { name: "漢字を かこう", tag: "漢字", desc: "小3の 漢字の 書き。", p: { grade: 3, kind: "write", tk: true } },
+        { name: "文章を よもう", tag: "読むこと", desc: "小3の 文章と 三択の 問い。習っていない 漢字に ふりがな。", p: { grade: 3, kind: "long", counts: [2, 2], furi: "over" } }
+      ] },
+    { key: 27, part: "高等部", name: "高等部2段階", short: "2段階",
+      note: "目的に 応じて 文章の 概要や 要点などを 読み取る。",
+      items: [
+        { name: "漢字の 読み書き", tag: "漢字", desc: "小4の 漢字。大きい 字で 1れつに 1問。", p: { grade: 4, kind: "both", tk: true } },
+        { name: "漢字を よもう", tag: "漢字", desc: "小4の 漢字の 読み。", p: { grade: 4, kind: "read", tk: true } },
+        { name: "漢字を かこう", tag: "漢字", desc: "小4の 漢字の 書き。", p: { grade: 4, kind: "write", tk: true } },
+        { name: "文章を よもう", tag: "読むこと", desc: "小4の 文章と 三択の 問い。習っていない 漢字に ふりがな。", p: { grade: 4, kind: "long", counts: [2, 2], furi: "over" } }
+      ] }
+  ];
+  const stageOf = (k) => STAGES.find((x) => x.key === k) || STAGES[0];
+  const STAGE_CHARA = ["cheer", "idea", "book", "guide", "think", "maru"];
+  const store = {
+    get(k) { try { return localStorage.getItem("kokugo-" + k); } catch (e) { return null; } },
+    set(k, v) { try { localStorage.setItem("kokugo-" + k, String(v)); } catch (e) { /* 保存できなくても 動く */ } }
+  };
+
+  function applyPreset(it) {
+    const p = it.p;
+    if (p.grade === 0) {
+      state.grade = 0;
+      Object.assign(state, { yrow: "auto", ytheme: "auto", yplay: "mix", ylimit: 0 }, p.y);
+      state.ystep = state.level;
+    } else {
+      state.grade = state.gRead = state.gWrite = state.gStory = p.grade;
+      state.kind = p.kind;
+      state.tk = !!p.tk;
+      state.furi = p.furi || "none";
+      state.genre = "all";
+      [state.nRead, state.nWrite] = p.counts ? p.counts.slice() : countsFor(p.kind);
+      settleCounts("read");
+    }
+  }
+
+  function renderGrades() {
     const g = $("home-grades");
+    document.body.dataset.stage = state.stageMode ? "1" : "";
+    $("home-step1").textContent = state.stageMode ? "段階" : "学年";
+    $("tk-banner").innerHTML = state.stageMode
+      ? '<span class="tk-badge">学年べつ</span><span class="tk-main"><b>学年べつ(ようじ・小学校・中学)に もどる</b><small>ふつうの 学年の プリントは こちら</small></span><span class="tk-go">◀</span>'
+      : '<span class="tk-badge">特別支援</span><span class="tk-main"><b>特別支援学校 各段階の プリントは こちら！</b><small>知的障害の 特別支援学校の 学習指導要領(国語)の 段階に 合わせています。小学部1〜3段階・中学部1・2段階・高等部1・2段階</small></span><span class="tk-go">▶</span>';
+    if (state.stageMode) {
+      g.innerHTML = ["小学部", "中学部", "高等部"].map((part) =>
+        `<div class="hg-group"><span class="hg-cap">${part}</span>` + STAGES.filter((x) => x.part === part).map((x) =>
+          `<button class="hg st c${x.key - 20}" data-stage="${x.key}" aria-pressed="${state.stage === x.key}"><span class="name">${x.short}</span></button>`).join("") +
+        `</div>`).join("");
+      return;
+    }
     // 「小3」は 小さい「小」と 大きい「3」に する
     const big = (label) => label.replace(/^小(\d)$/, "<small>小</small>$1");
     g.innerHTML = `<button class="hg c0" data-grade="0" aria-pressed="${state.grade === 0}">` +
@@ -1417,6 +1731,23 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       `<button class="hg c${i + 1}" data-grade="${i + 1}" aria-pressed="${state.grade === i + 1}">` +
       `<span class="name">${big(b.label)}</span>` +
       `<span class="count">${b.entries.length}語</span></button>`).join("");
+  }
+
+  function renderStageKinds() {
+    const st = stageOf(state.stage);
+    $("stage-note").textContent = `${st.name}:${st.note}`;
+    $("tk-kinds").innerHTML = st.items.map((it, i) =>
+      `<button class="kind-card tk-card" data-i="${i}">` +
+      `<span class="name"><span class="n">${i + 1}</span>${esc(it.name)}</span>` +
+      `<span class="tag">${esc(it.tag)}</span>` +
+      `<span class="chara chara-${STAGE_CHARA[i % STAGE_CHARA.length]}" aria-hidden="true"></span>` +
+      `<span class="desc">${esc(it.desc)}</span><span class="go">作る ▶</span></button>`).join("");
+  }
+
+  function renderHome() {
+    state.stageMode = store.get("stageMode") === "1";
+    state.stage = Number(store.get("stage")) || 21;
+    renderGrades();
     const gradeOptions = BANKS.map((b, i) => `<option value="${i + 1}">${b.label}</option>`).join("");
     for (const id of ["f-gread", "f-gwrite"]) $(id).innerHTML = gradeOptions;
     $("f-grade").innerHTML = `<option value="0">ようじ</option>` + gradeOptions;
@@ -1432,20 +1763,45 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
   // えらんだ 学年の 色を 画面ぜんたいに つけ、キャラクターの ふきだしを かえる
   function paintGrade(pop) {
     const g = state.grade;
-    for (let i = 0; i <= 7; i++) document.body.classList.toggle(`gc${i}`, i === g);
+    const color = state.stageMode ? state.stage - 20 : g;
+    for (let i = 0; i <= 7; i++) document.body.classList.toggle(`gc${i}`, i === color);
     document.body.dataset.youji = g === 0 ? "1" : "";
-    for (const el of document.querySelectorAll(".hg")) el.setAttribute("aria-pressed", String(Number(el.dataset.grade) === g));
-    const label = gradeLabel(g);
+    for (const el of document.querySelectorAll(".hg")) el.setAttribute("aria-pressed", String(
+      el.dataset.stage ? Number(el.dataset.stage) === state.stage : Number(el.dataset.grade) === g));
+    const label = state.stageMode ? stageOf(state.stage).name : gradeLabel(g);
     $("home-bubble").innerHTML = `<b>${label}</b>の プリントを<br>作ろう！`;
-    $("kinds-title").textContent = `${label}の プリント`;
+    $("kinds-title").textContent = state.stageMode ? `${label}の 内容` : `${label}の プリント`;
+    if (state.stageMode) renderStageKinds();
     const c = $("home-chara");
     if (pop) { c.classList.remove("pop"); void c.offsetWidth; c.classList.add("pop"); }
   }
 
   function bind() {
+    $("tk-banner").addEventListener("click", () => {
+      state.stageMode = !state.stageMode;
+      store.set("stageMode", state.stageMode ? "1" : "0");
+      if (!state.stageMode) state.tk = false;
+      renderGrades();
+      writeControls();
+      paintGrade(true);
+    });
+    $("tk-kinds").addEventListener("click", (e) => {
+      const b = e.target.closest(".tk-card");
+      if (!b) return;
+      applyPreset(stageOf(state.stage).items[Number(b.dataset.i)]);
+      writeControls();
+      setMsg("");
+      show(1, state.seed);
+    });
     $("home-grades").addEventListener("click", (e) => {
       const b = e.target.closest(".hg");
       if (!b) return;
+      if (b.dataset.stage) {
+        state.stage = Number(b.dataset.stage);
+        store.set("stage", state.stage);
+        paintGrade(true);
+        return;
+      }
       state.grade = Number(b.dataset.grade);
       if (state.grade > 0) state.gRead = state.gWrite = state.gStory = state.grade;
       for (const el of document.querySelectorAll(".hg"))
@@ -1478,7 +1834,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       }
       state.kind = b.dataset.kind;
       state.genre = genreFor(state.gStory, state.genre);
-      [state.nRead, state.nWrite] = defaultCounts(state.kind, state.gStory, state.furi, state.genre);
+      [state.nRead, state.nWrite] = countsFor(state.kind);
       writeControls();
       setMsg("");
       show(1, state.seed);
@@ -1499,7 +1855,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       $("b-seed").value = String(state.seed);
       $("batch").showModal();
     });
-    for (const id of ["f-grade", "f-gread", "f-gwrite", "f-gstory", "f-genre", "f-furi", "f-kind", "f-ykind", "f-yrow", "f-ytheme", "f-yplay", "f-yscript", "f-ycat", "f-yhint", "f-level",
+    for (const id of ["f-grade", "f-gread", "f-gwrite", "f-gstory", "f-genre", "f-furi", "f-kind", "f-ykind", "f-yrow", "f-ytheme", "f-yplay", "f-yscript", "f-ycat", "f-yhint", "f-ymatch", "f-ystep", "f-yname", "f-ylimit", "f-tk", "f-level",
                       "f-read", "f-write", "f-seed", "f-model", "f-ans", "f-anslist"]) {
       $(id).addEventListener("change", () => {
         readControls(id);

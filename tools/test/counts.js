@@ -16,7 +16,7 @@ const path = require('path');
     const bad = [];
     let n = 0, maxH = 0, worst = '', combos = 0;
     const jobs = [];
-    for (const kind of ['both', 'long']) {
+    for (const kind of ['both', 'tk', 'long']) {  // tk = 大きい 字(1れつ)
       const grades = kind === 'long' ? Object.keys(T.READS).map(Number) : [1, 2, 3, 4, 5, 6, 7];
       // 長文は ふりがな なし と すべての 漢字に ふりがな(いちばん 高く なる)の 両方を 調べる
       for (const furi of kind === 'long' ? ['none', 'all'] : ['none'])
@@ -40,7 +40,7 @@ const path = require('path');
       for (const level of kind === 'long' ? [2] : [1, 3]) for (const seed of seeds) {
         // 子どもの 学年は 1(ふりがなが いちばん 多く つく)、長文の 学年は g
         const s = T.buildSheet({ grade: furi === 'none' ? g : 1, gRead: g, gWrite: g, gStory: g, furi,
-                                 kind, level, seed, no: 1, nRead: r, nWrite: w, genre });
+                                 kind: kind === 'tk' ? 'both' : kind, tk: kind === 'tk', level, seed, no: 1, nRead: r, nWrite: w, genre });
         if (kind === 'long' && genre !== 'all' && s.story.genre !== genre)
           bad.push(`${kind} 学年${g} ${genre} seed${seed}: ジャンルが ${s.story.genre}`);
         for (const answer of [false, true]) {
