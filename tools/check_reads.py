@@ -22,8 +22,8 @@ for g in range(1, 7):
 KANJI = re.compile(r'[㐀-䶿一-鿿]')
 BAD = re.compile(r'[A-Za-zЀ-ӿ가-힣⺀-⿿‧]')
 QN = {1: (3, 3), 2: (4, 4), 3: (5, 5)}          # 学年ごとの 問いの 数(下限, 上限)
-# わざと 英字を 使っている ところ(地図記号の「H」、成績の「A」)
-LATIN_OK = {'g418': set('H'), 'g5610': set('A')}
+# わざと 英字を 使っている ところ(地図記号の「H」、成績の「A」、磁石の「N極・S極」)
+LATIN_OK = {'g418': set('H'), 'g5610': set('A'), 'g5664': set('NS'), 'g56120': set('NS')}
 
 errors = []
 for path in sorted(root.glob('src/data/read*.json')):
