@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="app-version" content="第17版(2026-10-21)">
+<meta name="app-version" content="第18版(2026-10-22)">
 <title>国語プリント</title>
 <link rel="icon" type="image/png" sizes="32x32" href="{{ICON:32}}">
 <link rel="icon" type="image/png" sizes="64x64" href="{{ICON:64}}">
@@ -425,6 +425,11 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
   display: inline-flex; align-items: center; justify-content: center; font-family: "BIZ UDPGothic", sans-serif;
 }
 .yj-wrow { display: flex; align-items: center; gap: 3mm; }
+.yj-wrow .wline .mb { width: var(--mb, 15mm); height: var(--mb, 15mm); font-size: calc(var(--mb, 15mm) * 0.77); }
+.yj-wrow .yj-arrow { font-size: calc(var(--mb, 15mm) * 0.9); line-height: 1; align-self: center; transform: translateY(-0.08em); }
+.yj-wrow .wline.tr { min-width: calc(var(--mb, 15mm) * var(--len, 1)); }
+.yj-wrow.stack { display: grid; grid-template-columns: auto 1fr; column-gap: 3mm; row-gap: 2mm; align-items: center; }
+.yj-wrow.stack > .wline:last-child { grid-column: 2; }
 .yj-arrow { font-size: 14pt; color: #777; flex: none; }
 /* え を みて かこう */
 .yj-rows.pics { display: grid; grid-template-columns: 1fr 1fr; align-content: space-evenly; gap: 2mm 8mm; }
@@ -524,7 +529,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
 .line-row { display: flex; align-items: center; gap: 1mm; }
 .line-svg { width: 172mm; height: 38mm; flex: none; }
 .yj-rows.match { justify-content: center; align-items: center; }
-.match-svg { width: 172mm; }
+.match-svg { width: 182mm; }
 .match-svg .mt-n { font-size: 5px; font-family: "BIZ UDPGothic", sans-serif; }
 .match-svg .mt-w { font-family: "KleeKana", "UD デジタル 教科書体 NK-R", "YuKyokasho", sans-serif; }
 .yj-rows.names { justify-content: space-evenly; }
@@ -588,6 +593,9 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
   </label>
   <label class="sheet-only yj-only">なまえ(ひらがな)
     <input id="f-yname" type="text" maxlength="10" placeholder="れい: やまだ はな">
+  </label>
+  <label class="sheet-only yj-only">1まいの ことば
+    <select id="f-ywn"><option value="7">7こ</option><option value="6">6こ</option><option value="5">5こ</option><option value="4">4こ(大きい 字)</option><option value="3">3こ(もっと 大きい 字)</option></select>
   </label>
   <label class="sheet-only yj-only">じゅんばんに つかう 行
     <select id="f-ylimit"><option value="0">ぜんぶ(が・ざ・だ・ば・ぱ行も)</option><option value="10">あ〜わ行だけ</option></select>
@@ -1480,7 +1488,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
     return shuffled((YD.pics || {})[script] || [], rng)
       .filter((x) => !seenW.has(x.w) && !seenP.has(x.pic) && seenW.add(x.w) && seenP.add(x.pic)).slice(0, n);
   }
-  function buildYoujiSheet({ ykind, yrow, ytheme, yplay, yscript, ycat, yhint, ymatch, ystep, yname, ylimit, seed, no }) {
+  function buildYoujiSheet({ ykind, yrow, ytheme, yplay, yscript, ycat, yhint, ymatch, ystep, yname, ylimit, ywn, seed, no }) {
     const rng = makeRng(seed * 7919 + 4243);
     const s = { youji: true, ykind, seed, no };
     const step = Math.max(1, Math.min(3, Number(ystep) || 1));
@@ -1517,6 +1525,9 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
     } else if (ykind === "word") {
       const t = YD.themes;
       s.theme = t[ytheme === "auto" || ytheme == null ? (seed - 1) % t.length : Number(ytheme) % t.length];
+      // ywn: 1まいの ことばの かず(3〜7)。7より 少ない ときは シードで えらぶ
+      const wn = Math.max(3, Math.min(s.theme.words.length, Number(ywn) || s.theme.words.length));
+      s.words = wn >= s.theme.words.length ? s.theme.words.slice() : shuffled(s.theme.words, rng).slice(0, wn);
     } else {
       s.play = yplay && yplay !== "mix" ? yplay : PLAY_ORDER[(seed - 1) % PLAY_ORDER.length];
       s.data = PLAYS[s.play](rng);
@@ -1557,12 +1568,19 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       body = `<h3 class="yj-h"><span class="yj-badge">え を みて かこう</span></h3>` +
         `<p class="yj-inst">${inst}</p><div class="yj-rows pics">${items}</div>`;
     } else if (s.ykind === "word") {
-      const rows = s.theme.words.map((w, i) =>
-        `<div class="yj-wrow"><span class="yn">${i + 1}</span>` +
-        `<span class="wline">${ywordBoxes(w, "trace")}</span><span class="yj-arrow">→</span>` +
+      // ことばが 少ない ほど ますを 大きく(はばに 入る 大きさまで)
+      const words = s.words || s.theme.words;
+      const maxLen = Math.max(...words.map((w) => [...w].length));
+      const want = { 3: 26, 4: 23, 5: 20, 6: 18 }[words.length] || 15;
+      // よこに ならべて 入らない ときは(長い ことばで 4こ いか)、書く ますを なぞりの 下に おく
+      const stack = words.length <= 4 && want * 2 * maxLen > 150;
+      const mb = stack ? Math.min(want, 160 / maxLen) : Math.min(want, 150 / (2 * maxLen));
+      const rows = words.map((w, i) =>
+        `<div class="yj-wrow${stack ? " stack" : ""}" style="--mb:${mb.toFixed(1)}mm;--len:${maxLen}"><span class="yn">${i + 1}</span>` +
+        `<span class="wline tr">${ywordBoxes(w, "trace")}</span>${stack ? "" : `<span class="yj-arrow">→</span>`}` +
         `<span class="wline">${[...w].map(() => ybox("", "")).join("")}</span></div>`).join("");
       body = `<h3 class="yj-h"><span class="yj-badge">${esc(s.theme.name)}</span>の ことば</h3>` +
-        `<p class="yj-inst">うすい じを なぞってから、みぎの ますに じぶんで かいて みよう。</p>` +
+        `<p class="yj-inst">うすい じを なぞってから、${stack ? "したの" : "みぎの"} ますに じぶんで かいて みよう。</p>` +
         `<div class="yj-rows">${rows}</div>`;
     } else if (s.play === "shiri") {
       const chains = s.data.chains.map((c, k) => `<div class="shiri"><span class="yn">${k + 1}</span><div class="shiri-line">` +
@@ -1609,32 +1627,33 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
         `<p class="yj-inst">●から はじめて、ひだりの えから みぎの えまで、てんせんを なぞろう。</p>` +
         `<div class="yj-rows lines">${rows}</div>`;
     } else if (s.ykind === "match") {
-      const n = s.items.length, RH = 44, H = n * RH;
+      // ●と ●の あいだを ひろく とって、線が 長く なるように(交わっても 見分けやすい)
+      const n = s.items.length, RH = 44, H = n * RH, W = 200, XL = 54, XR = 146, XI = 156;
       const L = s.items.map((it, i) => {
         const y = i * RH;
         return `<text x="2" y="${y + 9}" class="mt-n">${i + 1}</text>` +
-          `<image href="${YPICS[it.pic] || ""}" x="12" y="${y + 4}" width="34" height="34"/>` +
-          `<circle cx="58" cy="${y + 21}" r="2.4" fill="#111"/>`;
+          `<image href="${YPICS[it.pic] || ""}" x="10" y="${y + 4}" width="34" height="34"/>` +
+          `<circle cx="${XL}" cy="${y + 21}" r="2.6" fill="#111"/>`;
       }).join("");
       const R = s.order.map((k, j) => {
         const it = s.items[k], y = j * RH;
         let right;
-        if (s.mode === "same") right = `<image href="${YPICS[it.pic] || ""}" x="134" y="${y + 4}" width="34" height="34"/>`;
+        if (s.mode === "same") right = `<image href="${YPICS[it.pic] || ""}" x="${XI}" y="${y + 4}" width="34" height="34"/>`;
         else {
-          const size = Math.min(12, 50 / it.w.length);
-          right = `<text x="130" y="${y + 21 + size * 0.36}" font-size="${size.toFixed(1)}" class="mt-w">${esc(it.w)}</text>`;
+          const size = Math.min(12, 42 / it.w.length);
+          right = `<text x="${XI}" y="${y + 21 + size * 0.36}" font-size="${size.toFixed(1)}" class="mt-w">${esc(it.w)}</text>`;
         }
-        return `<circle cx="120" cy="${y + 21}" r="2.4" fill="#111"/>${right}`;
+        return `<circle cx="${XR}" cy="${y + 21}" r="2.6" fill="#111"/>${right}`;
       }).join("");
       const lines = ans ? s.items.map((_, i) => {
         const j = s.order.indexOf(i);
-        return `<line x1="58" y1="${i * RH + 21}" x2="120" y2="${j * RH + 21}" stroke="#000" stroke-width="1.3"/>`;
+        return `<line x1="${XL}" y1="${i * RH + 21}" x2="${XR}" y2="${j * RH + 21}" stroke="#000" stroke-width="1.3"/>`;
       }).join("") : "";
       const inst = s.mode === "same" ? "ひだりの えと おなじ えを、みぎから さがして ●と ●を せんで むすぼう。"
         : "えと その なまえを、●と ●を せんで むすぼう。";
       body = `<h3 class="yj-h"><span class="yj-badge">せんで むすぼう</span></h3>` +
         `<p class="yj-inst">${inst}</p>` +
-        `<div class="yj-rows match"><svg viewBox="0 -2 180 ${H + 4}" class="match-svg" style="height:${Math.min((H + 4) * 1.05, 200).toFixed(1)}mm">${L}${R}${lines}</svg></div>`;
+        `<div class="yj-rows match"><svg viewBox="0 -2 ${W} ${H + 4}" class="match-svg" style="height:${Math.min((H + 4) * 182 / W, 200).toFixed(1)}mm">${L}${R}${lines}</svg></div>`;
     } else if (s.ykind === "name") {
       const chars = s.name ? [...s.name] : [" ", " ", " ", " ", " "].map(() => "");
       const nCh = chars.filter((c) => c !== " ").length || 5;
@@ -1662,7 +1681,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
   const state = { grade: 3, gRead: 3, gWrite: 3, gStory: 3, furi: "none", genre: "all",
                   kind: "both", level: 2, nRead: 8, nWrite: 8, seed: 1,
                   ykind: "hira", yrow: "auto", ytheme: "auto", yplay: "mix", yscript: "hira", ycat: "all", yhint: "first",
-                  ymatch: "word", ystep: 1, yname: "", ylimit: 0, tk: false, stage: 0, ktopic: "auto", rcase: "lower", kfuri: "normal", klearn: "prev" };
+                  ymatch: "word", ystep: 1, yname: "", ylimit: 0, ywn: 7, tk: false, stage: 0, ktopic: "auto", rcase: "lower", kfuri: "normal", klearn: "prev" };
   // 学年 0 は ようじ
   const gradeLabel = (g) => (g === 0 ? "ようじ" : BANKS[g - 1].label);
 
@@ -1704,6 +1723,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       state.ystep = Number($("f-ystep").value) || 1;
       state.yname = $("f-yname").value || "";
       state.ylimit = Number($("f-ylimit").value) || 0;
+      state.ywn = Number($("f-ywn").value) || 7;
       if (!picCats(state.yscript).includes(state.ycat)) state.ycat = "all";
       if (changedId === "f-ykind") state.yrow = "auto";
       state.seed = Math.max(1, Math.min(999999, Number($("f-seed").value) || 1));
@@ -1796,6 +1816,8 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       $("f-ystep").value = String(state.ystep);
       if ($("f-yname").value !== state.yname) $("f-yname").value = state.yname;
       $("f-ylimit").value = String(state.ylimit);
+      $("f-ywn").value = String(state.ywn);
+      $("f-ywn").closest("label").hidden = state.ykind !== "word";
       $("f-ymatch").closest("label").hidden = state.ykind !== "match";
       $("f-ystep").closest("label").hidden = !["match", "line"].includes(state.ykind);
       $("f-yname").closest("label").hidden = state.ykind !== "name";
@@ -1956,7 +1978,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
         { name: "ひらがな なぞり", tag: "書くこと", desc: "あ行から わ行まで。お手本を 見て なぞり、じぶんで 書きます。", p: { grade: 0, y: { ykind: "hira", ylimit: 10 } } },
         { name: "じぶんの なまえを かこう", tag: "書くこと", desc: "名前を 入れると、お手本・なぞり・書く ますが できます。", p: { grade: 0, y: { ykind: "name" } } },
         { name: "え と ことばを むすぼう", tag: "読むこと", desc: "絵と その なまえ(ひらがな)を 線で むすびます。答えの ページつき。", p: { grade: 0, y: { ykind: "match", ymatch: "word" } } },
-        { name: "ことば なぞり", tag: "書くこと", desc: "どうぶつ・くだもの など テーマごとの ことばを なぞって 書きます。", p: { grade: 0, y: { ykind: "word" } } }
+        { name: "ことば なぞり", tag: "書くこと", desc: "どうぶつ・くだもの など テーマごとの ことばを、大きな ますで なぞって 書きます(1まいに 4こ)。", p: { grade: 0, y: { ykind: "word", ywn: 4 } } }
       ] },
     { key: 23, part: "小学部", name: "小学部3段階", short: "3段階",
       note: "簡単な 語句や 短い 文などを 正しく 読む。簡単な 語句や 短い 文を 平仮名などで 書く。",
@@ -2021,7 +2043,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
     const p = it.p;
     if (p.grade === 0) {
       state.grade = 0;
-      Object.assign(state, { yrow: "auto", ytheme: "auto", yplay: "mix", ylimit: 0 }, p.y);
+      Object.assign(state, { yrow: "auto", ytheme: "auto", yplay: "mix", ylimit: 0, ywn: 7 }, p.y);
       state.ystep = state.level;
     } else if (p.kind === "kimari") {
       state.grade = state.gRead = state.gWrite = state.gStory = p.grade;
@@ -2213,7 +2235,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       $("b-seed").value = String(state.seed);
       $("batch").showModal();
     });
-    for (const id of ["f-grade", "f-gread", "f-gwrite", "f-gstory", "f-genre", "f-furi", "f-kind", "f-ykind", "f-yrow", "f-ytheme", "f-yplay", "f-yscript", "f-ycat", "f-yhint", "f-ymatch", "f-ystep", "f-yname", "f-ylimit", "f-tk", "f-level", "f-ktopic", "f-rcase", "f-kfuri", "f-klearn",
+    for (const id of ["f-grade", "f-gread", "f-gwrite", "f-gstory", "f-genre", "f-furi", "f-kind", "f-ykind", "f-yrow", "f-ytheme", "f-yplay", "f-yscript", "f-ycat", "f-yhint", "f-ymatch", "f-ystep", "f-yname", "f-ylimit", "f-ywn", "f-tk", "f-level", "f-ktopic", "f-rcase", "f-kfuri", "f-klearn",
                       "f-read", "f-write", "f-seed", "f-model", "f-ans", "f-anslist"]) {
       $(id).addEventListener("change", () => {
         readControls(id);

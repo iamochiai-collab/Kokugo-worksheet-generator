@@ -21,7 +21,7 @@ const path = require('path');
     const jobs = [];
     T.YD.hira.forEach((_, i) => jobs.push({ ykind: 'hira', yrow: String(i), seed: 1 }));
     T.YD.kata.forEach((_, i) => jobs.push({ ykind: 'kata', yrow: String(i), seed: 1 }));
-    T.YD.themes.forEach((_, i) => jobs.push({ ykind: 'word', ytheme: String(i), seed: 1 }));
+    T.YD.themes.forEach((_, i) => { for (const ywn of [7, 6, 5, 4, 3]) jobs.push({ ykind: 'word', ytheme: String(i), ywn, seed: 1 }); });
     for (const yscript of ['hira', 'kata'])
       for (const ycat of ['all', ...new Set(T.YD.pics[yscript].map((x) => x.cat))])
         for (const yhint of ['first', 'all', 'none'])
@@ -36,7 +36,8 @@ const path = require('path');
     for (const ylimit of [1, 5, 10]) jobs.push({ ykind: 'hira', yrow: 'auto', ylimit, seed: 3 });
     for (const j of jobs) {
       const s = T.buildYoujiSheet(Object.assign({ no: 1 }, j));
-      const where = `${j.ykind} ${j.yrow || j.ytheme || j.yplay || j.ymatch || j.yname || ''}${j.yscript ? j.yscript + ' ' + j.ycat + ' ' + j.yhint : ''}${j.ystep ? ' step' + j.ystep : ''} seed${j.seed}`;
+      const where = `${j.ykind} ${j.yrow || j.ytheme || j.yplay || j.ymatch || j.yname || ''}${j.ywn ? ' ' + j.ywn + 'こ' : ''}${j.yscript ? j.yscript + ' ' + j.ycat + ' ' + j.yhint : ''}${j.ystep ? ' step' + j.ystep : ''} seed${j.seed}`;
+      if (s.ykind === 'word' && s.words.length !== Math.min(7, j.ywn)) bad.push(`${where}: ことばが ${s.words.length}`);
       if (s.ykind === 'match') {
         const want = [0, 3, 4, 5][j.ystep];
         if (s.items.length !== want) bad.push(`${where}: ${s.items.length} くみ`);
