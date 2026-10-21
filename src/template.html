@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="app-version" content="第12版(2026-10-21)">
+<meta name="app-version" content="第13版(2026-10-21)">
 <title>国語プリント</title>
 <link rel="icon" type="image/png" sizes="32x32" href="{{ICON:32}}">
 <link rel="icon" type="image/png" sizes="64x64" href="{{ICON:64}}">
@@ -723,7 +723,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
     <button class="kind-card kk-card" data-kind="kimari">
       <span class="name"><span class="n">5</span>ことばの きまり</span>
       <span class="chara chara-guide" aria-hidden="true"></span>
-      <span class="desc">学習指導要領の 学年の ことばの きまり(「は・を・へ」・主語と述語・カタカナ など)。内容は あとから えらべます。<b class="km-only"></b></span>
+      <span class="desc">学習指導要領の 〔知識及び技能〕に そった ことばの きまり(助詞・主語と述語・こそあど・敬語・品詞 など)。内容は あとから えらべます。<b class="km-only"></b></span>
       <span class="go">作る ▶</span>
     </button>
   </div>
@@ -1842,7 +1842,9 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
         { name: "漢字を かこう", tag: "漢字", desc: "小1の 漢字。大きな ますに 書きます。", p: { grade: 1, kind: "write", tk: true } },
         { name: "え を みて カタカナを かこう", tag: "書くこと", desc: "絵の なまえを カタカナで 書きます。", p: { grade: 0, y: { ykind: "pic", yscript: "kata", ycat: "all", yhint: "first" } } },
         { name: "ことば あそび", tag: "言葉あそび", desc: "しりとり・ことば さがし・たりない 字・ならべかえ。", p: { grade: 0, y: { ykind: "play", yplay: "mix" } } },
-        { name: "文章を よもう", tag: "読むこと", desc: "小1の 文章(物語・説明文)と 三択の 問い。漢字の 読み書きも 少し。", p: { grade: 1, kind: "long", counts: [2, 2] } }
+        { name: "文章を よもう", tag: "読むこと", desc: "小1の 文章(物語・説明文)と 三択の 問い。漢字の 読み書きも 少し。", p: { grade: 1, kind: "long", counts: [2, 2] } },
+        { name: "「は」「を」「へ」", tag: "言葉", desc: "わたしは・ほんを・えきへ。正しい ほうを ○で かこみます。", p: { grade: 1, kind: "kimari", ktopic: "wo" } },
+        { name: "ちいさい「っ」「ゃ」「ゅ」「ょ」", tag: "言葉", desc: "きって・でんしゃ など、正しい 書き方を ○で えらびます。", p: { grade: 1, kind: "kimari", ktopic: "chiisai" } }
       ] },
     { key: 25, part: "中学部", name: "中学部2段階", short: "2段階",
       note: "文や 文章を 読んで 内容を とらえる。日常で よく 使う 漢字を 読み、書く。",
@@ -1850,7 +1852,9 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
         { name: "漢字の 読み書き", tag: "漢字", desc: "小2の 漢字。読み 4問・書き 4問。大きい 字で 1れつに 1問。", p: { grade: 2, kind: "both", tk: true } },
         { name: "漢字を よもう", tag: "漢字", desc: "小2の 漢字の 読み。", p: { grade: 2, kind: "read", tk: true } },
         { name: "漢字を かこう", tag: "漢字", desc: "小2の 漢字の 書き。", p: { grade: 2, kind: "write", tk: true } },
-        { name: "文章を よもう", tag: "読むこと", desc: "小2の 文章と 三択の 問い。", p: { grade: 2, kind: "long", counts: [2, 2] } }
+        { name: "文章を よもう", tag: "読むこと", desc: "小2の 文章と 三択の 問い。", p: { grade: 2, kind: "long", counts: [2, 2] } },
+        { name: "主語と 述語", tag: "言葉", desc: "「だれが(何が)」と「どうする・どんなだ」を 見つけます。", p: { grade: 2, kind: "kimari", ktopic: "shugo" } },
+        { name: "ていねいな ことば", tag: "言葉", desc: "「いく」を「いきます」に。ていねいな 言い方に 直します。", p: { grade: 2, kind: "kimari", ktopic: "teinei" } }
       ] },
     { key: 26, part: "高等部", name: "高等部1段階", short: "1段階",
       note: "いろいろな 語句、文、文章を 正しく 読み、内容を 読み取る。",
@@ -1858,7 +1862,9 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
         { name: "漢字の 読み書き", tag: "漢字", desc: "小3の 漢字。大きい 字で 1れつに 1問。", p: { grade: 3, kind: "both", tk: true } },
         { name: "漢字を よもう", tag: "漢字", desc: "小3の 漢字の 読み。", p: { grade: 3, kind: "read", tk: true } },
         { name: "漢字を かこう", tag: "漢字", desc: "小3の 漢字の 書き。", p: { grade: 3, kind: "write", tk: true } },
-        { name: "文章を よもう", tag: "読むこと", desc: "小3の 文章と 三択の 問い。習っていない 漢字に ふりがな。", p: { grade: 3, kind: "long", counts: [2, 2], furi: "over" } }
+        { name: "文章を よもう", tag: "読むこと", desc: "小3の 文章と 三択の 問い。習っていない 漢字に ふりがな。", p: { grade: 3, kind: "long", counts: [2, 2], furi: "over" } },
+        { name: "こそあど言葉", tag: "言葉", desc: "これ・それ・あれ・どれ。指す ものを 考えます。", p: { grade: 3, kind: "kimari", ktopic: "kosoado" } },
+        { name: "つなぎ言葉", tag: "言葉", desc: "だから・しかし・それとも。文と 文を つなぎます。", p: { grade: 3, kind: "kimari", ktopic: "tsunagi" } }
       ] },
     { key: 27, part: "高等部", name: "高等部2段階", short: "2段階",
       note: "目的に 応じて 文章の 概要や 要点などを 読み取る。",
@@ -1866,7 +1872,9 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
         { name: "漢字の 読み書き", tag: "漢字", desc: "小4の 漢字。大きい 字で 1れつに 1問。", p: { grade: 4, kind: "both", tk: true } },
         { name: "漢字を よもう", tag: "漢字", desc: "小4の 漢字の 読み。", p: { grade: 4, kind: "read", tk: true } },
         { name: "漢字を かこう", tag: "漢字", desc: "小4の 漢字の 書き。", p: { grade: 4, kind: "write", tk: true } },
-        { name: "文章を よもう", tag: "読むこと", desc: "小4の 文章と 三択の 問い。習っていない 漢字に ふりがな。", p: { grade: 4, kind: "long", counts: [2, 2], furi: "over" } }
+        { name: "文章を よもう", tag: "読むこと", desc: "小4の 文章と 三択の 問い。習っていない 漢字に ふりがな。", p: { grade: 4, kind: "long", counts: [2, 2], furi: "over" } },
+        { name: "敬語の 使い方", tag: "言葉", desc: "相手や 場面に 合わせた 敬語を えらびます。", p: { grade: 5, kind: "kimari", ktopic: "keigo2" } },
+        { name: "話し言葉と 書き言葉", tag: "言葉", desc: "「すごく」→「とても」。作文に ふさわしい 言葉を えらびます。", p: { grade: 5, kind: "kimari", ktopic: "hanashi" } }
       ] }
   ];
   const stageOf = (k) => STAGES.find((x) => x.key === k) || STAGES[0];
@@ -1882,6 +1890,11 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       state.grade = 0;
       Object.assign(state, { yrow: "auto", ytheme: "auto", yplay: "mix", ylimit: 0 }, p.y);
       state.ystep = state.level;
+    } else if (p.kind === "kimari") {
+      state.grade = state.gRead = state.gWrite = state.gStory = p.grade;
+      state.kind = "kimari";
+      state.ktopic = p.ktopic;
+      state.tk = false;
     } else {
       state.grade = state.gRead = state.gWrite = state.gStory = p.grade;
       state.kind = p.kind;
@@ -1940,7 +1953,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
     const only = document.querySelector(".kind-card[data-kind='long'] .only");
     if (only) only.textContent = Object.keys(READS).length >= BANKS.length ? "" : ` いまは ${longGrades()} のみ。`;
     const kmo = document.querySelector(".kind-card[data-kind='kimari'] .km-only");
-    if (kmo) kmo.textContent = ` いまは ${kimariGrades()}。`;
+    if (kmo) kmo.textContent = BANKS.every((_, i) => hasKimari(i + 1)) ? "" : ` いまは ${kimariGrades()}。`;
     $("version").textContent = $("home-version").textContent = document.querySelector('meta[name="app-version"]').content;
     paintGrade();
   }
