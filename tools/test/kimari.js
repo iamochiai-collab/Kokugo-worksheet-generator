@@ -15,9 +15,10 @@ const path = require('path');
     const mm = 96 / 25.4;
     const bad = [];
     let n = 0, maxH = 0, worst = '';
-    for (const t of T.KM) for (const g of t.grades) for (let seed = 1; seed <= 40; seed++) {
-      const s = T.buildKimariSheet({ grade: g, ktopic: t.id, seed, no: 1 });
-      const where = `${t.id} 小${g} seed${seed}`;
+    // ローマ字は 大文字(rcase: upper)でも しらべる
+    for (const t of T.KM) for (const g of t.grades) for (const rcase of t.id.startsWith('romaji') ? ['lower', 'upper'] : ['lower']) for (let seed = 1; seed <= 40; seed++) {
+      const s = T.buildKimariSheet({ grade: g, ktopic: t.id, seed, no: 1, rcase });
+      const where = `${t.id} 小${g}${rcase === 'upper' ? ' 大文字' : ''} seed${seed}`;
       // 大問を こえて 同じ 問題(答えが わかって しまう もの)が 出て いないか
       const keyOf = (parts) => {
         const k = parts.find((p) => p[0] === 'k');

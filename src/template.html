@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="app-version" content="第14版(2026-10-21)">
+<meta name="app-version" content="第15版(2026-10-21)">
 <title>国語プリント</title>
 <link rel="icon" type="image/png" sizes="32x32" href="{{ICON:32}}">
 <link rel="icon" type="image/png" sizes="64x64" href="{{ICON:64}}">
@@ -604,6 +604,9 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
   <label class="sheet-only kk-only">内容
     <select id="f-ktopic"></select>
   </label>
+  <label class="sheet-only kk-only">ローマ字の 字
+    <select id="f-rcase"><option value="lower">小文字(ka ki ku)</option><option value="upper">大文字(KA KI KU)</option></select>
+  </label>
   <label class="sheet-only kk-only">むずかしさ
     <select id="f-level">
       <option value="1">★☆☆</option>
@@ -1156,8 +1159,13 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
     return list.find((t) => t.id === ktopic) || list[(seed - 1) % list.length];
   }
   const kmLen = (s) => [...String(s).replace(/｜([^《]+)《[^》]+》/g, "$1")].length;
-  function buildKimariSheet({ grade, ktopic, seed, no }) {
+  // ローマ字で 小文字・大文字を えらべる 単元(①②③⑩は 大文字・小文字 そのものを 学ぶので のぞく)
+  const RCASE_SKIP = ["romaji01", "romaji02", "romaji03", "romaji10"];
+  const hasRcase = (id) => !!id && id.startsWith("romaji") && !RCASE_SKIP.includes(id);
+  function buildKimariSheet({ grade, ktopic, seed, no, rcase }) {
     const t = kimariTopicFor(grade, ktopic, seed);
+    const upper = rcase === "upper" && hasRcase(t.id);
+    const UP = (x) => (upper ? x.replace(/[a-zâêîôû]/g, (c) => c.toUpperCase()) : x);
     const rng = makeRng(seed * 7919 + 101);
     let num = 0;
     // 前の 大問の 答えが わかって しまう 問題(同じ ことわざの 穴うめと 意味 など)は 出さない
@@ -1192,13 +1200,20 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
           if (p[0] !== "c" || sec.fixed) return p;
           const idx = shuffled(p[1].map((_, i) => i), rng);
           return ["c", idx.map((i) => p[1][i]), idx.indexOf(p[2])];
+        }).map((p) => {
+          if (!upper) return p;
+          if (p[0] === "t" || p[0] === "u" || p[0] === "wl") return [p[0], UP(p[1])];
+          if (p[0] === "w") return ["w", UP(p[1]), p[2]];
+          if (p[0] === "c") return ["c", p[1].map(UP), p[2]];
+          if (p[0] === "tr") return ["tr", p[1].map(UP)];
+          return p;
         });
         return { no: ++num, parts };
       });
       const answers = items.flatMap((it) => (it.parts || []).filter((p) => p[0] === "w").map((p) => p[1]));
       const bank = sec.box ? sec.box.slice() : sec.bank ? shuffled([...new Set(answers)], rng) : null;
       return Object.assign({}, sec, { items, bank, wmm: sec.w || Math.max(16, longest * 5.8 + 6),
-                                      wlmm: Math.max(30, longestL * 6.2 + 10) });
+                                      wlmm: Math.max(30, longestL * (upper ? 7.8 : 6.2) + 10) });
     });
     return { km: true, grade, topic: t.id, name: t.name, seed, no, sections, latin: t.id.startsWith("romaji") };
   }
@@ -1601,7 +1616,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
   const state = { grade: 3, gRead: 3, gWrite: 3, gStory: 3, furi: "none", genre: "all",
                   kind: "both", level: 2, nRead: 8, nWrite: 8, seed: 1,
                   ykind: "hira", yrow: "auto", ytheme: "auto", yplay: "mix", yscript: "hira", ycat: "all", yhint: "first",
-                  ymatch: "word", ystep: 1, yname: "", ylimit: 0, tk: false, stage: 0, ktopic: "auto" };
+                  ymatch: "word", ystep: 1, yname: "", ylimit: 0, tk: false, stage: 0, ktopic: "auto", rcase: "lower" };
   // 学年 0 は ようじ
   const gradeLabel = (g) => (g === 0 ? "ようじ" : BANKS[g - 1].label);
 
@@ -1667,6 +1682,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       if (hasKimari(state.grade)) {
         state.kind = "kimari";
         state.ktopic = changedId === "f-grade" || changedId === "f-kind" ? "auto" : ($("f-ktopic").value || "auto");
+        state.rcase = $("f-rcase").value || "lower";
         setMsg("");
         return;
       }
@@ -1747,11 +1763,14 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
     const isKm = state.kind === "kimari";
     for (const id of ["f-level", "f-read", "f-write", "f-model", "f-anslist"]) $(id).closest("label").hidden = isKm;
     $("f-ktopic").closest("label").hidden = !isKm;
+    $("f-rcase").closest("label").hidden = true;
     if (isKm) {
       $("f-kind").value = "kimari";
       $("f-ktopic").innerHTML = [["auto", "じゅんばんに(シードで かわる)"]].concat(kimariTopics(state.grade).map((t) => [t.id, t.name.replace(/｜([^《]+)《[^》]+》/g, "$1")]))
         .map(([v, name]) => `<option value="${v}">${esc(name)}</option>`).join("");
       $("f-ktopic").value = state.ktopic;
+      $("f-rcase").value = state.rcase;
+      $("f-rcase").closest("label").hidden = !hasRcase(state.ktopic);
       for (const id of ["f-gread", "f-gwrite", "f-gstory", "f-genre", "f-furi", "f-tk"]) $(id).closest("label").hidden = true;
       $("f-seed").value = String(state.seed);
       return;
@@ -2115,7 +2134,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       $("b-seed").value = String(state.seed);
       $("batch").showModal();
     });
-    for (const id of ["f-grade", "f-gread", "f-gwrite", "f-gstory", "f-genre", "f-furi", "f-kind", "f-ykind", "f-yrow", "f-ytheme", "f-yplay", "f-yscript", "f-ycat", "f-yhint", "f-ymatch", "f-ystep", "f-yname", "f-ylimit", "f-tk", "f-level", "f-ktopic",
+    for (const id of ["f-grade", "f-gread", "f-gwrite", "f-gstory", "f-genre", "f-furi", "f-kind", "f-ykind", "f-yrow", "f-ytheme", "f-yplay", "f-yscript", "f-ycat", "f-yhint", "f-ymatch", "f-ystep", "f-yname", "f-ylimit", "f-tk", "f-level", "f-ktopic", "f-rcase",
                       "f-read", "f-write", "f-seed", "f-model", "f-ans", "f-anslist"]) {
       $(id).addEventListener("change", () => {
         readControls(id);
