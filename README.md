@@ -171,7 +171,7 @@
 ├─ assets/pics/         ← ようじ「え を みて かこう」の 絵(Fluent Emoji。MIT。ビルドで 白黒に する)
 ├─ assets/chara/        ← 画面の キャラクター画像(webp。book・guide・cheer・think・idea・maru・banzai の 7枚)
 ├─ assets/icon/         ← アプリの アイコン(タブ・ホーム画面。32・64・180・192・512 の png)
-├─ vendor/              ← PDF・JPG・zip 用の 道具(html2canvas / jsPDF / JSZip)、ようじの なぞり書きの フォント(Klee One の かなだけ)と ライセンス
+├─ vendor/              ← PDF・JPG・zip 用の 道具(html2canvas / jsPDF / JSZip)、ようじの なぞり書きの フォント(Klee One の かなだけ)、ローマ字の フォント(Andika の ラテン文字だけ)と ライセンス
 ├─ tools/
 │  ├─ build.py          ← 1 ファイルに まとめる
 │  ├─ check_words.py    ← 語いバンクの 検査
@@ -255,7 +255,7 @@ node tools/test/shots.js         # README 用の 画像を とり直す
 
 - プログラムと 語いバンクは [MIT ライセンス](LICENSE) です。だれでも 自由に 使う・コピーする・書きかえる・配ることが できます(著作権表示と LICENSE の 文は のこしてください)。
 - `assets/chara/` の キャラクター画像と `assets/icon/` の アイコンは MIT ライセンスに ふくまれません。著作権は 落合聡一に あり、許可なく 使うことは できません。
-- `assets/pics/` の 絵(Fluent Emoji。© Microsoft・MIT)と、`vendor/` の html2canvas(MIT)・jsPDF(MIT)・JSZip(MIT または GPLv3)・Klee One(SIL Open Font License 1.1)は 落合聡一の 作ったもので は ないため、それぞれの 作者の ライセンスに したがいます(`vendor/licenses/`)。
+- `assets/pics/` の 絵(Fluent Emoji。© Microsoft・MIT)と、`vendor/` の html2canvas(MIT)・jsPDF(MIT)・JSZip(MIT または GPLv3)・Klee One・Andika(SIL Open Font License 1.1)は 落合聡一の 作ったもので は ないため、それぞれの 作者の ライセンスに したがいます(`vendor/licenses/`)。
 
 ## 1枚に 入るかの 見つもり
 
