@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="app-version" content="第11版(2026-10-21)">
+<meta name="app-version" content="第12版(2026-10-21)">
 <title>国語プリント</title>
 <link rel="icon" type="image/png" sizes="32x32" href="{{ICON:32}}">
 <link rel="icon" type="image/png" sizes="64x64" href="{{ICON:64}}">
@@ -173,6 +173,7 @@ body[data-view="home"] #sheets { display: none; }
 .kind-card[data-kind="write"] { --k: var(--k-write); }
 .kind-card[data-kind="long"] { --k: var(--k-long); }
 .kind-card[data-kind="pic"] { --k: #e0861b; }
+.kind-card[data-kind="kimari"] { --k: #e0861b; }
 body[data-youji="1"] .kinds { grid-template-columns: repeat(auto-fill, minmax(196px, 1fr)); }
 body[data-youji="1"] .kind-card { min-height: 240px; }
 @media (max-width: 760px) { body[data-youji="1"] .kind-card { min-height: 170px; } }
@@ -464,6 +465,32 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
   display: inline-flex; align-items: center; justify-content: center; font-size: 8mm; line-height: 1;
 }
 .sheet.yj .sheet-foot { padding-top: 1mm; }
+/* ことばの きまり:A4 の 高さに あわせて、大問の 中で 問題を 均等に ならべる */
+.sheet.km { height: var(--paper-h); }
+.sheet.km .km-sec { display: flex; flex-direction: column; margin-top: 7mm; min-height: 0; }
+.sheet.km .km-sec > .instruction { margin-bottom: 2.5mm; }
+.km-items { flex: 1; display: flex; flex-direction: column; justify-content: space-evenly; gap: 2mm; }
+.km-items.c2 { display: grid; grid-template-columns: 1fr 1fr; align-content: space-evenly; column-gap: 8mm; }
+.sheet.km .item { font-size: 12pt; line-height: 2.1; }
+.sheet.km.g1 .item, .sheet.km.g2 .item { font-size: 13.5pt; letter-spacing: 0.03em; }
+.sheet.km .item > .n { font-size: 10.5pt; }
+.km-ch { white-space: nowrap; }
+.km-ch i { font-style: normal; }
+.km-ch .o { padding: 0 0.35em; border-radius: 999px; }
+.sheet.answer .km-ch .o.ok { outline: 1.8px solid #000; outline-offset: -1px; }
+.km-box { display: inline-block; width: 8mm; height: 8mm; border: 1.4px solid #000; vertical-align: middle; margin: 0 1.2mm;
+  text-align: center; line-height: 7.6mm; font-weight: bold; }
+.km-box.big { width: 9.5mm; height: 9.5mm; line-height: 9.1mm; flex: none; }
+.km-u { text-decoration: underline; text-underline-offset: 5px; text-decoration-thickness: 1.5px; font-weight: bold; }
+.km-br { display: block; height: 0; }
+.km-lbl { font-size: 9.5pt; color: #333; margin-left: 5mm; }
+.km-w u { text-align: center; }
+.km-bank, .km-legend { border: 1.4px solid #000; border-radius: 3px; padding: 2mm 5mm; margin: 0 0 2mm; }
+.km-bank { display: flex; flex-wrap: wrap; justify-content: center; gap: 1mm 7mm; font-size: 12.5pt; }
+.km-legend { display: grid; grid-template-columns: 1fr 1fr; gap: 1mm 6mm; font-size: 11pt; }
+.km-item.ord { align-items: flex-start; }
+.km-ord { display: flex; flex-direction: column; gap: 1.5mm; }
+.km-step { display: flex; align-items: center; gap: 3mm; line-height: 1.7; }
 /* せんを なぞろう・せんで むすぼう・なまえ */
 .yj-rows.lines { justify-content: space-evenly; gap: 2mm; }
 .line-row { display: flex; align-items: center; gap: 1mm; }
@@ -543,7 +570,11 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       <option value="read">漢字の 読み</option>
       <option value="write">漢字の 書き</option>
       <option value="long">漢字 ＋ 長文読解</option>
+      <option value="kimari">ことばの きまり</option>
     </select>
+  </label>
+  <label class="sheet-only kk-only">内容
+    <select id="f-ktopic"></select>
   </label>
   <label class="sheet-only kk-only">むずかしさ
     <select id="f-level">
@@ -682,6 +713,12 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       <span class="name"><span class="n">4</span>漢字 ＋ 長文読解</span>
       <span class="chara chara-book" aria-hidden="true"></span>
       <span class="desc">漢字の 読み・書きの あとに、長文(物語・説明文・評論)と 三択の 問い、言葉の 意味。1枚で ひととおり できます。<b class="only"></b></span>
+      <span class="go">作る ▶</span>
+    </button>
+    <button class="kind-card kk-card" data-kind="kimari">
+      <span class="name"><span class="n">5</span>ことばの きまり</span>
+      <span class="chara chara-guide" aria-hidden="true"></span>
+      <span class="desc">学習指導要領の 学年の ことばの きまり(「は・を・へ」・主語と述語・カタカナ など)。内容は あとから えらべます。<b class="km-only"></b></span>
       <span class="go">作る ▶</span>
     </button>
   </div>
@@ -1082,6 +1119,86 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
     return `<section class="ans-list"><h3>答え</h3><ol>${all.join("")}</ol></section>`;
   }
 
+  /* ===== ことばの きまり =====
+     学習指導要領 〔知識及び技能〕(助詞・主語と述語・カタカナ など)の プリント。
+     データは src/data/kimari.txt(tools/kimari.py が 読む)。1まい = 1つの 内容。 */
+  const KM = typeof kimariData !== "undefined" ? kimariData : [];
+  const kimariTopics = (g) => KM.filter((t) => t.grades.includes(g));
+  const hasKimari = (g) => kimariTopics(g).length > 0;
+  // ktopic が "auto" なら シードで じゅんばんに かわる
+  function kimariTopicFor(g, ktopic, seed) {
+    const list = kimariTopics(g);
+    if (!list.length) return null;
+    return list.find((t) => t.id === ktopic) || list[(seed - 1) % list.length];
+  }
+  const kmLen = (s) => [...String(s).replace(/｜([^《]+)《[^》]+》/g, "$1")].length;
+  function buildKimariSheet({ grade, ktopic, seed, no }) {
+    const t = kimariTopicFor(grade, ktopic, seed);
+    const rng = makeRng(seed * 7919 + 101);
+    let num = 0;
+    const sections = t.sections.map((sec) => {
+      // （　）の はばは、その 大問で いちばん 長い 答えに そろえる(答えの 長さが わからないように)
+      let longest = 0;
+      for (const it of sec.items) if (!it.order) for (const p of it) if (p[0] === "w") longest = Math.max(longest, kmLen(p[1]));
+      const items = shuffled(sec.items, rng).slice(0, sec.n).map((it) => {
+        if (it.order) {
+          let show = shuffled(it.order.map((_, i) => i), rng);
+          for (let k = 0; k < 20 && show.every((v, i) => v === i); k++) show = shuffled(show, rng);
+          return { no: ++num, order: it.order, show };
+        }
+        const parts = it.map((p) => {
+          if (p[0] !== "c" || sec.fixed) return p;
+          const idx = shuffled(p[1].map((_, i) => i), rng);
+          return ["c", idx.map((i) => p[1][i]), idx.indexOf(p[2])];
+        });
+        return { no: ++num, parts };
+      });
+      const answers = items.flatMap((it) => (it.parts || []).filter((p) => p[0] === "w").map((p) => p[1]));
+      const bank = sec.box ? sec.box.slice() : sec.bank ? shuffled([...new Set(answers)], rng) : null;
+      return Object.assign({}, sec, { items, bank, wmm: sec.w || Math.max(16, longest * 5.8 + 6) });
+    });
+    return { km: true, grade, topic: t.id, name: t.name, seed, no, sections };
+  }
+
+  const rb = (s) => esc(s).replace(/｜([^《]+)《([^》]+)》/g, "<ruby>$1<rt>$2</rt></ruby>");
+  function kmPart(p, ans, sec) {
+    switch (p[0]) {
+      case "t": return rb(p[1]);
+      case "u": return `<span class="km-u">${rb(p[1])}</span>`;
+      case "br": return `<span class="km-br"></span>`;
+      case "b": return `<span class="km-box">${ans && p[1] ? `<span class="ans">${esc(p[1])}</span>` : ""}</span>`;
+      case "c": return `<span class="km-ch">（${p[1].map((o, i) =>
+        `<span class="o${i === p[2] ? " ok" : ""}">${rb(o)}</span>`).join("<i>・</i>")}）</span>`;
+      case "w": return (p[2] ? `<span class="km-lbl">${rb(p[2])}</span>` : "") +
+        `<span class="paren km-w">（<u style="width:${sec.wmm.toFixed(1)}mm">${ans ? `<span class="ans">${rb(p[1])}</span>` : "&nbsp;"}</u>）</span>`;
+    }
+    return "";
+  }
+  function kimariSheetHtml(s, opt) {
+    const ans = !!(opt && opt.answer);
+    const lab = labelsFor(s.grade);
+    const secs = s.sections.map((sec, i) => {
+      const items = sec.items.map((it) => {
+        const body = it.order
+          ? `<div class="km-ord">${it.show.map((k) => `<div class="km-step"><span class="km-box big">${ans ? `<span class="ans">${k + 1}</span>` : ""}</span><span>${rb(it.order[k])}</span></div>`).join("")}</div>`
+          : it.parts.map((p) => kmPart(p, ans, sec)).join("");
+        return `<div class="item km-item${it.order ? " ord" : ""}"><span class="n">(${it.no})</span><span class="body">${body}</span></div>`;
+      }).join("");
+      // 大問の 高さの わりあい(のこりの 高さを 問題の 数に おうじて くばる)
+      const rows = sec.items.reduce((h, it) => h + (it.order ? it.order.length * 0.8 : it.parts.some((p) => p[0] === "br") ? 2.3 : 1), 0) / (sec.cols || 1);
+      return `<section class="q-group km-sec" style="flex-grow:${(rows + 1.5).toFixed(2)}">` +
+        `<h3><em>${i + 1}</em>${rb(sec.title)}</h3><p class="instruction">${rb(sec.inst)}</p>` +
+        (sec.legend ? `<div class="km-legend">${sec.legend.map((l) => `<span>${rb(l)}</span>`).join("")}</div>` : "") +
+        (sec.bank ? `<div class="km-bank">${sec.bank.map((w) => `<span>${rb(w)}</span>`).join("")}</div>` : "") +
+        `<div class="km-items${sec.cols === 2 ? " c2" : ""}">${items}</div></section>`;
+    }).join("");
+    return `<div class="sheet km g${s.grade}${ans ? " answer" : ""}">` +
+      `<div class="sheet-head"><span class="label">${lab.title}</span><span class="no">${s.no}</span>` +
+      `<span class="fields"><span class="field"><i>${lab.date}</i><b></b></span>` +
+      `<span class="field name"><i>${lab.name}</i><b></b></span></span></div>` +
+      secs + `<div class="sheet-foot"><span class="seed">シード ${s.seed}</span></div></div>`;
+  }
+
   /* ===== ようじ(幼児)の プリント =====
      ひらがな・カタカナの なぞり書き、ことば なぞり、ことば あそび(しりとり・ことば さがし・たりない 字・ならべかえ)。
      データは src/data/youji.json(tools/make_youji.py が 作る)。 */
@@ -1426,7 +1543,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
   const state = { grade: 3, gRead: 3, gWrite: 3, gStory: 3, furi: "none", genre: "all",
                   kind: "both", level: 2, nRead: 8, nWrite: 8, seed: 1,
                   ykind: "hira", yrow: "auto", ytheme: "auto", yplay: "mix", yscript: "hira", ycat: "all", yhint: "first",
-                  ymatch: "word", ystep: 1, yname: "", ylimit: 0, tk: false, stage: 0 };
+                  ymatch: "word", ystep: 1, yname: "", ylimit: 0, tk: false, stage: 0, ktopic: "auto" };
   // 学年 0 は ようじ
   const gradeLabel = (g) => (g === 0 ? "ようじ" : BANKS[g - 1].label);
 
@@ -1488,6 +1605,17 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
     state.level = Number($("f-level").value);
     state.seed = Math.max(1, Math.min(999999, Number($("f-seed").value) || 1));
     let kind = $("f-kind").value;
+    if (kind === "kimari") {
+      if (hasKimari(state.grade)) {
+        state.kind = "kimari";
+        state.ktopic = changedId === "f-grade" || changedId === "f-kind" ? "auto" : ($("f-ktopic").value || "auto");
+        setMsg("");
+        return;
+      }
+      setMsg(`${gradeLabel(state.grade)} の ことばの きまりは まだ ありません。いまは ${kimariGrades()} で 作れます。`);
+      kind = "both";
+      changedId = "f-kind";
+    }
     if (kind === "long" && !hasLong(state.gStory)) kind = "both";
     state.tk = $("f-tk").checked;
     const longChanged = (kind === "long") !== (state.kind === "long");
@@ -1500,7 +1628,8 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
     }
     state.kind = kind;
     const changed = changedId === "f-write" ? "write" : "read";
-    setMsg(settleCounts(changed));
+    const note = settleCounts(changed);
+    if (note || $("msg").textContent.indexOf("ことばの きまり") < 0) setMsg(note);
   }
 
   // 種類を えらんだ ときの 読み・書きの 数(大きい 字なら 少なめ)
@@ -1557,6 +1686,18 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       return;
     }
     $("f-ans").closest("label").hidden = false;
+    const isKm = state.kind === "kimari";
+    for (const id of ["f-level", "f-read", "f-write", "f-model", "f-anslist"]) $(id).closest("label").hidden = isKm;
+    $("f-ktopic").closest("label").hidden = !isKm;
+    if (isKm) {
+      $("f-kind").value = "kimari";
+      $("f-ktopic").innerHTML = [["auto", "じゅんばんに(シードで かわる)"]].concat(kimariTopics(state.grade).map((t) => [t.id, t.name.replace(/｜([^《]+)《[^》]+》/g, "$1")]))
+        .map(([v, name]) => `<option value="${v}">${esc(name)}</option>`).join("");
+      $("f-ktopic").value = state.ktopic;
+      for (const id of ["f-gread", "f-gwrite", "f-gstory", "f-genre", "f-furi", "f-tk"]) $(id).closest("label").hidden = true;
+      $("f-seed").value = String(state.seed);
+      return;
+    }
     $("f-gread").value = String(state.gRead);
     $("f-gwrite").value = String(state.gWrite);
     $("f-gstory").value = String(state.gStory);
@@ -1594,6 +1735,15 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       }
       return out;
     }
+    if (state.kind === "kimari") {
+      const out = [];
+      for (let i = 0; i < n; i++) {
+        const s = buildKimariSheet(Object.assign({}, state, { seed: startSeed + i, no: i + 1 }));
+        out.push(kimariSheetHtml(s, {}));
+        if (withAns) out.push(kimariSheetHtml(s, { answer: true }));
+      }
+      return out;
+    }
     const list = $("f-anslist").checked;
     const out = [];
     for (let i = 0; i < n; i++) {
@@ -1622,6 +1772,9 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
     }
   }
 
+  function kimariGrades() {
+    return BANKS.map((b, i) => (hasKimari(i + 1) ? b.label : "")).filter(Boolean).join("・");
+  }
   function longGrades() {
     return Object.keys(READS).map((g) => BANKS[g - 1].label).join("・");
   }
@@ -1760,6 +1913,8 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
     writeControls();
     const only = document.querySelector(".kind-card[data-kind='long'] .only");
     if (only) only.textContent = Object.keys(READS).length >= BANKS.length ? "" : ` いまは ${longGrades()} のみ。`;
+    const kmo = document.querySelector(".kind-card[data-kind='kimari'] .km-only");
+    if (kmo) kmo.textContent = ` いまは ${kimariGrades()}。`;
     $("version").textContent = $("home-version").textContent = document.querySelector('meta[name="app-version"]').content;
     paintGrade();
   }
@@ -1836,6 +1991,19 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
         document.body.dataset.view = "sheet";
         return;
       }
+      if (b.dataset.kind === "kimari") {
+        if (!hasKimari(state.grade)) {
+          setMsg(`${BANKS[state.grade - 1].label} の ことばの きまりは じゅんびちゅうです。いまは ${kimariGrades()} で 作れます。`);
+          document.body.dataset.view = "sheet";
+          return;
+        }
+        state.kind = "kimari";
+        state.ktopic = "auto";
+        writeControls();
+        setMsg("");
+        show(1, state.seed);
+        return;
+      }
       state.kind = b.dataset.kind;
       state.genre = genreFor(state.gStory, state.genre);
       [state.nRead, state.nWrite] = countsFor(state.kind);
@@ -1859,7 +2027,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       $("b-seed").value = String(state.seed);
       $("batch").showModal();
     });
-    for (const id of ["f-grade", "f-gread", "f-gwrite", "f-gstory", "f-genre", "f-furi", "f-kind", "f-ykind", "f-yrow", "f-ytheme", "f-yplay", "f-yscript", "f-ycat", "f-yhint", "f-ymatch", "f-ystep", "f-yname", "f-ylimit", "f-tk", "f-level",
+    for (const id of ["f-grade", "f-gread", "f-gwrite", "f-gstory", "f-genre", "f-furi", "f-kind", "f-ykind", "f-yrow", "f-ytheme", "f-yplay", "f-yscript", "f-ycat", "f-yhint", "f-ymatch", "f-ystep", "f-yname", "f-ylimit", "f-tk", "f-level", "f-ktopic",
                       "f-read", "f-write", "f-seed", "f-model", "f-ans", "f-anslist"]) {
       $(id).addEventListener("change", () => {
         readControls(id);

@@ -59,6 +59,13 @@ for name, var in [('ruby.json', 'rubyData'), ('kanji_grades.json', 'kanjiGrades'
     if f.exists():
         blocks.append(f'  var {var} = {json.dumps(json.loads(f.read_text(encoding="utf-8")), ensure_ascii=False)};')
 
+# --- ことばの きまり(src/data/kimari.txt。tools/kimari.py で 読む) ---
+sys.path.insert(0, str(root / 'tools'))
+from kimari import load_kimari
+kimari = load_kimari(root / 'src' / 'data' / 'kimari.txt')
+blocks.append(f'  var kimariData = {json.dumps(kimari, ensure_ascii=False)};')
+print(f'  kimari.txt: {len(kimari)} こ')
+
 # --- ようじの「え を みて かこう」の 絵(assets/pics/*.svg。Fluent Emoji フラット・MIT。ビルドで 白黒に する) ---
 sys.path.insert(0, str(root / 'tools'))
 from lineart import to_mono   # 色つきの 絵を、白黒でも わかる 絵(うすい 灰色 + 黒い りんかく)に する
@@ -86,7 +93,7 @@ assert '{{' not in out, out[out.index('{{'):out.index('{{') + 60]
 (root / 'docs').mkdir(exist_ok=True)
 (root / 'docs' / 'index.html').write_text(out, encoding='utf-8')
 
-hook = ('  window.__T = { BANKS, READS, hasLong, buildSheet, sheetHtml, makeRng, splitWord, pickEntries, LAYOUT, fits, maxFor, estHeight, layoutOf, defaultCounts, labelsFor, longSheetFor, rubyHtml, learned, storiesOf, genresOf, genreFor, buildYoujiSheet, youjiSheetHtml, YD, YPOOL };\n'
+hook = ('  window.__T = { BANKS, READS, hasLong, buildSheet, sheetHtml, makeRng, splitWord, pickEntries, LAYOUT, fits, maxFor, estHeight, layoutOf, defaultCounts, labelsFor, longSheetFor, rubyHtml, learned, storiesOf, genresOf, genreFor, buildYoujiSheet, youjiSheetHtml, YD, YPOOL, KM, kimariTopics, buildKimariSheet, kimariSheetHtml };\n'
         '  renderHome();')
 assert out.count('  renderHome();') == 1
 (root / 'build').mkdir(exist_ok=True)
