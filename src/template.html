@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="app-version" content="第8版(2026-10-21)">
+<meta name="app-version" content="第9版(2026-10-21)">
 <title>国語プリント</title>
 <link rel="icon" type="image/png" sizes="32x32" href="{{ICON:32}}">
 <link rel="icon" type="image/png" sizes="64x64" href="{{ICON:64}}">
@@ -260,6 +260,11 @@ body[data-youji="1"] .kind-card { min-height: 240px; }
 .target { font-weight: bold; font-size: 1.04em; text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 4px; }
 .paren { display: inline-block; text-align: center; white-space: nowrap; margin-left: 2px; }
 .paren u { text-decoration: none; display: inline-block; width: 18mm; white-space: nowrap; border-bottom: 1px solid #bbb; }
+/* 読みの （　）は 行の のこりの はば いっぱいに のばす(書きこむ 場所を 広く) */
+.item.r > .body { display: flex; align-items: baseline; min-width: 0; }
+.item.r .s { flex: 0 1 auto; min-width: 0; }
+.item.r .paren { flex: 1 0 auto; display: flex; align-items: baseline; }
+.item.r .paren u { flex: 1; width: auto; min-width: 18mm; text-align: center; }
 
 /* 書き取りのます */
 .wbox { display: inline-flex; flex-direction: column; align-items: center; vertical-align: bottom; margin: 0 2px; }
@@ -310,9 +315,10 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
 .sheet.long .instruction { font-size: 8.5pt; margin-bottom: 2mm; }
 .sheet.long .item { font-size: 9.5pt; line-height: 1.45; }
 .sheet.long .items { row-gap: calc(1.5mm + var(--row-extra, 0mm)); column-gap: 6mm; }
-.sheet.long .wbox .cell { width: 12mm; height: 8.5mm; }
-.sheet.long .wbox.small .cell { width: 9mm; height: 7.5mm; }
-.sheet.long .wbox .ruby { font-size: 8.5pt; line-height: 1.1; }
+.sheet.long .wbox .cell { width: 17mm; height: 13.5mm; }
+.sheet.long .wbox.small .cell { width: 12.5mm; height: 11mm; }
+.sheet.long .wbox .ruby { font-size: 10pt; line-height: 1.1; }
+.sheet.long .wbox .cell .ans { font-size: 15pt; }
 .reading-box {
   border: 1.2px solid var(--rule); background: #fcfcfc; border-radius: 3px;
   padding: 2.2mm 3.2mm; font-size: 8.5pt; line-height: 1.5; text-align: justify;
@@ -796,7 +802,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
   const STORY_H = LD.storyH || {}, STORY_HR = LD.storyHR || {};
   const LAYOUT = {
     normal: { base: 48.5, group: 22.5, read: 16.8, write: 22.9, limit: 292, cap: 12, top: 30 },
-    long:   { base: 193, group: 16.7, read: 6.9, write: 13.4, limit: 294.5, cap: 2.5, top: 12 }
+    long:   { base: 193, group: 16.7, read: 6.9, write: 19.0, limit: 294.5, cap: 2.5, top: 12 }
   };
   const DEFAULTS = { both: [8, 8], read: [16, 0], write: [0, 12], long: [4, 8] };
   // grade は 長文の 学年。furi は ふりがな("none" / "over" / "all")。genre は ジャンル(なければ すべて)
@@ -918,7 +924,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       const inside = opt.answer ? `<span class="ans"${fit}>${esc(item.r)}</span>` : "&nbsp;";
       const model = !opt.answer && opt.model && item.no === 1
         ? `<span class="model">${esc(item.r)}</span>` : inside;
-      return `<div class="item">${n}<span class="body">${sentence}` +
+      return `<div class="item r">${n}<span class="body"><span class="s">${sentence}</span>` +
         `<span class="paren">（<u>${model}</u>）</span></span></div>`;
     }
     const cells = [...item.head].map((ch) => {
