@@ -23,7 +23,7 @@ const path = require('path');
         const k = parts.find((p) => p[0] === 'k');
         if (k) return '#' + k[1];
         const br = parts.findIndex((p) => p[0] === 'br');
-        return (br < 0 ? parts : parts.slice(0, br)).map((p) => (p[0] === 't' || p[0] === 'u' || p[0] === 'w' ? p[1] : p[0] === 'c' ? p[1][p[2]] : '')).join('').replace(/[\s　。、]/g, '');
+        return (br < 0 ? parts : parts.slice(0, br)).map((p) => (p[0] === 't' || p[0] === 'u' || p[0] === 'w' || p[0] === 'wl' ? p[1] : p[0] === 'c' ? p[1][p[2]] : p[0] === 'tr' ? p[1].join(' ') : '')).join('').replace(/[\s　。、]/g, '');
       };
       const seen = new Set();
       for (const sec of s.sections) for (const it of sec.items) if (it.parts) {
@@ -54,7 +54,7 @@ const path = require('path');
         const secs = [...el.querySelectorAll('.km-sec')];
         for (let k = 1; k < secs.length; k++) if (secs[k].getBoundingClientRect().top < secs[k - 1].getBoundingClientRect().bottom - 1) bad.push(`${where}: 大問が かさなって いる`);
         if (answer) {
-          const want = s.sections.flatMap((sec) => sec.items.flatMap((it) => it.order ? it.order : (it.parts || []).filter((q) => q[0] === 'w' || q[0] === 'c' || (q[0] === 'b' && q[1])))).length;
+          const want = s.sections.flatMap((sec) => sec.items.flatMap((it) => it.order ? it.order : (it.parts || []).filter((q) => q[0] === 'w' || q[0] === 'wl' || q[0] === 'c' || (q[0] === 'b' && q[1])))).length;
           const got = el.querySelectorAll('.ans, .km-ch .o.ok').length;
           if (got !== want) bad.push(`${where}: 答えが ${got}/${want}`);
         } else if (el.querySelector('.ans')) bad.push(`${where}: 問題の ページに 答えが ある`);
@@ -66,6 +66,9 @@ const path = require('path');
   console.log(`ことばの きまり ${res.n} 枚  いちばん 高い ${res.maxH.toFixed(1)}mm (${res.worst})`);
   if (res.bad.length) {
     console.log(`NG ${res.bad.length} 件`);
+    const by = {};
+    for (const x of res.bad) { const k = x.split(' ')[0] + ' ' + x.split(': ')[1].replace(/[\d.]+mm/, 'mm'); by[k] = (by[k] || 0) + 1; }
+    console.log(Object.entries(by).map(([k, v]) => `   ${k} ×${v}`).join('\n'));
     [...new Set(res.bad)].slice(0, 30).forEach((x) => console.log(' -', x));
     process.exit(1);
   }

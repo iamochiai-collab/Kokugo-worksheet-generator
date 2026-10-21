@@ -11,11 +11,13 @@
   ["u", 文字]             下線
   ["br"]                 行を かえる
   ["k", かぎ]            ほかの 大問と 答えが かぶらないように する しるし(表示しない。行末の  #かぎ)
+  ["wl", 答え]            4本線に 書く(ローマ字)。[=abc]
+  ["tr", [字…]]          4本線の なぞり書き。((a b c)) → 字は うすい 字、!a は 黒い お手本、(()) は 何も ない 線
 じゅんばん(@order)の 問題は {"order": [正しい じゅんの 文…]}。
 """
 import re
 
-TOKEN = re.compile(r'\[\[(.*?)\]\]|\{([^}]*)\}|\[([^\]]*)\]|<([^>]*)>|//')
+TOKEN = re.compile(r'\(\((.*?)\)\)|\[\[(.*?)\]\]|\{([^}]*)\}|\[([^\]]*)\]|<([^>]*)>|//')
 
 
 def parse_item(line, where):
@@ -31,8 +33,10 @@ def parse_item(line, where):
     for m in TOKEN.finditer(line):
         if m.start() > pos:
             parts.append(['t', line[pos:m.start()]])
-        box, choice, write, under = m.group(1), m.group(2), m.group(3), m.group(4)
-        if box is not None:
+        trace, box, choice, write, under = m.group(1), m.group(2), m.group(3), m.group(4), m.group(5)
+        if trace is not None:
+            parts.append(['tr', trace.split()])
+        elif box is not None:
             parts.append(['b', box])
         elif choice is not None:
             opts = choice.split('|')
@@ -44,7 +48,10 @@ def parse_item(line, where):
             ans, _, label = write.partition('@')
             if not ans:
                 raise SystemExit(f'{where}: [] の 答えが ない')
-            parts.append(['w', ans, label])
+            if ans.startswith('='):
+                parts.append(['wl', ans[1:]])   # 4本線に 書く
+            else:
+                parts.append(['w', ans, label])
         elif under is not None:
             parts.append(['u', under])
         else:
@@ -54,17 +61,22 @@ def parse_item(line, where):
         parts.append(['t', line[pos:]])
     if key:
         parts.append(['k', key.strip()])
-    if not any(p[0] in 'cwb' for p in parts):
+    if not any(p[0] in ('c', 'w', 'b', 'tr', 'wl') for p in parts):
         raise SystemExit(f'{where}: 答える ところが ない -> {line}')
     return parts
 
 
 def load_kimari(path):
-    topics, topic, sec = [], None, None
+    topics, topic, sec, orders = [], None, None, {}
     for n, raw in enumerate(path.read_text(encoding='utf-8').split('\n'), 1):
         line = raw.strip()
         where = f'{path.name}:{n}'
         if not line or line.startswith('#'):
+            continue
+        if line.startswith('% '):
+            # % 学年 | id id id …  その 学年での ならび(教科書の じゅん)
+            g, _, ids = line[2:].partition('|')
+            orders[int(g)] = ids.split()
             continue
         if line.startswith('@ '):
             f = [x.strip() for x in line[2:].split('|')]
@@ -85,6 +97,8 @@ def load_kimari(path):
                 elif k == 'cols': sec['cols'] = int(v)
                 elif k == 'w': sec['w'] = float(v)
                 elif k == 'legend': sec['legend'] = v.split('/')
+                elif k == 'seq': sec['seq'] = True
+                elif k == 'nonum': sec['nonum'] = True
                 else: raise SystemExit(f'{where}: しらない オプション {opt}')
             topic['sections'].append(sec)
         else:
@@ -94,6 +108,16 @@ def load_kimari(path):
     ids = [t['id'] for t in topics]
     if len(ids) != len(set(ids)):
         raise SystemExit('kimari.txt: id が 重なって いる')
+    for g, lst in orders.items():
+        for i, tid in enumerate(lst):
+            t = next((t for t in topics if t['id'] == tid), None)
+            if not t or g not in t['grades']:
+                raise SystemExit(f'kimari.txt: % {g} の {tid} が ない(または その 学年で ない)')
+            t.setdefault('ord', {})[str(g)] = i
+    for t in topics:
+        for g in t['grades']:
+            if g in orders and str(g) not in t.get('ord', {}):
+                raise SystemExit(f'kimari.txt: {t["id"]} が % {g} の ならびに ない')
     for t in topics:
         for s in t['sections']:
             if len(s['items']) < s['n']:

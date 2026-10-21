@@ -30,6 +30,8 @@ def texts(item):
         elif p[0] == 'c': out += p[1]
         elif p[0] == 'w': out += [p[1], p[2]]
         elif p[0] == 'b': out.append(p[1])
+        elif p[0] == 'tr': out += p[1]
+        elif p[0] == 'wl': out.append(p[1])
     return out
 
 
@@ -47,7 +49,7 @@ for t in topics:
             seen.add(key)
             for s in body:
                 s2 = RUBY.sub('', s)
-                if FOREIGN.search(s2) and t['id'] != 'romaji': errors.append(f'[{t["id"]}] 英字など: {s}')
+                if FOREIGN.search(s2) and not t['id'].startswith('romaji'): errors.append(f'[{t["id"]}] 英字など: {s}')
                 for c in KANJI.findall(s2):
                     k = GRADE_OF.get(c)
                     if t['id'] != 'kana' and g < 7 and (g == 1 or k is None or k > g):

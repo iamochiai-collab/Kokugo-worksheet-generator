@@ -11,9 +11,22 @@
 #   <ことば>     下線
 #   ｜漢字《よみ》 ふりがな
 #   //          行を かえる
+#   ((a b !c))   4本線の なぞり書き(!は 黒い お手本)。(()) は 線だけ
+#   [=abc]      4本線に 書く(ローマ字)
+# == の オプション seq(シードの じゅんに 前から じゅんばんに)・nonum(番号を 出さない)
+# % 学年 | id …  ホームに ならべる じゅん
 #   行末の  #かぎ   同じ かぎの 問題は 1まいに 1つだけ(ほかの 大問の 答えが わかって しまう のを ふせぐ)
 #   @order a|b|c|d   じゅんばんに □に 番号を 書く(正しい じゅんで 書く。表示は まぜる)
 # 小1 の 問題は ひらがな・カタカナだけ。小2 は 小2 までの 漢字(tools/check_kimari.py で 調べる)。
+
+# 学年ごとの ならび(ホームの カードの じゅん。教科書の 学習の じゅんを 目安に した)
+% 1 | nobasu chiisai wo kuten kata nakama teinei
+% 2 | wo kuten junjo kata2 ue shugo hantai teinei
+% 3 | jisho onkun romaji01 romaji02 romaji03 romaji04 romaji05 romaji06 romaji07 romaji08 romaji09 romaji10 romaji11 romaji12 kosoado kotoba3 tsunagi shushoku okuri3 keitai bushu kotowaza riyuu
+% 4 | kanjijiten shushoku kanyoku tsunagi4 okuri4 kumitate doukun koji kotoba3 keitai riyuu
+% 5 | koten keigo keigo2 jukugo ruigi wago hanashi genin hougen kanazukai kana hiyu
+% 6 | koten jukugo6 bunkumi keigo keigo2 hiyu hanashi kanazukai kana jukugo
+% 7 | bunsetsu bunsei hinshi katsuyou jodoushi douon keigo7 yoji
 
 @ nobasu | 1 | のばす おと | おとうさん・こおり・ぼうし など、のばす おとの かきかた。
 == のばす おとの かきかた | ただしい ほうを ○で かこみましょう。 | 10
@@ -352,7 +365,367 @@
 
 # ===== 小3・小4 =====
 
-@ romaji | 3 | ローマ字 | 日常で 使う かんたんな ことばを ローマ字で 読み、書く(第3学年)。
+@ romaji01 | 3 | ローマ字① アルファベット(小文字) | a〜z の 小文字を、4本の 線に 合わせて なぞって 書く。
+== 小文字を なぞる | 黒い 字を よく 見て、うすい 字を なぞりましょう。あいて いる ところにも 書きましょう。 | 26 | seq | cols=2 | nonum
+((!a a a))
+((!b b b))
+((!c c c))
+((!d d d))
+((!e e e))
+((!f f f))
+((!g g g))
+((!h h h))
+((!i i i))
+((!j j j))
+((!k k k))
+((!l l l))
+((!m m m))
+((!n n n))
+((!o o o))
+((!p p p))
+((!q q q))
+((!r r r))
+((!s s s))
+((!t t t))
+((!u u u))
+((!v v v))
+((!w w w))
+((!x x x))
+((!y y y))
+((!z z z))
+
+@ romaji02 | 3 | ローマ字② アルファベット(大文字) | A〜Z の 大文字を、4本の 線に 合わせて なぞって 書く。
+== 大文字を なぞる | 黒い 字を よく 見て、うすい 字を なぞりましょう。あいて いる ところにも 書きましょう。 | 26 | seq | cols=2 | nonum
+((!A A A))
+((!B B B))
+((!C C C))
+((!D D D))
+((!E E E))
+((!F F F))
+((!G G G))
+((!H H H))
+((!I I I))
+((!J J J))
+((!K K K))
+((!L L L))
+((!M M M))
+((!N N N))
+((!O O O))
+((!P P P))
+((!Q Q Q))
+((!R R R))
+((!S S S))
+((!T T T))
+((!U U U))
+((!V V V))
+((!W W W))
+((!X X X))
+((!Y Y Y))
+((!Z Z Z))
+
+@ romaji03 | 3 | ローマ字③ 大文字と 小文字 | A と a、B と b。大文字と 小文字を むすびつける。
+== 小文字を えらぶ | 大文字に 合う 小文字を ○で かこみましょう。 | 8 | cols=2
+A　{*a|d|e}
+B　{*b|d|p}
+D　{*d|b|p}
+E　{*e|a|f}
+F　{*f|t|e}
+G　{*g|q|j}
+H　{*h|n|k}
+I　{*i|l|j}
+J　{*j|i|g}
+L　{*l|i|t}
+M　{*m|n|w}
+N　{*n|m|h}
+P　{*p|q|b}
+Q　{*q|p|g}
+R　{*r|n|k}
+T　{*t|f|l}
+U　{*u|n|v}
+W　{*w|m|v}
+Y　{*y|v|g}
+== 大文字を えらぶ | 小文字に 合う 大文字を ○で かこみましょう。 | 4 | cols=2
+b　{*B|D|P}
+d　{*D|B|P}
+q　{*Q|P|G}
+n　{*N|M|H}
+m　{*M|N|W}
+g　{*G|Q|J}
+h　{*H|N|K}
+r　{*R|P|K}
+e　{*E|F|A}
+t　{*T|F|L}
+y　{*Y|V|J}
+j　{*J|I|G}
+== 小文字で 書く | 大文字を 小文字で 書きましょう。 | 6 | cols=2
+C　[=c]
+K　[=k]
+O　[=o]
+S　[=s]
+V　[=v]
+X　[=x]
+Z　[=z]
+A　[=a]
+G　[=g]
+Q　[=q]
+
+@ romaji04 | 3 | ローマ字④ あ行(a i u e o) | ローマ字の もとに なる 母音 a・i・u・e・o。
+== あ行を なぞる | 黒い 字を よく 見て、うすい 字を なぞりましょう。 | 5 | seq
+あ　((!a a a a))
+い　((!i i i i))
+う　((!u u u u))
+え　((!e e e e))
+お　((!o o o o))
+== あ行の ローマ字 | 合う ほうを ○で かこみましょう。 | 6 | cols=2
+あ　{*a|o|e}
+い　{*i|e|u}
+う　{*u|o|a}
+え　{*e|i|a}
+お　{*o|u|a}
+a　{*あ|お|え}
+i　{*い|え|う}
+u　{*う|あ|お}
+e　{*え|い|あ}
+o　{*お|あ|う}
+== ことばを 書く | つぎの ことばを ローマ字で 書きましょう。 | 4 | cols=2
+あい　[=ai]
+いえ　[=ie]
+うえ　[=ue]
+あお　[=ao]
+おい　[=oi]
+いい　[=ii]
+あう　[=au]
+
+@ romaji05 | 3 | ローマ字⑤ か行・さ行・た行・な行 | k・s・t・n に a・i・u・e・o を 組み合わせる。
+== 行を なぞる | うすい 字を なぞりましょう。 | 4 | seq
+か き く け こ ((ka ki ku ke ko))
+さ し す せ そ ((sa si su se so))
+た ち つ て と ((ta ti tu te to))
+な に ぬ ね の ((na ni nu ne no))
+== 合う ローマ字 | 合う ほうを ○で かこみましょう。 | 6 | cols=2
+か　{*ka|ki|ko}
+き　{*ki|ke|ka}
+こ　{*ko|ku|ke}
+し　{*si|su|se}
+す　{*su|so|si}
+せ　{*se|sa|so}
+ち　{*ti|to|ta}
+つ　{*tu|to|ti}
+て　{*te|ta|ti}
+に　{*ni|na|ne}
+ぬ　{*nu|no|ni}
+の　{*no|nu|na}
+== ことばを 書く | つぎの ことばを ローマ字で 書きましょう。 | 4 | cols=2
+かさ　[=kasa]
+いけ　[=ike]
+あさ　[=asa]
+すいか　[=suika]
+たこ　[=tako]
+なつ　[=natu]
+ねこ　[=neko]
+いぬ　[=inu]
+きつね　[=kitune]
+さかな　[=sakana]
+くつ　[=kutu]
+あし　[=asi]
+なす　[=nasu]
+たね　[=tane]
+そと　[=soto]
+
+@ romaji06 | 3 | ローマ字⑥ は行・ま行・や行・ら行・わ行・ん | h・m・y・r・w と、「ん」の n。
+== 行を なぞる | うすい 字を なぞりましょう。 | 5 | seq
+は ひ ふ へ ほ ((ha hi hu he ho))
+ま み む め も ((ma mi mu me mo))
+や ゆ よ ((ya yu yo))
+ら り る れ ろ ((ra ri ru re ro))
+わ を ん ((wa o n))
+== 合う ローマ字 | 合う ほうを ○で かこみましょう。 | 6 | cols=2
+ひ　{*hi|he|ha}
+ふ　{*hu|ho|ha}
+ほ　{*ho|hu|he}
+み　{*mi|me|mu}
+む　{*mu|mo|mi}
+ゆ　{*yu|yo|ya}
+よ　{*yo|yu|ya}
+り　{*ri|re|ru}
+る　{*ru|ro|ri}
+ろ　{*ro|ru|re}
+わ　{*wa|ya|ra}
+ん　{*n|m|nu}
+== ことばを 書く | つぎの ことばを ローマ字で 書きましょう。 | 4 | cols=2
+はな　[=hana]
+ひも　[=himo]
+ふね　[=hune]
+へや　[=heya]
+ほし　[=hosi]
+まめ　[=mame]
+みみ　[=mimi]
+むし　[=musi]
+ゆめ　[=yume]
+よる　[=yoru]
+りす　[=risu]
+わに　[=wani]
+もも　[=momo]
+やま　[=yama]
+からす　[=karasu]
+さくら　[=sakura]
+みかん　[=mikan]
+ほん　[=hon]
+
+@ romaji07 | 3 | ローマ字⑦ が行・ざ行・だ行・ば行・ぱ行 | にごる 音(g・z・d・b)と、半だく音(p)。
+== 行を なぞる | うすい 字を なぞりましょう。 | 5 | seq
+が ぎ ぐ げ ご ((ga gi gu ge go))
+ざ じ ず ぜ ぞ ((za zi zu ze zo))
+だ ぢ づ で ど ((da zi zu de do))
+ば び ぶ べ ぼ ((ba bi bu be bo))
+ぱ ぴ ぷ ぺ ぽ ((pa pi pu pe po))
+== 合う ローマ字 | 合う ほうを ○で かこみましょう。 | 6 | cols=2
+が　{*ga|ka|ba}
+ぎ　{*gi|ki|zi}
+ず　{*zu|su|tu}
+ぜ　{*ze|se|de}
+ど　{*do|to|bo}
+ぶ　{*bu|pu|hu}
+べ　{*be|pe|he}
+ぽ　{*po|bo|ho}
+ぴ　{*pi|bi|hi}
+じ　{*zi|si|ti}
+== ことばを 書く | つぎの ことばを ローマ字で 書きましょう。 | 4 | cols=2
+かぎ　[=kagi]
+ごま　[=goma]
+ひざ　[=hiza]
+かぜ　[=kaze]
+まど　[=mado]
+ぶた　[=buta]
+かば　[=kaba]
+えんぴつ　[=enpitu]
+てんぷら　[=tenpura]
+でんわ　[=denwa]
+だんご　[=dango]
+ぺんぎん　[=pengin]
+ごはん　[=gohan]
+
+@ romaji08 | 3 | ローマ字⑧ きゃ・しゅ・ちょ(ねじれる 音) | 小さい「ゃ・ゅ・ょ」の つく 音は y を 入れる。
+== ねじれる 音を なぞる | うすい 字を なぞりましょう。 | 4 | seq
+きゃ きゅ きょ ((kya kyu kyo))
+しゃ しゅ しょ ((sya syu syo))
+ちゃ ちゅ ちょ ((tya tyu tyo))
+にゃ にゅ にょ ((nya nyu nyo))
+ひゃ ひゅ ひょ ((hya hyu hyo))
+みゃ みゅ みょ ((mya myu myo))
+りゃ りゅ りょ ((rya ryu ryo))
+ぎゃ ぎゅ ぎょ ((gya gyu gyo))
+じゃ じゅ じょ ((zya zyu zyo))
+びゃ びゅ びょ ((bya byu byo))
+ぴゃ ぴゅ ぴょ ((pya pyu pyo))
+== 合う ローマ字 | 合う ものを ○で かこみましょう。 | 6 | cols=2
+きゃ　{*kya|kiya|ka}
+しゅ　{*syu|siyu|su}
+ちょ　{*tyo|tiyo|to}
+にゃ　{*nya|niya|na}
+ひょ　{*hyo|hiyo|ho}
+りゅ　{*ryu|riyu|ru}
+ぎょ　{*gyo|giyo|go}
+じゃ　{*zya|ziya|za}
+びゅ　{*byu|biyu|bu}
+みゃ　{*mya|miya|ma}
+== ことばを 書く | つぎの ことばを ローマ字で 書きましょう。 | 4 | cols=2
+きんぎょ　[=kingyo]
+じゃんけん　[=zyanken]
+おもちゃ　[=omotya]
+しゃしん　[=syasin]
+いしゃ　[=isya]
+ひゃく　[=hyaku]
+きゃべつ　[=kyabetu]
+でんしゃ　[=densya]
+ちゃわん　[=tyawan]
+にんじゃ　[=ninzya]
+りょかん　[=ryokan]
+
+@ romaji09 | 3 | ローマ字⑨ のばす 音・つまる 音・はねる 音 | のばす 音は ^、小さい「っ」は 字を 重ねる、「ん」の あとに a・i・u・e・o・y が 来たら ' を つける。
+== のばす 音 | 正しい ほうを ○で かこみましょう。 | 4 | cols=2
+おかあさん　{*okâsan|okasan}
+おとうさん　{*otôsan|otosan}
+こおり　{*kôri|kori}
+おにいさん　{*onîsan|onisan}
+くうき　{*kûki|kuki}
+ぼうし　{*bôsi|bosi}
+ひこうき　{*hikôki|hikoki}
+ゆうき　{*yûki|yuki}
+きのう　{*kinô|kino}
+ほうき　{*hôki|hoki}
+とけい　{*tokei|tokê}
+せんせい　{*sensei|sensê}
+== つまる 音 | つぎの ことばを ローマ字で 書きましょう。 | 4 | cols=2
+きって　[=kitte]
+らっぱ　[=rappa]
+にっき　[=nikki]
+せっけん　[=sekken]
+はっぱ　[=happa]
+しっぽ　[=sippo]
+ねっこ　[=nekko]
+ばった　[=batta]
+きっぷ　[=kippu]
+ざっし　[=zassi]
+== はねる 音 | 正しい ほうを ○で かこみましょう。 | 4 | cols=2
+てんいん　{*ten'in|tenin}
+ほんや　{*hon'ya|honya}
+きんえん　{*kin'en|kinen}
+げんいん　{*gen'in|genin}
+まんいん　{*man'in|manin}
+こんや　{*kon'ya|konya}
+ほんだな　{*hondana|hon'dana}
+みかん　{*mikan|mikann}
+ぶんか　{*bunka|bun'ka}
+
+@ romaji10 | 3 | ローマ字⑩ 大文字の 使い方 | 人の 名前や 地名は、はじめの 字を 大文字で 書く。
+== 大文字で 書き始める もの | 正しい ほうを ○で かこみましょう。 | 6
+(人の 名前)やまだ たろう　{*Yamada Tarô|yamada tarô}
+(人の 名前)すずき はなこ　{*Suzuki Hanako|suzuki hanako}
+(地名)とうきょう　{*Tôkyô|tôkyô}
+(地名)おおさか　{*Ôsaka|ôsaka}
+(地名)なごや　{*Nagoya|nagoya}
+(ふつうの ことば)いぬ　{*inu|Inu}
+(ふつうの ことば)さくら　{*sakura|Sakura}
+(ふつうの ことば)やま　{*yama|Yama}
+== 地名や 人の 名前を 書く | 地名や 人の 名前を ローマ字で 書きましょう。 | 4
+(地名)なごや　[=Nagoya]
+(地名)きょうと　[=Kyôto]
+(地名)さっぽろ　[=Sapporo]
+(地名)よこはま　[=Yokohama]
+(地名)せんだい　[=Sendai]
+(地名)なら　[=Nara]
+(地名)こうべ　[=Kôbe]
+(人の 名前)やまだ たろう　[=Yamada Tarô]
+(人の 名前)たなか けんた　[=Tanaka Kenta]
+(人の 名前)さとう ゆい　[=Satô Yui]
+
+@ romaji11 | 3 | ローマ字⑪ ヘボン式 | 駅や 看板で 見る 書き方。し→shi、ち→chi、つ→tsu、ふ→fu、じ→ji。
+== ヘボン式を なぞる | うすい 字を なぞりましょう。 | 4 | seq
+し ち つ ふ じ ((shi chi tsu fu ji))
+しゃ しゅ しょ ((sha shu sho))
+ちゃ ちゅ ちょ ((cha chu cho))
+じゃ じゅ じょ ((ja ju jo))
+== ヘボン式は どちら | ヘボン式で 書くと どちらですか。○で かこみましょう。 | 6 | cols=2
+し　{*shi|si}
+ち　{*chi|ti}
+つ　{*tsu|tu}
+ふ　{*fu|hu}
+じ　{*ji|zi}
+しゃ　{*sha|sya}
+ちょ　{*cho|tyo}
+じゅ　{*ju|zyu}
+== ヘボン式で 書く | ヘボン式で 書きましょう。 | 4 | cols=2
+すし　[=sushi]
+ちず　[=chizu]
+つき　[=tsuki]
+ふね　[=fune]
+しか　[=shika]
+(地名)ちば　[=Chiba]
+(地名)つくば　[=Tsukuba]
+(地名)しが　[=Shiga]
+
+@ romaji12 | 3 | ローマ字⑫ 読む・書く(まとめ) | ローマ字で 書いた ことばを 読む。ことばを ローマ字で 書く。
 == ローマ字を 読む | ローマ字で 書いた ことばを、ひらがなで （　）に 書きましょう。 | 6 | cols=2
 sakana　[さかな]
 inu　[いぬ]
@@ -372,23 +745,23 @@ denwa　[でんわ]
 kingyo　[きんぎょ]
 ringo　[りんご]
 mikan　[みかん]
-== ローマ字で 書く | つぎの ことばを ローマ字で （　）に 書きましょう。 | 6 | cols=2
-はな　[hana]
-ねこ　[neko]
-くも　[kumo]
-あめ　[ame]
-さる　[saru]
-かめ　[kame]
-たぬき　[tanuki]
-きりん　[kirin]
-やさい　[yasai]
-みどり　[midori]
-ゆき　[yuki]
-さくら　[sakura]
-ねっこ　[nekko]
-はっぱ　[happa]
-とんぼ　[tonbo]
-めだか　[medaka]
+== ローマ字で 書く | つぎの ことばを ローマ字で 書きましょう。 | 6 | cols=2
+はな　[=hana]
+ねこ　[=neko]
+くも　[=kumo]
+あめ　[=ame]
+さる　[=saru]
+かめ　[=kame]
+たぬき　[=tanuki]
+きりん　[=kirin]
+やさい　[=yasai]
+みどり　[=midori]
+ゆき　[=yuki]
+さくら　[=sakura]
+ねっこ　[=nekko]
+はっぱ　[=happa]
+とんぼ　[=tonbo]
+めだか　[=medaka]
 
 @ kosoado | 3 | こそあど言葉 | これ・それ・あれ・どれ。ものを 指す 言葉の 使い方と、指して いる もの。
 == こそあど言葉を えらぶ | 正しい ほうを ○で かこみましょう。 | 6
