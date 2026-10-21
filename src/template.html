@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="app-version" content="第9版(2026-10-21)">
+<meta name="app-version" content="第10版(2026-10-21)">
 <title>国語プリント</title>
 <link rel="icon" type="image/png" sizes="32x32" href="{{ICON:32}}">
 <link rel="icon" type="image/png" sizes="64x64" href="{{ICON:64}}">
@@ -270,8 +270,10 @@ body[data-youji="1"] .kind-card { min-height: 240px; }
 .wbox { display: inline-flex; flex-direction: column; align-items: center; vertical-align: bottom; margin: 0 2px; }
 .wbox .ruby { font-size: 10pt; font-weight: bold; line-height: 1.25; color: var(--ink); letter-spacing: 0.04em; }
 .wbox .cells { display: flex; gap: 1.5px; }
-.wbox .cell { width: 13mm; height: 11mm; border: 1.6px solid var(--rule); border-radius: 2px; display: block; }
-.wbox.small .cell { width: 10mm; height: 10mm; }
+.wbox .cell { width: 16mm; height: 14mm; border: 1.6px solid var(--rule); border-radius: 2px; display: block; }
+.wbox.mid .cell { width: 13.5mm; height: 12.5mm; }
+.wbox.small .cell { width: 11.5mm; height: 11.5mm; }
+.sheet:not(.long) .wbox .cell .ans { font-size: 17pt; }
 
 /* 答え */
 .ans { color: var(--answer); }
@@ -792,7 +794,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
 
   /* ===== 1枚に 入るかの 見つもり =====
      実測した 高さ(mm)。読みは 1行(2問)で 約17mm、
-     書きは ますが あるので 約23mm。この 差を もとに、読みと 書きの 数の
+     書きは ますが あるので 約26mm。この 差を もとに、読みと 書きの 数の
      くみあわせが A4 1枚に 入るかを 決める。 */
   // 長文の プリントは、本文の 長さが 学年で ちがうので、土台(漢字の 問題 なし)の 高さを
   // 学年ごとに 実測して 使う(tools/measure_layout.js が src/data/layout.json に 書く)
@@ -801,7 +803,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
   const LONG_BASE = LD.longBase || {}, LONG_BASE_R = LD.longBaseR || {};
   const STORY_H = LD.storyH || {}, STORY_HR = LD.storyHR || {};
   const LAYOUT = {
-    normal: { base: 48.5, group: 22.5, read: 16.8, write: 22.9, limit: 292, cap: 12, top: 30 },
+    normal: { base: 48.5, group: 22.5, read: 16.8, write: 25.9, limit: 292, cap: 12, top: 30 },
     long:   { base: 193, group: 16.7, read: 6.9, write: 19.0, limit: 294.5, cap: 2.5, top: 12 }
   };
   const DEFAULTS = { both: [8, 8], read: [16, 0], write: [0, 12], long: [4, 8] };
@@ -933,7 +935,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       else if (opt.model && item.no === 1) inner = `<span class="ans model">${esc(ch)}</span>`;
       return `<span class="cell">${inner}</span>`;
     }).join("");
-    const box = `<span class="wbox${item.head.length > 3 ? " small" : ""}">` +
+    const box = `<span class="wbox${item.head.length > 3 ? " small" : item.head.length === 3 ? " mid" : ""}">` +
       `<span class="ruby">${esc(item.ruby)}</span><span class="cells">${cells}</span></span>`;
     const sentence = esc(item.s).replace("{}", box + esc(item.tail));
     return `<div class="item">${n}<span class="body">${sentence}</span></div>`;
