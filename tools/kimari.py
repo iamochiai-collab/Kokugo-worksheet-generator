@@ -10,6 +10,7 @@
   ["b", 答え]             □に 書く(記号。答えが "" なら 何も 書かない □)
   ["u", 文字]             下線
   ["br"]                 行を かえる
+  ["k", かぎ]            ほかの 大問と 答えが かぶらないように する しるし(表示しない。行末の  #かぎ)
 じゅんばん(@order)の 問題は {"order": [正しい じゅんの 文…]}。
 """
 import re
@@ -23,6 +24,9 @@ def parse_item(line, where):
         if len(steps) < 3:
             raise SystemExit(f'{where}: じゅんばんの 文が 少ない')
         return {'order': steps}
+    key = None
+    if ' #' in line:
+        line, _, key = line.rpartition(' #')
     parts, pos = [], 0
     for m in TOKEN.finditer(line):
         if m.start() > pos:
@@ -48,6 +52,8 @@ def parse_item(line, where):
         pos = m.end()
     if pos < len(line):
         parts.append(['t', line[pos:]])
+    if key:
+        parts.append(['k', key.strip()])
     if not any(p[0] in 'cwb' for p in parts):
         raise SystemExit(f'{where}: 答える ところが ない -> {line}')
     return parts

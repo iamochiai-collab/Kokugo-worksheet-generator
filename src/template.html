@@ -467,7 +467,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
 .sheet.yj .sheet-foot { padding-top: 1mm; }
 /* ことばの きまり:A4 の 高さに あわせて、大問の 中で 問題を 均等に ならべる */
 .sheet.km { height: var(--paper-h); }
-.sheet.km .km-sec { display: flex; flex-direction: column; margin-top: 7mm; min-height: 0; }
+.sheet.km .km-sec { display: flex; flex-direction: column; margin-top: 7mm; }
 .sheet.km .km-sec > .instruction { margin-bottom: 2.5mm; }
 .km-items { flex: 1; display: flex; flex-direction: column; justify-content: space-evenly; gap: 2mm; }
 .km-items.c2 { display: grid; grid-template-columns: 1fr 1fr; align-content: space-evenly; column-gap: 8mm; }
@@ -1141,11 +1141,23 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
     const t = kimariTopicFor(grade, ktopic, seed);
     const rng = makeRng(seed * 7919 + 101);
     let num = 0;
+    // 前の 大問の 答えが わかって しまう 問題(同じ ことわざの 穴うめと 意味 など)は 出さない
+    const keyOf = (it) => {
+      if (it.order) return "";
+      const k = it.find((p) => p[0] === "k");
+      if (k) return "#" + k[1];
+      const br = it.findIndex((p) => p[0] === "br");
+      return (br < 0 ? it : it.slice(0, br)).map((p) => (p[0] === "t" || p[0] === "u" || p[0] === "w" ? p[1] : p[0] === "c" ? p[1][p[2]] : "")).join("").replace(/[\s　。、]/g, "");
+    };
+    const used = new Set();
     const sections = t.sections.map((sec) => {
       // （　）の はばは、その 大問で いちばん 長い 答えに そろえる(答えの 長さが わからないように)
       let longest = 0;
       for (const it of sec.items) if (!it.order) for (const p of it) if (p[0] === "w") longest = Math.max(longest, kmLen(p[1]));
-      const items = shuffled(sec.items, rng).slice(0, sec.n).map((it) => {
+      const pool = sec.items.filter((it) => !used.has(keyOf(it)));
+      const picked = shuffled(pool.length >= sec.n ? pool : sec.items, rng).slice(0, sec.n);
+      for (const it of picked) used.add(keyOf(it));
+      const items = picked.map((it) => {
         if (it.order) {
           let show = shuffled(it.order.map((_, i) => i), rng);
           for (let k = 0; k < 20 && show.every((v, i) => v === i); k++) show = shuffled(show, rng);

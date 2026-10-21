@@ -18,6 +18,19 @@ const path = require('path');
     for (const t of T.KM) for (const g of t.grades) for (let seed = 1; seed <= 40; seed++) {
       const s = T.buildKimariSheet({ grade: g, ktopic: t.id, seed, no: 1 });
       const where = `${t.id} 小${g} seed${seed}`;
+      // 大問を こえて 同じ 問題(答えが わかって しまう もの)が 出て いないか
+      const keyOf = (parts) => {
+        const k = parts.find((p) => p[0] === 'k');
+        if (k) return '#' + k[1];
+        const br = parts.findIndex((p) => p[0] === 'br');
+        return (br < 0 ? parts : parts.slice(0, br)).map((p) => (p[0] === 't' || p[0] === 'u' || p[0] === 'w' ? p[1] : p[0] === 'c' ? p[1][p[2]] : '')).join('').replace(/[\s　。、]/g, '');
+      };
+      const seen = new Set();
+      for (const sec of s.sections) for (const it of sec.items) if (it.parts) {
+        const k = keyOf(it.parts);
+        if (seen.has(k)) bad.push(`${where}: 同じ 問題が 2回 (${k})`);
+        seen.add(k);
+      }
       s.sections.forEach((sec, i) => {
         if (sec.items.length !== t.sections[i].n) bad.push(`${where}: 大問${i + 1} が ${sec.items.length} 問`);
         for (const it of sec.items) {
@@ -37,7 +50,9 @@ const path = require('path');
         if (h > 297.5) bad.push(`${where}${answer ? ' 答え' : ''}: ${h.toFixed(1)}mm`);
         if (el.scrollWidth > el.clientWidth + 2) bad.push(`${where}: よこに はみ出し`);
         // 大問の 中で 問題が はみ出して いないか
-        el.querySelectorAll('.km-items').forEach((box) => { if (box.scrollHeight > box.clientHeight + 2) bad.push(`${where}: 大問の 中が つまって いる`); });
+        el.querySelectorAll('.km-sec, .km-items').forEach((box) => { if (box.scrollHeight > box.clientHeight + 2) bad.push(`${where}: 大問の 中が つまって いる`); });
+        const secs = [...el.querySelectorAll('.km-sec')];
+        for (let k = 1; k < secs.length; k++) if (secs[k].getBoundingClientRect().top < secs[k - 1].getBoundingClientRect().bottom - 1) bad.push(`${where}: 大問が かさなって いる`);
         if (answer) {
           const want = s.sections.flatMap((sec) => sec.items.flatMap((it) => it.order ? it.order : (it.parts || []).filter((q) => q[0] === 'w' || q[0] === 'c' || (q[0] === 'b' && q[1])))).length;
           const got = el.querySelectorAll('.ans, .km-ch .o.ok').length;

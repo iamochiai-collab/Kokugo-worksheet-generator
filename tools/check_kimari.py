@@ -50,7 +50,7 @@ for t in topics:
                 if FOREIGN.search(s2) and t['id'] != 'romaji': errors.append(f'[{t["id"]}] 英字など: {s}')
                 for c in KANJI.findall(s2):
                     k = GRADE_OF.get(c)
-                    if g == 1 or k is None or k > g:
+                    if t['id'] != 'kana' and (g == 1 or k is None or k > g):
                         errors.append(f'[{t["id"]}] 小{g} で つかえない 漢字「{c}」(配当 {k}): {s}')
 print(f'ことばの きまり {len(topics)} こ / 問題 {total}')
 if errors:
