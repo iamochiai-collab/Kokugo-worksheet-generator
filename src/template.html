@@ -488,6 +488,11 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
 .km-bank, .km-legend { border: 1.4px solid #000; border-radius: 3px; padding: 2mm 5mm; margin: 0 0 2mm; }
 .km-bank { display: flex; flex-wrap: wrap; justify-content: center; gap: 1mm 7mm; font-size: 12.5pt; }
 .km-legend { display: grid; grid-template-columns: 1fr 1fr; gap: 1mm 6mm; font-size: 11pt; }
+.km-legend.one { grid-template-columns: 1fr; gap: 0.5mm; }
+.km-ch.long { display: flex; flex-direction: column; white-space: normal; margin-left: 4mm; line-height: 1.8; }
+.km-ch.long .ln { display: flex; gap: 2mm; align-items: baseline; }
+.km-ch.long .ln > i { font-size: 0.85em; flex: none; }
+.km-ch.long .o { padding: 0 0.5em; }
 .km-item.ord { align-items: flex-start; }
 .km-ord { display: flex; flex-direction: column; gap: 1.5mm; }
 .km-step { display: flex; align-items: center; gap: 3mm; line-height: 1.7; }
@@ -1167,8 +1172,13 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       case "u": return `<span class="km-u">${rb(p[1])}</span>`;
       case "br": return `<span class="km-br"></span>`;
       case "b": return `<span class="km-box">${ans && p[1] ? `<span class="ans">${esc(p[1])}</span>` : ""}</span>`;
-      case "c": return `<span class="km-ch">（${p[1].map((o, i) =>
-        `<span class="o${i === p[2] ? " ok" : ""}">${rb(o)}</span>`).join("<i>・</i>")}）</span>`;
+      case "c":
+        // 長い ものは 1行に 1つずつ ならべる(○で かこみやすいように)
+        if (Math.max(...p[1].map(kmLen)) > 9)
+          return `<span class="km-ch long">${p[1].map((o, i) =>
+            `<span class="ln"><i>${MARK[i]}</i><span class="o${i === p[2] ? " ok" : ""}">${rb(o)}</span></span>`).join("")}</span>`;
+        return `<span class="km-ch">（${p[1].map((o, i) =>
+          `<span class="o${i === p[2] ? " ok" : ""}">${rb(o)}</span>`).join("<i>・</i>")}）</span>`;
       case "w": return (p[2] ? `<span class="km-lbl">${rb(p[2])}</span>` : "") +
         `<span class="paren km-w">（<u style="width:${sec.wmm.toFixed(1)}mm">${ans ? `<span class="ans">${rb(p[1])}</span>` : "&nbsp;"}</u>）</span>`;
     }
@@ -1185,10 +1195,14 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
         return `<div class="item km-item${it.order ? " ord" : ""}"><span class="n">(${it.no})</span><span class="body">${body}</span></div>`;
       }).join("");
       // 大問の 高さの わりあい(のこりの 高さを 問題の 数に おうじて くばる)
-      const rows = sec.items.reduce((h, it) => h + (it.order ? it.order.length * 0.8 : it.parts.some((p) => p[0] === "br") ? 2.3 : 1), 0) / (sec.cols || 1);
+      const rows = sec.items.reduce((h, it) => {
+        if (it.order) return h + it.order.length * 0.8;
+        const long = it.parts.find((p) => p[0] === "c" && Math.max(...p[1].map(kmLen)) > 9);
+        return h + (long ? 1 + long[1].length * 0.85 : it.parts.some((p) => p[0] === "br") ? 2.3 : 1);
+      }, 0) / (sec.cols || 1);
       return `<section class="q-group km-sec" style="flex-grow:${(rows + 1.5).toFixed(2)}">` +
         `<h3><em>${i + 1}</em>${rb(sec.title)}</h3><p class="instruction">${rb(sec.inst)}</p>` +
-        (sec.legend ? `<div class="km-legend">${sec.legend.map((l) => `<span>${rb(l)}</span>`).join("")}</div>` : "") +
+        (sec.legend ? `<div class="km-legend${Math.max(...sec.legend.map(kmLen)) > 15 ? " one" : ""}">${sec.legend.map((l) => `<span>${rb(l)}</span>`).join("")}</div>` : "") +
         (sec.bank ? `<div class="km-bank">${sec.bank.map((w) => `<span>${rb(w)}</span>`).join("")}</div>` : "") +
         `<div class="km-items${sec.cols === 2 ? " c2" : ""}">${items}</div></section>`;
     }).join("");
