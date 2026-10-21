@@ -80,9 +80,11 @@ def load_kimari(path):
             continue
         if line.startswith('@ '):
             f = [x.strip() for x in line[2:].split('|')]
-            if len(f) != 4:
-                raise SystemExit(f'{where}: @ の 列が {len(f)} つ')
+            if len(f) not in (4, 5) or (len(f) == 5 and f[4] != 'nofuri'):
+                raise SystemExit(f'{where}: @ の 列が おかしい')
             topic = {'id': f[0], 'grades': [int(g) for g in f[1].split(',')], 'name': f[2], 'desc': f[3], 'sections': []}
+            if len(f) == 5:
+                topic['nofuri'] = True
             topics.append(topic)
         elif line.startswith('== '):
             f = [x.strip() for x in line[3:].split('|')]

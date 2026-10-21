@@ -16,9 +16,15 @@ const path = require('path');
     const bad = [];
     let n = 0, maxH = 0, worst = '';
     // ローマ字は 大文字(rcase: upper)でも しらべる
-    for (const t of T.KM) for (const g of t.grades) for (const rcase of t.id.startsWith('romaji') ? ['lower', 'upper'] : ['lower']) for (let seed = 1; seed <= 40; seed++) {
-      const s = T.buildKimariSheet({ grade: g, ktopic: t.id, seed, no: 1, rcase });
-      const where = `${t.id} 小${g}${rcase === 'upper' ? ' 大文字' : ''} seed${seed}`;
+    // ふりがな(すべて)・ひらがな(習って いない 漢字)でも しらべる(シードは 少なめ)
+    const jobs = [];
+    for (const t of T.KM) for (const g of t.grades) {
+      for (const rcase of t.id.startsWith('romaji') ? ['lower', 'upper'] : ['lower']) for (let seed = 1; seed <= 40; seed++) jobs.push([t, g, rcase, 'normal', seed]);
+      if (!t.nofuri) for (const kfuri of ['all', 'kana']) for (let seed = 1; seed <= 12; seed++) jobs.push([t, g, 'lower', kfuri, seed]);
+    }
+    for (const [t, g, rcase, kfuri, seed] of jobs) {
+      const s = T.buildKimariSheet({ grade: g, ktopic: t.id, seed, no: 1, rcase, kfuri, klearn: 'prev' });
+      const where = `${t.id} 小${g}${rcase === 'upper' ? ' 大文字' : ''}${kfuri !== 'normal' ? ' ' + kfuri : ''} seed${seed}`;
       // 大問を こえて 同じ 問題(答えが わかって しまう もの)が 出て いないか
       const keyOf = (parts) => {
         const k = parts.find((p) => p[0] === 'k');
