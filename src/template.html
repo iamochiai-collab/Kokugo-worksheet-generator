@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="app-version" content="第21版(2026-10-22)">
+<meta name="app-version" content="第22版(2026-10-22)">
 <title>国語プリント</title>
 <link rel="icon" type="image/png" sizes="32x32" href="{{ICON:32}}">
 <link rel="icon" type="image/png" sizes="64x64" href="{{ICON:64}}">
@@ -237,7 +237,16 @@ body:not([data-stage="1"]) .tk-only, body[data-stage="1"] .no-tk { display: none
   .hg { width: calc(25% - 6px); }
   .levels { display: flex; } .level-btn { flex: 1; padding: 8px 4px; font-size: 13px; white-space: nowrap; }
   .kind-card { min-height: 150px; }
+  /* スマホで プリントを 見る とき: 上の バーは ボタン 1れつだけ。せっていは「せってい ▼」で ひらく */
+  .panel { padding: 6px 8px; gap: 6px 10px; border-top-width: 3px; }
+  .panel .title-row { display: none; }
+  body:not([data-opts="1"]) .panel > label { display: none; }
+  body[data-opts="1"] .panel { max-height: 72vh; overflow-y: auto; }
+  .panel .buttons { margin-left: 0; width: 100%; gap: 5px; flex-wrap: nowrap; }
+  .panel .buttons button { flex: 1 1 0; min-width: 0; padding: 5px 3px; font-size: 12px; line-height: 1.25; border-radius: 8px; white-space: normal; word-break: keep-all; }
+  .panel .msg { width: 100%; }
 }
+@media (min-width: 761px) { #btn-opts { display: none; } }
 
 /* ===== まとめて作る ===== */
 .batch { border: 0; border-top: 6px solid var(--gc); border-radius: 16px; padding: 0; max-width: 540px; width: calc(100% - 32px); box-shadow: 0 10px 40px rgba(0,0,0,0.25); color: var(--ui-ink); }
@@ -680,6 +689,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
 
   <div class="buttons">
     <button class="secondary sheet-only" id="btn-home">← メニュー</button>
+    <button class="secondary sheet-only" id="btn-opts" aria-expanded="false">せってい ▼</button>
     <button class="secondary sheet-only" id="btn-again">べつの問題</button>
     <button class="secondary sheet-only" id="btn-batch">まとめて作る・保存</button>
     <button class="sheet-only" id="btn-print">印刷</button>
@@ -2056,8 +2066,11 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
     const paper = 794; // 210mm を 96dpi に したときの ピクセル
     const scale = Math.min(1, avail / paper);
     for (const el of document.querySelectorAll("#sheets .sheet")) {
+      // 小さい 画面では 左上を 起点に ちぢめて、まん中に よせる
       el.style.transform = scale < 1 ? `scale(${scale})` : "";
-      el.style.marginBottom = scale < 1 ? `${18 - (1 - scale) * 1122}px` : "";
+      el.style.transformOrigin = scale < 1 ? "top left" : "";
+      el.style.marginLeft = scale < 1 ? `${Math.max(0, (avail + 24 - paper * scale) / 2)}px` : "";
+      el.style.marginBottom = scale < 1 ? `${18 - (1 - scale) * el.offsetHeight}px` : "";
     }
   }
 
@@ -2331,6 +2344,12 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       show(1, state.seed);
     });
     $("btn-home").addEventListener("click", () => goHome());
+    $("btn-opts").addEventListener("click", () => {
+      const open = document.body.dataset.opts !== "1";
+      document.body.dataset.opts = open ? "1" : "";
+      $("btn-opts").setAttribute("aria-expanded", String(open));
+      $("btn-opts").textContent = open ? "とじる ▲" : "せってい ▼";
+    });
     $("btn-again").addEventListener("click", () => {
       readControls();
       state.seed = state.seed % 999999 + 1;
