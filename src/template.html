@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="app-version" content="第19版(2026-10-22)">
+<meta name="app-version" content="第20版(2026-10-22)">
 <title>国語プリント</title>
 <link rel="icon" type="image/png" sizes="32x32" href="{{ICON:32}}">
 <link rel="icon" type="image/png" sizes="64x64" href="{{ICON:64}}">
@@ -623,6 +623,9 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
   <label class="sheet-only kk-only">習った 漢字
     <select id="f-klearn"></select>
   </label>
+  <label class="sheet-only kk-only">ローマ字の 書き方
+    <select id="f-rstyle"><option value="std">教科書(ten'in・okâsan)</option><option value="hyp">ハイフン(ten-in・oka-san)</option><option value="sep">1音ずつ 区切る(te n i n)</option></select>
+  </label>
   <label class="sheet-only kk-only">ローマ字の 字
     <select id="f-rcase"><option value="lower">小文字(ka ki ku)</option><option value="upper">大文字(KA KI KU)</option></select>
   </label>
@@ -1181,8 +1184,15 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
   // ローマ字で 小文字・大文字を えらべる 単元(①②③⑩は 大文字・小文字 そのものを 学ぶので のぞく)
   const RCASE_SKIP = ["romaji01", "romaji02", "romaji03", "romaji10"];
   const hasRcase = (id) => !!id && id.startsWith("romaji") && !RCASE_SKIP.includes(id);
-  function buildKimariSheet({ grade, ktopic, seed, no, rcase, kfuri, klearn }) {
+  // ローマ字の 書き方: std = 教科書(ten'in・okâsan)/ hyp = ハイフン(ten-in・oka-san)/ sep = 1音ずつ(te n i n)
+  // データの «教科書¦ハイフン¦1音ずつ» から えらぶ(tools/make_romaji.py が 作る)
+  const RSTYLES = ["std", "hyp", "sep"];
+  const hasRstyle = (id) => /^romaji(0[4-9]|1[0-2])$/.test(id || "");
+  function buildKimariSheet({ grade, ktopic, seed, no, rcase, kfuri, klearn, rstyle }) {
     const t = kimariTopicFor(grade, ktopic, seed);
+    const si = Math.max(0, RSTYLES.indexOf(rstyle));
+    const SEL = (x) => (typeof x === "string" && x.includes("«") ? x.replace(/«([^¦»]*)¦([^¦»]*)¦([^»]*)»/g, (m, a, b, c) => [a, b, c][si]) : x);
+    const styleItem = (it) => (it.order ? it : it.map((p) => p[0] === "c" ? ["c", p[1].map(SEL), p[2]] : p.map((x, k) => (k === 0 ? x : SEL(x)))));
     const upper = rcase === "upper" && hasRcase(t.id);
     const UP = (x) => (upper ? x.replace(/[a-zâêîôû]/g, (c) => c.toUpperCase()) : x);
     const rng = makeRng(seed * 7919 + 101);
@@ -1196,7 +1206,8 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       return (br < 0 ? it : it.slice(0, br)).map((p) => (p[0] === "t" || p[0] === "u" || p[0] === "w" || p[0] === "wl" ? p[1] : p[0] === "c" ? p[1][p[2]] : p[0] === "tr" ? p[1].join(" ") : "")).join("").replace(/[\s　。、]/g, "");
     };
     const used = new Set();
-    const sections = t.sections.map((sec) => {
+    const sections = t.sections.map((sec0) => {
+      const sec = Object.assign({}, sec0, { items: sec0.items.map(styleItem) });
       // （　）の はばは、その 大問で いちばん 長い 答えに そろえる(答えの 長さが わからないように)
       let longest = 0, longestL = 0;
       for (const it of sec.items) if (!it.order) for (const p of it) {
@@ -1229,10 +1240,13 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
         });
         return { no: ++num, parts };
       });
+      // 4本線の はばは この プリントに 出た 答えで きめる(2れつの ときは 列の はばまで)
+      longestL = 0;
+      for (const it of items) for (const p of it.parts || []) if (p[0] === "wl") longestL = Math.max(longestL, kmLen(p[1]));
       const answers = items.flatMap((it) => (it.parts || []).filter((p) => p[0] === "w").map((p) => p[1]));
       const bank = sec.box ? sec.box.slice() : sec.bank ? shuffled([...new Set(answers)], rng) : null;
       return Object.assign({}, sec, { items, bank, wmm: sec.w || Math.max(16, longest * 5.8 + 6),
-                                      wlmm: Math.max(30, longestL * (upper ? 7.8 : 6.2) + 10) });
+                                      wlmm: Math.min(sec.cols === 2 ? 82 : 170, Math.max(30, longestL * (upper ? 7.8 : 6.2) + 10)) });
     });
     // 習った 漢字: prev = 前の 学年まで(年度の はじめ)、this = その 学年まで。中学は 小6までの 漢字
     const kbase = grade >= 7 ? 6 : klearn === "this" ? grade : grade - 1;
@@ -1681,7 +1695,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
   const state = { grade: 3, gRead: 3, gWrite: 3, gStory: 3, furi: "none", genre: "all",
                   kind: "both", level: 2, nRead: 8, nWrite: 8, seed: 1,
                   ykind: "hira", yrow: "auto", ytheme: "auto", yplay: "mix", yscript: "hira", ycat: "all", yhint: "first",
-                  ymatch: "word", ystep: 1, yname: "", ylimit: 0, ywn: 7, tk: false, stage: 0, ktopic: "auto", rcase: "lower", kfuri: "normal", klearn: "prev" };
+                  ymatch: "word", ystep: 1, yname: "", ylimit: 0, ywn: 7, tk: false, stage: 0, ktopic: "auto", rcase: "lower", rstyle: "std", kfuri: "normal", klearn: "prev" };
   // 学年 0 は ようじ
   const gradeLabel = (g) => (g === 0 ? "ようじ" : BANKS[g - 1].label);
 
@@ -1749,6 +1763,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
         state.kind = "kimari";
         state.ktopic = changedId === "f-grade" || changedId === "f-kind" ? "auto" : ($("f-ktopic").value || "auto");
         state.rcase = $("f-rcase").value || "lower";
+        state.rstyle = $("f-rstyle").value || "std";
         state.kfuri = $("f-kfuri").value || "normal";
         state.klearn = $("f-klearn").value || "prev";
         setMsg("");
@@ -1834,6 +1849,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
     for (const id of ["f-level", "f-read", "f-write", "f-model", "f-anslist"]) $(id).closest("label").hidden = isKm;
     $("f-ktopic").closest("label").hidden = !isKm;
     $("f-rcase").closest("label").hidden = true;
+    $("f-rstyle").closest("label").hidden = true;
     $("f-kfuri").closest("label").hidden = true;
     $("f-klearn").closest("label").hidden = true;
     if (isKm) {
@@ -1843,6 +1859,8 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       $("f-ktopic").value = state.ktopic;
       $("f-rcase").value = state.rcase;
       $("f-rcase").closest("label").hidden = !hasRcase(state.ktopic);
+      $("f-rstyle").value = state.rstyle;
+      $("f-rstyle").closest("label").hidden = !hasRstyle(state.ktopic);
       const kt = KM.find((t) => t.id === state.ktopic);
       $("f-kfuri").value = state.kfuri;
       $("f-kfuri").closest("label").hidden = !!(kt && kt.nofuri);
@@ -2235,7 +2253,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       $("b-seed").value = String(state.seed);
       $("batch").showModal();
     });
-    for (const id of ["f-grade", "f-gread", "f-gwrite", "f-gstory", "f-genre", "f-furi", "f-kind", "f-ykind", "f-yrow", "f-ytheme", "f-yplay", "f-yscript", "f-ycat", "f-yhint", "f-ymatch", "f-ystep", "f-yname", "f-ylimit", "f-ywn", "f-tk", "f-level", "f-ktopic", "f-rcase", "f-kfuri", "f-klearn",
+    for (const id of ["f-grade", "f-gread", "f-gwrite", "f-gstory", "f-genre", "f-furi", "f-kind", "f-ykind", "f-yrow", "f-ytheme", "f-yplay", "f-yscript", "f-ycat", "f-yhint", "f-ymatch", "f-ystep", "f-yname", "f-ylimit", "f-ywn", "f-tk", "f-level", "f-ktopic", "f-rcase", "f-rstyle", "f-kfuri", "f-klearn",
                       "f-read", "f-write", "f-seed", "f-model", "f-ans", "f-anslist"]) {
       $(id).addEventListener("change", () => {
         readControls(id);

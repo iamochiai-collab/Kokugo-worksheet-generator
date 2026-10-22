@@ -554,21 +554,21 @@ e　{*え|お|あ}
 お　{*o|i|a}
 o　{*お|え|あ}
 == ことばを 書く | つぎの ことばを ローマ字で 書きましょう。 | 4 | cols=2
-あい　[=ai] #あい
-あお　[=ao] #あお
-いえ　[=ie] #いえ
-うえ　[=ue] #うえ
-おい　[=oi] #おい
-えい　[=ei] #えい
-あおい　[=aoi] #あおい
+あい　[=«ai¦ai¦a i»] #あい
+あお　[=«ao¦ao¦a o»] #あお
+いえ　[=«ie¦ie¦i e»] #いえ
+うえ　[=«ue¦ue¦u e»] #うえ
+おい　[=«oi¦oi¦o i»] #おい
+えい　[=«ei¦ei¦e i»] #えい
+あおい　[=«aoi¦aoi¦a o i»] #あおい
 == ことばを 読む | ローマ字で 書いた ことばを ひらがなで 書きましょう。 | 2 | cols=2
-ai　[あい] #あい
-ao　[あお] #あお
-ie　[いえ] #いえ
-ue　[うえ] #うえ
-oi　[おい] #おい
-ei　[えい] #えい
-aoi　[あおい] #あおい
+«ai¦ai¦a i»　[あい] #あい
+«ao¦ao¦a o»　[あお] #あお
+«ie¦ie¦i e»　[いえ] #いえ
+«ue¦ue¦u e»　[うえ] #うえ
+«oi¦oi¦o i»　[おい] #おい
+«ei¦ei¦e i»　[えい] #えい
+«aoi¦aoi¦a o i»　[あおい] #あおい
 
 @ romaji05 | 3 | ローマ字⑤ か行・さ行・た行・な行 | k・s・t・n に a・i・u・e・o を 組み合わせる。
 == 行を なぞる | うすい 字を なぞりましょう。 | 3 | seq
@@ -618,143 +618,143 @@ ne　{*ね|こ|な}
 の　{*no|ne|na}
 no　{*の|く|ぬ}
 == ことばを 書く | つぎの ことばを ローマ字で 書きましょう。 | 4 | cols=2
-かさ　[=kasa] #かさ
-いけ　[=ike] #いけ
-あさ　[=asa] #あさ
-すいか　[=suika] #すいか
-たこ　[=tako] #たこ
-なつ　[=natu] #なつ
-ねこ　[=neko] #ねこ
-いぬ　[=inu] #いぬ
-きつね　[=kitune] #きつね
-さかな　[=sakana] #さかな
-くつ　[=kutu] #くつ
-あし　[=asi] #あし
-なす　[=nasu] #なす
-たね　[=tane] #たね
-そと　[=soto] #そと
-かき　[=kaki] #かき
-かお　[=kao] #かお
-せき　[=seki] #せき
-あき　[=aki] #あき
-いか　[=ika] #いか
-うし　[=usi] #うし
-おに　[=oni] #おに
-かに　[=kani] #かに
-くち　[=kuti] #くち
-こし　[=kosi] #こし
-さけ　[=sake] #さけ
-しか　[=sika] #しか
-すし　[=susi] #すし
-せなか　[=senaka] #せなか
-たき　[=taki] #たき
-たけ　[=take] #たけ
-つくえ　[=tukue] #つくえ
-つの　[=tuno] #つの
-つな　[=tuna] #つな
-なか　[=naka] #なか
-なし　[=nasi] #なし
-にく　[=niku] #にく
-ぬの　[=nuno] #ぬの
-のき　[=noki] #のき
-おかし　[=okasi] #おかし
-おなか　[=onaka] #おなか
-かたな　[=katana] #かたな
-きのこ　[=kinoko] #きのこ
-くさ　[=kusa] #くさ
-こたつ　[=kotatu] #こたつ
-えき　[=eki] #えき
-いす　[=isu] #いす
-うち　[=uti] #うち
-おけ　[=oke] #おけ
-きく　[=kiku] #きく
-くき　[=kuki] #くき
-こい　[=koi] #こい
-すな　[=suna] #すな
-たいこ　[=taiko] #たいこ
-とけい　[=tokei] #とけい
-にし　[=nisi] #にし
-いと　[=ito] #いと
-うた　[=uta] #うた
-おかき　[=okaki] #おかき
-せかい　[=sekai] #せかい
-そこ　[=soko] #そこ
-つき　[=tuki] #つき
-てつ　[=tetu] #てつ
-とし　[=tosi] #とし
-こいぬ　[=koinu] #こいぬ
-たぬき　[=tanuki] #たぬき
-いのしし　[=inosisi] #いのしし
-いね　[=ine] #いね
+かさ　[=«kasa¦kasa¦ka sa»] #かさ
+いけ　[=«ike¦ike¦i ke»] #いけ
+あさ　[=«asa¦asa¦a sa»] #あさ
+すいか　[=«suika¦suika¦su i ka»] #すいか
+たこ　[=«tako¦tako¦ta ko»] #たこ
+なつ　[=«natu¦natu¦na tu»] #なつ
+ねこ　[=«neko¦neko¦ne ko»] #ねこ
+いぬ　[=«inu¦inu¦i nu»] #いぬ
+きつね　[=«kitune¦kitune¦ki tu ne»] #きつね
+さかな　[=«sakana¦sakana¦sa ka na»] #さかな
+くつ　[=«kutu¦kutu¦ku tu»] #くつ
+あし　[=«asi¦asi¦a si»] #あし
+なす　[=«nasu¦nasu¦na su»] #なす
+たね　[=«tane¦tane¦ta ne»] #たね
+そと　[=«soto¦soto¦so to»] #そと
+かき　[=«kaki¦kaki¦ka ki»] #かき
+かお　[=«kao¦kao¦ka o»] #かお
+せき　[=«seki¦seki¦se ki»] #せき
+あき　[=«aki¦aki¦a ki»] #あき
+いか　[=«ika¦ika¦i ka»] #いか
+うし　[=«usi¦usi¦u si»] #うし
+おに　[=«oni¦oni¦o ni»] #おに
+かに　[=«kani¦kani¦ka ni»] #かに
+くち　[=«kuti¦kuti¦ku ti»] #くち
+こし　[=«kosi¦kosi¦ko si»] #こし
+さけ　[=«sake¦sake¦sa ke»] #さけ
+しか　[=«sika¦sika¦si ka»] #しか
+すし　[=«susi¦susi¦su si»] #すし
+せなか　[=«senaka¦senaka¦se na ka»] #せなか
+たき　[=«taki¦taki¦ta ki»] #たき
+たけ　[=«take¦take¦ta ke»] #たけ
+つくえ　[=«tukue¦tukue¦tu ku e»] #つくえ
+つの　[=«tuno¦tuno¦tu no»] #つの
+つな　[=«tuna¦tuna¦tu na»] #つな
+なか　[=«naka¦naka¦na ka»] #なか
+なし　[=«nasi¦nasi¦na si»] #なし
+にく　[=«niku¦niku¦ni ku»] #にく
+ぬの　[=«nuno¦nuno¦nu no»] #ぬの
+のき　[=«noki¦noki¦no ki»] #のき
+おかし　[=«okasi¦okasi¦o ka si»] #おかし
+おなか　[=«onaka¦onaka¦o na ka»] #おなか
+かたな　[=«katana¦katana¦ka ta na»] #かたな
+きのこ　[=«kinoko¦kinoko¦ki no ko»] #きのこ
+くさ　[=«kusa¦kusa¦ku sa»] #くさ
+こたつ　[=«kotatu¦kotatu¦ko ta tu»] #こたつ
+えき　[=«eki¦eki¦e ki»] #えき
+いす　[=«isu¦isu¦i su»] #いす
+うち　[=«uti¦uti¦u ti»] #うち
+おけ　[=«oke¦oke¦o ke»] #おけ
+きく　[=«kiku¦kiku¦ki ku»] #きく
+くき　[=«kuki¦kuki¦ku ki»] #くき
+こい　[=«koi¦koi¦ko i»] #こい
+すな　[=«suna¦suna¦su na»] #すな
+たいこ　[=«taiko¦taiko¦ta i ko»] #たいこ
+とけい　[=«tokei¦tokei¦to ke i»] #とけい
+にし　[=«nisi¦nisi¦ni si»] #にし
+いと　[=«ito¦ito¦i to»] #いと
+うた　[=«uta¦uta¦u ta»] #うた
+おかき　[=«okaki¦okaki¦o ka ki»] #おかき
+せかい　[=«sekai¦sekai¦se ka i»] #せかい
+そこ　[=«soko¦soko¦so ko»] #そこ
+つき　[=«tuki¦tuki¦tu ki»] #つき
+てつ　[=«tetu¦tetu¦te tu»] #てつ
+とし　[=«tosi¦tosi¦to si»] #とし
+こいぬ　[=«koinu¦koinu¦ko i nu»] #こいぬ
+たぬき　[=«tanuki¦tanuki¦ta nu ki»] #たぬき
+いのしし　[=«inosisi¦inosisi¦i no si si»] #いのしし
+いね　[=«ine¦ine¦i ne»] #いね
 == ことばを 読む | ローマ字で 書いた ことばを ひらがなで 書きましょう。 | 4 | cols=2
-kasa　[かさ] #かさ
-ike　[いけ] #いけ
-asa　[あさ] #あさ
-suika　[すいか] #すいか
-tako　[たこ] #たこ
-natu　[なつ] #なつ
-neko　[ねこ] #ねこ
-inu　[いぬ] #いぬ
-kitune　[きつね] #きつね
-sakana　[さかな] #さかな
-kutu　[くつ] #くつ
-asi　[あし] #あし
-nasu　[なす] #なす
-tane　[たね] #たね
-soto　[そと] #そと
-kaki　[かき] #かき
-kao　[かお] #かお
-seki　[せき] #せき
-aki　[あき] #あき
-ika　[いか] #いか
-usi　[うし] #うし
-oni　[おに] #おに
-kani　[かに] #かに
-kuti　[くち] #くち
-kosi　[こし] #こし
-sake　[さけ] #さけ
-sika　[しか] #しか
-susi　[すし] #すし
-senaka　[せなか] #せなか
-taki　[たき] #たき
-take　[たけ] #たけ
-tukue　[つくえ] #つくえ
-tuno　[つの] #つの
-tuna　[つな] #つな
-naka　[なか] #なか
-nasi　[なし] #なし
-niku　[にく] #にく
-nuno　[ぬの] #ぬの
-noki　[のき] #のき
-okasi　[おかし] #おかし
-onaka　[おなか] #おなか
-katana　[かたな] #かたな
-kinoko　[きのこ] #きのこ
-kusa　[くさ] #くさ
-kotatu　[こたつ] #こたつ
-eki　[えき] #えき
-isu　[いす] #いす
-uti　[うち] #うち
-oke　[おけ] #おけ
-kiku　[きく] #きく
-kuki　[くき] #くき
-koi　[こい] #こい
-suna　[すな] #すな
-taiko　[たいこ] #たいこ
-tokei　[とけい] #とけい
-nisi　[にし] #にし
-ito　[いと] #いと
-uta　[うた] #うた
-okaki　[おかき] #おかき
-sekai　[せかい] #せかい
-soko　[そこ] #そこ
-tuki　[つき] #つき
-tetu　[てつ] #てつ
-tosi　[とし] #とし
-koinu　[こいぬ] #こいぬ
-tanuki　[たぬき] #たぬき
-inosisi　[いのしし] #いのしし
-ine　[いね] #いね
+«kasa¦kasa¦ka sa»　[かさ] #かさ
+«ike¦ike¦i ke»　[いけ] #いけ
+«asa¦asa¦a sa»　[あさ] #あさ
+«suika¦suika¦su i ka»　[すいか] #すいか
+«tako¦tako¦ta ko»　[たこ] #たこ
+«natu¦natu¦na tu»　[なつ] #なつ
+«neko¦neko¦ne ko»　[ねこ] #ねこ
+«inu¦inu¦i nu»　[いぬ] #いぬ
+«kitune¦kitune¦ki tu ne»　[きつね] #きつね
+«sakana¦sakana¦sa ka na»　[さかな] #さかな
+«kutu¦kutu¦ku tu»　[くつ] #くつ
+«asi¦asi¦a si»　[あし] #あし
+«nasu¦nasu¦na su»　[なす] #なす
+«tane¦tane¦ta ne»　[たね] #たね
+«soto¦soto¦so to»　[そと] #そと
+«kaki¦kaki¦ka ki»　[かき] #かき
+«kao¦kao¦ka o»　[かお] #かお
+«seki¦seki¦se ki»　[せき] #せき
+«aki¦aki¦a ki»　[あき] #あき
+«ika¦ika¦i ka»　[いか] #いか
+«usi¦usi¦u si»　[うし] #うし
+«oni¦oni¦o ni»　[おに] #おに
+«kani¦kani¦ka ni»　[かに] #かに
+«kuti¦kuti¦ku ti»　[くち] #くち
+«kosi¦kosi¦ko si»　[こし] #こし
+«sake¦sake¦sa ke»　[さけ] #さけ
+«sika¦sika¦si ka»　[しか] #しか
+«susi¦susi¦su si»　[すし] #すし
+«senaka¦senaka¦se na ka»　[せなか] #せなか
+«taki¦taki¦ta ki»　[たき] #たき
+«take¦take¦ta ke»　[たけ] #たけ
+«tukue¦tukue¦tu ku e»　[つくえ] #つくえ
+«tuno¦tuno¦tu no»　[つの] #つの
+«tuna¦tuna¦tu na»　[つな] #つな
+«naka¦naka¦na ka»　[なか] #なか
+«nasi¦nasi¦na si»　[なし] #なし
+«niku¦niku¦ni ku»　[にく] #にく
+«nuno¦nuno¦nu no»　[ぬの] #ぬの
+«noki¦noki¦no ki»　[のき] #のき
+«okasi¦okasi¦o ka si»　[おかし] #おかし
+«onaka¦onaka¦o na ka»　[おなか] #おなか
+«katana¦katana¦ka ta na»　[かたな] #かたな
+«kinoko¦kinoko¦ki no ko»　[きのこ] #きのこ
+«kusa¦kusa¦ku sa»　[くさ] #くさ
+«kotatu¦kotatu¦ko ta tu»　[こたつ] #こたつ
+«eki¦eki¦e ki»　[えき] #えき
+«isu¦isu¦i su»　[いす] #いす
+«uti¦uti¦u ti»　[うち] #うち
+«oke¦oke¦o ke»　[おけ] #おけ
+«kiku¦kiku¦ki ku»　[きく] #きく
+«kuki¦kuki¦ku ki»　[くき] #くき
+«koi¦koi¦ko i»　[こい] #こい
+«suna¦suna¦su na»　[すな] #すな
+«taiko¦taiko¦ta i ko»　[たいこ] #たいこ
+«tokei¦tokei¦to ke i»　[とけい] #とけい
+«nisi¦nisi¦ni si»　[にし] #にし
+«ito¦ito¦i to»　[いと] #いと
+«uta¦uta¦u ta»　[うた] #うた
+«okaki¦okaki¦o ka ki»　[おかき] #おかき
+«sekai¦sekai¦se ka i»　[せかい] #せかい
+«soko¦soko¦so ko»　[そこ] #そこ
+«tuki¦tuki¦tu ki»　[つき] #つき
+«tetu¦tetu¦te tu»　[てつ] #てつ
+«tosi¦tosi¦to si»　[とし] #とし
+«koinu¦koinu¦ko i nu»　[こいぬ] #こいぬ
+«tanuki¦tanuki¦ta nu ki»　[たぬき] #たぬき
+«inosisi¦inosisi¦i no si si»　[いのしし] #いのしし
+«ine¦ine¦i ne»　[いね] #いね
 
 @ romaji06 | 3 | ローマ字⑥ は行・ま行・や行・ら行・わ行・ん | h・m・y・r・w と、「ん」の n。
 == 行を なぞる | うすい 字を なぞりましょう。 | 3 | seq
@@ -805,155 +805,154 @@ wa　{*わ|ほ|る}
 ん　{*n|ra|hi}
 n　{*ん|ふ|ろ}
 == ことばを 書く | つぎの ことばを ローマ字で 書きましょう。 | 4 | cols=2
-なかま　[=nakama] #なかま
-あたま　[=atama] #あたま
-おもち　[=omoti] #おもち
-かえる　[=kaeru] #かえる
-きりん　[=kirin] #きりん
-けむし　[=kemusi] #けむし
-さくら　[=sakura] #さくら
-しろ　[=siro] #しろ
-すみれ　[=sumire] #すみれ
-せみ　[=semi] #せみ
-そら　[=sora] #そら
-とり　[=tori] #とり
-にわとり　[=niwatori] #にわとり
-のり　[=nori] #のり
-はさみ　[=hasami] #はさみ
-ひよこ　[=hiyoko] #ひよこ
-ふね　[=hune] #ふね
-ほし　[=hosi] #ほし
-まめ　[=mame] #まめ
-みかん　[=mikan] #みかん
-むし　[=musi] #むし
-もも　[=momo] #もも
-やま　[=yama] #やま
-ゆき　[=yuki] #ゆき
-よる　[=yoru] #よる
-りす　[=risu] #りす
-わに　[=wani] #わに
-はな　[=hana] #はな
-ひも　[=himo] #ひも
-ふえ　[=hue] #ふえ
-へや　[=heya] #へや
-ほん　[=hon] #ほん
-みみ　[=mimi] #みみ
-むね　[=mune] #むね
-もり　[=mori] #もり
-やね　[=yane] #やね
-よこ　[=yoko] #よこ
-あめ　[=ame] #あめ
-うみ　[=umi] #うみ
-えほん　[=ehon] #えほん
-かめ　[=kame] #かめ
-くま　[=kuma] #くま
-くも　[=kumo] #くも
-くり　[=kuri] #くり
-こま　[=koma] #こま
-さる　[=saru] #さる
-しま　[=sima] #しま
-はし　[=hasi] #はし
-はち　[=hati] #はち
-ひと　[=hito] #ひと
-ふく　[=huku] #ふく
-へそ　[=heso] #へそ
-ほたる　[=hotaru] #ほたる
-まくら　[=makura] #まくら
-みそ　[=miso] #みそ
-むかし　[=mukasi] #むかし
-もち　[=moti] #もち
-やさい　[=yasai] #やさい
-ゆめ　[=yume] #ゆめ
-りか　[=rika] #りか
-れきし　[=rekisi] #れきし
-わた　[=wata] #わた
-からす　[=karasu] #からす
-ほたて　[=hotate] #ほたて
-みなと　[=minato] #みなと
-さいふ　[=saihu] #さいふ
-れんこん　[=renkon] #れんこん
-からて　[=karate] #からて
-てまり　[=temari] #てまり
-あみ　[=ami] #あみ
-おふろ　[=ohuro] #おふろ
-かみ　[=kami] #かみ
-くわ　[=kuwa] #くわ
-さら　[=sara] #さら
+なかま　[=«nakama¦nakama¦na ka ma»] #なかま
+あたま　[=«atama¦atama¦a ta ma»] #あたま
+おもち　[=«omoti¦omoti¦o mo ti»] #おもち
+かえる　[=«kaeru¦kaeru¦ka e ru»] #かえる
+きりん　[=«kirin¦kirin¦ki ri n»] #きりん
+けむし　[=«kemusi¦kemusi¦ke mu si»] #けむし
+さくら　[=«sakura¦sakura¦sa ku ra»] #さくら
+しろ　[=«siro¦siro¦si ro»] #しろ
+すみれ　[=«sumire¦sumire¦su mi re»] #すみれ
+せみ　[=«semi¦semi¦se mi»] #せみ
+そら　[=«sora¦sora¦so ra»] #そら
+とり　[=«tori¦tori¦to ri»] #とり
+のり　[=«nori¦nori¦no ri»] #のり
+はさみ　[=«hasami¦hasami¦ha sa mi»] #はさみ
+ひよこ　[=«hiyoko¦hiyoko¦hi yo ko»] #ひよこ
+ふね　[=«hune¦hune¦hu ne»] #ふね
+ほし　[=«hosi¦hosi¦ho si»] #ほし
+まめ　[=«mame¦mame¦ma me»] #まめ
+みかん　[=«mikan¦mikan¦mi ka n»] #みかん
+むし　[=«musi¦musi¦mu si»] #むし
+もも　[=«momo¦momo¦mo mo»] #もも
+やま　[=«yama¦yama¦ya ma»] #やま
+ゆき　[=«yuki¦yuki¦yu ki»] #ゆき
+よる　[=«yoru¦yoru¦yo ru»] #よる
+りす　[=«risu¦risu¦ri su»] #りす
+わに　[=«wani¦wani¦wa ni»] #わに
+はな　[=«hana¦hana¦ha na»] #はな
+ひも　[=«himo¦himo¦hi mo»] #ひも
+ふえ　[=«hue¦hue¦hu e»] #ふえ
+へや　[=«heya¦heya¦he ya»] #へや
+ほん　[=«hon¦hon¦ho n»] #ほん
+みみ　[=«mimi¦mimi¦mi mi»] #みみ
+むね　[=«mune¦mune¦mu ne»] #むね
+もり　[=«mori¦mori¦mo ri»] #もり
+やね　[=«yane¦yane¦ya ne»] #やね
+よこ　[=«yoko¦yoko¦yo ko»] #よこ
+あめ　[=«ame¦ame¦a me»] #あめ
+うみ　[=«umi¦umi¦u mi»] #うみ
+えほん　[=«ehon¦ehon¦e ho n»] #えほん
+かめ　[=«kame¦kame¦ka me»] #かめ
+くま　[=«kuma¦kuma¦ku ma»] #くま
+くも　[=«kumo¦kumo¦ku mo»] #くも
+くり　[=«kuri¦kuri¦ku ri»] #くり
+こま　[=«koma¦koma¦ko ma»] #こま
+さる　[=«saru¦saru¦sa ru»] #さる
+しま　[=«sima¦sima¦si ma»] #しま
+はし　[=«hasi¦hasi¦ha si»] #はし
+はち　[=«hati¦hati¦ha ti»] #はち
+ひと　[=«hito¦hito¦hi to»] #ひと
+ふく　[=«huku¦huku¦hu ku»] #ふく
+へそ　[=«heso¦heso¦he so»] #へそ
+ほたる　[=«hotaru¦hotaru¦ho ta ru»] #ほたる
+まくら　[=«makura¦makura¦ma ku ra»] #まくら
+みそ　[=«miso¦miso¦mi so»] #みそ
+むかし　[=«mukasi¦mukasi¦mu ka si»] #むかし
+もち　[=«moti¦moti¦mo ti»] #もち
+やさい　[=«yasai¦yasai¦ya sa i»] #やさい
+ゆめ　[=«yume¦yume¦yu me»] #ゆめ
+りか　[=«rika¦rika¦ri ka»] #りか
+れきし　[=«rekisi¦rekisi¦re ki si»] #れきし
+わた　[=«wata¦wata¦wa ta»] #わた
+からす　[=«karasu¦karasu¦ka ra su»] #からす
+ほたて　[=«hotate¦hotate¦ho ta te»] #ほたて
+みなと　[=«minato¦minato¦mi na to»] #みなと
+さいふ　[=«saihu¦saihu¦sa i hu»] #さいふ
+れんこん　[=«renkon¦renkon¦re n ko n»] #れんこん
+からて　[=«karate¦karate¦ka ra te»] #からて
+てまり　[=«temari¦temari¦te ma ri»] #てまり
+あみ　[=«ami¦ami¦a mi»] #あみ
+おふろ　[=«ohuro¦ohuro¦o hu ro»] #おふろ
+かみ　[=«kami¦kami¦ka mi»] #かみ
+くわ　[=«kuwa¦kuwa¦ku wa»] #くわ
+さら　[=«sara¦sara¦sa ra»] #さら
 == ことばを 読む | ローマ字で 書いた ことばを ひらがなで 書きましょう。 | 4 | cols=2
-nakama　[なかま] #なかま
-atama　[あたま] #あたま
-omoti　[おもち] #おもち
-kaeru　[かえる] #かえる
-kirin　[きりん] #きりん
-kemusi　[けむし] #けむし
-sakura　[さくら] #さくら
-siro　[しろ] #しろ
-sumire　[すみれ] #すみれ
-semi　[せみ] #せみ
-sora　[そら] #そら
-tori　[とり] #とり
-niwatori　[にわとり] #にわとり
-nori　[のり] #のり
-hasami　[はさみ] #はさみ
-hiyoko　[ひよこ] #ひよこ
-hune　[ふね] #ふね
-hosi　[ほし] #ほし
-mame　[まめ] #まめ
-mikan　[みかん] #みかん
-musi　[むし] #むし
-momo　[もも] #もも
-yama　[やま] #やま
-yuki　[ゆき] #ゆき
-yoru　[よる] #よる
-risu　[りす] #りす
-wani　[わに] #わに
-hana　[はな] #はな
-himo　[ひも] #ひも
-hue　[ふえ] #ふえ
-heya　[へや] #へや
-hon　[ほん] #ほん
-mimi　[みみ] #みみ
-mune　[むね] #むね
-mori　[もり] #もり
-yane　[やね] #やね
-yoko　[よこ] #よこ
-ame　[あめ] #あめ
-umi　[うみ] #うみ
-ehon　[えほん] #えほん
-kame　[かめ] #かめ
-kuma　[くま] #くま
-kumo　[くも] #くも
-kuri　[くり] #くり
-koma　[こま] #こま
-saru　[さる] #さる
-sima　[しま] #しま
-hasi　[はし] #はし
-hati　[はち] #はち
-hito　[ひと] #ひと
-huku　[ふく] #ふく
-heso　[へそ] #へそ
-hotaru　[ほたる] #ほたる
-makura　[まくら] #まくら
-miso　[みそ] #みそ
-mukasi　[むかし] #むかし
-moti　[もち] #もち
-yasai　[やさい] #やさい
-yume　[ゆめ] #ゆめ
-rika　[りか] #りか
-rekisi　[れきし] #れきし
-wata　[わた] #わた
-karasu　[からす] #からす
-hotate　[ほたて] #ほたて
-minato　[みなと] #みなと
-saihu　[さいふ] #さいふ
-renkon　[れんこん] #れんこん
-karate　[からて] #からて
-temari　[てまり] #てまり
-ami　[あみ] #あみ
-ohuro　[おふろ] #おふろ
-kami　[かみ] #かみ
-kuwa　[くわ] #くわ
-sara　[さら] #さら
+«nakama¦nakama¦na ka ma»　[なかま] #なかま
+«atama¦atama¦a ta ma»　[あたま] #あたま
+«omoti¦omoti¦o mo ti»　[おもち] #おもち
+«kaeru¦kaeru¦ka e ru»　[かえる] #かえる
+«kirin¦kirin¦ki ri n»　[きりん] #きりん
+«kemusi¦kemusi¦ke mu si»　[けむし] #けむし
+«sakura¦sakura¦sa ku ra»　[さくら] #さくら
+«siro¦siro¦si ro»　[しろ] #しろ
+«sumire¦sumire¦su mi re»　[すみれ] #すみれ
+«semi¦semi¦se mi»　[せみ] #せみ
+«sora¦sora¦so ra»　[そら] #そら
+«tori¦tori¦to ri»　[とり] #とり
+«niwatori¦niwatori¦ni wa to ri»　[にわとり] #にわとり
+«nori¦nori¦no ri»　[のり] #のり
+«hasami¦hasami¦ha sa mi»　[はさみ] #はさみ
+«hiyoko¦hiyoko¦hi yo ko»　[ひよこ] #ひよこ
+«hune¦hune¦hu ne»　[ふね] #ふね
+«hosi¦hosi¦ho si»　[ほし] #ほし
+«mame¦mame¦ma me»　[まめ] #まめ
+«mikan¦mikan¦mi ka n»　[みかん] #みかん
+«musi¦musi¦mu si»　[むし] #むし
+«momo¦momo¦mo mo»　[もも] #もも
+«yama¦yama¦ya ma»　[やま] #やま
+«yuki¦yuki¦yu ki»　[ゆき] #ゆき
+«yoru¦yoru¦yo ru»　[よる] #よる
+«risu¦risu¦ri su»　[りす] #りす
+«wani¦wani¦wa ni»　[わに] #わに
+«hana¦hana¦ha na»　[はな] #はな
+«himo¦himo¦hi mo»　[ひも] #ひも
+«hue¦hue¦hu e»　[ふえ] #ふえ
+«heya¦heya¦he ya»　[へや] #へや
+«hon¦hon¦ho n»　[ほん] #ほん
+«mimi¦mimi¦mi mi»　[みみ] #みみ
+«mune¦mune¦mu ne»　[むね] #むね
+«mori¦mori¦mo ri»　[もり] #もり
+«yane¦yane¦ya ne»　[やね] #やね
+«yoko¦yoko¦yo ko»　[よこ] #よこ
+«ame¦ame¦a me»　[あめ] #あめ
+«umi¦umi¦u mi»　[うみ] #うみ
+«ehon¦ehon¦e ho n»　[えほん] #えほん
+«kame¦kame¦ka me»　[かめ] #かめ
+«kuma¦kuma¦ku ma»　[くま] #くま
+«kumo¦kumo¦ku mo»　[くも] #くも
+«kuri¦kuri¦ku ri»　[くり] #くり
+«koma¦koma¦ko ma»　[こま] #こま
+«saru¦saru¦sa ru»　[さる] #さる
+«sima¦sima¦si ma»　[しま] #しま
+«hasi¦hasi¦ha si»　[はし] #はし
+«hati¦hati¦ha ti»　[はち] #はち
+«hito¦hito¦hi to»　[ひと] #ひと
+«huku¦huku¦hu ku»　[ふく] #ふく
+«heso¦heso¦he so»　[へそ] #へそ
+«hotaru¦hotaru¦ho ta ru»　[ほたる] #ほたる
+«makura¦makura¦ma ku ra»　[まくら] #まくら
+«miso¦miso¦mi so»　[みそ] #みそ
+«mukasi¦mukasi¦mu ka si»　[むかし] #むかし
+«moti¦moti¦mo ti»　[もち] #もち
+«yasai¦yasai¦ya sa i»　[やさい] #やさい
+«yume¦yume¦yu me»　[ゆめ] #ゆめ
+«rika¦rika¦ri ka»　[りか] #りか
+«rekisi¦rekisi¦re ki si»　[れきし] #れきし
+«wata¦wata¦wa ta»　[わた] #わた
+«karasu¦karasu¦ka ra su»　[からす] #からす
+«hotate¦hotate¦ho ta te»　[ほたて] #ほたて
+«minato¦minato¦mi na to»　[みなと] #みなと
+«saihu¦saihu¦sa i hu»　[さいふ] #さいふ
+«renkon¦renkon¦re n ko n»　[れんこん] #れんこん
+«karate¦karate¦ka ra te»　[からて] #からて
+«temari¦temari¦te ma ri»　[てまり] #てまり
+«ami¦ami¦a mi»　[あみ] #あみ
+«ohuro¦ohuro¦o hu ro»　[おふろ] #おふろ
+«kami¦kami¦ka mi»　[かみ] #かみ
+«kuwa¦kuwa¦ku wa»　[くわ] #くわ
+«sara¦sara¦sa ra»　[さら] #さら
 
 @ romaji07 | 3 | ローマ字⑦ が行・ざ行・だ行・ば行・ぱ行 | にごる 音(g・z・d・b)と、半だく音(p)。
 == 行を なぞる | うすい 字を なぞりましょう。 | 3 | seq
@@ -1008,113 +1007,110 @@ pe　{*ぺ|ど|ぷ}
 ぽ　{*po|pe|pu}
 po　{*ぽ|ぶ|ぐ}
 == ことばを 書く | つぎの ことばを ローマ字で 書きましょう。 | 4 | cols=2
-うさぎ　[=usagi] #うさぎ
-えのぐ　[=enogu] #えのぐ
-くじら　[=kuzira] #くじら
-ちず　[=tizu] #ちず
-つばめ　[=tubame] #つばめ
-てがみ　[=tegami] #てがみ
-なべ　[=nabe] #なべ
-ぬいぐるみ　[=nuigurumi] #ぬいぐるみ
-ねずみ　[=nezumi] #ねずみ
-へび　[=hebi] #へび
-めがね　[=megane] #めがね
-らくだ　[=rakuda] #らくだ
-まど　[=mado] #まど
-めだか　[=medaka] #めだか
-ゆび　[=yubi] #ゆび
-りんご　[=ringo] #りんご
-ろば　[=roba] #ろば
-わなげ　[=wanage] #わなげ
-はなび　[=hanabi] #はなび
-たまねぎ　[=tamanegi] #たまねぎ
-にんじん　[=ninzin] #にんじん
-げた　[=geta] #げた
-ごま　[=goma] #ごま
-ざる　[=zaru] #ざる
-ずかん　[=zukan] #ずかん
-ぜんまい　[=zenmai] #ぜんまい
-だんご　[=dango] #だんご
-でんわ　[=denwa] #でんわ
-どんぐり　[=donguri] #どんぐり
-びん　[=bin] #びん
-ぶた　[=buta] #ぶた
-ぺんぎん　[=pengin] #ぺんぎん
-かぎ　[=kagi] #かぎ
-ひざ　[=hiza] #ひざ
-かぜ　[=kaze] #かぜ
-ごはん　[=gohan] #ごはん
-かば　[=kaba] #かば
-えんぴつ　[=enpitu] #えんぴつ
-てんぷら　[=tenpura] #てんぷら
-うで　[=ude] #うで
-おでこ　[=odeko] #おでこ
-かがみ　[=kagami] #かがみ
-どんぶり　[=donburi] #どんぶり
-かばん　[=kaban] #かばん
-かいだん　[=kaidan] #かいだん
-がけ　[=gake] #がけ
-ぎんなん　[=ginnan] #ぎんなん
-すずめ　[=suzume] #すずめ
-ずぼん　[=zubon] #ずぼん
-だるま　[=daruma] #だるま
-でぐち　[=deguti] #でぐち
-はなぢ　[=hanazi] #はなぢ
-みかづき　[=mikazuki] #みかづき
+うさぎ　[=«usagi¦usagi¦u sa gi»] #うさぎ
+えのぐ　[=«enogu¦enogu¦e no gu»] #えのぐ
+くじら　[=«kuzira¦kuzira¦ku zi ra»] #くじら
+ちず　[=«tizu¦tizu¦ti zu»] #ちず
+つばめ　[=«tubame¦tubame¦tu ba me»] #つばめ
+てがみ　[=«tegami¦tegami¦te ga mi»] #てがみ
+なべ　[=«nabe¦nabe¦na be»] #なべ
+ねずみ　[=«nezumi¦nezumi¦ne zu mi»] #ねずみ
+へび　[=«hebi¦hebi¦he bi»] #へび
+めがね　[=«megane¦megane¦me ga ne»] #めがね
+らくだ　[=«rakuda¦rakuda¦ra ku da»] #らくだ
+まど　[=«mado¦mado¦ma do»] #まど
+めだか　[=«medaka¦medaka¦me da ka»] #めだか
+ゆび　[=«yubi¦yubi¦yu bi»] #ゆび
+りんご　[=«ringo¦ringo¦ri n go»] #りんご
+ろば　[=«roba¦roba¦ro ba»] #ろば
+わなげ　[=«wanage¦wanage¦wa na ge»] #わなげ
+はなび　[=«hanabi¦hanabi¦ha na bi»] #はなび
+にんじん　[=«ninzin¦ninzin¦ni n zi n»] #にんじん
+げた　[=«geta¦geta¦ge ta»] #げた
+ごま　[=«goma¦goma¦go ma»] #ごま
+ざる　[=«zaru¦zaru¦za ru»] #ざる
+ずかん　[=«zukan¦zukan¦zu ka n»] #ずかん
+ぜんまい　[=«zenmai¦zenmai¦ze n ma i»] #ぜんまい
+だんご　[=«dango¦dango¦da n go»] #だんご
+でんわ　[=«denwa¦denwa¦de n wa»] #でんわ
+どんぐり　[=«donguri¦donguri¦do n gu ri»] #どんぐり
+びん　[=«bin¦bin¦bi n»] #びん
+ぶた　[=«buta¦buta¦bu ta»] #ぶた
+ぺんぎん　[=«pengin¦pengin¦pe n gi n»] #ぺんぎん
+かぎ　[=«kagi¦kagi¦ka gi»] #かぎ
+ひざ　[=«hiza¦hiza¦hi za»] #ひざ
+かぜ　[=«kaze¦kaze¦ka ze»] #かぜ
+ごはん　[=«gohan¦gohan¦go ha n»] #ごはん
+かば　[=«kaba¦kaba¦ka ba»] #かば
+えんぴつ　[=«enpitu¦enpitu¦e n pi tu»] #えんぴつ
+てんぷら　[=«tenpura¦tenpura¦te n pu ra»] #てんぷら
+うで　[=«ude¦ude¦u de»] #うで
+おでこ　[=«odeko¦odeko¦o de ko»] #おでこ
+かがみ　[=«kagami¦kagami¦ka ga mi»] #かがみ
+どんぶり　[=«donburi¦donburi¦do n bu ri»] #どんぶり
+かばん　[=«kaban¦kaban¦ka ba n»] #かばん
+かいだん　[=«kaidan¦kaidan¦ka i da n»] #かいだん
+がけ　[=«gake¦gake¦ga ke»] #がけ
+ぎんなん　[=«ginnan¦ginnan¦gi n na n»] #ぎんなん
+すずめ　[=«suzume¦suzume¦su zu me»] #すずめ
+ずぼん　[=«zubon¦zubon¦zu bo n»] #ずぼん
+だるま　[=«daruma¦daruma¦da ru ma»] #だるま
+でぐち　[=«deguti¦deguti¦de gu ti»] #でぐち
+はなぢ　[=«hanazi¦hanazi¦ha na zi»] #はなぢ
 == ことばを 読む | ローマ字で 書いた ことばを ひらがなで 書きましょう。 | 4 | cols=2
-usagi　[うさぎ] #うさぎ
-enogu　[えのぐ] #えのぐ
-kuzira　[くじら] #くじら
-tizu　[ちず] #ちず
-tubame　[つばめ] #つばめ
-tegami　[てがみ] #てがみ
-nabe　[なべ] #なべ
-nuigurumi　[ぬいぐるみ] #ぬいぐるみ
-nezumi　[ねずみ] #ねずみ
-hebi　[へび] #へび
-megane　[めがね] #めがね
-rakuda　[らくだ] #らくだ
-mado　[まど] #まど
-medaka　[めだか] #めだか
-yubi　[ゆび] #ゆび
-ringo　[りんご] #りんご
-roba　[ろば] #ろば
-wanage　[わなげ] #わなげ
-hanabi　[はなび] #はなび
-tamanegi　[たまねぎ] #たまねぎ
-ninzin　[にんじん] #にんじん
-geta　[げた] #げた
-goma　[ごま] #ごま
-zaru　[ざる] #ざる
-zukan　[ずかん] #ずかん
-zenmai　[ぜんまい] #ぜんまい
-dango　[だんご] #だんご
-denwa　[でんわ] #でんわ
-donguri　[どんぐり] #どんぐり
-bin　[びん] #びん
-buta　[ぶた] #ぶた
-pengin　[ぺんぎん] #ぺんぎん
-kagi　[かぎ] #かぎ
-hiza　[ひざ] #ひざ
-kaze　[かぜ] #かぜ
-gohan　[ごはん] #ごはん
-kaba　[かば] #かば
-enpitu　[えんぴつ] #えんぴつ
-tenpura　[てんぷら] #てんぷら
-ude　[うで] #うで
-odeko　[おでこ] #おでこ
-kagami　[かがみ] #かがみ
-donburi　[どんぶり] #どんぶり
-kaban　[かばん] #かばん
-kaidan　[かいだん] #かいだん
-gake　[がけ] #がけ
-ginnan　[ぎんなん] #ぎんなん
-suzume　[すずめ] #すずめ
-zubon　[ずぼん] #ずぼん
-daruma　[だるま] #だるま
-deguti　[でぐち] #でぐち
-hanazi　[はなぢ] #はなぢ
-mikazuki　[みかづき] #みかづき
+«usagi¦usagi¦u sa gi»　[うさぎ] #うさぎ
+«enogu¦enogu¦e no gu»　[えのぐ] #えのぐ
+«kuzira¦kuzira¦ku zi ra»　[くじら] #くじら
+«tizu¦tizu¦ti zu»　[ちず] #ちず
+«tubame¦tubame¦tu ba me»　[つばめ] #つばめ
+«tegami¦tegami¦te ga mi»　[てがみ] #てがみ
+«nabe¦nabe¦na be»　[なべ] #なべ
+«nuigurumi¦nuigurumi¦nu i gu ru mi»　[ぬいぐるみ] #ぬいぐるみ
+«nezumi¦nezumi¦ne zu mi»　[ねずみ] #ねずみ
+«hebi¦hebi¦he bi»　[へび] #へび
+«megane¦megane¦me ga ne»　[めがね] #めがね
+«rakuda¦rakuda¦ra ku da»　[らくだ] #らくだ
+«mado¦mado¦ma do»　[まど] #まど
+«medaka¦medaka¦me da ka»　[めだか] #めだか
+«yubi¦yubi¦yu bi»　[ゆび] #ゆび
+«ringo¦ringo¦ri n go»　[りんご] #りんご
+«roba¦roba¦ro ba»　[ろば] #ろば
+«wanage¦wanage¦wa na ge»　[わなげ] #わなげ
+«hanabi¦hanabi¦ha na bi»　[はなび] #はなび
+«tamanegi¦tamanegi¦ta ma ne gi»　[たまねぎ] #たまねぎ
+«ninzin¦ninzin¦ni n zi n»　[にんじん] #にんじん
+«geta¦geta¦ge ta»　[げた] #げた
+«goma¦goma¦go ma»　[ごま] #ごま
+«zaru¦zaru¦za ru»　[ざる] #ざる
+«zukan¦zukan¦zu ka n»　[ずかん] #ずかん
+«zenmai¦zenmai¦ze n ma i»　[ぜんまい] #ぜんまい
+«dango¦dango¦da n go»　[だんご] #だんご
+«denwa¦denwa¦de n wa»　[でんわ] #でんわ
+«donguri¦donguri¦do n gu ri»　[どんぐり] #どんぐり
+«bin¦bin¦bi n»　[びん] #びん
+«buta¦buta¦bu ta»　[ぶた] #ぶた
+«pengin¦pengin¦pe n gi n»　[ぺんぎん] #ぺんぎん
+«kagi¦kagi¦ka gi»　[かぎ] #かぎ
+«hiza¦hiza¦hi za»　[ひざ] #ひざ
+«kaze¦kaze¦ka ze»　[かぜ] #かぜ
+«gohan¦gohan¦go ha n»　[ごはん] #ごはん
+«kaba¦kaba¦ka ba»　[かば] #かば
+«enpitu¦enpitu¦e n pi tu»　[えんぴつ] #えんぴつ
+«tenpura¦tenpura¦te n pu ra»　[てんぷら] #てんぷら
+«ude¦ude¦u de»　[うで] #うで
+«odeko¦odeko¦o de ko»　[おでこ] #おでこ
+«kagami¦kagami¦ka ga mi»　[かがみ] #かがみ
+«donburi¦donburi¦do n bu ri»　[どんぶり] #どんぶり
+«kaban¦kaban¦ka ba n»　[かばん] #かばん
+«kaidan¦kaidan¦ka i da n»　[かいだん] #かいだん
+«gake¦gake¦ga ke»　[がけ] #がけ
+«ginnan¦ginnan¦gi n na n»　[ぎんなん] #ぎんなん
+«suzume¦suzume¦su zu me»　[すずめ] #すずめ
+«zubon¦zubon¦zu bo n»　[ずぼん] #ずぼん
+«daruma¦daruma¦da ru ma»　[だるま] #だるま
+«deguti¦deguti¦de gu ti»　[でぐち] #でぐち
+«hanazi¦hanazi¦ha na zi»　[はなぢ] #はなぢ
+«mikazuki¦mikazuki¦mi ka zu ki»　[みかづき] #みかづき
 
 @ romaji08 | 3 | ローマ字⑧ きゃ・しゅ・ちょ(ねじれる 音) | 小さい「ゃ・ゅ・ょ」の つく 音は y を 入れる。
 == ねじれる 音を なぞる | うすい 字を なぞりましょう。 | 3 | seq
@@ -1164,303 +1160,295 @@ mikazuki　[みかづき] #みかづき
 ぴゅ　{*pyu|piyu|pu}
 ぴょ　{*pyo|piyo|po}
 == ことばを 書く | つぎの ことばを ローマ字で 書きましょう。 | 4 | cols=2
-じてんしゃ　[=zitensya] #じてんしゃ
-きゃべつ　[=kyabetu] #きゃべつ
-しゃしん　[=syasin] #しゃしん
-しゅくだい　[=syukudai] #しゅくだい
-ちゃわん　[=tyawan] #ちゃわん
-ひゃく　[=hyaku] #ひゃく
-りょかん　[=ryokan] #りょかん
-じゃんけん　[=zyanken] #じゃんけん
-じゅんばん　[=zyunban] #じゅんばん
-きんぎょ　[=kingyo] #きんぎょ
-おもちゃ　[=omotya] #おもちゃ
-いしゃ　[=isya] #いしゃ
-でんしゃ　[=densya] #でんしゃ
-にんじゃ　[=ninzya] #にんじゃ
-きょり　[=kyori] #きょり
-しょくじ　[=syokuzi] #しょくじ
-おちゃ　[=otya] #おちゃ
-じゃがいも　[=zyagaimo] #じゃがいも
-きゃく　[=kyaku] #きゃく
-さんしょ　[=sansyo] #さんしょ
-しゅみ　[=syumi] #しゅみ
-しゃもじ　[=syamozi] #しゃもじ
-ちゃいろ　[=tyairo] #ちゃいろ
-じゃり　[=zyari] #じゃり
-きょねん　[=kyonen] #きょねん
-ちょきん　[=tyokin] #ちょきん
-しゃこ　[=syako] #しゃこ
-しゅるい　[=syurui] #しゅるい
-にんぎょ　[=ningyo] #にんぎょ
-おしゃれ　[=osyare] #おしゃれ
-かしゅ　[=kasyu] #かしゅ
-ぎゃく　[=gyaku] #ぎゃく
-しゃち　[=syati] #しゃち
-じゃま　[=zyama] #じゃま
-しゃみせん　[=syamisen] #しゃみせん
-きんじょ　[=kinzyo] #きんじょ
-かいしゃ　[=kaisya] #かいしゃ
-ひゃくえん　[=hyakuen] #ひゃくえん
+きゃべつ　[=«kyabetu¦kyabetu¦kya be tu»] #きゃべつ
+しゃしん　[=«syasin¦syasin¦sya si n»] #しゃしん
+ちゃわん　[=«tyawan¦tyawan¦tya wa n»] #ちゃわん
+ひゃく　[=«hyaku¦hyaku¦hya ku»] #ひゃく
+りょかん　[=«ryokan¦ryokan¦ryo ka n»] #りょかん
+じゃんけん　[=«zyanken¦zyanken¦zya n ke n»] #じゃんけん
+じゅんばん　[=«zyunban¦zyunban¦zyu n ba n»] #じゅんばん
+きんぎょ　[=«kingyo¦kingyo¦ki n gyo»] #きんぎょ
+おもちゃ　[=«omotya¦omotya¦o mo tya»] #おもちゃ
+いしゃ　[=«isya¦isya¦i sya»] #いしゃ
+でんしゃ　[=«densya¦densya¦de n sya»] #でんしゃ
+にんじゃ　[=«ninzya¦ninzya¦ni n zya»] #にんじゃ
+きょり　[=«kyori¦kyori¦kyo ri»] #きょり
+しょくじ　[=«syokuzi¦syokuzi¦syo ku zi»] #しょくじ
+おちゃ　[=«otya¦otya¦o tya»] #おちゃ
+きゃく　[=«kyaku¦kyaku¦kya ku»] #きゃく
+さんしょ　[=«sansyo¦sansyo¦sa n syo»] #さんしょ
+しゅみ　[=«syumi¦syumi¦syu mi»] #しゅみ
+しゃもじ　[=«syamozi¦syamozi¦sya mo zi»] #しゃもじ
+ちゃいろ　[=«tyairo¦tyairo¦tya i ro»] #ちゃいろ
+じゃり　[=«zyari¦zyari¦zya ri»] #じゃり
+きょねん　[=«kyonen¦kyonen¦kyo ne n»] #きょねん
+ちょきん　[=«tyokin¦tyokin¦tyo ki n»] #ちょきん
+しゃこ　[=«syako¦syako¦sya ko»] #しゃこ
+しゅるい　[=«syurui¦syurui¦syu ru i»] #しゅるい
+にんぎょ　[=«ningyo¦ningyo¦ni n gyo»] #にんぎょ
+おしゃれ　[=«osyare¦osyare¦o sya re»] #おしゃれ
+かしゅ　[=«kasyu¦kasyu¦ka syu»] #かしゅ
+ぎゃく　[=«gyaku¦gyaku¦gya ku»] #ぎゃく
+しゃち　[=«syati¦syati¦sya ti»] #しゃち
+じゃま　[=«zyama¦zyama¦zya ma»] #じゃま
+きんじょ　[=«kinzyo¦kinzyo¦ki n zyo»] #きんじょ
+かいしゃ　[=«kaisya¦kaisya¦ka i sya»] #かいしゃ
+ひゃくえん　[=«hyakuen¦hyakuen¦hya ku e n»] #ひゃくえん
 == ことばを 読む | ローマ字で 書いた ことばを ひらがなで 書きましょう。 | 4 | cols=2
-zitensya　[じてんしゃ] #じてんしゃ
-kyabetu　[きゃべつ] #きゃべつ
-syasin　[しゃしん] #しゃしん
-syukudai　[しゅくだい] #しゅくだい
-tyawan　[ちゃわん] #ちゃわん
-hyaku　[ひゃく] #ひゃく
-ryokan　[りょかん] #りょかん
-zyanken　[じゃんけん] #じゃんけん
-zyunban　[じゅんばん] #じゅんばん
-kingyo　[きんぎょ] #きんぎょ
-omotya　[おもちゃ] #おもちゃ
-isya　[いしゃ] #いしゃ
-densya　[でんしゃ] #でんしゃ
-ninzya　[にんじゃ] #にんじゃ
-kyori　[きょり] #きょり
-syokuzi　[しょくじ] #しょくじ
-otya　[おちゃ] #おちゃ
-zyagaimo　[じゃがいも] #じゃがいも
-kyaku　[きゃく] #きゃく
-sansyo　[さんしょ] #さんしょ
-syumi　[しゅみ] #しゅみ
-syamozi　[しゃもじ] #しゃもじ
-tyairo　[ちゃいろ] #ちゃいろ
-zyari　[じゃり] #じゃり
-kyonen　[きょねん] #きょねん
-tyokin　[ちょきん] #ちょきん
-syako　[しゃこ] #しゃこ
-syurui　[しゅるい] #しゅるい
-ningyo　[にんぎょ] #にんぎょ
-osyare　[おしゃれ] #おしゃれ
-kasyu　[かしゅ] #かしゅ
-gyaku　[ぎゃく] #ぎゃく
-syati　[しゃち] #しゃち
-zyama　[じゃま] #じゃま
-syamisen　[しゃみせん] #しゃみせん
-kinzyo　[きんじょ] #きんじょ
-kaisya　[かいしゃ] #かいしゃ
-hyakuen　[ひゃくえん] #ひゃくえん
+«zitensya¦zitensya¦zi te n sya»　[じてんしゃ] #じてんしゃ
+«kyabetu¦kyabetu¦kya be tu»　[きゃべつ] #きゃべつ
+«syasin¦syasin¦sya si n»　[しゃしん] #しゃしん
+«syukudai¦syukudai¦syu ku da i»　[しゅくだい] #しゅくだい
+«tyawan¦tyawan¦tya wa n»　[ちゃわん] #ちゃわん
+«hyaku¦hyaku¦hya ku»　[ひゃく] #ひゃく
+«ryokan¦ryokan¦ryo ka n»　[りょかん] #りょかん
+«zyanken¦zyanken¦zya n ke n»　[じゃんけん] #じゃんけん
+«zyunban¦zyunban¦zyu n ba n»　[じゅんばん] #じゅんばん
+«kingyo¦kingyo¦ki n gyo»　[きんぎょ] #きんぎょ
+«omotya¦omotya¦o mo tya»　[おもちゃ] #おもちゃ
+«isya¦isya¦i sya»　[いしゃ] #いしゃ
+«densya¦densya¦de n sya»　[でんしゃ] #でんしゃ
+«ninzya¦ninzya¦ni n zya»　[にんじゃ] #にんじゃ
+«kyori¦kyori¦kyo ri»　[きょり] #きょり
+«syokuzi¦syokuzi¦syo ku zi»　[しょくじ] #しょくじ
+«otya¦otya¦o tya»　[おちゃ] #おちゃ
+«zyagaimo¦zyagaimo¦zya ga i mo»　[じゃがいも] #じゃがいも
+«kyaku¦kyaku¦kya ku»　[きゃく] #きゃく
+«sansyo¦sansyo¦sa n syo»　[さんしょ] #さんしょ
+«syumi¦syumi¦syu mi»　[しゅみ] #しゅみ
+«syamozi¦syamozi¦sya mo zi»　[しゃもじ] #しゃもじ
+«tyairo¦tyairo¦tya i ro»　[ちゃいろ] #ちゃいろ
+«zyari¦zyari¦zya ri»　[じゃり] #じゃり
+«kyonen¦kyonen¦kyo ne n»　[きょねん] #きょねん
+«tyokin¦tyokin¦tyo ki n»　[ちょきん] #ちょきん
+«syako¦syako¦sya ko»　[しゃこ] #しゃこ
+«syurui¦syurui¦syu ru i»　[しゅるい] #しゅるい
+«ningyo¦ningyo¦ni n gyo»　[にんぎょ] #にんぎょ
+«osyare¦osyare¦o sya re»　[おしゃれ] #おしゃれ
+«kasyu¦kasyu¦ka syu»　[かしゅ] #かしゅ
+«gyaku¦gyaku¦gya ku»　[ぎゃく] #ぎゃく
+«syati¦syati¦sya ti»　[しゃち] #しゃち
+«zyama¦zyama¦zya ma»　[じゃま] #じゃま
+«syamisen¦syamisen¦sya mi se n»　[しゃみせん] #しゃみせん
+«kinzyo¦kinzyo¦ki n zyo»　[きんじょ] #きんじょ
+«kaisya¦kaisya¦ka i sya»　[かいしゃ] #かいしゃ
+«hyakuen¦hyakuen¦hya ku e n»　[ひゃくえん] #ひゃくえん
 
-@ romaji09 | 3 | ローマ字⑨ のばす 音・つまる 音・はねる 音 | のばす 音は ^、小さい「っ」は 字を 重ねる、「ん」の あとに a・i・u・e・o・y が 来たら ' を つける。
+@ romaji09 | 3 | ローマ字⑨ のばす 音・つまる 音・はねる 音 | のばす 音・小さい「っ」・「ん」の 書き方。(教科書では のばす 音は ^、「ん」の 区切りは ')
 == のばす 音 | 正しい ほうを ○で かこみましょう。 | 4 | cols=2
-がっこう　{*gakkô|gakko} #がっこう
-ぞう　{*zô|zo} #ぞう
-べんとう　{*bentô|bento} #べんとう
-ぼうし　{*bôsi|boosi} #ぼうし
-ぶどう　{*budô|budo} #ぶどう
-どうぐ　{*dôgu|dogu} #どうぐ
-きゅうり　{*kyûri|kiyûri} #きゅうり
-きょうりゅう　{*kyôryû|kiyôryû} #きょうりゅう
-ちょうちょ　{*tyôtyo|tiyôtyo} #ちょうちょ
-りゅう　{*ryû|riyû} #りゅう
-ぎゅうにゅう　{*gyûnyû|giyûnyû} #ぎゅうにゅう
-じょうろ　{*zyôro|ziyôro} #じょうろ
-びょういん　{*byôin|biyôin} #びょういん
-ちゅうしゃ　{*tyûsya|tiyûsya} #ちゅうしゃ
-りょうり　{*ryôri|riyôri} #りょうり
-ひょう　{*hyô|hiyô} #ひょう
-しんゆう　{*sin'yû|sin'yu} #しんゆう
-きんようび　{*kin'yôbi|kin'yobi} #きんようび
-おかあさん　{*okâsan|okaasan} #おかあさん
-おとうさん　{*otôsan|otoosan} #おとうさん
-おにいさん　{*onîsan|oniisan} #おにいさん
-おねえさん　{*onêsan|oneesan} #おねえさん
-こおり　{*kôri|koori} #こおり
-くうき　{*kûki|kuki} #くうき
-ひこうき　{*hikôki|hikoki} #ひこうき
-ゆうき　{*yûki|yuki} #ゆうき
-きのう　{*kinô|kino} #きのう
-ほうき　{*hôki|hoki} #ほうき
-とうふ　{*tôhu|tohu} #とうふ
-ふうせん　{*hûsen|husen} #ふうせん
-すうじ　{*sûzi|suuzi} #すうじ
-こうえん　{*kôen|koen} #こうえん
-おおかみ　{*ôkami|okami} #おおかみ
-とおり　{*tôri|toori} #とおり
-おうさま　{*ôsama|oosama} #おうさま
-ろうか　{*rôka|roka} #ろうか
-どうぶつ　{*dôbutu|dobutu} #どうぶつ
-ようふく　{*yôhuku|yohuku} #ようふく
-ほうたい　{*hôtai|hootai} #ほうたい
-ゆうがた　{*yûgata|yugata} #ゆうがた
-ぎょうざ　{*gyôza|giyôza} #ぎょうざ
-でんきゅう　{*denkyû|denkiyû} #でんきゅう
-しょうゆ　{*syôyu|siyôyu} #しょうゆ
+がっこう　{*«gakkô¦gakko-¦ga k ko u»|«gakô¦gako-¦ga ko u»} #がっこう
+ぞう　{*«zô¦zo-¦zo u»|«zo¦zo¦zo»} #ぞう
+べんとう　{*«bentô¦bento-¦be n to u»|«bento¦bento¦be n to»} #べんとう
+ぼうし　{*«bôsi¦bo-si¦bo u si»|«bosi¦bosi¦bo si»} #ぼうし
+ぶどう　{*«budô¦budo-¦bu do u»|«budo¦budo¦bu do»} #ぶどう
+どうぐ　{*«dôgu¦do-gu¦do u gu»|«dogu¦dogu¦do gu»} #どうぐ
+きゅうり　{*«kyûri¦kyu-ri¦kyu u ri»|«kyuri¦kyuri¦kyu ri»} #きゅうり
+きょうりゅう　{*«kyôryû¦kyo-ryu-¦kyo u ryu u»|«kyoryû¦kyoryu-¦kyo ryu u»} #きょうりゅう
+ちょうちょ　{*«tyôtyo¦tyo-tyo¦tyo u tyo»|«tyotyo¦tyotyo¦tyo tyo»} #ちょうちょ
+りゅう　{*«ryû¦ryu-¦ryu u»|«ryu¦ryu¦ryu»} #りゅう
+ぎゅうにゅう　{*«gyûnyû¦gyu-nyu-¦gyu u nyu u»|«gyunyû¦gyunyu-¦gyu nyu u»} #ぎゅうにゅう
+じょうろ　{*«zyôro¦zyo-ro¦zyo u ro»|«zyoro¦zyoro¦zyo ro»} #じょうろ
+びょういん　{*«byôin¦byo-in¦byo u i n»|«byoin¦byoin¦byo i n»} #びょういん
+ちゅうしゃ　{*«tyûsya¦tyu-sya¦tyu u sya»|«tyusya¦tyusya¦tyu sya»} #ちゅうしゃ
+りょうり　{*«ryôri¦ryo-ri¦ryo u ri»|«ryori¦ryori¦ryo ri»} #りょうり
+ひょう　{*«hyô¦hyo-¦hyo u»|«hyo¦hyo¦hyo»} #ひょう
+しんゆう　{*«sin'yû¦sin-yu-¦si n yu u»|«sin'yu¦sin-yu¦si n yu»} #しんゆう
+きんようび　{*«kin'yôbi¦kin-yo-bi¦ki n yo u bi»|«kin'yobi¦kin-yobi¦ki n yo bi»} #きんようび
+おかあさん　{*«okâsan¦oka-san¦o ka a sa n»|«okasan¦okasan¦o ka sa n»} #おかあさん
+おとうさん　{*«otôsan¦oto-san¦o to u sa n»|«otosan¦otosan¦o to sa n»} #おとうさん
+おにいさん　{*«onîsan¦oni-san¦o ni i sa n»|«onisan¦onisan¦o ni sa n»} #おにいさん
+おねえさん　{*«onêsan¦one-san¦o ne e sa n»|«onesan¦onesan¦o ne sa n»} #おねえさん
+こおり　{*«kôri¦ko-ri¦ko o ri»|«kori¦kori¦ko ri»} #こおり
+くうき　{*«kûki¦ku-ki¦ku u ki»|«kuki¦kuki¦ku ki»} #くうき
+ひこうき　{*«hikôki¦hiko-ki¦hi ko u ki»|«hikoki¦hikoki¦hi ko ki»} #ひこうき
+ゆうき　{*«yûki¦yu-ki¦yu u ki»|«yuki¦yuki¦yu ki»} #ゆうき
+きのう　{*«kinô¦kino-¦ki no u»|«kino¦kino¦ki no»} #きのう
+ほうき　{*«hôki¦ho-ki¦ho u ki»|«hoki¦hoki¦ho ki»} #ほうき
+とうふ　{*«tôhu¦to-hu¦to u hu»|«tohu¦tohu¦to hu»} #とうふ
+ふうせん　{*«hûsen¦hu-sen¦hu u se n»|«husen¦husen¦hu se n»} #ふうせん
+すうじ　{*«sûzi¦su-zi¦su u zi»|«suzi¦suzi¦su zi»} #すうじ
+こうえん　{*«kôen¦ko-en¦ko u e n»|«koen¦koen¦ko e n»} #こうえん
+おおかみ　{*«ôkami¦o-kami¦o o ka mi»|«okami¦okami¦o ka mi»} #おおかみ
+とおり　{*«tôri¦to-ri¦to o ri»|«tori¦tori¦to ri»} #とおり
+おうさま　{*«ôsama¦o-sama¦o u sa ma»|«osama¦osama¦o sa ma»} #おうさま
+ろうか　{*«rôka¦ro-ka¦ro u ka»|«roka¦roka¦ro ka»} #ろうか
+どうぶつ　{*«dôbutu¦do-butu¦do u bu tu»|«dobutu¦dobutu¦do bu tu»} #どうぶつ
+ようふく　{*«yôhuku¦yo-huku¦yo u hu ku»|«yohuku¦yohuku¦yo hu ku»} #ようふく
+ほうたい　{*«hôtai¦ho-tai¦ho u ta i»|«hotai¦hotai¦ho ta i»} #ほうたい
+ゆうがた　{*«yûgata¦yu-gata¦yu u ga ta»|«yugata¦yugata¦yu ga ta»} #ゆうがた
+ぎょうざ　{*«gyôza¦gyo-za¦gyo u za»|«gyoza¦gyoza¦gyo za»} #ぎょうざ
+でんきゅう　{*«denkyû¦denkyu-¦de n kyu u»|«denkyu¦denkyu¦de n kyu»} #でんきゅう
+しょうゆ　{*«syôyu¦syo-yu¦syo u yu»|«syoyu¦syoyu¦syo yu»} #しょうゆ
 == つまる 音 | つぎの ことばを ローマ字で 書きましょう。 | 4 | cols=2
-ばった　[=batta] #ばった
-きって　[=kitte] #きって
-らっぱ　[=rappa] #らっぱ
-にっき　[=nikki] #にっき
-せっけん　[=sekken] #せっけん
-はっぱ　[=happa] #はっぱ
-しっぽ　[=sippo] #しっぽ
-ねっこ　[=nekko] #ねっこ
-きっぷ　[=kippu] #きっぷ
-ざっし　[=zassi] #ざっし
-らっこ　[=rakko] #らっこ
-かっぱ　[=kappa] #かっぱ
-ほっぺ　[=hoppe] #ほっぺ
-がっき　[=gakki] #がっき
-ほっきょく　[=hokkyoku] #ほっきょく
-きっさてん　[=kissaten] #きっさてん
-こっか　[=kokka] #こっか
-さっか　[=sakka] #さっか
-いっぱい　[=ippai] #いっぱい
-しゅっぱつ　[=syuppatu] #しゅっぱつ
-はっけん　[=hakken] #はっけん
-びっくり　[=bikkuri] #びっくり
-まっか　[=makka] #まっか
-まっしろ　[=massiro] #まっしろ
-まっくら　[=makkura] #まっくら
-けっこん　[=kekkon] #けっこん
-らっかせい　[=rakkasei] #らっかせい
-いっしょ　[=issyo] #いっしょ
-みっか　[=mikka] #みっか
+ばった　[=«batta¦batta¦ba t ta»] #ばった
+きって　[=«kitte¦kitte¦ki t te»] #きって
+らっぱ　[=«rappa¦rappa¦ra p pa»] #らっぱ
+にっき　[=«nikki¦nikki¦ni k ki»] #にっき
+せっけん　[=«sekken¦sekken¦se k ke n»] #せっけん
+はっぱ　[=«happa¦happa¦ha p pa»] #はっぱ
+しっぽ　[=«sippo¦sippo¦si p po»] #しっぽ
+ねっこ　[=«nekko¦nekko¦ne k ko»] #ねっこ
+きっぷ　[=«kippu¦kippu¦ki p pu»] #きっぷ
+ざっし　[=«zassi¦zassi¦za s si»] #ざっし
+らっこ　[=«rakko¦rakko¦ra k ko»] #らっこ
+かっぱ　[=«kappa¦kappa¦ka p pa»] #かっぱ
+ほっぺ　[=«hoppe¦hoppe¦ho p pe»] #ほっぺ
+がっき　[=«gakki¦gakki¦ga k ki»] #がっき
+こっか　[=«kokka¦kokka¦ko k ka»] #こっか
+さっか　[=«sakka¦sakka¦sa k ka»] #さっか
+いっぱい　[=«ippai¦ippai¦i p pa i»] #いっぱい
+はっけん　[=«hakken¦hakken¦ha k ke n»] #はっけん
+びっくり　[=«bikkuri¦bikkuri¦bi k ku ri»] #びっくり
+まっか　[=«makka¦makka¦ma k ka»] #まっか
+まっしろ　[=«massiro¦massiro¦ma s si ro»] #まっしろ
+まっくら　[=«makkura¦makkura¦ma k ku ra»] #まっくら
+けっこん　[=«kekkon¦kekkon¦ke k ko n»] #けっこん
+いっしょ　[=«issyo¦issyo¦i s syo»] #いっしょ
+みっか　[=«mikka¦mikka¦mi k ka»] #みっか
 == はねる 音 | 正しい ほうを ○で かこみましょう。 | 4 | cols=2
-てんいん　{*ten'in|tenin} #てんいん
-ほんや　{*hon'ya|honya} #ほんや
-きんえん　{*kin'en|kinen} #きんえん
-げんいん　{*gen'in|genin} #げんいん
-まんいん　{*man'in|manin} #まんいん
-こんや　{*kon'ya|konya} #こんや
-ぜんいん　{*zen'in|zenin} #ぜんいん
-しんゆう　{*sin'yû|sin'yu} #しんゆう
-きんようび　{*kin'yôbi|kin'yobi} #きんようび
-ほんだな　{*hondana|hon'dana} #ほんだな
-みかん　{*mikan|mikan'} #みかん
-ぶんか　{*bunka|bun'ka} #ぶんか
-せんせい　{*sensei|sen'sei} #せんせい
-たんぽぽ　{*tanpopo|tan'popo} #たんぽぽ
-さんぽ　{*sanpo|san'po} #さんぽ
-えんそく　{*ensoku|en'soku} #えんそく
-おんがく　{*ongaku|on'gaku} #おんがく
+てんいん　{*«ten'in¦ten-in¦te n i n»|«tenin¦tenin¦te ni n»} #てんいん
+ほんや　{*«hon'ya¦hon-ya¦ho n ya»|«honya¦honya¦ho nya»} #ほんや
+きんえん　{*«kin'en¦kin-en¦ki n e n»|«kinen¦kinen¦ki ne n»} #きんえん
+げんいん　{*«gen'in¦gen-in¦ge n i n»|«genin¦genin¦ge ni n»} #げんいん
+まんいん　{*«man'in¦man-in¦ma n i n»|«manin¦manin¦ma ni n»} #まんいん
+こんや　{*«kon'ya¦kon-ya¦ko n ya»|«konya¦konya¦ko nya»} #こんや
+ぜんいん　{*«zen'in¦zen-in¦ze n i n»|«zenin¦zenin¦ze ni n»} #ぜんいん
+しんゆう　{*«sin'yû¦sin-yu-¦si n yu u»|«sin'yu¦sin-yu¦si n yu»} #しんゆう
+きんようび　{*«kin'yôbi¦kin-yo-bi¦ki n yo u bi»|«kin'yobi¦kin-yobi¦ki n yo bi»} #きんようび
+ほんだな　{*«hondana¦hondana¦ho n da na»|«hon'dana¦hon-dana¦ho nu da na»} #ほんだな
+みかん　{*«mikan¦mikan¦mi ka n»|«mikan'¦mikan-¦mi ka nu»} #みかん
+ぶんか　{*«bunka¦bunka¦bu n ka»|«bun'ka¦bun-ka¦bu nu ka»} #ぶんか
+せんせい　{*«sensei¦sensei¦se n se i»|«sen'sei¦sen-sei¦se nu se i»} #せんせい
+たんぽぽ　{*«tanpopo¦tanpopo¦ta n po po»|«tan'popo¦tan-popo¦ta nu po po»} #たんぽぽ
+さんぽ　{*«sanpo¦sanpo¦sa n po»|«san'po¦san-po¦sa nu po»} #さんぽ
+えんそく　{*«ensoku¦ensoku¦e n so ku»|«en'soku¦en-soku¦e nu so ku»} #えんそく
+おんがく　{*«ongaku¦ongaku¦o n ga ku»|«on'gaku¦on-gaku¦o nu ga ku»} #おんがく
 
 @ romaji10 | 3 | ローマ字⑩ 大文字の 使い方 | 人の 名前や 地名は、はじめの 字を 大文字で 書く。
-== 大文字で 書き始める もの | 正しい ほうを ○で かこみましょう。 | 5
-(地名)なごや　{*Nagoya|nagoya} #なごや
-(地名)きょうと　{*Kyôto|kyôto} #きょうと
-(地名)おおさか　{*Ôsaka|ôsaka} #おおさか
-(地名)さっぽろ　{*Sapporo|sapporo} #さっぽろ
-(地名)せんだい　{*Sendai|sendai} #せんだい
-(地名)よこはま　{*Yokohama|yokohama} #よこはま
-(地名)なら　{*Nara|nara} #なら
-(地名)こうべ　{*Kôbe|kôbe} #こうべ
-(地名)くまもと　{*Kumamoto|kumamoto} #くまもと
-(地名)ながさき　{*Nagasaki|nagasaki} #ながさき
-(地名)おきなわ　{*Okinawa|okinawa} #おきなわ
-(地名)かながわ　{*Kanagawa|kanagawa} #かながわ
-(地名)おかやま　{*Okayama|okayama} #おかやま
-(地名)やまがた　{*Yamagata|yamagata} #やまがた
-(地名)あきた　{*Akita|akita} #あきた
-(地名)あおもり　{*Aomori|aomori} #あおもり
-(地名)いわて　{*Iwate|iwate} #いわて
-(地名)みやぎ　{*Miyagi|miyagi} #みやぎ
-(地名)かがわ　{*Kagawa|kagawa} #かがわ
-(地名)えひめ　{*Ehime|ehime} #えひめ
-(地名)さが　{*Saga|saga} #さが
-(地名)みやざき　{*Miyazaki|miyazaki} #みやざき
-(地名)とっとり　{*Tottori|tottori} #とっとり
-(地名)とやま　{*Toyama|toyama} #とやま
-(地名)ながの　{*Nagano|nagano} #ながの
-(地名)さいたま　{*Saitama|saitama} #さいたま
-(地名)いばらき　{*Ibaraki|ibaraki} #いばらき
-(地名)ぐんま　{*Gunma|gunma} #ぐんま
-(地名)みえ　{*Mie|mie} #みえ
-(地名)わかやま　{*Wakayama|wakayama} #わかやま
-(地名)ひょうご　{*Hyôgo|hyôgo} #ひょうご
-(人の 名前)おおた たろう　{*Ôta Tarô|ôta tarô} #おおたたろう
-(人の 名前)ささき れん　{*Sasaki Ren|sasaki ren} #ささきれん
-(人の 名前)さとう かいと　{*Satô Kaito|satô kaito} #さとうかいと
-(人の 名前)さかもと かいと　{*Sakamoto Kaito|sakamoto kaito} #さかもとかいと
-(人の 名前)わたなべ みなと　{*Watanabe Minato|watanabe minato} #わたなべみなと
-(人の 名前)たむら そうた　{*Tamura Sôta|tamura sôta} #たむらそうた
-(人の 名前)なかの ゆうと　{*Nakano Yûto|nakano yûto} #なかのゆうと
-(人の 名前)おおた ゆうと　{*Ôta Yûto|ôta yûto} #おおたゆうと
-(人の 名前)わたなべ れん　{*Watanabe Ren|watanabe ren} #わたなべれん
-(人の 名前)こんどう そうた　{*Kondô Sôta|kondô sôta} #こんどうそうた
-(人の 名前)いけだ はなこ　{*Ikeda Hanako|ikeda hanako} #いけだはなこ
-(人の 名前)やまもと さくら　{*Yamamoto Sakura|yamamoto sakura} #やまもとさくら
-(ふつうの ことば)いぬ　{*inu|Inu} #いぬ
-(ふつうの ことば)さくら　{*sakura|Sakura} #さくら
-(ふつうの ことば)やま　{*yama|Yama} #やま
-(ふつうの ことば)ねこ　{*neko|Neko} #ねこ
-(ふつうの ことば)うみ　{*umi|Umi} #うみ
-(ふつうの ことば)はな　{*hana|Hana} #はな
-(ふつうの ことば)ほん　{*hon|Hon} #ほん
-(ふつうの ことば)そら　{*sora|Sora} #そら
+== 大文字で 書き始める もの | 正しい ほうを ○で かこみましょう。 | 4
+(地名)なごや　{*«Nagoya¦Nagoya¦Na go ya»|«nagoya¦nagoya¦na go ya»} #なごや
+(地名)きょうと　{*«Kyôto¦Kyo-to¦Kyo u to»|«kyôto¦kyo-to¦kyo u to»} #きょうと
+(地名)おおさか　{*«Ôsaka¦O-saka¦O o sa ka»|«ôsaka¦o-saka¦o o sa ka»} #おおさか
+(地名)さっぽろ　{*«Sapporo¦Sapporo¦Sa p po ro»|«sapporo¦sapporo¦sa p po ro»} #さっぽろ
+(地名)せんだい　{*«Sendai¦Sendai¦Se n da i»|«sendai¦sendai¦se n da i»} #せんだい
+(地名)よこはま　{*«Yokohama¦Yokohama¦Yo ko ha ma»|«yokohama¦yokohama¦yo ko ha ma»} #よこはま
+(地名)なら　{*«Nara¦Nara¦Na ra»|«nara¦nara¦na ra»} #なら
+(地名)こうべ　{*«Kôbe¦Ko-be¦Ko u be»|«kôbe¦ko-be¦ko u be»} #こうべ
+(地名)くまもと　{*«Kumamoto¦Kumamoto¦Ku ma mo to»|«kumamoto¦kumamoto¦ku ma mo to»} #くまもと
+(地名)ながさき　{*«Nagasaki¦Nagasaki¦Na ga sa ki»|«nagasaki¦nagasaki¦na ga sa ki»} #ながさき
+(地名)おきなわ　{*«Okinawa¦Okinawa¦O ki na wa»|«okinawa¦okinawa¦o ki na wa»} #おきなわ
+(地名)かながわ　{*«Kanagawa¦Kanagawa¦Ka na ga wa»|«kanagawa¦kanagawa¦ka na ga wa»} #かながわ
+(地名)おかやま　{*«Okayama¦Okayama¦O ka ya ma»|«okayama¦okayama¦o ka ya ma»} #おかやま
+(地名)やまがた　{*«Yamagata¦Yamagata¦Ya ma ga ta»|«yamagata¦yamagata¦ya ma ga ta»} #やまがた
+(地名)あきた　{*«Akita¦Akita¦A ki ta»|«akita¦akita¦a ki ta»} #あきた
+(地名)あおもり　{*«Aomori¦Aomori¦A o mo ri»|«aomori¦aomori¦a o mo ri»} #あおもり
+(地名)いわて　{*«Iwate¦Iwate¦I wa te»|«iwate¦iwate¦i wa te»} #いわて
+(地名)みやぎ　{*«Miyagi¦Miyagi¦Mi ya gi»|«miyagi¦miyagi¦mi ya gi»} #みやぎ
+(地名)かがわ　{*«Kagawa¦Kagawa¦Ka ga wa»|«kagawa¦kagawa¦ka ga wa»} #かがわ
+(地名)えひめ　{*«Ehime¦Ehime¦E hi me»|«ehime¦ehime¦e hi me»} #えひめ
+(地名)さが　{*«Saga¦Saga¦Sa ga»|«saga¦saga¦sa ga»} #さが
+(地名)みやざき　{*«Miyazaki¦Miyazaki¦Mi ya za ki»|«miyazaki¦miyazaki¦mi ya za ki»} #みやざき
+(地名)とっとり　{*«Tottori¦Tottori¦To t to ri»|«tottori¦tottori¦to t to ri»} #とっとり
+(地名)とやま　{*«Toyama¦Toyama¦To ya ma»|«toyama¦toyama¦to ya ma»} #とやま
+(地名)ながの　{*«Nagano¦Nagano¦Na ga no»|«nagano¦nagano¦na ga no»} #ながの
+(地名)さいたま　{*«Saitama¦Saitama¦Sa i ta ma»|«saitama¦saitama¦sa i ta ma»} #さいたま
+(地名)いばらき　{*«Ibaraki¦Ibaraki¦I ba ra ki»|«ibaraki¦ibaraki¦i ba ra ki»} #いばらき
+(地名)ぐんま　{*«Gunma¦Gunma¦Gu n ma»|«gunma¦gunma¦gu n ma»} #ぐんま
+(地名)みえ　{*«Mie¦Mie¦Mi e»|«mie¦mie¦mi e»} #みえ
+(地名)わかやま　{*«Wakayama¦Wakayama¦Wa ka ya ma»|«wakayama¦wakayama¦wa ka ya ma»} #わかやま
+(地名)ひょうご　{*«Hyôgo¦Hyo-go¦Hyo u go»|«hyôgo¦hyo-go¦hyo u go»} #ひょうご
+(人の 名前)みやざき たろう　{*«Miyazaki Tarô¦Miyazaki Taro-¦Mi ya za ki　Ta ro u»|«miyazaki tarô¦miyazaki taro-¦mi ya za ki　ta ro u»} #みやざきたろう
+(人の 名前)あおき はると　{*«Aoki Haruto¦Aoki Haruto¦A o ki　Ha ru to»|«aoki haruto¦aoki haruto¦a o ki　ha ru to»} #あおきはると
+(人の 名前)きむら はると　{*«Kimura Haruto¦Kimura Haruto¦Ki mu ra　Ha ru to»|«kimura haruto¦kimura haruto¦ki mu ra　ha ru to»} #きむらはると
+(人の 名前)こんどう さくら　{*«Kondô Sakura¦Kondo- Sakura¦Ko n do u　Sa ku ra»|«kondô sakura¦kondo- sakura¦ko n do u　sa ku ra»} #こんどうさくら
+(人の 名前)みやざき かいと　{*«Miyazaki Kaito¦Miyazaki Kaito¦Mi ya za ki　Ka i to»|«miyazaki kaito¦miyazaki kaito¦mi ya za ki　ka i to»} #みやざきかいと
+(人の 名前)さかい けんた　{*«Sakai Kenta¦Sakai Kenta¦Sa ka i　Ke n ta»|«sakai kenta¦sakai kenta¦sa ka i　ke n ta»} #さかいけんた
+(人の 名前)もりた かいと　{*«Morita Kaito¦Morita Kaito¦Mo ri ta　Ka i to»|«morita kaito¦morita kaito¦mo ri ta　ka i to»} #もりたかいと
+(人の 名前)こんどう れん　{*«Kondô Ren¦Kondo- Ren¦Ko n do u　Re n»|«kondô ren¦kondo- ren¦ko n do u　re n»} #こんどうれん
+(人の 名前)えんどう はると　{*«Endô Haruto¦Endo- Haruto¦E n do u　Ha ru to»|«endô haruto¦endo- haruto¦e n do u　ha ru to»} #えんどうはると
+(人の 名前)いけだ りく　{*«Ikeda Riku¦Ikeda Riku¦I ke da　Ri ku»|«ikeda riku¦ikeda riku¦i ke da　ri ku»} #いけだりく
+(人の 名前)わだ ひな　{*«Wada Hina¦Wada Hina¦Wa da　Hi na»|«wada hina¦wada hina¦wa da　hi na»} #わだひな
+(人の 名前)かねこ そうた　{*«Kaneko Sôta¦Kaneko So-ta¦Ka ne ko　So u ta»|«kaneko sôta¦kaneko so-ta¦ka ne ko　so u ta»} #かねこそうた
+(ふつうの ことば)いぬ　{*«inu¦inu¦i nu»|«Inu¦Inu¦I nu»} #いぬ
+(ふつうの ことば)さくら　{*«sakura¦sakura¦sa ku ra»|«Sakura¦Sakura¦Sa ku ra»} #さくら
+(ふつうの ことば)やま　{*«yama¦yama¦ya ma»|«Yama¦Yama¦Ya ma»} #やま
+(ふつうの ことば)ねこ　{*«neko¦neko¦ne ko»|«Neko¦Neko¦Ne ko»} #ねこ
+(ふつうの ことば)うみ　{*«umi¦umi¦u mi»|«Umi¦Umi¦U mi»} #うみ
+(ふつうの ことば)はな　{*«hana¦hana¦ha na»|«Hana¦Hana¦Ha na»} #はな
+(ふつうの ことば)ほん　{*«hon¦hon¦ho n»|«Hon¦Hon¦Ho n»} #ほん
+(ふつうの ことば)そら　{*«sora¦sora¦so ra»|«Sora¦Sora¦So ra»} #そら
 == 地名や 人の 名前を 書く | 地名や 人の 名前を ローマ字で 書きましょう。 | 4
-(地名)なごや　[=Nagoya] #なごや
-(地名)きょうと　[=Kyôto] #きょうと
-(地名)おおさか　[=Ôsaka] #おおさか
-(地名)さっぽろ　[=Sapporo] #さっぽろ
-(地名)せんだい　[=Sendai] #せんだい
-(地名)よこはま　[=Yokohama] #よこはま
-(地名)なら　[=Nara] #なら
-(地名)こうべ　[=Kôbe] #こうべ
-(地名)くまもと　[=Kumamoto] #くまもと
-(地名)ながさき　[=Nagasaki] #ながさき
-(地名)おきなわ　[=Okinawa] #おきなわ
-(地名)かながわ　[=Kanagawa] #かながわ
-(地名)おかやま　[=Okayama] #おかやま
-(地名)やまがた　[=Yamagata] #やまがた
-(地名)あきた　[=Akita] #あきた
-(地名)あおもり　[=Aomori] #あおもり
-(地名)いわて　[=Iwate] #いわて
-(地名)みやぎ　[=Miyagi] #みやぎ
-(地名)かがわ　[=Kagawa] #かがわ
-(地名)えひめ　[=Ehime] #えひめ
-(地名)さが　[=Saga] #さが
-(地名)みやざき　[=Miyazaki] #みやざき
-(地名)とっとり　[=Tottori] #とっとり
-(地名)とやま　[=Toyama] #とやま
-(地名)ながの　[=Nagano] #ながの
-(地名)さいたま　[=Saitama] #さいたま
-(地名)いばらき　[=Ibaraki] #いばらき
-(地名)ぐんま　[=Gunma] #ぐんま
-(地名)みえ　[=Mie] #みえ
-(地名)わかやま　[=Wakayama] #わかやま
-(地名)ひょうご　[=Hyôgo] #ひょうご
-(人の 名前)おおた たろう　[=Ôta Tarô] #おおたたろう
-(人の 名前)ささき れん　[=Sasaki Ren] #ささきれん
-(人の 名前)さとう かいと　[=Satô Kaito] #さとうかいと
-(人の 名前)さかもと かいと　[=Sakamoto Kaito] #さかもとかいと
-(人の 名前)わたなべ みなと　[=Watanabe Minato] #わたなべみなと
-(人の 名前)たむら そうた　[=Tamura Sôta] #たむらそうた
-(人の 名前)なかの ゆうと　[=Nakano Yûto] #なかのゆうと
-(人の 名前)おおた ゆうと　[=Ôta Yûto] #おおたゆうと
-(人の 名前)わたなべ れん　[=Watanabe Ren] #わたなべれん
-(人の 名前)こんどう そうた　[=Kondô Sôta] #こんどうそうた
-(人の 名前)いけだ はなこ　[=Ikeda Hanako] #いけだはなこ
-(人の 名前)やまもと さくら　[=Yamamoto Sakura] #やまもとさくら
-(人の 名前)きむら りく　[=Kimura Riku] #きむらりく
-(人の 名前)さかもと はなこ　[=Sakamoto Hanako] #さかもとはなこ
-(人の 名前)すずき りく　[=Suzuki Riku] #すずきりく
-(人の 名前)おかだ そうた　[=Okada Sôta] #おかだそうた
-(人の 名前)いけだ はると　[=Ikeda Haruto] #いけだはると
-(人の 名前)たなか はると　[=Tanaka Haruto] #たなかはると
-(人の 名前)はらだ そうた　[=Harada Sôta] #はらだそうた
-(人の 名前)みやざき さくら　[=Miyazaki Sakura] #みやざきさくら
-(人の 名前)あおき めい　[=Aoki Mei] #あおきめい
-(人の 名前)いとう はると　[=Itô Haruto] #いとうはると
-(人の 名前)もり れん　[=Mori Ren] #もりれん
-(人の 名前)たなか あおい　[=Tanaka Aoi] #たなかあおい
-(人の 名前)はらだ みお　[=Harada Mio] #はらだみお
-(人の 名前)さかい みなと　[=Sakai Minato] #さかいみなと
-(人の 名前)くどう はなこ　[=Kudô Hanako] #くどうはなこ
-(人の 名前)すずき はなこ　[=Suzuki Hanako] #すずきはなこ
-(人の 名前)なかむら めい　[=Nakamura Mei] #なかむらめい
-(人の 名前)いけだ れん　[=Ikeda Ren] #いけだれん
-(人の 名前)なかやま ゆい　[=Nakayama Yui] #なかやまゆい
-(人の 名前)おおた ゆい　[=Ôta Yui] #おおたゆい
-(人の 名前)えんどう ひな　[=Endô Hina] #えんどうひな
-(人の 名前)おおた ゆな　[=Ôta Yuna] #おおたゆな
-(人の 名前)かねこ めい　[=Kaneko Mei] #かねこめい
-(人の 名前)わたなべ だいき　[=Watanabe Daiki] #わたなべだいき
-(人の 名前)さとう ゆうと　[=Satô Yûto] #さとうゆうと
-(人の 名前)なかやま たろう　[=Nakayama Tarô] #なかやまたろう
-(人の 名前)おかだ ひな　[=Okada Hina] #おかだひな
-(人の 名前)ささき かいと　[=Sasaki Kaito] #ささきかいと
+(地名)なごや　[=«Nagoya¦Nagoya¦Na go ya»] #なごや
+(地名)きょうと　[=«Kyôto¦Kyo-to¦Kyo u to»] #きょうと
+(地名)おおさか　[=«Ôsaka¦O-saka¦O o sa ka»] #おおさか
+(地名)さっぽろ　[=«Sapporo¦Sapporo¦Sa p po ro»] #さっぽろ
+(地名)せんだい　[=«Sendai¦Sendai¦Se n da i»] #せんだい
+(地名)よこはま　[=«Yokohama¦Yokohama¦Yo ko ha ma»] #よこはま
+(地名)なら　[=«Nara¦Nara¦Na ra»] #なら
+(地名)こうべ　[=«Kôbe¦Ko-be¦Ko u be»] #こうべ
+(地名)くまもと　[=«Kumamoto¦Kumamoto¦Ku ma mo to»] #くまもと
+(地名)ながさき　[=«Nagasaki¦Nagasaki¦Na ga sa ki»] #ながさき
+(地名)おきなわ　[=«Okinawa¦Okinawa¦O ki na wa»] #おきなわ
+(地名)かながわ　[=«Kanagawa¦Kanagawa¦Ka na ga wa»] #かながわ
+(地名)おかやま　[=«Okayama¦Okayama¦O ka ya ma»] #おかやま
+(地名)やまがた　[=«Yamagata¦Yamagata¦Ya ma ga ta»] #やまがた
+(地名)あきた　[=«Akita¦Akita¦A ki ta»] #あきた
+(地名)あおもり　[=«Aomori¦Aomori¦A o mo ri»] #あおもり
+(地名)いわて　[=«Iwate¦Iwate¦I wa te»] #いわて
+(地名)みやぎ　[=«Miyagi¦Miyagi¦Mi ya gi»] #みやぎ
+(地名)かがわ　[=«Kagawa¦Kagawa¦Ka ga wa»] #かがわ
+(地名)えひめ　[=«Ehime¦Ehime¦E hi me»] #えひめ
+(地名)さが　[=«Saga¦Saga¦Sa ga»] #さが
+(地名)みやざき　[=«Miyazaki¦Miyazaki¦Mi ya za ki»] #みやざき
+(地名)とっとり　[=«Tottori¦Tottori¦To t to ri»] #とっとり
+(地名)とやま　[=«Toyama¦Toyama¦To ya ma»] #とやま
+(地名)ながの　[=«Nagano¦Nagano¦Na ga no»] #ながの
+(地名)さいたま　[=«Saitama¦Saitama¦Sa i ta ma»] #さいたま
+(地名)いばらき　[=«Ibaraki¦Ibaraki¦I ba ra ki»] #いばらき
+(地名)ぐんま　[=«Gunma¦Gunma¦Gu n ma»] #ぐんま
+(地名)みえ　[=«Mie¦Mie¦Mi e»] #みえ
+(地名)わかやま　[=«Wakayama¦Wakayama¦Wa ka ya ma»] #わかやま
+(地名)ひょうご　[=«Hyôgo¦Hyo-go¦Hyo u go»] #ひょうご
+(人の 名前)みやざき たろう　[=«Miyazaki Tarô¦Miyazaki Taro-¦Mi ya za ki　Ta ro u»] #みやざきたろう
+(人の 名前)あおき はると　[=«Aoki Haruto¦Aoki Haruto¦A o ki　Ha ru to»] #あおきはると
+(人の 名前)きむら はると　[=«Kimura Haruto¦Kimura Haruto¦Ki mu ra　Ha ru to»] #きむらはると
+(人の 名前)こんどう さくら　[=«Kondô Sakura¦Kondo- Sakura¦Ko n do u　Sa ku ra»] #こんどうさくら
+(人の 名前)みやざき かいと　[=«Miyazaki Kaito¦Miyazaki Kaito¦Mi ya za ki　Ka i to»] #みやざきかいと
+(人の 名前)さかい けんた　[=«Sakai Kenta¦Sakai Kenta¦Sa ka i　Ke n ta»] #さかいけんた
+(人の 名前)もりた かいと　[=«Morita Kaito¦Morita Kaito¦Mo ri ta　Ka i to»] #もりたかいと
+(人の 名前)こんどう れん　[=«Kondô Ren¦Kondo- Ren¦Ko n do u　Re n»] #こんどうれん
+(人の 名前)えんどう はると　[=«Endô Haruto¦Endo- Haruto¦E n do u　Ha ru to»] #えんどうはると
+(人の 名前)いけだ りく　[=«Ikeda Riku¦Ikeda Riku¦I ke da　Ri ku»] #いけだりく
+(人の 名前)わだ ひな　[=«Wada Hina¦Wada Hina¦Wa da　Hi na»] #わだひな
+(人の 名前)かねこ そうた　[=«Kaneko Sôta¦Kaneko So-ta¦Ka ne ko　So u ta»] #かねこそうた
+(人の 名前)わだ れん　[=«Wada Ren¦Wada Ren¦Wa da　Re n»] #わだれん
+(人の 名前)みうら さくら　[=«Miura Sakura¦Miura Sakura¦Mi u ra　Sa ku ra»] #みうらさくら
+(人の 名前)わたなべ ひな　[=«Watanabe Hina¦Watanabe Hina¦Wa ta na be　Hi na»] #わたなべひな
+(人の 名前)おおた れん　[=«Ôta Ren¦O-ta Ren¦O o ta　Re n»] #おおたれん
+(人の 名前)こんどう けんた　[=«Kondô Kenta¦Kondo- Kenta¦Ko n do u　Ke n ta»] #こんどうけんた
+(人の 名前)むらかみ ひな　[=«Murakami Hina¦Murakami Hina¦Mu ra ka mi　Hi na»] #むらかみひな
+(人の 名前)かとう さくら　[=«Katô Sakura¦Kato- Sakura¦Ka to u　Sa ku ra»] #かとうさくら
+(人の 名前)みやもと めい　[=«Miyamoto Mei¦Miyamoto Mei¦Mi ya mo to　Me i»] #みやもとめい
+(人の 名前)えんどう みお　[=«Endô Mio¦Endo- Mio¦E n do u　Mi o»] #えんどうみお
+(人の 名前)おかもと たろう　[=«Okamoto Tarô¦Okamoto Taro-¦O ka mo to　Ta ro u»] #おかもとたろう
+(人の 名前)おかもと りん　[=«Okamoto Rin¦Okamoto Rin¦O ka mo to　Ri n»] #おかもとりん
+(人の 名前)みやもと なな　[=«Miyamoto Nana¦Miyamoto Nana¦Mi ya mo to　Na na»] #みやもとなな
+(人の 名前)はらだ はなこ　[=«Harada Hanako¦Harada Hanako¦Ha ra da　Ha na ko»] #はらだはなこ
+(人の 名前)おかもと かいと　[=«Okamoto Kaito¦Okamoto Kaito¦O ka mo to　Ka i to»] #おかもとかいと
+(人の 名前)おおた めい　[=«Ôta Mei¦O-ta Mei¦O o ta　Me i»] #おおためい
+(人の 名前)うえだ ゆうと　[=«Ueda Yûto¦Ueda Yu-to¦U e da　Yu u to»] #うえだゆうと
+(人の 名前)みやもと りん　[=«Miyamoto Rin¦Miyamoto Rin¦Mi ya mo to　Ri n»] #みやもとりん
+(人の 名前)たむら はなこ　[=«Tamura Hanako¦Tamura Hanako¦Ta mu ra　Ha na ko»] #たむらはなこ
+(人の 名前)はせがわ ゆうと　[=«Hasegawa Yûto¦Hasegawa Yu-to¦Ha se ga wa　Yu u to»] #はせがわゆうと
+(人の 名前)わだ だいき　[=«Wada Daiki¦Wada Daiki¦Wa da　Da i ki»] #わだだいき
+(人の 名前)わたなべ はると　[=«Watanabe Haruto¦Watanabe Haruto¦Wa ta na be　Ha ru to»] #わたなべはると
+(人の 名前)はらだ めい　[=«Harada Mei¦Harada Mei¦Ha ra da　Me i»] #はらだめい
+(人の 名前)すずき かいと　[=«Suzuki Kaito¦Suzuki Kaito¦Su zu ki　Ka i to»] #すずきかいと
+(人の 名前)たむら さくら　[=«Tamura Sakura¦Tamura Sakura¦Ta mu ra　Sa ku ra»] #たむらさくら
+(人の 名前)たなか あおい　[=«Tanaka Aoi¦Tanaka Aoi¦Ta na ka　A o i»] #たなかあおい
+(人の 名前)はせがわ けんた　[=«Hasegawa Kenta¦Hasegawa Kenta¦Ha se ga wa　Ke n ta»] #はせがわけんた
+(人の 名前)おかもと そうた　[=«Okamoto Sôta¦Okamoto So-ta¦O ka mo to　So u ta»] #おかもとそうた
+(人の 名前)えんどう りん　[=«Endô Rin¦Endo- Rin¦E n do u　Ri n»] #えんどうりん
 
 @ romaji11 | 3 | ローマ字⑪ ヘボン式 | 駅や 看板で 見る 書き方。し→shi、ち→chi、つ→tsu、ふ→fu、じ→ji。
 == ヘボン式を なぞる | うすい 字を なぞりましょう。 | 2 | seq
@@ -1484,940 +1472,901 @@ hyakuen　[ひゃくえん] #ひゃくえん
 じゅ　{*ju|zyu} #じゅ
 じょ　{*jo|zyo} #じょ
 == ヘボン式で 書く | ヘボン式で 書きましょう。 | 4 | cols=2
-なつ　[=natsu] #なつ
-きつね　[=kitsune] #きつね
-くつ　[=kutsu] #くつ
-あし　[=ashi] #あし
-うし　[=ushi] #うし
-くち　[=kuchi] #くち
-こし　[=koshi] #こし
-しか　[=shika] #しか
-すし　[=sushi] #すし
-つくえ　[=tsukue] #つくえ
-つの　[=tsuno] #つの
-つな　[=tsuna] #つな
-なし　[=nashi] #なし
-おかし　[=okashi] #おかし
-こたつ　[=kotatsu] #こたつ
-うち　[=uchi] #うち
-にし　[=nishi] #にし
-つき　[=tsuki] #つき
-てつ　[=tetsu] #てつ
-とし　[=toshi] #とし
-おもち　[=omochi] #おもち
-くじら　[=kujira] #くじら
-けむし　[=kemushi] #けむし
-しろ　[=shiro] #しろ
-ちず　[=chizu] #ちず
-つばめ　[=tsubame] #つばめ
-ふね　[=fune] #ふね
-ほし　[=hoshi] #ほし
-むし　[=mushi] #むし
-ふえ　[=fue] #ふえ
-しま　[=shima] #しま
-はし　[=hashi] #はし
-はち　[=hachi] #はち
-ふく　[=fuku] #ふく
-むかし　[=mukashi] #むかし
-もち　[=mochi] #もち
-れきし　[=rekishi] #れきし
-いのしし　[=inoshishi] #いのしし
-さいふ　[=saifu] #さいふ
-にんじん　[=ninjin] #にんじん
-おふろ　[=ofuro] #おふろ
-じてんしゃ　[=jitensha] #じてんしゃ
-えんぴつ　[=enpitsu] #えんぴつ
-でぐち　[=deguchi] #でぐち
-はなぢ　[=hanaji] #はなぢ
-きゃべつ　[=kyabetsu] #きゃべつ
-しゃしん　[=shashin] #しゃしん
-しゅくだい　[=shukudai] #しゅくだい
-ちゃわん　[=chawan] #ちゃわん
-じゃんけん　[=janken] #じゃんけん
-じゅんばん　[=junban] #じゅんばん
-おもちゃ　[=omocha] #おもちゃ
-いしゃ　[=isha] #いしゃ
-でんしゃ　[=densha] #でんしゃ
-にんじゃ　[=ninja] #にんじゃ
-しょくじ　[=shokuji] #しょくじ
-おちゃ　[=ocha] #おちゃ
-じゃがいも　[=jagaimo] #じゃがいも
-さんしょ　[=sansho] #さんしょ
-しゅみ　[=shumi] #しゅみ
-しっぽ　[=shippo] #しっぽ
-ざっし　[=zasshi] #ざっし
-しゃもじ　[=shamoji] #しゃもじ
-ちゃいろ　[=chairo] #ちゃいろ
-じゃり　[=jari] #じゃり
-ちょきん　[=chokin] #ちょきん
-しゃこ　[=shako] #しゃこ
-しゅるい　[=shurui] #しゅるい
-おしゃれ　[=oshare] #おしゃれ
-かしゅ　[=kashu] #かしゅ
-しゃち　[=shachi] #しゃち
-じゃま　[=jama] #じゃま
-しゃみせん　[=shamisen] #しゃみせん
-きんじょ　[=kinjo] #きんじょ
-かいしゃ　[=kaisha] #かいしゃ
-しゅっぱつ　[=shuppatsu] #しゅっぱつ
-まっしろ　[=masshiro] #まっしろ
-いっしょ　[=issho] #いっしょ
-(地名)ちば　[=Chiba] #ちば
-(地名)つくば　[=Tsukuba] #つくば
-(地名)しが　[=Shiga] #しが
-(地名)ふくおか　[=Fukuoka] #ふくおか
-(地名)ひろしま　[=Hiroshima] #ひろしま
-(地名)しずおか　[=Shizuoka] #しずおか
-(地名)ふくしま　[=Fukushima] #ふくしま
-(地名)いしかわ　[=Ishikawa] #いしかわ
-(地名)ぎふ　[=Gifu] #ぎふ
-(地名)かごしま　[=Kagoshima] #かごしま
-(地名)しまね　[=Shimane] #しまね
-(地名)とちぎ　[=Tochigi] #とちぎ
-(地名)やまぐち　[=Yamaguchi] #やまぐち
-(地名)やまなし　[=Yamanashi] #やまなし
-(地名)しんじゅく　[=Shinjuku] #しんじゅく
-(地名)しぶや　[=Shibuya] #しぶや
-(地名)ふじさん　[=Fujisan] #ふじさん
+なつ　[=«natsu¦natsu¦na tsu»] #なつ
+きつね　[=«kitsune¦kitsune¦ki tsu ne»] #きつね
+くつ　[=«kutsu¦kutsu¦ku tsu»] #くつ
+あし　[=«ashi¦ashi¦a shi»] #あし
+うし　[=«ushi¦ushi¦u shi»] #うし
+くち　[=«kuchi¦kuchi¦ku chi»] #くち
+こし　[=«koshi¦koshi¦ko shi»] #こし
+しか　[=«shika¦shika¦shi ka»] #しか
+すし　[=«sushi¦sushi¦su shi»] #すし
+つくえ　[=«tsukue¦tsukue¦tsu ku e»] #つくえ
+つの　[=«tsuno¦tsuno¦tsu no»] #つの
+つな　[=«tsuna¦tsuna¦tsu na»] #つな
+なし　[=«nashi¦nashi¦na shi»] #なし
+おかし　[=«okashi¦okashi¦o ka shi»] #おかし
+こたつ　[=«kotatsu¦kotatsu¦ko ta tsu»] #こたつ
+うち　[=«uchi¦uchi¦u chi»] #うち
+にし　[=«nishi¦nishi¦ni shi»] #にし
+つき　[=«tsuki¦tsuki¦tsu ki»] #つき
+てつ　[=«tetsu¦tetsu¦te tsu»] #てつ
+とし　[=«toshi¦toshi¦to shi»] #とし
+おもち　[=«omochi¦omochi¦o mo chi»] #おもち
+くじら　[=«kujira¦kujira¦ku ji ra»] #くじら
+けむし　[=«kemushi¦kemushi¦ke mu shi»] #けむし
+しろ　[=«shiro¦shiro¦shi ro»] #しろ
+ちず　[=«chizu¦chizu¦chi zu»] #ちず
+つばめ　[=«tsubame¦tsubame¦tsu ba me»] #つばめ
+ふね　[=«fune¦fune¦fu ne»] #ふね
+ほし　[=«hoshi¦hoshi¦ho shi»] #ほし
+むし　[=«mushi¦mushi¦mu shi»] #むし
+ふえ　[=«fue¦fue¦fu e»] #ふえ
+しま　[=«shima¦shima¦shi ma»] #しま
+はし　[=«hashi¦hashi¦ha shi»] #はし
+はち　[=«hachi¦hachi¦ha chi»] #はち
+ふく　[=«fuku¦fuku¦fu ku»] #ふく
+むかし　[=«mukashi¦mukashi¦mu ka shi»] #むかし
+もち　[=«mochi¦mochi¦mo chi»] #もち
+れきし　[=«rekishi¦rekishi¦re ki shi»] #れきし
+さいふ　[=«saifu¦saifu¦sa i fu»] #さいふ
+にんじん　[=«ninjin¦ninjin¦ni n ji n»] #にんじん
+おふろ　[=«ofuro¦ofuro¦o fu ro»] #おふろ
+えんぴつ　[=«enpitsu¦enpitsu¦e n pi tsu»] #えんぴつ
+でぐち　[=«deguchi¦deguchi¦de gu chi»] #でぐち
+はなぢ　[=«hanaji¦hanaji¦ha na ji»] #はなぢ
+きゃべつ　[=«kyabetsu¦kyabetsu¦kya be tsu»] #きゃべつ
+しゃしん　[=«shashin¦shashin¦sha shi n»] #しゃしん
+ちゃわん　[=«chawan¦chawan¦cha wa n»] #ちゃわん
+じゃんけん　[=«janken¦janken¦ja n ke n»] #じゃんけん
+じゅんばん　[=«junban¦junban¦ju n ba n»] #じゅんばん
+おもちゃ　[=«omocha¦omocha¦o mo cha»] #おもちゃ
+いしゃ　[=«isha¦isha¦i sha»] #いしゃ
+でんしゃ　[=«densha¦densha¦de n sha»] #でんしゃ
+にんじゃ　[=«ninja¦ninja¦ni n ja»] #にんじゃ
+しょくじ　[=«shokuji¦shokuji¦sho ku ji»] #しょくじ
+おちゃ　[=«ocha¦ocha¦o cha»] #おちゃ
+じゃがいも　[=«jagaimo¦jagaimo¦ja ga i mo»] #じゃがいも
+さんしょ　[=«sansho¦sansho¦sa n sho»] #さんしょ
+しゅみ　[=«shumi¦shumi¦shu mi»] #しゅみ
+しっぽ　[=«shippo¦shippo¦shi p po»] #しっぽ
+ざっし　[=«zasshi¦zasshi¦za s shi»] #ざっし
+しゃもじ　[=«shamoji¦shamoji¦sha mo ji»] #しゃもじ
+ちゃいろ　[=«chairo¦chairo¦cha i ro»] #ちゃいろ
+じゃり　[=«jari¦jari¦ja ri»] #じゃり
+ちょきん　[=«chokin¦chokin¦cho ki n»] #ちょきん
+しゃこ　[=«shako¦shako¦sha ko»] #しゃこ
+しゅるい　[=«shurui¦shurui¦shu ru i»] #しゅるい
+おしゃれ　[=«oshare¦oshare¦o sha re»] #おしゃれ
+かしゅ　[=«kashu¦kashu¦ka shu»] #かしゅ
+しゃち　[=«shachi¦shachi¦sha chi»] #しゃち
+じゃま　[=«jama¦jama¦ja ma»] #じゃま
+きんじょ　[=«kinjo¦kinjo¦ki n jo»] #きんじょ
+かいしゃ　[=«kaisha¦kaisha¦ka i sha»] #かいしゃ
+いっしょ　[=«issho¦issho¦i s sho»] #いっしょ
+(地名)ちば　[=«Chiba¦Chiba¦Chi ba»] #ちば
+(地名)つくば　[=«Tsukuba¦Tsukuba¦Tsu ku ba»] #つくば
+(地名)しが　[=«Shiga¦Shiga¦Shi ga»] #しが
+(地名)ふくおか　[=«Fukuoka¦Fukuoka¦Fu ku o ka»] #ふくおか
+(地名)ぎふ　[=«Gifu¦Gifu¦Gi fu»] #ぎふ
+(地名)しまね　[=«Shimane¦Shimane¦Shi ma ne»] #しまね
+(地名)とちぎ　[=«Tochigi¦Tochigi¦To chi gi»] #とちぎ
+(地名)しぶや　[=«Shibuya¦Shibuya¦Shi bu ya»] #しぶや
+(地名)ふじさん　[=«Fujisan¦Fujisan¦Fu ji sa n»] #ふじさん
 == ｜訓令式《くんれいしき》を ヘボン式に | ｜訓令式《くんれいしき》の つづりを ヘボン式に 直しましょう。 | 2 | cols=2
-natu　→　[=natsu] #なつ
-kitune　→　[=kitsune] #きつね
-kutu　→　[=kutsu] #くつ
-asi　→　[=ashi] #あし
-usi　→　[=ushi] #うし
-kuti　→　[=kuchi] #くち
-kosi　→　[=koshi] #こし
-sika　→　[=shika] #しか
-susi　→　[=sushi] #すし
-tukue　→　[=tsukue] #つくえ
-tuno　→　[=tsuno] #つの
-tuna　→　[=tsuna] #つな
-nasi　→　[=nashi] #なし
-okasi　→　[=okashi] #おかし
-kotatu　→　[=kotatsu] #こたつ
-uti　→　[=uchi] #うち
-nisi　→　[=nishi] #にし
-tuki　→　[=tsuki] #つき
-tetu　→　[=tetsu] #てつ
-tosi　→　[=toshi] #とし
-omoti　→　[=omochi] #おもち
-kuzira　→　[=kujira] #くじら
-kemusi　→　[=kemushi] #けむし
-siro　→　[=shiro] #しろ
-tizu　→　[=chizu] #ちず
-tubame　→　[=tsubame] #つばめ
-hune　→　[=fune] #ふね
-hosi　→　[=hoshi] #ほし
-musi　→　[=mushi] #むし
-hue　→　[=fue] #ふえ
-sima　→　[=shima] #しま
-hasi　→　[=hashi] #はし
-hati　→　[=hachi] #はち
-huku　→　[=fuku] #ふく
-mukasi　→　[=mukashi] #むかし
-moti　→　[=mochi] #もち
-rekisi　→　[=rekishi] #れきし
-inosisi　→　[=inoshishi] #いのしし
-saihu　→　[=saifu] #さいふ
-ninzin　→　[=ninjin] #にんじん
-ohuro　→　[=ofuro] #おふろ
-zitensya　→　[=jitensha] #じてんしゃ
-enpitu　→　[=enpitsu] #えんぴつ
-deguti　→　[=deguchi] #でぐち
-hanazi　→　[=hanaji] #はなぢ
-kyabetu　→　[=kyabetsu] #きゃべつ
-syasin　→　[=shashin] #しゃしん
-syukudai　→　[=shukudai] #しゅくだい
-tyawan　→　[=chawan] #ちゃわん
-zyanken　→　[=janken] #じゃんけん
-zyunban　→　[=junban] #じゅんばん
-omotya　→　[=omocha] #おもちゃ
-isya　→　[=isha] #いしゃ
-densya　→　[=densha] #でんしゃ
-ninzya　→　[=ninja] #にんじゃ
-syokuzi　→　[=shokuji] #しょくじ
-otya　→　[=ocha] #おちゃ
-zyagaimo　→　[=jagaimo] #じゃがいも
-sansyo　→　[=sansho] #さんしょ
-syumi　→　[=shumi] #しゅみ
-sippo　→　[=shippo] #しっぽ
-zassi　→　[=zasshi] #ざっし
-syamozi　→　[=shamoji] #しゃもじ
-tyairo　→　[=chairo] #ちゃいろ
-zyari　→　[=jari] #じゃり
-tyokin　→　[=chokin] #ちょきん
-syako　→　[=shako] #しゃこ
-syurui　→　[=shurui] #しゅるい
-osyare　→　[=oshare] #おしゃれ
-kasyu　→　[=kashu] #かしゅ
-syati　→　[=shachi] #しゃち
-zyama　→　[=jama] #じゃま
-syamisen　→　[=shamisen] #しゃみせん
-kinzyo　→　[=kinjo] #きんじょ
-kaisya　→　[=kaisha] #かいしゃ
-syuppatu　→　[=shuppatsu] #しゅっぱつ
-massiro　→　[=masshiro] #まっしろ
-issyo　→　[=issho] #いっしょ
+«natu¦natu¦na tu»　→　[=«natsu¦natsu¦na tsu»] #なつ
+«kitune¦kitune¦ki tu ne»　→　[=«kitsune¦kitsune¦ki tsu ne»] #きつね
+«kutu¦kutu¦ku tu»　→　[=«kutsu¦kutsu¦ku tsu»] #くつ
+«asi¦asi¦a si»　→　[=«ashi¦ashi¦a shi»] #あし
+«usi¦usi¦u si»　→　[=«ushi¦ushi¦u shi»] #うし
+«kuti¦kuti¦ku ti»　→　[=«kuchi¦kuchi¦ku chi»] #くち
+«kosi¦kosi¦ko si»　→　[=«koshi¦koshi¦ko shi»] #こし
+«sika¦sika¦si ka»　→　[=«shika¦shika¦shi ka»] #しか
+«susi¦susi¦su si»　→　[=«sushi¦sushi¦su shi»] #すし
+«tukue¦tukue¦tu ku e»　→　[=«tsukue¦tsukue¦tsu ku e»] #つくえ
+«tuno¦tuno¦tu no»　→　[=«tsuno¦tsuno¦tsu no»] #つの
+«tuna¦tuna¦tu na»　→　[=«tsuna¦tsuna¦tsu na»] #つな
+«nasi¦nasi¦na si»　→　[=«nashi¦nashi¦na shi»] #なし
+«okasi¦okasi¦o ka si»　→　[=«okashi¦okashi¦o ka shi»] #おかし
+«kotatu¦kotatu¦ko ta tu»　→　[=«kotatsu¦kotatsu¦ko ta tsu»] #こたつ
+«uti¦uti¦u ti»　→　[=«uchi¦uchi¦u chi»] #うち
+«nisi¦nisi¦ni si»　→　[=«nishi¦nishi¦ni shi»] #にし
+«tuki¦tuki¦tu ki»　→　[=«tsuki¦tsuki¦tsu ki»] #つき
+«tetu¦tetu¦te tu»　→　[=«tetsu¦tetsu¦te tsu»] #てつ
+«tosi¦tosi¦to si»　→　[=«toshi¦toshi¦to shi»] #とし
+«omoti¦omoti¦o mo ti»　→　[=«omochi¦omochi¦o mo chi»] #おもち
+«kuzira¦kuzira¦ku zi ra»　→　[=«kujira¦kujira¦ku ji ra»] #くじら
+«kemusi¦kemusi¦ke mu si»　→　[=«kemushi¦kemushi¦ke mu shi»] #けむし
+«siro¦siro¦si ro»　→　[=«shiro¦shiro¦shi ro»] #しろ
+«tizu¦tizu¦ti zu»　→　[=«chizu¦chizu¦chi zu»] #ちず
+«tubame¦tubame¦tu ba me»　→　[=«tsubame¦tsubame¦tsu ba me»] #つばめ
+«hune¦hune¦hu ne»　→　[=«fune¦fune¦fu ne»] #ふね
+«hosi¦hosi¦ho si»　→　[=«hoshi¦hoshi¦ho shi»] #ほし
+«musi¦musi¦mu si»　→　[=«mushi¦mushi¦mu shi»] #むし
+«hue¦hue¦hu e»　→　[=«fue¦fue¦fu e»] #ふえ
+«sima¦sima¦si ma»　→　[=«shima¦shima¦shi ma»] #しま
+«hasi¦hasi¦ha si»　→　[=«hashi¦hashi¦ha shi»] #はし
+«hati¦hati¦ha ti»　→　[=«hachi¦hachi¦ha chi»] #はち
+«huku¦huku¦hu ku»　→　[=«fuku¦fuku¦fu ku»] #ふく
+«mukasi¦mukasi¦mu ka si»　→　[=«mukashi¦mukashi¦mu ka shi»] #むかし
+«moti¦moti¦mo ti»　→　[=«mochi¦mochi¦mo chi»] #もち
+«rekisi¦rekisi¦re ki si»　→　[=«rekishi¦rekishi¦re ki shi»] #れきし
+«saihu¦saihu¦sa i hu»　→　[=«saifu¦saifu¦sa i fu»] #さいふ
+«ninzin¦ninzin¦ni n zi n»　→　[=«ninjin¦ninjin¦ni n ji n»] #にんじん
+«ohuro¦ohuro¦o hu ro»　→　[=«ofuro¦ofuro¦o fu ro»] #おふろ
+«enpitu¦enpitu¦e n pi tu»　→　[=«enpitsu¦enpitsu¦e n pi tsu»] #えんぴつ
+«deguti¦deguti¦de gu ti»　→　[=«deguchi¦deguchi¦de gu chi»] #でぐち
+«hanazi¦hanazi¦ha na zi»　→　[=«hanaji¦hanaji¦ha na ji»] #はなぢ
+«kyabetu¦kyabetu¦kya be tu»　→　[=«kyabetsu¦kyabetsu¦kya be tsu»] #きゃべつ
+«syasin¦syasin¦sya si n»　→　[=«shashin¦shashin¦sha shi n»] #しゃしん
+«tyawan¦tyawan¦tya wa n»　→　[=«chawan¦chawan¦cha wa n»] #ちゃわん
+«zyanken¦zyanken¦zya n ke n»　→　[=«janken¦janken¦ja n ke n»] #じゃんけん
+«zyunban¦zyunban¦zyu n ba n»　→　[=«junban¦junban¦ju n ba n»] #じゅんばん
+«omotya¦omotya¦o mo tya»　→　[=«omocha¦omocha¦o mo cha»] #おもちゃ
+«isya¦isya¦i sya»　→　[=«isha¦isha¦i sha»] #いしゃ
+«densya¦densya¦de n sya»　→　[=«densha¦densha¦de n sha»] #でんしゃ
+«ninzya¦ninzya¦ni n zya»　→　[=«ninja¦ninja¦ni n ja»] #にんじゃ
+«syokuzi¦syokuzi¦syo ku zi»　→　[=«shokuji¦shokuji¦sho ku ji»] #しょくじ
+«otya¦otya¦o tya»　→　[=«ocha¦ocha¦o cha»] #おちゃ
+«zyagaimo¦zyagaimo¦zya ga i mo»　→　[=«jagaimo¦jagaimo¦ja ga i mo»] #じゃがいも
+«sansyo¦sansyo¦sa n syo»　→　[=«sansho¦sansho¦sa n sho»] #さんしょ
+«syumi¦syumi¦syu mi»　→　[=«shumi¦shumi¦shu mi»] #しゅみ
+«sippo¦sippo¦si p po»　→　[=«shippo¦shippo¦shi p po»] #しっぽ
+«zassi¦zassi¦za s si»　→　[=«zasshi¦zasshi¦za s shi»] #ざっし
+«syamozi¦syamozi¦sya mo zi»　→　[=«shamoji¦shamoji¦sha mo ji»] #しゃもじ
+«tyairo¦tyairo¦tya i ro»　→　[=«chairo¦chairo¦cha i ro»] #ちゃいろ
+«zyari¦zyari¦zya ri»　→　[=«jari¦jari¦ja ri»] #じゃり
+«tyokin¦tyokin¦tyo ki n»　→　[=«chokin¦chokin¦cho ki n»] #ちょきん
+«syako¦syako¦sya ko»　→　[=«shako¦shako¦sha ko»] #しゃこ
+«syurui¦syurui¦syu ru i»　→　[=«shurui¦shurui¦shu ru i»] #しゅるい
+«osyare¦osyare¦o sya re»　→　[=«oshare¦oshare¦o sha re»] #おしゃれ
+«kasyu¦kasyu¦ka syu»　→　[=«kashu¦kashu¦ka shu»] #かしゅ
+«syati¦syati¦sya ti»　→　[=«shachi¦shachi¦sha chi»] #しゃち
+«zyama¦zyama¦zya ma»　→　[=«jama¦jama¦ja ma»] #じゃま
+«kinzyo¦kinzyo¦ki n zyo»　→　[=«kinjo¦kinjo¦ki n jo»] #きんじょ
+«kaisya¦kaisya¦ka i sya»　→　[=«kaisha¦kaisha¦ka i sha»] #かいしゃ
+«issyo¦issyo¦i s syo»　→　[=«issho¦issho¦i s sho»] #いっしょ
 
 @ romaji12 | 3 | ローマ字⑫ 読む・書く(まとめ) | これまでの ローマ字を ぜんぶ つかって、ことばを 読んだり 書いたり する。
 == ローマ字を 読む | ローマ字で 書いた ことばを ひらがなで 書きましょう。 | 6 | cols=2
-ai　[あい] #あい
-ao　[あお] #あお
-ie　[いえ] #いえ
-ue　[うえ] #うえ
-oi　[おい] #おい
-ei　[えい] #えい
-aoi　[あおい] #あおい
-kasa　[かさ] #かさ
-ike　[いけ] #いけ
-asa　[あさ] #あさ
-suika　[すいか] #すいか
-tako　[たこ] #たこ
-natu　[なつ] #なつ
-neko　[ねこ] #ねこ
-inu　[いぬ] #いぬ
-kitune　[きつね] #きつね
-sakana　[さかな] #さかな
-kutu　[くつ] #くつ
-asi　[あし] #あし
-nasu　[なす] #なす
-tane　[たね] #たね
-soto　[そと] #そと
-kaki　[かき] #かき
-kao　[かお] #かお
-seki　[せき] #せき
-aki　[あき] #あき
-ika　[いか] #いか
-usi　[うし] #うし
-oni　[おに] #おに
-kani　[かに] #かに
-kuti　[くち] #くち
-kosi　[こし] #こし
-sake　[さけ] #さけ
-sika　[しか] #しか
-susi　[すし] #すし
-senaka　[せなか] #せなか
-taki　[たき] #たき
-take　[たけ] #たけ
-tukue　[つくえ] #つくえ
-tuno　[つの] #つの
-tuna　[つな] #つな
-naka　[なか] #なか
-nasi　[なし] #なし
-niku　[にく] #にく
-nuno　[ぬの] #ぬの
-noki　[のき] #のき
-okasi　[おかし] #おかし
-onaka　[おなか] #おなか
-katana　[かたな] #かたな
-kinoko　[きのこ] #きのこ
-kusa　[くさ] #くさ
-kotatu　[こたつ] #こたつ
-eki　[えき] #えき
-isu　[いす] #いす
-uti　[うち] #うち
-oke　[おけ] #おけ
-kiku　[きく] #きく
-kuki　[くき] #くき
-koi　[こい] #こい
-suna　[すな] #すな
-taiko　[たいこ] #たいこ
-tokei　[とけい] #とけい
-nisi　[にし] #にし
-ito　[いと] #いと
-uta　[うた] #うた
-okaki　[おかき] #おかき
-sekai　[せかい] #せかい
-soko　[そこ] #そこ
-tuki　[つき] #つき
-tetu　[てつ] #てつ
-tosi　[とし] #とし
-nakama　[なかま] #なかま
-atama　[あたま] #あたま
-usagi　[うさぎ] #うさぎ
-enogu　[えのぐ] #えのぐ
-omoti　[おもち] #おもち
-kaeru　[かえる] #かえる
-kirin　[きりん] #きりん
-kuzira　[くじら] #くじら
-kemusi　[けむし] #けむし
-koinu　[こいぬ] #こいぬ
-sakura　[さくら] #さくら
-siro　[しろ] #しろ
-sumire　[すみれ] #すみれ
-semi　[せみ] #せみ
-sora　[そら] #そら
-tanuki　[たぬき] #たぬき
-tizu　[ちず] #ちず
-tubame　[つばめ] #つばめ
-tegami　[てがみ] #てがみ
-tori　[とり] #とり
-nabe　[なべ] #なべ
-niwatori　[にわとり] #にわとり
-nuigurumi　[ぬいぐるみ] #ぬいぐるみ
-nezumi　[ねずみ] #ねずみ
-nori　[のり] #のり
-hasami　[はさみ] #はさみ
-hiyoko　[ひよこ] #ひよこ
-hune　[ふね] #ふね
-hebi　[へび] #へび
-hosi　[ほし] #ほし
-mame　[まめ] #まめ
-mikan　[みかん] #みかん
-musi　[むし] #むし
-megane　[めがね] #めがね
-momo　[もも] #もも
-yama　[やま] #やま
-yuki　[ゆき] #ゆき
-yoru　[よる] #よる
-rakuda　[らくだ] #らくだ
-risu　[りす] #りす
-wani　[わに] #わに
-hana　[はな] #はな
-himo　[ひも] #ひも
-hue　[ふえ] #ふえ
-heya　[へや] #へや
-hon　[ほん] #ほん
-mado　[まど] #まど
-mimi　[みみ] #みみ
-mune　[むね] #むね
-medaka　[めだか] #めだか
-mori　[もり] #もり
-yane　[やね] #やね
-yubi　[ゆび] #ゆび
-yoko　[よこ] #よこ
-ringo　[りんご] #りんご
-roba　[ろば] #ろば
-wanage　[わなげ] #わなげ
-ame　[あめ] #あめ
-umi　[うみ] #うみ
-ehon　[えほん] #えほん
-kame　[かめ] #かめ
-kuma　[くま] #くま
-kumo　[くも] #くも
-kuri　[くり] #くり
-koma　[こま] #こま
-saru　[さる] #さる
-sima　[しま] #しま
-hasi　[はし] #はし
-hati　[はち] #はち
-hito　[ひと] #ひと
-huku　[ふく] #ふく
-heso　[へそ] #へそ
-hotaru　[ほたる] #ほたる
-makura　[まくら] #まくら
-miso　[みそ] #みそ
-mukasi　[むかし] #むかし
-moti　[もち] #もち
-yasai　[やさい] #やさい
-yume　[ゆめ] #ゆめ
-rika　[りか] #りか
-rekisi　[れきし] #れきし
-wata　[わた] #わた
-karasu　[からす] #からす
-inosisi　[いのしし] #いのしし
-hanabi　[はなび] #はなび
-hotate　[ほたて] #ほたて
-minato　[みなと] #みなと
-saihu　[さいふ] #さいふ
-tamanegi　[たまねぎ] #たまねぎ
-ninzin　[にんじん] #にんじん
-renkon　[れんこん] #れんこん
-karate　[からて] #からて
-temari　[てまり] #てまり
-ami　[あみ] #あみ
-ine　[いね] #いね
-ohuro　[おふろ] #おふろ
-kami　[かみ] #かみ
-kuwa　[くわ] #くわ
-sara　[さら] #さら
-gakkô　[がっこう] #がっこう
-geta　[げた] #げた
-goma　[ごま] #ごま
-zaru　[ざる] #ざる
-zitensya　[じてんしゃ] #じてんしゃ
-zukan　[ずかん] #ずかん
-zenmai　[ぜんまい] #ぜんまい
-zô　[ぞう] #ぞう
-dango　[だんご] #だんご
-denwa　[でんわ] #でんわ
-donguri　[どんぐり] #どんぐり
-batta　[ばった] #ばった
-bin　[びん] #びん
-buta　[ぶた] #ぶた
-bentô　[べんとう] #べんとう
-bôsi　[ぼうし] #ぼうし
-pengin　[ぺんぎん] #ぺんぎん
-kagi　[かぎ] #かぎ
-hiza　[ひざ] #ひざ
-kaze　[かぜ] #かぜ
-gohan　[ごはん] #ごはん
-kaba　[かば] #かば
-enpitu　[えんぴつ] #えんぴつ
-tenpura　[てんぷら] #てんぷら
-ude　[うで] #うで
-odeko　[おでこ] #おでこ
-kagami　[かがみ] #かがみ
-budô　[ぶどう] #ぶどう
-donburi　[どんぶり] #どんぶり
-kaban　[かばん] #かばん
-kaidan　[かいだん] #かいだん
-gake　[がけ] #がけ
-ginnan　[ぎんなん] #ぎんなん
-suzume　[すずめ] #すずめ
-zubon　[ずぼん] #ずぼん
-daruma　[だるま] #だるま
-deguti　[でぐち] #でぐち
-dôgu　[どうぐ] #どうぐ
-hanazi　[はなぢ] #はなぢ
-mikazuki　[みかづき] #みかづき
-kyabetu　[きゃべつ] #きゃべつ
-kyûri　[きゅうり] #きゅうり
-kyôryû　[きょうりゅう] #きょうりゅう
-syasin　[しゃしん] #しゃしん
-syukudai　[しゅくだい] #しゅくだい
-tyawan　[ちゃわん] #ちゃわん
-tyôtyo　[ちょうちょ] #ちょうちょ
-hyaku　[ひゃく] #ひゃく
-ryû　[りゅう] #りゅう
-ryokan　[りょかん] #りょかん
-gyûnyû　[ぎゅうにゅう] #ぎゅうにゅう
-zyanken　[じゃんけん] #じゃんけん
-zyunban　[じゅんばん] #じゅんばん
-zyôro　[じょうろ] #じょうろ
-byôin　[びょういん] #びょういん
-kingyo　[きんぎょ] #きんぎょ
-omotya　[おもちゃ] #おもちゃ
-isya　[いしゃ] #いしゃ
-densya　[でんしゃ] #でんしゃ
-ninzya　[にんじゃ] #にんじゃ
-kyori　[きょり] #きょり
-tyûsya　[ちゅうしゃ] #ちゅうしゃ
-syokuzi　[しょくじ] #しょくじ
-otya　[おちゃ] #おちゃ
-zyagaimo　[じゃがいも] #じゃがいも
-kyaku　[きゃく] #きゃく
-sansyo　[さんしょ] #さんしょ
-syumi　[しゅみ] #しゅみ
-ryôri　[りょうり] #りょうり
-hyô　[ひょう] #ひょう
-ten'in　[てんいん] #てんいん
-hon'ya　[ほんや] #ほんや
-kin'en　[きんえん] #きんえん
-gen'in　[げんいん] #げんいん
-man'in　[まんいん] #まんいん
-kon'ya　[こんや] #こんや
-zen'in　[ぜんいん] #ぜんいん
-sin'yû　[しんゆう] #しんゆう
-kin'yôbi　[きんようび] #きんようび
-okâsan　[おかあさん] #おかあさん
-otôsan　[おとうさん] #おとうさん
-onîsan　[おにいさん] #おにいさん
-onêsan　[おねえさん] #おねえさん
-kôri　[こおり] #こおり
-kûki　[くうき] #くうき
-hikôki　[ひこうき] #ひこうき
-yûki　[ゆうき] #ゆうき
-kinô　[きのう] #きのう
-hôki　[ほうき] #ほうき
-tôhu　[とうふ] #とうふ
-hûsen　[ふうせん] #ふうせん
-sûzi　[すうじ] #すうじ
-kôen　[こうえん] #こうえん
-ôkami　[おおかみ] #おおかみ
-tôri　[とおり] #とおり
-ôsama　[おうさま] #おうさま
-rôka　[ろうか] #ろうか
-dôbutu　[どうぶつ] #どうぶつ
-yôhuku　[ようふく] #ようふく
-hôtai　[ほうたい] #ほうたい
-yûgata　[ゆうがた] #ゆうがた
-kitte　[きって] #きって
-rappa　[らっぱ] #らっぱ
-nikki　[にっき] #にっき
-sekken　[せっけん] #せっけん
-happa　[はっぱ] #はっぱ
-sippo　[しっぽ] #しっぽ
-nekko　[ねっこ] #ねっこ
-kippu　[きっぷ] #きっぷ
-zassi　[ざっし] #ざっし
-rakko　[らっこ] #らっこ
-kappa　[かっぱ] #かっぱ
-hoppe　[ほっぺ] #ほっぺ
-gakki　[がっき] #がっき
-syamozi　[しゃもじ] #しゃもじ
-tyairo　[ちゃいろ] #ちゃいろ
-zyari　[じゃり] #じゃり
-kyonen　[きょねん] #きょねん
-tyokin　[ちょきん] #ちょきん
-syako　[しゃこ] #しゃこ
-syurui　[しゅるい] #しゅるい
-ningyo　[にんぎょ] #にんぎょ
-osyare　[おしゃれ] #おしゃれ
-kasyu　[かしゅ] #かしゅ
-gyaku　[ぎゃく] #ぎゃく
-syati　[しゃち] #しゃち
-zyama　[じゃま] #じゃま
-syamisen　[しゃみせん] #しゃみせん
-kinzyo　[きんじょ] #きんじょ
-kaisya　[かいしゃ] #かいしゃ
-hyakuen　[ひゃくえん] #ひゃくえん
-gyôza　[ぎょうざ] #ぎょうざ
-denkyû　[でんきゅう] #でんきゅう
-syôyu　[しょうゆ] #しょうゆ
-hokkyoku　[ほっきょく] #ほっきょく
-kissaten　[きっさてん] #きっさてん
-kokka　[こっか] #こっか
-sakka　[さっか] #さっか
-ippai　[いっぱい] #いっぱい
-syuppatu　[しゅっぱつ] #しゅっぱつ
-hakken　[はっけん] #はっけん
-bikkuri　[びっくり] #びっくり
-makka　[まっか] #まっか
-massiro　[まっしろ] #まっしろ
-makkura　[まっくら] #まっくら
-kekkon　[けっこん] #けっこん
-rakkasei　[らっかせい] #らっかせい
-issyo　[いっしょ] #いっしょ
-mikka　[みっか] #みっか
+«ai¦ai¦a i»　[あい] #あい
+«ao¦ao¦a o»　[あお] #あお
+«ie¦ie¦i e»　[いえ] #いえ
+«ue¦ue¦u e»　[うえ] #うえ
+«oi¦oi¦o i»　[おい] #おい
+«ei¦ei¦e i»　[えい] #えい
+«aoi¦aoi¦a o i»　[あおい] #あおい
+«kasa¦kasa¦ka sa»　[かさ] #かさ
+«ike¦ike¦i ke»　[いけ] #いけ
+«asa¦asa¦a sa»　[あさ] #あさ
+«suika¦suika¦su i ka»　[すいか] #すいか
+«tako¦tako¦ta ko»　[たこ] #たこ
+«natu¦natu¦na tu»　[なつ] #なつ
+«neko¦neko¦ne ko»　[ねこ] #ねこ
+«inu¦inu¦i nu»　[いぬ] #いぬ
+«kitune¦kitune¦ki tu ne»　[きつね] #きつね
+«sakana¦sakana¦sa ka na»　[さかな] #さかな
+«kutu¦kutu¦ku tu»　[くつ] #くつ
+«asi¦asi¦a si»　[あし] #あし
+«nasu¦nasu¦na su»　[なす] #なす
+«tane¦tane¦ta ne»　[たね] #たね
+«soto¦soto¦so to»　[そと] #そと
+«kaki¦kaki¦ka ki»　[かき] #かき
+«kao¦kao¦ka o»　[かお] #かお
+«seki¦seki¦se ki»　[せき] #せき
+«aki¦aki¦a ki»　[あき] #あき
+«ika¦ika¦i ka»　[いか] #いか
+«usi¦usi¦u si»　[うし] #うし
+«oni¦oni¦o ni»　[おに] #おに
+«kani¦kani¦ka ni»　[かに] #かに
+«kuti¦kuti¦ku ti»　[くち] #くち
+«kosi¦kosi¦ko si»　[こし] #こし
+«sake¦sake¦sa ke»　[さけ] #さけ
+«sika¦sika¦si ka»　[しか] #しか
+«susi¦susi¦su si»　[すし] #すし
+«senaka¦senaka¦se na ka»　[せなか] #せなか
+«taki¦taki¦ta ki»　[たき] #たき
+«take¦take¦ta ke»　[たけ] #たけ
+«tukue¦tukue¦tu ku e»　[つくえ] #つくえ
+«tuno¦tuno¦tu no»　[つの] #つの
+«tuna¦tuna¦tu na»　[つな] #つな
+«naka¦naka¦na ka»　[なか] #なか
+«nasi¦nasi¦na si»　[なし] #なし
+«niku¦niku¦ni ku»　[にく] #にく
+«nuno¦nuno¦nu no»　[ぬの] #ぬの
+«noki¦noki¦no ki»　[のき] #のき
+«okasi¦okasi¦o ka si»　[おかし] #おかし
+«onaka¦onaka¦o na ka»　[おなか] #おなか
+«katana¦katana¦ka ta na»　[かたな] #かたな
+«kinoko¦kinoko¦ki no ko»　[きのこ] #きのこ
+«kusa¦kusa¦ku sa»　[くさ] #くさ
+«kotatu¦kotatu¦ko ta tu»　[こたつ] #こたつ
+«eki¦eki¦e ki»　[えき] #えき
+«isu¦isu¦i su»　[いす] #いす
+«uti¦uti¦u ti»　[うち] #うち
+«oke¦oke¦o ke»　[おけ] #おけ
+«kiku¦kiku¦ki ku»　[きく] #きく
+«kuki¦kuki¦ku ki»　[くき] #くき
+«koi¦koi¦ko i»　[こい] #こい
+«suna¦suna¦su na»　[すな] #すな
+«taiko¦taiko¦ta i ko»　[たいこ] #たいこ
+«tokei¦tokei¦to ke i»　[とけい] #とけい
+«nisi¦nisi¦ni si»　[にし] #にし
+«ito¦ito¦i to»　[いと] #いと
+«uta¦uta¦u ta»　[うた] #うた
+«okaki¦okaki¦o ka ki»　[おかき] #おかき
+«sekai¦sekai¦se ka i»　[せかい] #せかい
+«soko¦soko¦so ko»　[そこ] #そこ
+«tuki¦tuki¦tu ki»　[つき] #つき
+«tetu¦tetu¦te tu»　[てつ] #てつ
+«tosi¦tosi¦to si»　[とし] #とし
+«nakama¦nakama¦na ka ma»　[なかま] #なかま
+«atama¦atama¦a ta ma»　[あたま] #あたま
+«usagi¦usagi¦u sa gi»　[うさぎ] #うさぎ
+«enogu¦enogu¦e no gu»　[えのぐ] #えのぐ
+«omoti¦omoti¦o mo ti»　[おもち] #おもち
+«kaeru¦kaeru¦ka e ru»　[かえる] #かえる
+«kirin¦kirin¦ki ri n»　[きりん] #きりん
+«kuzira¦kuzira¦ku zi ra»　[くじら] #くじら
+«kemusi¦kemusi¦ke mu si»　[けむし] #けむし
+«koinu¦koinu¦ko i nu»　[こいぬ] #こいぬ
+«sakura¦sakura¦sa ku ra»　[さくら] #さくら
+«siro¦siro¦si ro»　[しろ] #しろ
+«sumire¦sumire¦su mi re»　[すみれ] #すみれ
+«semi¦semi¦se mi»　[せみ] #せみ
+«sora¦sora¦so ra»　[そら] #そら
+«tanuki¦tanuki¦ta nu ki»　[たぬき] #たぬき
+«tizu¦tizu¦ti zu»　[ちず] #ちず
+«tubame¦tubame¦tu ba me»　[つばめ] #つばめ
+«tegami¦tegami¦te ga mi»　[てがみ] #てがみ
+«tori¦tori¦to ri»　[とり] #とり
+«nabe¦nabe¦na be»　[なべ] #なべ
+«niwatori¦niwatori¦ni wa to ri»　[にわとり] #にわとり
+«nuigurumi¦nuigurumi¦nu i gu ru mi»　[ぬいぐるみ] #ぬいぐるみ
+«nezumi¦nezumi¦ne zu mi»　[ねずみ] #ねずみ
+«nori¦nori¦no ri»　[のり] #のり
+«hasami¦hasami¦ha sa mi»　[はさみ] #はさみ
+«hiyoko¦hiyoko¦hi yo ko»　[ひよこ] #ひよこ
+«hune¦hune¦hu ne»　[ふね] #ふね
+«hebi¦hebi¦he bi»　[へび] #へび
+«hosi¦hosi¦ho si»　[ほし] #ほし
+«mame¦mame¦ma me»　[まめ] #まめ
+«mikan¦mikan¦mi ka n»　[みかん] #みかん
+«musi¦musi¦mu si»　[むし] #むし
+«megane¦megane¦me ga ne»　[めがね] #めがね
+«momo¦momo¦mo mo»　[もも] #もも
+«yama¦yama¦ya ma»　[やま] #やま
+«yuki¦yuki¦yu ki»　[ゆき] #ゆき
+«yoru¦yoru¦yo ru»　[よる] #よる
+«rakuda¦rakuda¦ra ku da»　[らくだ] #らくだ
+«risu¦risu¦ri su»　[りす] #りす
+«wani¦wani¦wa ni»　[わに] #わに
+«hana¦hana¦ha na»　[はな] #はな
+«himo¦himo¦hi mo»　[ひも] #ひも
+«hue¦hue¦hu e»　[ふえ] #ふえ
+«heya¦heya¦he ya»　[へや] #へや
+«hon¦hon¦ho n»　[ほん] #ほん
+«mado¦mado¦ma do»　[まど] #まど
+«mimi¦mimi¦mi mi»　[みみ] #みみ
+«mune¦mune¦mu ne»　[むね] #むね
+«medaka¦medaka¦me da ka»　[めだか] #めだか
+«mori¦mori¦mo ri»　[もり] #もり
+«yane¦yane¦ya ne»　[やね] #やね
+«yubi¦yubi¦yu bi»　[ゆび] #ゆび
+«yoko¦yoko¦yo ko»　[よこ] #よこ
+«ringo¦ringo¦ri n go»　[りんご] #りんご
+«roba¦roba¦ro ba»　[ろば] #ろば
+«wanage¦wanage¦wa na ge»　[わなげ] #わなげ
+«ame¦ame¦a me»　[あめ] #あめ
+«umi¦umi¦u mi»　[うみ] #うみ
+«ehon¦ehon¦e ho n»　[えほん] #えほん
+«kame¦kame¦ka me»　[かめ] #かめ
+«kuma¦kuma¦ku ma»　[くま] #くま
+«kumo¦kumo¦ku mo»　[くも] #くも
+«kuri¦kuri¦ku ri»　[くり] #くり
+«koma¦koma¦ko ma»　[こま] #こま
+«saru¦saru¦sa ru»　[さる] #さる
+«sima¦sima¦si ma»　[しま] #しま
+«hasi¦hasi¦ha si»　[はし] #はし
+«hati¦hati¦ha ti»　[はち] #はち
+«hito¦hito¦hi to»　[ひと] #ひと
+«huku¦huku¦hu ku»　[ふく] #ふく
+«heso¦heso¦he so»　[へそ] #へそ
+«hotaru¦hotaru¦ho ta ru»　[ほたる] #ほたる
+«makura¦makura¦ma ku ra»　[まくら] #まくら
+«miso¦miso¦mi so»　[みそ] #みそ
+«mukasi¦mukasi¦mu ka si»　[むかし] #むかし
+«moti¦moti¦mo ti»　[もち] #もち
+«yasai¦yasai¦ya sa i»　[やさい] #やさい
+«yume¦yume¦yu me»　[ゆめ] #ゆめ
+«rika¦rika¦ri ka»　[りか] #りか
+«rekisi¦rekisi¦re ki si»　[れきし] #れきし
+«wata¦wata¦wa ta»　[わた] #わた
+«karasu¦karasu¦ka ra su»　[からす] #からす
+«inosisi¦inosisi¦i no si si»　[いのしし] #いのしし
+«hanabi¦hanabi¦ha na bi»　[はなび] #はなび
+«hotate¦hotate¦ho ta te»　[ほたて] #ほたて
+«minato¦minato¦mi na to»　[みなと] #みなと
+«saihu¦saihu¦sa i hu»　[さいふ] #さいふ
+«tamanegi¦tamanegi¦ta ma ne gi»　[たまねぎ] #たまねぎ
+«ninzin¦ninzin¦ni n zi n»　[にんじん] #にんじん
+«renkon¦renkon¦re n ko n»　[れんこん] #れんこん
+«karate¦karate¦ka ra te»　[からて] #からて
+«temari¦temari¦te ma ri»　[てまり] #てまり
+«ami¦ami¦a mi»　[あみ] #あみ
+«ine¦ine¦i ne»　[いね] #いね
+«ohuro¦ohuro¦o hu ro»　[おふろ] #おふろ
+«kami¦kami¦ka mi»　[かみ] #かみ
+«kuwa¦kuwa¦ku wa»　[くわ] #くわ
+«sara¦sara¦sa ra»　[さら] #さら
+«gakkô¦gakko-¦ga k ko u»　[がっこう] #がっこう
+«geta¦geta¦ge ta»　[げた] #げた
+«goma¦goma¦go ma»　[ごま] #ごま
+«zaru¦zaru¦za ru»　[ざる] #ざる
+«zitensya¦zitensya¦zi te n sya»　[じてんしゃ] #じてんしゃ
+«zukan¦zukan¦zu ka n»　[ずかん] #ずかん
+«zenmai¦zenmai¦ze n ma i»　[ぜんまい] #ぜんまい
+«zô¦zo-¦zo u»　[ぞう] #ぞう
+«dango¦dango¦da n go»　[だんご] #だんご
+«denwa¦denwa¦de n wa»　[でんわ] #でんわ
+«donguri¦donguri¦do n gu ri»　[どんぐり] #どんぐり
+«batta¦batta¦ba t ta»　[ばった] #ばった
+«bin¦bin¦bi n»　[びん] #びん
+«buta¦buta¦bu ta»　[ぶた] #ぶた
+«bentô¦bento-¦be n to u»　[べんとう] #べんとう
+«bôsi¦bo-si¦bo u si»　[ぼうし] #ぼうし
+«pengin¦pengin¦pe n gi n»　[ぺんぎん] #ぺんぎん
+«kagi¦kagi¦ka gi»　[かぎ] #かぎ
+«hiza¦hiza¦hi za»　[ひざ] #ひざ
+«kaze¦kaze¦ka ze»　[かぜ] #かぜ
+«gohan¦gohan¦go ha n»　[ごはん] #ごはん
+«kaba¦kaba¦ka ba»　[かば] #かば
+«enpitu¦enpitu¦e n pi tu»　[えんぴつ] #えんぴつ
+«tenpura¦tenpura¦te n pu ra»　[てんぷら] #てんぷら
+«ude¦ude¦u de»　[うで] #うで
+«odeko¦odeko¦o de ko»　[おでこ] #おでこ
+«kagami¦kagami¦ka ga mi»　[かがみ] #かがみ
+«budô¦budo-¦bu do u»　[ぶどう] #ぶどう
+«donburi¦donburi¦do n bu ri»　[どんぶり] #どんぶり
+«kaban¦kaban¦ka ba n»　[かばん] #かばん
+«kaidan¦kaidan¦ka i da n»　[かいだん] #かいだん
+«gake¦gake¦ga ke»　[がけ] #がけ
+«ginnan¦ginnan¦gi n na n»　[ぎんなん] #ぎんなん
+«suzume¦suzume¦su zu me»　[すずめ] #すずめ
+«zubon¦zubon¦zu bo n»　[ずぼん] #ずぼん
+«daruma¦daruma¦da ru ma»　[だるま] #だるま
+«deguti¦deguti¦de gu ti»　[でぐち] #でぐち
+«dôgu¦do-gu¦do u gu»　[どうぐ] #どうぐ
+«hanazi¦hanazi¦ha na zi»　[はなぢ] #はなぢ
+«mikazuki¦mikazuki¦mi ka zu ki»　[みかづき] #みかづき
+«kyabetu¦kyabetu¦kya be tu»　[きゃべつ] #きゃべつ
+«kyûri¦kyu-ri¦kyu u ri»　[きゅうり] #きゅうり
+«kyôryû¦kyo-ryu-¦kyo u ryu u»　[きょうりゅう] #きょうりゅう
+«syasin¦syasin¦sya si n»　[しゃしん] #しゃしん
+«syukudai¦syukudai¦syu ku da i»　[しゅくだい] #しゅくだい
+«tyawan¦tyawan¦tya wa n»　[ちゃわん] #ちゃわん
+«tyôtyo¦tyo-tyo¦tyo u tyo»　[ちょうちょ] #ちょうちょ
+«hyaku¦hyaku¦hya ku»　[ひゃく] #ひゃく
+«ryû¦ryu-¦ryu u»　[りゅう] #りゅう
+«ryokan¦ryokan¦ryo ka n»　[りょかん] #りょかん
+«gyûnyû¦gyu-nyu-¦gyu u nyu u»　[ぎゅうにゅう] #ぎゅうにゅう
+«zyanken¦zyanken¦zya n ke n»　[じゃんけん] #じゃんけん
+«zyunban¦zyunban¦zyu n ba n»　[じゅんばん] #じゅんばん
+«zyôro¦zyo-ro¦zyo u ro»　[じょうろ] #じょうろ
+«byôin¦byo-in¦byo u i n»　[びょういん] #びょういん
+«kingyo¦kingyo¦ki n gyo»　[きんぎょ] #きんぎょ
+«omotya¦omotya¦o mo tya»　[おもちゃ] #おもちゃ
+«isya¦isya¦i sya»　[いしゃ] #いしゃ
+«densya¦densya¦de n sya»　[でんしゃ] #でんしゃ
+«ninzya¦ninzya¦ni n zya»　[にんじゃ] #にんじゃ
+«kyori¦kyori¦kyo ri»　[きょり] #きょり
+«tyûsya¦tyu-sya¦tyu u sya»　[ちゅうしゃ] #ちゅうしゃ
+«syokuzi¦syokuzi¦syo ku zi»　[しょくじ] #しょくじ
+«otya¦otya¦o tya»　[おちゃ] #おちゃ
+«zyagaimo¦zyagaimo¦zya ga i mo»　[じゃがいも] #じゃがいも
+«kyaku¦kyaku¦kya ku»　[きゃく] #きゃく
+«sansyo¦sansyo¦sa n syo»　[さんしょ] #さんしょ
+«syumi¦syumi¦syu mi»　[しゅみ] #しゅみ
+«ryôri¦ryo-ri¦ryo u ri»　[りょうり] #りょうり
+«hyô¦hyo-¦hyo u»　[ひょう] #ひょう
+«ten'in¦ten-in¦te n i n»　[てんいん] #てんいん
+«hon'ya¦hon-ya¦ho n ya»　[ほんや] #ほんや
+«kin'en¦kin-en¦ki n e n»　[きんえん] #きんえん
+«gen'in¦gen-in¦ge n i n»　[げんいん] #げんいん
+«man'in¦man-in¦ma n i n»　[まんいん] #まんいん
+«kon'ya¦kon-ya¦ko n ya»　[こんや] #こんや
+«zen'in¦zen-in¦ze n i n»　[ぜんいん] #ぜんいん
+«sin'yû¦sin-yu-¦si n yu u»　[しんゆう] #しんゆう
+«kin'yôbi¦kin-yo-bi¦ki n yo u bi»　[きんようび] #きんようび
+«okâsan¦oka-san¦o ka a sa n»　[おかあさん] #おかあさん
+«otôsan¦oto-san¦o to u sa n»　[おとうさん] #おとうさん
+«onîsan¦oni-san¦o ni i sa n»　[おにいさん] #おにいさん
+«onêsan¦one-san¦o ne e sa n»　[おねえさん] #おねえさん
+«kôri¦ko-ri¦ko o ri»　[こおり] #こおり
+«kûki¦ku-ki¦ku u ki»　[くうき] #くうき
+«hikôki¦hiko-ki¦hi ko u ki»　[ひこうき] #ひこうき
+«yûki¦yu-ki¦yu u ki»　[ゆうき] #ゆうき
+«kinô¦kino-¦ki no u»　[きのう] #きのう
+«hôki¦ho-ki¦ho u ki»　[ほうき] #ほうき
+«tôhu¦to-hu¦to u hu»　[とうふ] #とうふ
+«hûsen¦hu-sen¦hu u se n»　[ふうせん] #ふうせん
+«sûzi¦su-zi¦su u zi»　[すうじ] #すうじ
+«kôen¦ko-en¦ko u e n»　[こうえん] #こうえん
+«ôkami¦o-kami¦o o ka mi»　[おおかみ] #おおかみ
+«tôri¦to-ri¦to o ri»　[とおり] #とおり
+«ôsama¦o-sama¦o u sa ma»　[おうさま] #おうさま
+«rôka¦ro-ka¦ro u ka»　[ろうか] #ろうか
+«dôbutu¦do-butu¦do u bu tu»　[どうぶつ] #どうぶつ
+«yôhuku¦yo-huku¦yo u hu ku»　[ようふく] #ようふく
+«hôtai¦ho-tai¦ho u ta i»　[ほうたい] #ほうたい
+«yûgata¦yu-gata¦yu u ga ta»　[ゆうがた] #ゆうがた
+«kitte¦kitte¦ki t te»　[きって] #きって
+«rappa¦rappa¦ra p pa»　[らっぱ] #らっぱ
+«nikki¦nikki¦ni k ki»　[にっき] #にっき
+«sekken¦sekken¦se k ke n»　[せっけん] #せっけん
+«happa¦happa¦ha p pa»　[はっぱ] #はっぱ
+«sippo¦sippo¦si p po»　[しっぽ] #しっぽ
+«nekko¦nekko¦ne k ko»　[ねっこ] #ねっこ
+«kippu¦kippu¦ki p pu»　[きっぷ] #きっぷ
+«zassi¦zassi¦za s si»　[ざっし] #ざっし
+«rakko¦rakko¦ra k ko»　[らっこ] #らっこ
+«kappa¦kappa¦ka p pa»　[かっぱ] #かっぱ
+«hoppe¦hoppe¦ho p pe»　[ほっぺ] #ほっぺ
+«gakki¦gakki¦ga k ki»　[がっき] #がっき
+«syamozi¦syamozi¦sya mo zi»　[しゃもじ] #しゃもじ
+«tyairo¦tyairo¦tya i ro»　[ちゃいろ] #ちゃいろ
+«zyari¦zyari¦zya ri»　[じゃり] #じゃり
+«kyonen¦kyonen¦kyo ne n»　[きょねん] #きょねん
+«tyokin¦tyokin¦tyo ki n»　[ちょきん] #ちょきん
+«syako¦syako¦sya ko»　[しゃこ] #しゃこ
+«syurui¦syurui¦syu ru i»　[しゅるい] #しゅるい
+«ningyo¦ningyo¦ni n gyo»　[にんぎょ] #にんぎょ
+«osyare¦osyare¦o sya re»　[おしゃれ] #おしゃれ
+«kasyu¦kasyu¦ka syu»　[かしゅ] #かしゅ
+«gyaku¦gyaku¦gya ku»　[ぎゃく] #ぎゃく
+«syati¦syati¦sya ti»　[しゃち] #しゃち
+«zyama¦zyama¦zya ma»　[じゃま] #じゃま
+«syamisen¦syamisen¦sya mi se n»　[しゃみせん] #しゃみせん
+«kinzyo¦kinzyo¦ki n zyo»　[きんじょ] #きんじょ
+«kaisya¦kaisya¦ka i sya»　[かいしゃ] #かいしゃ
+«hyakuen¦hyakuen¦hya ku e n»　[ひゃくえん] #ひゃくえん
+«gyôza¦gyo-za¦gyo u za»　[ぎょうざ] #ぎょうざ
+«denkyû¦denkyu-¦de n kyu u»　[でんきゅう] #でんきゅう
+«syôyu¦syo-yu¦syo u yu»　[しょうゆ] #しょうゆ
+«hokkyoku¦hokkyoku¦ho k kyo ku»　[ほっきょく] #ほっきょく
+«kissaten¦kissaten¦ki s sa te n»　[きっさてん] #きっさてん
+«kokka¦kokka¦ko k ka»　[こっか] #こっか
+«sakka¦sakka¦sa k ka»　[さっか] #さっか
+«ippai¦ippai¦i p pa i»　[いっぱい] #いっぱい
+«syuppatu¦syuppatu¦syu p pa tu»　[しゅっぱつ] #しゅっぱつ
+«hakken¦hakken¦ha k ke n»　[はっけん] #はっけん
+«bikkuri¦bikkuri¦bi k ku ri»　[びっくり] #びっくり
+«makka¦makka¦ma k ka»　[まっか] #まっか
+«massiro¦massiro¦ma s si ro»　[まっしろ] #まっしろ
+«makkura¦makkura¦ma k ku ra»　[まっくら] #まっくら
+«kekkon¦kekkon¦ke k ko n»　[けっこん] #けっこん
+«rakkasei¦rakkasei¦ra k ka se i»　[らっかせい] #らっかせい
+«issyo¦issyo¦i s syo»　[いっしょ] #いっしょ
+«mikka¦mikka¦mi k ka»　[みっか] #みっか
 == ローマ字で 書く | つぎの ことばを ローマ字で 書きましょう。 | 4 | cols=2
-あい　[=ai] #あい
-あお　[=ao] #あお
-いえ　[=ie] #いえ
-うえ　[=ue] #うえ
-おい　[=oi] #おい
-えい　[=ei] #えい
-あおい　[=aoi] #あおい
-かさ　[=kasa] #かさ
-いけ　[=ike] #いけ
-あさ　[=asa] #あさ
-すいか　[=suika] #すいか
-たこ　[=tako] #たこ
-なつ　[=natu] #なつ
-ねこ　[=neko] #ねこ
-いぬ　[=inu] #いぬ
-きつね　[=kitune] #きつね
-さかな　[=sakana] #さかな
-くつ　[=kutu] #くつ
-あし　[=asi] #あし
-なす　[=nasu] #なす
-たね　[=tane] #たね
-そと　[=soto] #そと
-かき　[=kaki] #かき
-かお　[=kao] #かお
-せき　[=seki] #せき
-あき　[=aki] #あき
-いか　[=ika] #いか
-うし　[=usi] #うし
-おに　[=oni] #おに
-かに　[=kani] #かに
-くち　[=kuti] #くち
-こし　[=kosi] #こし
-さけ　[=sake] #さけ
-しか　[=sika] #しか
-すし　[=susi] #すし
-せなか　[=senaka] #せなか
-たき　[=taki] #たき
-たけ　[=take] #たけ
-つくえ　[=tukue] #つくえ
-つの　[=tuno] #つの
-つな　[=tuna] #つな
-なか　[=naka] #なか
-なし　[=nasi] #なし
-にく　[=niku] #にく
-ぬの　[=nuno] #ぬの
-のき　[=noki] #のき
-おかし　[=okasi] #おかし
-おなか　[=onaka] #おなか
-かたな　[=katana] #かたな
-きのこ　[=kinoko] #きのこ
-くさ　[=kusa] #くさ
-こたつ　[=kotatu] #こたつ
-えき　[=eki] #えき
-いす　[=isu] #いす
-うち　[=uti] #うち
-おけ　[=oke] #おけ
-きく　[=kiku] #きく
-くき　[=kuki] #くき
-こい　[=koi] #こい
-すな　[=suna] #すな
-たいこ　[=taiko] #たいこ
-とけい　[=tokei] #とけい
-にし　[=nisi] #にし
-いと　[=ito] #いと
-うた　[=uta] #うた
-おかき　[=okaki] #おかき
-せかい　[=sekai] #せかい
-そこ　[=soko] #そこ
-つき　[=tuki] #つき
-てつ　[=tetu] #てつ
-とし　[=tosi] #とし
-なかま　[=nakama] #なかま
-あたま　[=atama] #あたま
-うさぎ　[=usagi] #うさぎ
-えのぐ　[=enogu] #えのぐ
-おもち　[=omoti] #おもち
-かえる　[=kaeru] #かえる
-きりん　[=kirin] #きりん
-くじら　[=kuzira] #くじら
-けむし　[=kemusi] #けむし
-こいぬ　[=koinu] #こいぬ
-さくら　[=sakura] #さくら
-しろ　[=siro] #しろ
-すみれ　[=sumire] #すみれ
-せみ　[=semi] #せみ
-そら　[=sora] #そら
-たぬき　[=tanuki] #たぬき
-ちず　[=tizu] #ちず
-つばめ　[=tubame] #つばめ
-てがみ　[=tegami] #てがみ
-とり　[=tori] #とり
-なべ　[=nabe] #なべ
-にわとり　[=niwatori] #にわとり
-ぬいぐるみ　[=nuigurumi] #ぬいぐるみ
-ねずみ　[=nezumi] #ねずみ
-のり　[=nori] #のり
-はさみ　[=hasami] #はさみ
-ひよこ　[=hiyoko] #ひよこ
-ふね　[=hune] #ふね
-へび　[=hebi] #へび
-ほし　[=hosi] #ほし
-まめ　[=mame] #まめ
-みかん　[=mikan] #みかん
-むし　[=musi] #むし
-めがね　[=megane] #めがね
-もも　[=momo] #もも
-やま　[=yama] #やま
-ゆき　[=yuki] #ゆき
-よる　[=yoru] #よる
-らくだ　[=rakuda] #らくだ
-りす　[=risu] #りす
-わに　[=wani] #わに
-はな　[=hana] #はな
-ひも　[=himo] #ひも
-ふえ　[=hue] #ふえ
-へや　[=heya] #へや
-ほん　[=hon] #ほん
-まど　[=mado] #まど
-みみ　[=mimi] #みみ
-むね　[=mune] #むね
-めだか　[=medaka] #めだか
-もり　[=mori] #もり
-やね　[=yane] #やね
-ゆび　[=yubi] #ゆび
-よこ　[=yoko] #よこ
-りんご　[=ringo] #りんご
-ろば　[=roba] #ろば
-わなげ　[=wanage] #わなげ
-あめ　[=ame] #あめ
-うみ　[=umi] #うみ
-えほん　[=ehon] #えほん
-かめ　[=kame] #かめ
-くま　[=kuma] #くま
-くも　[=kumo] #くも
-くり　[=kuri] #くり
-こま　[=koma] #こま
-さる　[=saru] #さる
-しま　[=sima] #しま
-はし　[=hasi] #はし
-はち　[=hati] #はち
-ひと　[=hito] #ひと
-ふく　[=huku] #ふく
-へそ　[=heso] #へそ
-ほたる　[=hotaru] #ほたる
-まくら　[=makura] #まくら
-みそ　[=miso] #みそ
-むかし　[=mukasi] #むかし
-もち　[=moti] #もち
-やさい　[=yasai] #やさい
-ゆめ　[=yume] #ゆめ
-りか　[=rika] #りか
-れきし　[=rekisi] #れきし
-わた　[=wata] #わた
-からす　[=karasu] #からす
-いのしし　[=inosisi] #いのしし
-はなび　[=hanabi] #はなび
-ほたて　[=hotate] #ほたて
-みなと　[=minato] #みなと
-さいふ　[=saihu] #さいふ
-たまねぎ　[=tamanegi] #たまねぎ
-にんじん　[=ninzin] #にんじん
-れんこん　[=renkon] #れんこん
-からて　[=karate] #からて
-てまり　[=temari] #てまり
-あみ　[=ami] #あみ
-いね　[=ine] #いね
-おふろ　[=ohuro] #おふろ
-かみ　[=kami] #かみ
-くわ　[=kuwa] #くわ
-さら　[=sara] #さら
-がっこう　[=gakkô] #がっこう
-げた　[=geta] #げた
-ごま　[=goma] #ごま
-ざる　[=zaru] #ざる
-じてんしゃ　[=zitensya] #じてんしゃ
-ずかん　[=zukan] #ずかん
-ぜんまい　[=zenmai] #ぜんまい
-ぞう　[=zô] #ぞう
-だんご　[=dango] #だんご
-でんわ　[=denwa] #でんわ
-どんぐり　[=donguri] #どんぐり
-ばった　[=batta] #ばった
-びん　[=bin] #びん
-ぶた　[=buta] #ぶた
-べんとう　[=bentô] #べんとう
-ぼうし　[=bôsi] #ぼうし
-ぺんぎん　[=pengin] #ぺんぎん
-かぎ　[=kagi] #かぎ
-ひざ　[=hiza] #ひざ
-かぜ　[=kaze] #かぜ
-ごはん　[=gohan] #ごはん
-かば　[=kaba] #かば
-えんぴつ　[=enpitu] #えんぴつ
-てんぷら　[=tenpura] #てんぷら
-うで　[=ude] #うで
-おでこ　[=odeko] #おでこ
-かがみ　[=kagami] #かがみ
-ぶどう　[=budô] #ぶどう
-どんぶり　[=donburi] #どんぶり
-かばん　[=kaban] #かばん
-かいだん　[=kaidan] #かいだん
-がけ　[=gake] #がけ
-ぎんなん　[=ginnan] #ぎんなん
-すずめ　[=suzume] #すずめ
-ずぼん　[=zubon] #ずぼん
-だるま　[=daruma] #だるま
-でぐち　[=deguti] #でぐち
-どうぐ　[=dôgu] #どうぐ
-はなぢ　[=hanazi] #はなぢ
-みかづき　[=mikazuki] #みかづき
-きゃべつ　[=kyabetu] #きゃべつ
-きゅうり　[=kyûri] #きゅうり
-きょうりゅう　[=kyôryû] #きょうりゅう
-しゃしん　[=syasin] #しゃしん
-しゅくだい　[=syukudai] #しゅくだい
-ちゃわん　[=tyawan] #ちゃわん
-ちょうちょ　[=tyôtyo] #ちょうちょ
-ひゃく　[=hyaku] #ひゃく
-りゅう　[=ryû] #りゅう
-りょかん　[=ryokan] #りょかん
-ぎゅうにゅう　[=gyûnyû] #ぎゅうにゅう
-じゃんけん　[=zyanken] #じゃんけん
-じゅんばん　[=zyunban] #じゅんばん
-じょうろ　[=zyôro] #じょうろ
-びょういん　[=byôin] #びょういん
-きんぎょ　[=kingyo] #きんぎょ
-おもちゃ　[=omotya] #おもちゃ
-いしゃ　[=isya] #いしゃ
-でんしゃ　[=densya] #でんしゃ
-にんじゃ　[=ninzya] #にんじゃ
-きょり　[=kyori] #きょり
-ちゅうしゃ　[=tyûsya] #ちゅうしゃ
-しょくじ　[=syokuzi] #しょくじ
-おちゃ　[=otya] #おちゃ
-じゃがいも　[=zyagaimo] #じゃがいも
-きゃく　[=kyaku] #きゃく
-さんしょ　[=sansyo] #さんしょ
-しゅみ　[=syumi] #しゅみ
-りょうり　[=ryôri] #りょうり
-ひょう　[=hyô] #ひょう
-てんいん　[=ten'in] #てんいん
-ほんや　[=hon'ya] #ほんや
-きんえん　[=kin'en] #きんえん
-げんいん　[=gen'in] #げんいん
-まんいん　[=man'in] #まんいん
-こんや　[=kon'ya] #こんや
-ぜんいん　[=zen'in] #ぜんいん
-しんゆう　[=sin'yû] #しんゆう
-きんようび　[=kin'yôbi] #きんようび
-おかあさん　[=okâsan] #おかあさん
-おとうさん　[=otôsan] #おとうさん
-おにいさん　[=onîsan] #おにいさん
-おねえさん　[=onêsan] #おねえさん
-こおり　[=kôri] #こおり
-くうき　[=kûki] #くうき
-ひこうき　[=hikôki] #ひこうき
-ゆうき　[=yûki] #ゆうき
-きのう　[=kinô] #きのう
-ほうき　[=hôki] #ほうき
-とうふ　[=tôhu] #とうふ
-ふうせん　[=hûsen] #ふうせん
-すうじ　[=sûzi] #すうじ
-こうえん　[=kôen] #こうえん
-おおかみ　[=ôkami] #おおかみ
-とおり　[=tôri] #とおり
-おうさま　[=ôsama] #おうさま
-ろうか　[=rôka] #ろうか
-どうぶつ　[=dôbutu] #どうぶつ
-ようふく　[=yôhuku] #ようふく
-ほうたい　[=hôtai] #ほうたい
-ゆうがた　[=yûgata] #ゆうがた
-きって　[=kitte] #きって
-らっぱ　[=rappa] #らっぱ
-にっき　[=nikki] #にっき
-せっけん　[=sekken] #せっけん
-はっぱ　[=happa] #はっぱ
-しっぽ　[=sippo] #しっぽ
-ねっこ　[=nekko] #ねっこ
-きっぷ　[=kippu] #きっぷ
-ざっし　[=zassi] #ざっし
-らっこ　[=rakko] #らっこ
-かっぱ　[=kappa] #かっぱ
-ほっぺ　[=hoppe] #ほっぺ
-がっき　[=gakki] #がっき
-しゃもじ　[=syamozi] #しゃもじ
-ちゃいろ　[=tyairo] #ちゃいろ
-じゃり　[=zyari] #じゃり
-きょねん　[=kyonen] #きょねん
-ちょきん　[=tyokin] #ちょきん
-しゃこ　[=syako] #しゃこ
-しゅるい　[=syurui] #しゅるい
-にんぎょ　[=ningyo] #にんぎょ
-おしゃれ　[=osyare] #おしゃれ
-かしゅ　[=kasyu] #かしゅ
-ぎゃく　[=gyaku] #ぎゃく
-しゃち　[=syati] #しゃち
-じゃま　[=zyama] #じゃま
-しゃみせん　[=syamisen] #しゃみせん
-きんじょ　[=kinzyo] #きんじょ
-かいしゃ　[=kaisya] #かいしゃ
-ひゃくえん　[=hyakuen] #ひゃくえん
-ぎょうざ　[=gyôza] #ぎょうざ
-でんきゅう　[=denkyû] #でんきゅう
-しょうゆ　[=syôyu] #しょうゆ
-ほっきょく　[=hokkyoku] #ほっきょく
-きっさてん　[=kissaten] #きっさてん
-こっか　[=kokka] #こっか
-さっか　[=sakka] #さっか
-いっぱい　[=ippai] #いっぱい
-しゅっぱつ　[=syuppatu] #しゅっぱつ
-はっけん　[=hakken] #はっけん
-びっくり　[=bikkuri] #びっくり
-まっか　[=makka] #まっか
-まっしろ　[=massiro] #まっしろ
-まっくら　[=makkura] #まっくら
-けっこん　[=kekkon] #けっこん
-らっかせい　[=rakkasei] #らっかせい
-いっしょ　[=issyo] #いっしょ
-みっか　[=mikka] #みっか
+あい　[=«ai¦ai¦a i»] #あい
+あお　[=«ao¦ao¦a o»] #あお
+いえ　[=«ie¦ie¦i e»] #いえ
+うえ　[=«ue¦ue¦u e»] #うえ
+おい　[=«oi¦oi¦o i»] #おい
+えい　[=«ei¦ei¦e i»] #えい
+あおい　[=«aoi¦aoi¦a o i»] #あおい
+かさ　[=«kasa¦kasa¦ka sa»] #かさ
+いけ　[=«ike¦ike¦i ke»] #いけ
+あさ　[=«asa¦asa¦a sa»] #あさ
+すいか　[=«suika¦suika¦su i ka»] #すいか
+たこ　[=«tako¦tako¦ta ko»] #たこ
+なつ　[=«natu¦natu¦na tu»] #なつ
+ねこ　[=«neko¦neko¦ne ko»] #ねこ
+いぬ　[=«inu¦inu¦i nu»] #いぬ
+きつね　[=«kitune¦kitune¦ki tu ne»] #きつね
+さかな　[=«sakana¦sakana¦sa ka na»] #さかな
+くつ　[=«kutu¦kutu¦ku tu»] #くつ
+あし　[=«asi¦asi¦a si»] #あし
+なす　[=«nasu¦nasu¦na su»] #なす
+たね　[=«tane¦tane¦ta ne»] #たね
+そと　[=«soto¦soto¦so to»] #そと
+かき　[=«kaki¦kaki¦ka ki»] #かき
+かお　[=«kao¦kao¦ka o»] #かお
+せき　[=«seki¦seki¦se ki»] #せき
+あき　[=«aki¦aki¦a ki»] #あき
+いか　[=«ika¦ika¦i ka»] #いか
+うし　[=«usi¦usi¦u si»] #うし
+おに　[=«oni¦oni¦o ni»] #おに
+かに　[=«kani¦kani¦ka ni»] #かに
+くち　[=«kuti¦kuti¦ku ti»] #くち
+こし　[=«kosi¦kosi¦ko si»] #こし
+さけ　[=«sake¦sake¦sa ke»] #さけ
+しか　[=«sika¦sika¦si ka»] #しか
+すし　[=«susi¦susi¦su si»] #すし
+せなか　[=«senaka¦senaka¦se na ka»] #せなか
+たき　[=«taki¦taki¦ta ki»] #たき
+たけ　[=«take¦take¦ta ke»] #たけ
+つくえ　[=«tukue¦tukue¦tu ku e»] #つくえ
+つの　[=«tuno¦tuno¦tu no»] #つの
+つな　[=«tuna¦tuna¦tu na»] #つな
+なか　[=«naka¦naka¦na ka»] #なか
+なし　[=«nasi¦nasi¦na si»] #なし
+にく　[=«niku¦niku¦ni ku»] #にく
+ぬの　[=«nuno¦nuno¦nu no»] #ぬの
+のき　[=«noki¦noki¦no ki»] #のき
+おかし　[=«okasi¦okasi¦o ka si»] #おかし
+おなか　[=«onaka¦onaka¦o na ka»] #おなか
+かたな　[=«katana¦katana¦ka ta na»] #かたな
+きのこ　[=«kinoko¦kinoko¦ki no ko»] #きのこ
+くさ　[=«kusa¦kusa¦ku sa»] #くさ
+こたつ　[=«kotatu¦kotatu¦ko ta tu»] #こたつ
+えき　[=«eki¦eki¦e ki»] #えき
+いす　[=«isu¦isu¦i su»] #いす
+うち　[=«uti¦uti¦u ti»] #うち
+おけ　[=«oke¦oke¦o ke»] #おけ
+きく　[=«kiku¦kiku¦ki ku»] #きく
+くき　[=«kuki¦kuki¦ku ki»] #くき
+こい　[=«koi¦koi¦ko i»] #こい
+すな　[=«suna¦suna¦su na»] #すな
+たいこ　[=«taiko¦taiko¦ta i ko»] #たいこ
+とけい　[=«tokei¦tokei¦to ke i»] #とけい
+にし　[=«nisi¦nisi¦ni si»] #にし
+いと　[=«ito¦ito¦i to»] #いと
+うた　[=«uta¦uta¦u ta»] #うた
+おかき　[=«okaki¦okaki¦o ka ki»] #おかき
+せかい　[=«sekai¦sekai¦se ka i»] #せかい
+そこ　[=«soko¦soko¦so ko»] #そこ
+つき　[=«tuki¦tuki¦tu ki»] #つき
+てつ　[=«tetu¦tetu¦te tu»] #てつ
+とし　[=«tosi¦tosi¦to si»] #とし
+なかま　[=«nakama¦nakama¦na ka ma»] #なかま
+あたま　[=«atama¦atama¦a ta ma»] #あたま
+うさぎ　[=«usagi¦usagi¦u sa gi»] #うさぎ
+えのぐ　[=«enogu¦enogu¦e no gu»] #えのぐ
+おもち　[=«omoti¦omoti¦o mo ti»] #おもち
+かえる　[=«kaeru¦kaeru¦ka e ru»] #かえる
+きりん　[=«kirin¦kirin¦ki ri n»] #きりん
+くじら　[=«kuzira¦kuzira¦ku zi ra»] #くじら
+けむし　[=«kemusi¦kemusi¦ke mu si»] #けむし
+こいぬ　[=«koinu¦koinu¦ko i nu»] #こいぬ
+さくら　[=«sakura¦sakura¦sa ku ra»] #さくら
+しろ　[=«siro¦siro¦si ro»] #しろ
+すみれ　[=«sumire¦sumire¦su mi re»] #すみれ
+せみ　[=«semi¦semi¦se mi»] #せみ
+そら　[=«sora¦sora¦so ra»] #そら
+たぬき　[=«tanuki¦tanuki¦ta nu ki»] #たぬき
+ちず　[=«tizu¦tizu¦ti zu»] #ちず
+つばめ　[=«tubame¦tubame¦tu ba me»] #つばめ
+てがみ　[=«tegami¦tegami¦te ga mi»] #てがみ
+とり　[=«tori¦tori¦to ri»] #とり
+なべ　[=«nabe¦nabe¦na be»] #なべ
+ねずみ　[=«nezumi¦nezumi¦ne zu mi»] #ねずみ
+のり　[=«nori¦nori¦no ri»] #のり
+はさみ　[=«hasami¦hasami¦ha sa mi»] #はさみ
+ひよこ　[=«hiyoko¦hiyoko¦hi yo ko»] #ひよこ
+ふね　[=«hune¦hune¦hu ne»] #ふね
+へび　[=«hebi¦hebi¦he bi»] #へび
+ほし　[=«hosi¦hosi¦ho si»] #ほし
+まめ　[=«mame¦mame¦ma me»] #まめ
+みかん　[=«mikan¦mikan¦mi ka n»] #みかん
+むし　[=«musi¦musi¦mu si»] #むし
+めがね　[=«megane¦megane¦me ga ne»] #めがね
+もも　[=«momo¦momo¦mo mo»] #もも
+やま　[=«yama¦yama¦ya ma»] #やま
+ゆき　[=«yuki¦yuki¦yu ki»] #ゆき
+よる　[=«yoru¦yoru¦yo ru»] #よる
+らくだ　[=«rakuda¦rakuda¦ra ku da»] #らくだ
+りす　[=«risu¦risu¦ri su»] #りす
+わに　[=«wani¦wani¦wa ni»] #わに
+はな　[=«hana¦hana¦ha na»] #はな
+ひも　[=«himo¦himo¦hi mo»] #ひも
+ふえ　[=«hue¦hue¦hu e»] #ふえ
+へや　[=«heya¦heya¦he ya»] #へや
+ほん　[=«hon¦hon¦ho n»] #ほん
+まど　[=«mado¦mado¦ma do»] #まど
+みみ　[=«mimi¦mimi¦mi mi»] #みみ
+むね　[=«mune¦mune¦mu ne»] #むね
+めだか　[=«medaka¦medaka¦me da ka»] #めだか
+もり　[=«mori¦mori¦mo ri»] #もり
+やね　[=«yane¦yane¦ya ne»] #やね
+ゆび　[=«yubi¦yubi¦yu bi»] #ゆび
+よこ　[=«yoko¦yoko¦yo ko»] #よこ
+りんご　[=«ringo¦ringo¦ri n go»] #りんご
+ろば　[=«roba¦roba¦ro ba»] #ろば
+わなげ　[=«wanage¦wanage¦wa na ge»] #わなげ
+あめ　[=«ame¦ame¦a me»] #あめ
+うみ　[=«umi¦umi¦u mi»] #うみ
+えほん　[=«ehon¦ehon¦e ho n»] #えほん
+かめ　[=«kame¦kame¦ka me»] #かめ
+くま　[=«kuma¦kuma¦ku ma»] #くま
+くも　[=«kumo¦kumo¦ku mo»] #くも
+くり　[=«kuri¦kuri¦ku ri»] #くり
+こま　[=«koma¦koma¦ko ma»] #こま
+さる　[=«saru¦saru¦sa ru»] #さる
+しま　[=«sima¦sima¦si ma»] #しま
+はし　[=«hasi¦hasi¦ha si»] #はし
+はち　[=«hati¦hati¦ha ti»] #はち
+ひと　[=«hito¦hito¦hi to»] #ひと
+ふく　[=«huku¦huku¦hu ku»] #ふく
+へそ　[=«heso¦heso¦he so»] #へそ
+ほたる　[=«hotaru¦hotaru¦ho ta ru»] #ほたる
+まくら　[=«makura¦makura¦ma ku ra»] #まくら
+みそ　[=«miso¦miso¦mi so»] #みそ
+むかし　[=«mukasi¦mukasi¦mu ka si»] #むかし
+もち　[=«moti¦moti¦mo ti»] #もち
+やさい　[=«yasai¦yasai¦ya sa i»] #やさい
+ゆめ　[=«yume¦yume¦yu me»] #ゆめ
+りか　[=«rika¦rika¦ri ka»] #りか
+れきし　[=«rekisi¦rekisi¦re ki si»] #れきし
+わた　[=«wata¦wata¦wa ta»] #わた
+からす　[=«karasu¦karasu¦ka ra su»] #からす
+いのしし　[=«inosisi¦inosisi¦i no si si»] #いのしし
+はなび　[=«hanabi¦hanabi¦ha na bi»] #はなび
+ほたて　[=«hotate¦hotate¦ho ta te»] #ほたて
+みなと　[=«minato¦minato¦mi na to»] #みなと
+さいふ　[=«saihu¦saihu¦sa i hu»] #さいふ
+にんじん　[=«ninzin¦ninzin¦ni n zi n»] #にんじん
+れんこん　[=«renkon¦renkon¦re n ko n»] #れんこん
+からて　[=«karate¦karate¦ka ra te»] #からて
+てまり　[=«temari¦temari¦te ma ri»] #てまり
+あみ　[=«ami¦ami¦a mi»] #あみ
+いね　[=«ine¦ine¦i ne»] #いね
+おふろ　[=«ohuro¦ohuro¦o hu ro»] #おふろ
+かみ　[=«kami¦kami¦ka mi»] #かみ
+くわ　[=«kuwa¦kuwa¦ku wa»] #くわ
+さら　[=«sara¦sara¦sa ra»] #さら
+がっこう　[=«gakkô¦gakko-¦ga k ko u»] #がっこう
+げた　[=«geta¦geta¦ge ta»] #げた
+ごま　[=«goma¦goma¦go ma»] #ごま
+ざる　[=«zaru¦zaru¦za ru»] #ざる
+ずかん　[=«zukan¦zukan¦zu ka n»] #ずかん
+ぜんまい　[=«zenmai¦zenmai¦ze n ma i»] #ぜんまい
+ぞう　[=«zô¦zo-¦zo u»] #ぞう
+だんご　[=«dango¦dango¦da n go»] #だんご
+でんわ　[=«denwa¦denwa¦de n wa»] #でんわ
+どんぐり　[=«donguri¦donguri¦do n gu ri»] #どんぐり
+ばった　[=«batta¦batta¦ba t ta»] #ばった
+びん　[=«bin¦bin¦bi n»] #びん
+ぶた　[=«buta¦buta¦bu ta»] #ぶた
+べんとう　[=«bentô¦bento-¦be n to u»] #べんとう
+ぼうし　[=«bôsi¦bo-si¦bo u si»] #ぼうし
+ぺんぎん　[=«pengin¦pengin¦pe n gi n»] #ぺんぎん
+かぎ　[=«kagi¦kagi¦ka gi»] #かぎ
+ひざ　[=«hiza¦hiza¦hi za»] #ひざ
+かぜ　[=«kaze¦kaze¦ka ze»] #かぜ
+ごはん　[=«gohan¦gohan¦go ha n»] #ごはん
+かば　[=«kaba¦kaba¦ka ba»] #かば
+えんぴつ　[=«enpitu¦enpitu¦e n pi tu»] #えんぴつ
+てんぷら　[=«tenpura¦tenpura¦te n pu ra»] #てんぷら
+うで　[=«ude¦ude¦u de»] #うで
+おでこ　[=«odeko¦odeko¦o de ko»] #おでこ
+かがみ　[=«kagami¦kagami¦ka ga mi»] #かがみ
+ぶどう　[=«budô¦budo-¦bu do u»] #ぶどう
+どんぶり　[=«donburi¦donburi¦do n bu ri»] #どんぶり
+かばん　[=«kaban¦kaban¦ka ba n»] #かばん
+かいだん　[=«kaidan¦kaidan¦ka i da n»] #かいだん
+がけ　[=«gake¦gake¦ga ke»] #がけ
+ぎんなん　[=«ginnan¦ginnan¦gi n na n»] #ぎんなん
+すずめ　[=«suzume¦suzume¦su zu me»] #すずめ
+ずぼん　[=«zubon¦zubon¦zu bo n»] #ずぼん
+だるま　[=«daruma¦daruma¦da ru ma»] #だるま
+でぐち　[=«deguti¦deguti¦de gu ti»] #でぐち
+どうぐ　[=«dôgu¦do-gu¦do u gu»] #どうぐ
+はなぢ　[=«hanazi¦hanazi¦ha na zi»] #はなぢ
+きゃべつ　[=«kyabetu¦kyabetu¦kya be tu»] #きゃべつ
+きゅうり　[=«kyûri¦kyu-ri¦kyu u ri»] #きゅうり
+しゃしん　[=«syasin¦syasin¦sya si n»] #しゃしん
+ちゃわん　[=«tyawan¦tyawan¦tya wa n»] #ちゃわん
+ちょうちょ　[=«tyôtyo¦tyo-tyo¦tyo u tyo»] #ちょうちょ
+ひゃく　[=«hyaku¦hyaku¦hya ku»] #ひゃく
+りゅう　[=«ryû¦ryu-¦ryu u»] #りゅう
+りょかん　[=«ryokan¦ryokan¦ryo ka n»] #りょかん
+じゃんけん　[=«zyanken¦zyanken¦zya n ke n»] #じゃんけん
+じゅんばん　[=«zyunban¦zyunban¦zyu n ba n»] #じゅんばん
+じょうろ　[=«zyôro¦zyo-ro¦zyo u ro»] #じょうろ
+びょういん　[=«byôin¦byo-in¦byo u i n»] #びょういん
+きんぎょ　[=«kingyo¦kingyo¦ki n gyo»] #きんぎょ
+おもちゃ　[=«omotya¦omotya¦o mo tya»] #おもちゃ
+いしゃ　[=«isya¦isya¦i sya»] #いしゃ
+でんしゃ　[=«densya¦densya¦de n sya»] #でんしゃ
+にんじゃ　[=«ninzya¦ninzya¦ni n zya»] #にんじゃ
+きょり　[=«kyori¦kyori¦kyo ri»] #きょり
+ちゅうしゃ　[=«tyûsya¦tyu-sya¦tyu u sya»] #ちゅうしゃ
+しょくじ　[=«syokuzi¦syokuzi¦syo ku zi»] #しょくじ
+おちゃ　[=«otya¦otya¦o tya»] #おちゃ
+きゃく　[=«kyaku¦kyaku¦kya ku»] #きゃく
+さんしょ　[=«sansyo¦sansyo¦sa n syo»] #さんしょ
+しゅみ　[=«syumi¦syumi¦syu mi»] #しゅみ
+りょうり　[=«ryôri¦ryo-ri¦ryo u ri»] #りょうり
+ひょう　[=«hyô¦hyo-¦hyo u»] #ひょう
+てんいん　[=«ten'in¦ten-in¦te n i n»] #てんいん
+ほんや　[=«hon'ya¦hon-ya¦ho n ya»] #ほんや
+きんえん　[=«kin'en¦kin-en¦ki n e n»] #きんえん
+げんいん　[=«gen'in¦gen-in¦ge n i n»] #げんいん
+まんいん　[=«man'in¦man-in¦ma n i n»] #まんいん
+こんや　[=«kon'ya¦kon-ya¦ko n ya»] #こんや
+ぜんいん　[=«zen'in¦zen-in¦ze n i n»] #ぜんいん
+しんゆう　[=«sin'yû¦sin-yu-¦si n yu u»] #しんゆう
+こおり　[=«kôri¦ko-ri¦ko o ri»] #こおり
+くうき　[=«kûki¦ku-ki¦ku u ki»] #くうき
+ひこうき　[=«hikôki¦hiko-ki¦hi ko u ki»] #ひこうき
+ゆうき　[=«yûki¦yu-ki¦yu u ki»] #ゆうき
+きのう　[=«kinô¦kino-¦ki no u»] #きのう
+ほうき　[=«hôki¦ho-ki¦ho u ki»] #ほうき
+とうふ　[=«tôhu¦to-hu¦to u hu»] #とうふ
+ふうせん　[=«hûsen¦hu-sen¦hu u se n»] #ふうせん
+すうじ　[=«sûzi¦su-zi¦su u zi»] #すうじ
+こうえん　[=«kôen¦ko-en¦ko u e n»] #こうえん
+おおかみ　[=«ôkami¦o-kami¦o o ka mi»] #おおかみ
+とおり　[=«tôri¦to-ri¦to o ri»] #とおり
+おうさま　[=«ôsama¦o-sama¦o u sa ma»] #おうさま
+ろうか　[=«rôka¦ro-ka¦ro u ka»] #ろうか
+どうぶつ　[=«dôbutu¦do-butu¦do u bu tu»] #どうぶつ
+ようふく　[=«yôhuku¦yo-huku¦yo u hu ku»] #ようふく
+ほうたい　[=«hôtai¦ho-tai¦ho u ta i»] #ほうたい
+ゆうがた　[=«yûgata¦yu-gata¦yu u ga ta»] #ゆうがた
+きって　[=«kitte¦kitte¦ki t te»] #きって
+らっぱ　[=«rappa¦rappa¦ra p pa»] #らっぱ
+にっき　[=«nikki¦nikki¦ni k ki»] #にっき
+せっけん　[=«sekken¦sekken¦se k ke n»] #せっけん
+はっぱ　[=«happa¦happa¦ha p pa»] #はっぱ
+しっぽ　[=«sippo¦sippo¦si p po»] #しっぽ
+ねっこ　[=«nekko¦nekko¦ne k ko»] #ねっこ
+きっぷ　[=«kippu¦kippu¦ki p pu»] #きっぷ
+ざっし　[=«zassi¦zassi¦za s si»] #ざっし
+らっこ　[=«rakko¦rakko¦ra k ko»] #らっこ
+かっぱ　[=«kappa¦kappa¦ka p pa»] #かっぱ
+ほっぺ　[=«hoppe¦hoppe¦ho p pe»] #ほっぺ
+がっき　[=«gakki¦gakki¦ga k ki»] #がっき
+しゃもじ　[=«syamozi¦syamozi¦sya mo zi»] #しゃもじ
+ちゃいろ　[=«tyairo¦tyairo¦tya i ro»] #ちゃいろ
+じゃり　[=«zyari¦zyari¦zya ri»] #じゃり
+きょねん　[=«kyonen¦kyonen¦kyo ne n»] #きょねん
+ちょきん　[=«tyokin¦tyokin¦tyo ki n»] #ちょきん
+しゃこ　[=«syako¦syako¦sya ko»] #しゃこ
+しゅるい　[=«syurui¦syurui¦syu ru i»] #しゅるい
+にんぎょ　[=«ningyo¦ningyo¦ni n gyo»] #にんぎょ
+おしゃれ　[=«osyare¦osyare¦o sya re»] #おしゃれ
+かしゅ　[=«kasyu¦kasyu¦ka syu»] #かしゅ
+ぎゃく　[=«gyaku¦gyaku¦gya ku»] #ぎゃく
+しゃち　[=«syati¦syati¦sya ti»] #しゃち
+じゃま　[=«zyama¦zyama¦zya ma»] #じゃま
+きんじょ　[=«kinzyo¦kinzyo¦ki n zyo»] #きんじょ
+かいしゃ　[=«kaisya¦kaisya¦ka i sya»] #かいしゃ
+ひゃくえん　[=«hyakuen¦hyakuen¦hya ku e n»] #ひゃくえん
+ぎょうざ　[=«gyôza¦gyo-za¦gyo u za»] #ぎょうざ
+でんきゅう　[=«denkyû¦denkyu-¦de n kyu u»] #でんきゅう
+しょうゆ　[=«syôyu¦syo-yu¦syo u yu»] #しょうゆ
+こっか　[=«kokka¦kokka¦ko k ka»] #こっか
+さっか　[=«sakka¦sakka¦sa k ka»] #さっか
+いっぱい　[=«ippai¦ippai¦i p pa i»] #いっぱい
+はっけん　[=«hakken¦hakken¦ha k ke n»] #はっけん
+びっくり　[=«bikkuri¦bikkuri¦bi k ku ri»] #びっくり
+まっか　[=«makka¦makka¦ma k ka»] #まっか
+まっしろ　[=«massiro¦massiro¦ma s si ro»] #まっしろ
+まっくら　[=«makkura¦makkura¦ma k ku ra»] #まっくら
+けっこん　[=«kekkon¦kekkon¦ke k ko n»] #けっこん
+いっしょ　[=«issyo¦issyo¦i s syo»] #いっしょ
+みっか　[=«mikka¦mikka¦mi k ka»] #みっか
 == 正しい つづり | 正しい つづりを ○で かこみましょう。 | 4 | cols=2
-がっこう　{*gakkô|gakko} #がっこう
-じてんしゃ　{*zitensya|zitensiya} #じてんしゃ
-ぞう　{*zô|zo} #ぞう
-ばった　{*batta|bata} #ばった
-べんとう　{*bentô|bento} #べんとう
-ぼうし　{*bôsi|boosi} #ぼうし
-ぶどう　{*budô|budo} #ぶどう
-どうぐ　{*dôgu|dogu} #どうぐ
-きゃべつ　{*kyabetu|kiyabetu} #きゃべつ
-きゅうり　{*kyûri|kiyûri} #きゅうり
-きょうりゅう　{*kyôryû|kiyôryû} #きょうりゅう
-しゃしん　{*syasin|siyasin} #しゃしん
-しゅくだい　{*syukudai|siyukudai} #しゅくだい
-ちゃわん　{*tyawan|tiyawan} #ちゃわん
-ちょうちょ　{*tyôtyo|tiyôtyo} #ちょうちょ
-ひゃく　{*hyaku|hiyaku} #ひゃく
-りゅう　{*ryû|riyû} #りゅう
-りょかん　{*ryokan|riyokan} #りょかん
-ぎゅうにゅう　{*gyûnyû|giyûnyû} #ぎゅうにゅう
-じゃんけん　{*zyanken|ziyanken} #じゃんけん
-じゅんばん　{*zyunban|ziyunban} #じゅんばん
-じょうろ　{*zyôro|ziyôro} #じょうろ
-びょういん　{*byôin|biyôin} #びょういん
-きんぎょ　{*kingyo|kingiyo} #きんぎょ
-おもちゃ　{*omotya|omotiya} #おもちゃ
-いしゃ　{*isya|isiya} #いしゃ
-でんしゃ　{*densya|densiya} #でんしゃ
-にんじゃ　{*ninzya|ninziya} #にんじゃ
-きょり　{*kyori|kiyori} #きょり
-ちゅうしゃ　{*tyûsya|tiyûsya} #ちゅうしゃ
-しょくじ　{*syokuzi|siyokuzi} #しょくじ
-おちゃ　{*otya|otiya} #おちゃ
-じゃがいも　{*zyagaimo|ziyagaimo} #じゃがいも
-きゃく　{*kyaku|kiyaku} #きゃく
-さんしょ　{*sansyo|sansiyo} #さんしょ
-しゅみ　{*syumi|siyumi} #しゅみ
-りょうり　{*ryôri|riyôri} #りょうり
-ひょう　{*hyô|hiyô} #ひょう
-てんいん　{*ten'in|tenin} #てんいん
-ほんや　{*hon'ya|honya} #ほんや
-きんえん　{*kin'en|kinen} #きんえん
-げんいん　{*gen'in|genin} #げんいん
-まんいん　{*man'in|manin} #まんいん
-こんや　{*kon'ya|konya} #こんや
-ぜんいん　{*zen'in|zenin} #ぜんいん
-しんゆう　{*sin'yû|sin'yu} #しんゆう
-きんようび　{*kin'yôbi|kin'yobi} #きんようび
-おかあさん　{*okâsan|okaasan} #おかあさん
-おとうさん　{*otôsan|otoosan} #おとうさん
-おにいさん　{*onîsan|oniisan} #おにいさん
-おねえさん　{*onêsan|oneesan} #おねえさん
-こおり　{*kôri|koori} #こおり
-くうき　{*kûki|kuki} #くうき
-ひこうき　{*hikôki|hikoki} #ひこうき
-ゆうき　{*yûki|yuki} #ゆうき
-きのう　{*kinô|kino} #きのう
-ほうき　{*hôki|hoki} #ほうき
-とうふ　{*tôhu|tohu} #とうふ
-ふうせん　{*hûsen|husen} #ふうせん
-すうじ　{*sûzi|suuzi} #すうじ
-こうえん　{*kôen|koen} #こうえん
-おおかみ　{*ôkami|okami} #おおかみ
-とおり　{*tôri|toori} #とおり
-おうさま　{*ôsama|oosama} #おうさま
-ろうか　{*rôka|roka} #ろうか
-どうぶつ　{*dôbutu|dobutu} #どうぶつ
-ようふく　{*yôhuku|yohuku} #ようふく
-ほうたい　{*hôtai|hootai} #ほうたい
-ゆうがた　{*yûgata|yugata} #ゆうがた
-きって　{*kitte|kite} #きって
-らっぱ　{*rappa|rapa} #らっぱ
-にっき　{*nikki|niki} #にっき
-せっけん　{*sekken|seken} #せっけん
-はっぱ　{*happa|hapa} #はっぱ
-しっぽ　{*sippo|sipo} #しっぽ
-ねっこ　{*nekko|neko} #ねっこ
-きっぷ　{*kippu|kipu} #きっぷ
-ざっし　{*zassi|zasi} #ざっし
-らっこ　{*rakko|rako} #らっこ
-かっぱ　{*kappa|kapa} #かっぱ
-ほっぺ　{*hoppe|hope} #ほっぺ
-がっき　{*gakki|gaki} #がっき
-しゃもじ　{*syamozi|siyamozi} #しゃもじ
-ちゃいろ　{*tyairo|tiyairo} #ちゃいろ
-じゃり　{*zyari|ziyari} #じゃり
-きょねん　{*kyonen|kiyonen} #きょねん
-ちょきん　{*tyokin|tiyokin} #ちょきん
-しゃこ　{*syako|siyako} #しゃこ
-しゅるい　{*syurui|siyurui} #しゅるい
-にんぎょ　{*ningyo|ningiyo} #にんぎょ
-おしゃれ　{*osyare|osiyare} #おしゃれ
-かしゅ　{*kasyu|kasiyu} #かしゅ
-ぎゃく　{*gyaku|giyaku} #ぎゃく
-しゃち　{*syati|siyati} #しゃち
-じゃま　{*zyama|ziyama} #じゃま
-しゃみせん　{*syamisen|siyamisen} #しゃみせん
-きんじょ　{*kinzyo|kinziyo} #きんじょ
-かいしゃ　{*kaisya|kaisiya} #かいしゃ
-ひゃくえん　{*hyakuen|hiyakuen} #ひゃくえん
-ぎょうざ　{*gyôza|giyôza} #ぎょうざ
-でんきゅう　{*denkyû|denkiyû} #でんきゅう
-しょうゆ　{*syôyu|siyôyu} #しょうゆ
-ほっきょく　{*hokkyoku|hokkiyoku} #ほっきょく
-きっさてん　{*kissaten|kisaten} #きっさてん
-こっか　{*kokka|koka} #こっか
-さっか　{*sakka|saka} #さっか
-いっぱい　{*ippai|ipai} #いっぱい
-しゅっぱつ　{*syuppatu|siyuppatu} #しゅっぱつ
-はっけん　{*hakken|haken} #はっけん
-びっくり　{*bikkuri|bikuri} #びっくり
-まっか　{*makka|maka} #まっか
-まっしろ　{*massiro|masiro} #まっしろ
-まっくら　{*makkura|makura} #まっくら
-けっこん　{*kekkon|kekon} #けっこん
-らっかせい　{*rakkasei|rakasei} #らっかせい
-いっしょ　{*issyo|issiyo} #いっしょ
-みっか　{*mikka|mika} #みっか
+がっこう　{*«gakkô¦gakko-¦ga k ko u»|«gakô¦gako-¦ga ko u»} #がっこう
+じてんしゃ　{*«zitensya¦zitensya¦zi te n sya»|«zitensiya¦zitensiya¦zi te n si ya»} #じてんしゃ
+ぞう　{*«zô¦zo-¦zo u»|«zo¦zo¦zo»} #ぞう
+ばった　{*«batta¦batta¦ba t ta»|«bata¦bata¦ba ta»} #ばった
+べんとう　{*«bentô¦bento-¦be n to u»|«bento¦bento¦be n to»} #べんとう
+ぼうし　{*«bôsi¦bo-si¦bo u si»|«bosi¦bosi¦bo si»} #ぼうし
+ぶどう　{*«budô¦budo-¦bu do u»|«budo¦budo¦bu do»} #ぶどう
+どうぐ　{*«dôgu¦do-gu¦do u gu»|«dogu¦dogu¦do gu»} #どうぐ
+きゃべつ　{*«kyabetu¦kyabetu¦kya be tu»|«kiyabetu¦kiyabetu¦ki ya be tu»} #きゃべつ
+きゅうり　{*«kyûri¦kyu-ri¦kyu u ri»|«kyuri¦kyuri¦kyu ri»} #きゅうり
+きょうりゅう　{*«kyôryû¦kyo-ryu-¦kyo u ryu u»|«kyoryû¦kyoryu-¦kyo ryu u»} #きょうりゅう
+しゃしん　{*«syasin¦syasin¦sya si n»|«siyasin¦siyasin¦si ya si n»} #しゃしん
+しゅくだい　{*«syukudai¦syukudai¦syu ku da i»|«siyukudai¦siyukudai¦si yu ku da i»} #しゅくだい
+ちゃわん　{*«tyawan¦tyawan¦tya wa n»|«tiyawan¦tiyawan¦ti ya wa n»} #ちゃわん
+ちょうちょ　{*«tyôtyo¦tyo-tyo¦tyo u tyo»|«tyotyo¦tyotyo¦tyo tyo»} #ちょうちょ
+ひゃく　{*«hyaku¦hyaku¦hya ku»|«hiyaku¦hiyaku¦hi ya ku»} #ひゃく
+りゅう　{*«ryû¦ryu-¦ryu u»|«ryu¦ryu¦ryu»} #りゅう
+りょかん　{*«ryokan¦ryokan¦ryo ka n»|«riyokan¦riyokan¦ri yo ka n»} #りょかん
+ぎゅうにゅう　{*«gyûnyû¦gyu-nyu-¦gyu u nyu u»|«gyunyû¦gyunyu-¦gyu nyu u»} #ぎゅうにゅう
+じゃんけん　{*«zyanken¦zyanken¦zya n ke n»|«ziyanken¦ziyanken¦zi ya n ke n»} #じゃんけん
+じゅんばん　{*«zyunban¦zyunban¦zyu n ba n»|«ziyunban¦ziyunban¦zi yu n ba n»} #じゅんばん
+じょうろ　{*«zyôro¦zyo-ro¦zyo u ro»|«zyoro¦zyoro¦zyo ro»} #じょうろ
+びょういん　{*«byôin¦byo-in¦byo u i n»|«byoin¦byoin¦byo i n»} #びょういん
+きんぎょ　{*«kingyo¦kingyo¦ki n gyo»|«kingiyo¦kingiyo¦ki n gi yo»} #きんぎょ
+おもちゃ　{*«omotya¦omotya¦o mo tya»|«omotiya¦omotiya¦o mo ti ya»} #おもちゃ
+いしゃ　{*«isya¦isya¦i sya»|«isiya¦isiya¦i si ya»} #いしゃ
+でんしゃ　{*«densya¦densya¦de n sya»|«densiya¦densiya¦de n si ya»} #でんしゃ
+にんじゃ　{*«ninzya¦ninzya¦ni n zya»|«ninziya¦ninziya¦ni n zi ya»} #にんじゃ
+きょり　{*«kyori¦kyori¦kyo ri»|«kiyori¦kiyori¦ki yo ri»} #きょり
+ちゅうしゃ　{*«tyûsya¦tyu-sya¦tyu u sya»|«tyusya¦tyusya¦tyu sya»} #ちゅうしゃ
+しょくじ　{*«syokuzi¦syokuzi¦syo ku zi»|«siyokuzi¦siyokuzi¦si yo ku zi»} #しょくじ
+おちゃ　{*«otya¦otya¦o tya»|«otiya¦otiya¦o ti ya»} #おちゃ
+じゃがいも　{*«zyagaimo¦zyagaimo¦zya ga i mo»|«ziyagaimo¦ziyagaimo¦zi ya ga i mo»} #じゃがいも
+きゃく　{*«kyaku¦kyaku¦kya ku»|«kiyaku¦kiyaku¦ki ya ku»} #きゃく
+さんしょ　{*«sansyo¦sansyo¦sa n syo»|«sansiyo¦sansiyo¦sa n si yo»} #さんしょ
+しゅみ　{*«syumi¦syumi¦syu mi»|«siyumi¦siyumi¦si yu mi»} #しゅみ
+りょうり　{*«ryôri¦ryo-ri¦ryo u ri»|«ryori¦ryori¦ryo ri»} #りょうり
+ひょう　{*«hyô¦hyo-¦hyo u»|«hyo¦hyo¦hyo»} #ひょう
+てんいん　{*«ten'in¦ten-in¦te n i n»|«tenin¦tenin¦te ni n»} #てんいん
+ほんや　{*«hon'ya¦hon-ya¦ho n ya»|«honya¦honya¦ho nya»} #ほんや
+きんえん　{*«kin'en¦kin-en¦ki n e n»|«kinen¦kinen¦ki ne n»} #きんえん
+げんいん　{*«gen'in¦gen-in¦ge n i n»|«genin¦genin¦ge ni n»} #げんいん
+まんいん　{*«man'in¦man-in¦ma n i n»|«manin¦manin¦ma ni n»} #まんいん
+こんや　{*«kon'ya¦kon-ya¦ko n ya»|«konya¦konya¦ko nya»} #こんや
+ぜんいん　{*«zen'in¦zen-in¦ze n i n»|«zenin¦zenin¦ze ni n»} #ぜんいん
+しんゆう　{*«sin'yû¦sin-yu-¦si n yu u»|«sin'yu¦sin-yu¦si n yu»} #しんゆう
+きんようび　{*«kin'yôbi¦kin-yo-bi¦ki n yo u bi»|«kin'yobi¦kin-yobi¦ki n yo bi»} #きんようび
+おかあさん　{*«okâsan¦oka-san¦o ka a sa n»|«okasan¦okasan¦o ka sa n»} #おかあさん
+おとうさん　{*«otôsan¦oto-san¦o to u sa n»|«otosan¦otosan¦o to sa n»} #おとうさん
+おにいさん　{*«onîsan¦oni-san¦o ni i sa n»|«onisan¦onisan¦o ni sa n»} #おにいさん
+おねえさん　{*«onêsan¦one-san¦o ne e sa n»|«onesan¦onesan¦o ne sa n»} #おねえさん
+こおり　{*«kôri¦ko-ri¦ko o ri»|«kori¦kori¦ko ri»} #こおり
+くうき　{*«kûki¦ku-ki¦ku u ki»|«kuki¦kuki¦ku ki»} #くうき
+ひこうき　{*«hikôki¦hiko-ki¦hi ko u ki»|«hikoki¦hikoki¦hi ko ki»} #ひこうき
+ゆうき　{*«yûki¦yu-ki¦yu u ki»|«yuki¦yuki¦yu ki»} #ゆうき
+きのう　{*«kinô¦kino-¦ki no u»|«kino¦kino¦ki no»} #きのう
+ほうき　{*«hôki¦ho-ki¦ho u ki»|«hoki¦hoki¦ho ki»} #ほうき
+とうふ　{*«tôhu¦to-hu¦to u hu»|«tohu¦tohu¦to hu»} #とうふ
+ふうせん　{*«hûsen¦hu-sen¦hu u se n»|«husen¦husen¦hu se n»} #ふうせん
+すうじ　{*«sûzi¦su-zi¦su u zi»|«suzi¦suzi¦su zi»} #すうじ
+こうえん　{*«kôen¦ko-en¦ko u e n»|«koen¦koen¦ko e n»} #こうえん
+おおかみ　{*«ôkami¦o-kami¦o o ka mi»|«okami¦okami¦o ka mi»} #おおかみ
+とおり　{*«tôri¦to-ri¦to o ri»|«tori¦tori¦to ri»} #とおり
+おうさま　{*«ôsama¦o-sama¦o u sa ma»|«osama¦osama¦o sa ma»} #おうさま
+ろうか　{*«rôka¦ro-ka¦ro u ka»|«roka¦roka¦ro ka»} #ろうか
+どうぶつ　{*«dôbutu¦do-butu¦do u bu tu»|«dobutu¦dobutu¦do bu tu»} #どうぶつ
+ようふく　{*«yôhuku¦yo-huku¦yo u hu ku»|«yohuku¦yohuku¦yo hu ku»} #ようふく
+ほうたい　{*«hôtai¦ho-tai¦ho u ta i»|«hotai¦hotai¦ho ta i»} #ほうたい
+ゆうがた　{*«yûgata¦yu-gata¦yu u ga ta»|«yugata¦yugata¦yu ga ta»} #ゆうがた
+きって　{*«kitte¦kitte¦ki t te»|«kite¦kite¦ki te»} #きって
+らっぱ　{*«rappa¦rappa¦ra p pa»|«rapa¦rapa¦ra pa»} #らっぱ
+にっき　{*«nikki¦nikki¦ni k ki»|«niki¦niki¦ni ki»} #にっき
+せっけん　{*«sekken¦sekken¦se k ke n»|«seken¦seken¦se ke n»} #せっけん
+はっぱ　{*«happa¦happa¦ha p pa»|«hapa¦hapa¦ha pa»} #はっぱ
+しっぽ　{*«sippo¦sippo¦si p po»|«sipo¦sipo¦si po»} #しっぽ
+ねっこ　{*«nekko¦nekko¦ne k ko»|«neko¦neko¦ne ko»} #ねっこ
+きっぷ　{*«kippu¦kippu¦ki p pu»|«kipu¦kipu¦ki pu»} #きっぷ
+ざっし　{*«zassi¦zassi¦za s si»|«zasi¦zasi¦za si»} #ざっし
+らっこ　{*«rakko¦rakko¦ra k ko»|«rako¦rako¦ra ko»} #らっこ
+かっぱ　{*«kappa¦kappa¦ka p pa»|«kapa¦kapa¦ka pa»} #かっぱ
+ほっぺ　{*«hoppe¦hoppe¦ho p pe»|«hope¦hope¦ho pe»} #ほっぺ
+がっき　{*«gakki¦gakki¦ga k ki»|«gaki¦gaki¦ga ki»} #がっき
+しゃもじ　{*«syamozi¦syamozi¦sya mo zi»|«siyamozi¦siyamozi¦si ya mo zi»} #しゃもじ
+ちゃいろ　{*«tyairo¦tyairo¦tya i ro»|«tiyairo¦tiyairo¦ti ya i ro»} #ちゃいろ
+じゃり　{*«zyari¦zyari¦zya ri»|«ziyari¦ziyari¦zi ya ri»} #じゃり
+きょねん　{*«kyonen¦kyonen¦kyo ne n»|«kiyonen¦kiyonen¦ki yo ne n»} #きょねん
+ちょきん　{*«tyokin¦tyokin¦tyo ki n»|«tiyokin¦tiyokin¦ti yo ki n»} #ちょきん
+しゃこ　{*«syako¦syako¦sya ko»|«siyako¦siyako¦si ya ko»} #しゃこ
+しゅるい　{*«syurui¦syurui¦syu ru i»|«siyurui¦siyurui¦si yu ru i»} #しゅるい
+にんぎょ　{*«ningyo¦ningyo¦ni n gyo»|«ningiyo¦ningiyo¦ni n gi yo»} #にんぎょ
+おしゃれ　{*«osyare¦osyare¦o sya re»|«osiyare¦osiyare¦o si ya re»} #おしゃれ
+かしゅ　{*«kasyu¦kasyu¦ka syu»|«kasiyu¦kasiyu¦ka si yu»} #かしゅ
+ぎゃく　{*«gyaku¦gyaku¦gya ku»|«giyaku¦giyaku¦gi ya ku»} #ぎゃく
+しゃち　{*«syati¦syati¦sya ti»|«siyati¦siyati¦si ya ti»} #しゃち
+じゃま　{*«zyama¦zyama¦zya ma»|«ziyama¦ziyama¦zi ya ma»} #じゃま
+しゃみせん　{*«syamisen¦syamisen¦sya mi se n»|«siyamisen¦siyamisen¦si ya mi se n»} #しゃみせん
+きんじょ　{*«kinzyo¦kinzyo¦ki n zyo»|«kinziyo¦kinziyo¦ki n zi yo»} #きんじょ
+かいしゃ　{*«kaisya¦kaisya¦ka i sya»|«kaisiya¦kaisiya¦ka i si ya»} #かいしゃ
+ひゃくえん　{*«hyakuen¦hyakuen¦hya ku e n»|«hiyakuen¦hiyakuen¦hi ya ku e n»} #ひゃくえん
+ぎょうざ　{*«gyôza¦gyo-za¦gyo u za»|«gyoza¦gyoza¦gyo za»} #ぎょうざ
+でんきゅう　{*«denkyû¦denkyu-¦de n kyu u»|«denkyu¦denkyu¦de n kyu»} #でんきゅう
+しょうゆ　{*«syôyu¦syo-yu¦syo u yu»|«syoyu¦syoyu¦syo yu»} #しょうゆ
+ほっきょく　{*«hokkyoku¦hokkyoku¦ho k kyo ku»|«hokyoku¦hokyoku¦ho kyo ku»} #ほっきょく
+きっさてん　{*«kissaten¦kissaten¦ki s sa te n»|«kisaten¦kisaten¦ki sa te n»} #きっさてん
+こっか　{*«kokka¦kokka¦ko k ka»|«koka¦koka¦ko ka»} #こっか
+さっか　{*«sakka¦sakka¦sa k ka»|«saka¦saka¦sa ka»} #さっか
+いっぱい　{*«ippai¦ippai¦i p pa i»|«ipai¦ipai¦i pa i»} #いっぱい
+しゅっぱつ　{*«syuppatu¦syuppatu¦syu p pa tu»|«syupatu¦syupatu¦syu pa tu»} #しゅっぱつ
+はっけん　{*«hakken¦hakken¦ha k ke n»|«haken¦haken¦ha ke n»} #はっけん
+びっくり　{*«bikkuri¦bikkuri¦bi k ku ri»|«bikuri¦bikuri¦bi ku ri»} #びっくり
+まっか　{*«makka¦makka¦ma k ka»|«maka¦maka¦ma ka»} #まっか
+まっしろ　{*«massiro¦massiro¦ma s si ro»|«masiro¦masiro¦ma si ro»} #まっしろ
+まっくら　{*«makkura¦makkura¦ma k ku ra»|«makura¦makura¦ma ku ra»} #まっくら
+けっこん　{*«kekkon¦kekkon¦ke k ko n»|«kekon¦kekon¦ke ko n»} #けっこん
+らっかせい　{*«rakkasei¦rakkasei¦ra k ka se i»|«rakasei¦rakasei¦ra ka se i»} #らっかせい
+いっしょ　{*«issyo¦issyo¦i s syo»|«isyo¦isyo¦i syo»} #いっしょ
+みっか　{*«mikka¦mikka¦mi k ka»|«mika¦mika¦mi ka»} #みっか
 # ==== ローマ字 ここまで ====
 
 @ kosoado | 3 | こそあど言葉 | これ・それ・あれ・どれ。ものを 指す 言葉の 使い方と、指して いる もの。

@@ -113,6 +113,40 @@ def roman(w, hep=False):
     return out
 
 
+def roman_hyphen(w, hep=False):
+    """のばす 音を - に(ノート → no-to)、「ん」の 区切りも - に(てんいん → ten-in)"""
+    r = roman(w, hep)
+    for a, b in CIRC.items():
+        r = r.replace(b, a + '-')
+    return r.replace("'", '-')
+
+
+def roman_sep(w, hep=False):
+    """1音ずつ 区切る(てんいん → te n i n、きって → ki t te、おかあさん → o ka a sa n)"""
+    ms = morae(w)
+    out = []
+    for i, m in enumerate(ms):
+        if m == 'っ':
+            nxt = mora_roman(ms[i + 1], hep) if i + 1 < len(ms) else 't'
+            out.append('t' if (hep and nxt.startswith('ch')) else nxt[0])
+        elif m in (' ', '　'):
+            out.append('　')
+        else:
+            out.append(mora_roman(m, hep))
+    return ' '.join(out).replace(' 　 ', '　')
+
+
+def M(w, hep=False, capital=False):
+    """3つの 書き方を «教科書¦ハイフン¦1音ずつ» に まとめる(アプリが えらぶ)"""
+    words = w.split(' ')
+    def cp(x):
+        return x[:1].upper() + x[1:] if capital else x
+    a = ' '.join(cp(roman(x, hep)) for x in words)
+    b = ' '.join(cp(roman_hyphen(x, hep)) for x in words)
+    c = '　'.join(cp(roman_sep(x, hep)) for x in words)
+    return f'«{a}¦{b}¦{c}»'
+
+
 def feats(w):
     ms = morae(w)
     r = roman(w)
@@ -160,18 +194,28 @@ GIVEN = 'たろう はなこ けんた ゆい はると さくら りく みお 
 cap = lambda s: ' '.join(x[:1].upper() + x[1:] for x in s.split(' '))
 
 
+NV = {'あ': 'な', 'い': 'に', 'う': 'ぬ', 'え': 'ね', 'お': 'の', 'や': 'にゃ', 'ゆ': 'にゅ', 'よ': 'にょ'}
+BIG = {'ゃ': 'や', 'ゅ': 'ゆ', 'ょ': 'よ'}
+
+
 def spell_wrong(w):
-    """まちがえやすい つづり(つまる 音を わすれる・^ を わすれる・' を わすれる・y を i に)"""
-    r = roman(w)
-    c = set()
-    if feats(w)['soku']:
-        c.add(re.sub(r'([kstpbgdzhmr])\1', r'\1', r, count=1))
-    for a, b in CIRC.items():
-        if b in r: c.add(r.replace(b, a)); c.add(r.replace(b, a + a))
-    if "'" in r: c.add(r.replace("'", ''))
-    if re.search(r'[kstnhmrgzbp]y', r): c.add(re.sub(r'([kstnhmrgzbp])y', r'\1iy', r, count=1))
-    c.discard(r)
-    return sorted(c)
+    """まちがえやすい 書き方を かなで 作る(っを わすれる・のばす 音を わすれる・「ん」の 区切りを わすれる・ゃを や に)"""
+    c = []
+    if 'っ' in w: c.append(w.replace('っ', '', 1))
+    ms = morae(w)
+    for i in range(len(ms) - 1):          # のばす 音を おとす(おかあさん → おかさん)
+        if ms[i] in ('っ', 'ん') or ms[i + 1] in ('っ', 'ん'):
+            continue
+        r = mora_roman(ms[i], False)
+        if r[-1] in 'aiueo' and roman(ms[i] + ms[i + 1]) != r + mora_roman(ms[i + 1], False):
+            c.append(''.join(ms[:i + 1] + ms[i + 2:])); break
+    for i in range(len(w) - 1):           # てんいん → てにん
+        if w[i] == 'ん' and w[i + 1] in NV:
+            c.append(w[:i] + NV[w[i + 1]] + w[i + 2:]); break
+    for i in range(len(w) - 1):           # きゃべつ → きやべつ
+        if w[i + 1] in BIG and w[i] not in 'ん':
+            c.append(w[:i + 1] + BIG[w[i + 1]] + w[i + 2:]); break
+    return [x for x in dict.fromkeys(c) if x != w]
 
 
 def kana_choice_items(chars):
@@ -199,11 +243,16 @@ def topic(tid, name, desc, sections):
     return '\n'.join(lines) + '\n'
 
 
+# 4本線に 書く ことば(2れつ)は、1音ずつ 区切っても 列に 入る 長さまで
+fits = lambda w, hep=False: len(roman(w, hep)) <= 9 and len(roman_sep(w, hep)) <= 10
+
+
 def word_sections(words, n_write=4, n_read=4):
     w2 = [w for w in words if len(roman(w)) <= 9]
+    ww = [w for w in w2 if fits(w)]
     return [
-        (f'ことばを 書く | つぎの ことばを ローマ字で 書きましょう。 | {n_write} | cols=2', [f'{w}　[={roman(w)}] #{w}' for w in w2]),
-        (f'ことばを 読む | ローマ字で 書いた ことばを ひらがなで 書きましょう。 | {n_read} | cols=2', [f'{roman(w)}　[{w}] #{w}' for w in w2]),
+        (f'ことばを 書く | つぎの ことばを ローマ字で 書きましょう。 | {n_write} | cols=2', [f'{w}　[={M(w)}] #{w}' for w in ww]),
+        (f'ことばを 読む | ローマ字で 書いた ことばを ひらがなで 書きましょう。 | {n_read} | cols=2', [f'{M(w)}　[{w}] #{w}' for w in w2]),
     ]
 
 
@@ -267,31 +316,31 @@ longw = [w for w in w9 if feats(w)['long']]
 sokuw = [w for w in w9 if feats(w)['soku'] and not feats(w)['long']]
 aposw = [w for w in w9 if feats(w)['apos']]
 nonap = 'ほんだな みかん ぶんか せんせい たんぽぽ さんぽ えんそく おんがく'.split()
-choice = lambda w: f'{w}　{{*{roman(w)}|{spell_wrong(w)[0]}}} #{w}'
+choice = lambda w: f'{w}　{{*{M(w)}|{M(spell_wrong(w)[0])}}} #{w}'
 out.append(topic('romaji09', 'ローマ字⑨ のばす 音・つまる 音・はねる 音',
-                 'のばす 音は ^、小さい「っ」は 字を 重ねる、「ん」の あとに a・i・u・e・o・y が 来たら \' を つける。', [
+                 'のばす 音・小さい「っ」・「ん」の 書き方。(教科書では のばす 音は ^、「ん」の 区切りは \')', [
     ('のばす 音 | 正しい ほうを ○で かこみましょう。 | 4 | cols=2', [choice(w) for w in longw]),
-    ('つまる 音 | つぎの ことばを ローマ字で 書きましょう。 | 4 | cols=2', [f'{w}　[={roman(w)}] #{w}' for w in sokuw]),
+    ('つまる 音 | つぎの ことばを ローマ字で 書きましょう。 | 4 | cols=2', [f'{w}　[={M(w)}] #{w}' for w in sokuw if fits(w)]),
     ('はねる 音 | 正しい ほうを ○で かこみましょう。 | 4 | cols=2', [choice(w) for w in aposw] +
-     [f'{w}　{{*{roman(w)}|{roman(w).replace("n", "n'", 1)}}} #{w}' for w in nonap]),
+     [f'{w}　{{*{M(w)}|«{roman(w).replace("n", "n\'", 1)}¦{roman(w).replace("n", "n-", 1)}¦{roman_sep(w.replace("ん", "ぬ", 1))}»}} #{w}' for w in nonap]),
 ]))
-towns = [f'(地名){t}　[={cap(roman(t))}] #{t}' for t in TOWNS]
+towns = [f'(地名){t}　[={M(t, capital=True)}] #{t}' for t in TOWNS]
 rnd = random.Random(5)
 names = sorted({(f, g) for f in FAMILY for g in GIVEN}, key=lambda x: rnd.random())[:40]
-name_items = [f'(人の 名前){f} {g}　[={cap(roman(f) + " " + roman(g))}] #{f}{g}' for f, g in names]
-cap_choice = [f'(地名){t}　{{*{cap(roman(t))}|{roman(t)}}} #{t}' for t in TOWNS] + \
-             [f'(人の 名前){f} {g}　{{*{cap(roman(f) + " " + roman(g))}|{roman(f)} {roman(g)}}} #{f}{g}' for f, g in names[:12]] + \
-             [f'(ふつうの ことば){w}　{{*{roman(w)}|{cap(roman(w))}}} #{w}' for w in 'いぬ さくら やま ねこ うみ はな ほん そら'.split()]
+name_items = [f'(人の 名前){f} {g}　[={M(f + " " + g, capital=True)}] #{f}{g}' for f, g in names]
+cap_choice = [f'(地名){t}　{{*{M(t, capital=True)}|{M(t)}}} #{t}' for t in TOWNS] + \
+             [f'(人の 名前){f} {g}　{{*{M(f + " " + g, capital=True)}|{M(f + " " + g)}}} #{f}{g}' for f, g in names[:12]] + \
+             [f'(ふつうの ことば){w}　{{*{M(w)}|{M(w, capital=True)}}} #{w}' for w in 'いぬ さくら やま ねこ うみ はな ほん そら'.split()]
 out.append(topic('romaji10', 'ローマ字⑩ 大文字の 使い方', '人の 名前や 地名は、はじめの 字を 大文字で 書く。', [
-    ('大文字で 書き始める もの | 正しい ほうを ○で かこみましょう。 | 5', cap_choice),
+    ('大文字で 書き始める もの | 正しい ほうを ○で かこみましょう。 | 4', cap_choice),
     ('地名や 人の 名前を 書く | 地名や 人の 名前を ローマ字で 書きましょう。 | 4', towns + name_items),
 ]))
 HROWS = [('し ち つ ふ じ', 'shi chi tsu fu ji'), ('しゃ しゅ しょ', 'sha shu sho'), ('ちゃ ちゅ ちょ', 'cha chu cho'), ('じゃ じゅ じょ', 'ja ju jo')]
 hep_syl = []
 for k in ['し', 'ち', 'つ', 'ふ', 'じ', 'しゃ', 'しゅ', 'しょ', 'ちゃ', 'ちゅ', 'ちょ', 'じゃ', 'じゅ', 'じょ']:
     hep_syl.append(f'{k}　{{*{mora_roman(k, True)}|{mora_roman(k, False)}}} #{k}')
-hep_words = [f'{w}　[={roman(w, True)}] #{w}' for w in HEPW] + [f'(地名){k}　[={v}] #{k}' for k, v in PLACES]
-hep_conv = [f'{roman(w)}　→　[={roman(w, True)}] #{w}' for w in HEPW]
+hep_words = [f'{w}　[={M(w, True)}] #{w}' for w in HEPW if fits(w, True)] + [f'(地名){k}　[={M(k, True, True)}] #{k}' for k, v in PLACES if fits(k, True)]
+hep_conv = [f'{M(w)}　→　[={M(w, True)}] #{w}' for w in HEPW if fits(w, True)]
 out.append(topic('romaji11', 'ローマ字⑪ ヘボン式', '駅や 看板で 見る 書き方。し→shi、ち→chi、つ→tsu、ふ→fu、じ→ji。', [
     ('ヘボン式を なぞる | うすい 字を なぞりましょう。 | 2 | seq', trace(HROWS)),
     ('ヘボン式は どちら | ヘボン式で 書くと どちらですか。○で かこみましょう。 | 4 | cols=2', hep_syl),
@@ -301,9 +350,9 @@ out.append(topic('romaji11', 'ローマ字⑪ ヘボン式', '駅や 看板で �
 allw = [w for w in WORDS if len(roman(w)) <= 9]
 wrongs = [w for w in allw if spell_wrong(w)]
 out.append(topic('romaji12', 'ローマ字⑫ 読む・書く(まとめ)', 'これまでの ローマ字を ぜんぶ つかって、ことばを 読んだり 書いたり する。', [
-    ('ローマ字を 読む | ローマ字で 書いた ことばを ひらがなで 書きましょう。 | 6 | cols=2', [f'{roman(w)}　[{w}] #{w}' for w in allw]),
-    ('ローマ字で 書く | つぎの ことばを ローマ字で 書きましょう。 | 4 | cols=2', [f'{w}　[={roman(w)}] #{w}' for w in allw]),
-    ('正しい つづり | 正しい つづりを ○で かこみましょう。 | 4 | cols=2', [f'{w}　{{*{roman(w)}|{spell_wrong(w)[0]}}} #{w}' for w in wrongs]),
+    ('ローマ字を 読む | ローマ字で 書いた ことばを ひらがなで 書きましょう。 | 6 | cols=2', [f'{M(w)}　[{w}] #{w}' for w in allw]),
+    ('ローマ字で 書く | つぎの ことばを ローマ字で 書きましょう。 | 4 | cols=2', [f'{w}　[={M(w)}] #{w}' for w in allw if fits(w)]),
+    ('正しい つづり | 正しい つづりを ○で かこみましょう。 | 4 | cols=2', [f'{w}　{{*{M(w)}|{M(spell_wrong(w)[0])}}} #{w}' for w in wrongs]),
 ]))
 
 block = '\n'.join(out)
@@ -320,3 +369,6 @@ for u in (4, 5, 6, 7, 8, 9):
     print(f'単元{u}: {len(rows_for(u))} 語', ' '.join(f'{w}={roman(w)}' for w in rows_for(u)))
 print('ヘボン式:', ' '.join(f'{w}={roman(w, True)}' for w in HEPW))
 print('のこり(どこにも 入らない):', [w for w in WORDS if unit_of(w) == 12])
+for w in ['てんいん', 'おかあさん', 'きって', 'きゃべつ', 'ほんや', 'こおり', 'ちょうちょ']:
+    print(w, M(w), [M(x) for x in spell_wrong(w)])
+print(M('やまだ たろう', capital=True), M('しんじゅく', True, True))

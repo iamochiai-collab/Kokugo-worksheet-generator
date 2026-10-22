@@ -19,12 +19,19 @@ const path = require('path');
     // ふりがな(すべて)・ひらがな(習って いない 漢字)でも しらべる(シードは 少なめ)
     const jobs = [];
     for (const t of T.KM) for (const g of t.grades) {
-      for (const rcase of t.id.startsWith('romaji') ? ['lower', 'upper'] : ['lower']) for (let seed = 1; seed <= 40; seed++) jobs.push([t, g, rcase, 'normal', seed]);
-      if (!t.nofuri) for (const kfuri of ['all', 'kana']) for (let seed = 1; seed <= 12; seed++) jobs.push([t, g, 'lower', kfuri, seed]);
+      for (const rcase of t.id.startsWith('romaji') ? ['lower', 'upper'] : ['lower']) for (let seed = 1; seed <= 40; seed++) jobs.push([t, g, rcase, 'normal', seed, 'std']);
+      // ローマ字の 書き方(ハイフン・1音ずつ)
+      if (t.id.startsWith('romaji')) for (const rstyle of ['hyp', 'sep']) for (let seed = 1; seed <= 30; seed++) jobs.push([t, g, 'upper', 'normal', seed, rstyle]);
+      if (!t.nofuri) for (const kfuri of ['all', 'kana']) for (let seed = 1; seed <= 12; seed++) jobs.push([t, g, 'lower', kfuri, seed, 'std']);
     }
-    for (const [t, g, rcase, kfuri, seed] of jobs) {
-      const s = T.buildKimariSheet({ grade: g, ktopic: t.id, seed, no: 1, rcase, kfuri, klearn: 'prev' });
-      const where = `${t.id} 小${g}${rcase === 'upper' ? ' 大文字' : ''}${kfuri !== 'normal' ? ' ' + kfuri : ''} seed${seed}`;
+    for (const [t, g, rcase, kfuri, seed, rstyle] of jobs) {
+      const s = T.buildKimariSheet({ grade: g, ktopic: t.id, seed, no: 1, rcase, kfuri, klearn: 'prev', rstyle });
+      const where = `${t.id} 小${g}${rcase === 'upper' ? ' 大文字' : ''}${kfuri && kfuri !== 'normal' ? ' ' + kfuri : ''}${rstyle && rstyle !== 'std' ? ' ' + rstyle : ''} seed${seed}`;
+      // «»が のこって いないか・えらぶ ものが 同じに なって いないか
+      for (const sec of s.sections) for (const it of sec.items) for (const q of it.parts || []) {
+        if (JSON.stringify(q).includes('«')) bad.push(`${where}: «» が のこって いる`);
+        if (q[0] === 'c' && new Set(q[1]).size !== q[1].length) bad.push(`${where}: えらぶ ものが 同じ ${q[1].join('/')}`);
+      }
       // 大問を こえて 同じ 問題(答えが わかって しまう もの)が 出て いないか
       const keyOf = (parts) => {
         const k = parts.find((p) => p[0] === 'k');
