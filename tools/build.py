@@ -54,7 +54,7 @@ if lay.exists():
     blocks.append(f'  var layoutData = {lay.read_text(encoding="utf-8").strip()};')
 
 # --- ふりがな(tools/furigana.py が 作る)と 学年別漢字配当表 ---
-for name, var in [('ruby.json', 'rubyData'), ('kanji_grades.json', 'kanjiGrades'), ('youji.json', 'youjiData')]:
+for name, var in [('ruby.json', 'rubyData'), ('kanji_grades.json', 'kanjiGrades'), ('youji.json', 'youjiData'), ('kana_strokes.json', 'kanaStrokes')]:
     f = root / 'src' / 'data' / name
     if f.exists():
         blocks.append(f'  var {var} = {json.dumps(json.loads(f.read_text(encoding="utf-8")), ensure_ascii=False)};')

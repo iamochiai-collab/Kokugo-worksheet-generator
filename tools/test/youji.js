@@ -34,9 +34,18 @@ const path = require('path');
       jobs.push({ ykind: 'match', ymatch, ystep, seed });
     for (const yname of ['', 'やまだ はな', 'たろう', 'すずき いちろう', 'ヤマダ ハナコ', 'あ']) jobs.push({ ykind: 'name', yname, seed: 1 });
     for (const ylimit of [1, 5, 10]) jobs.push({ ykind: 'hira', yrow: 'auto', ylimit, seed: 3 });
+    // 線の 種類・かどの 点・線で なぞる・書き順
+    for (const ylstyle of ['dash', 'dashf', 'dot', 'gray', 'grayb', 'solid']) for (const ystep of [1, 2, 3])
+      jobs.push({ ykind: 'line', ystep, ylstyle, ycorner: true, seed: 2 });
+    for (const yk of ['hira', 'kata']) T.YD[yk].forEach((_, i) => {
+      jobs.push({ ykind: yk, yrow: String(i), ytrace: 'order', ylstyle: 'none', seed: 1 });
+      jobs.push({ ykind: yk, yrow: String(i), ytrace: 'lines', ylstyle: 'dot', seed: 1 });
+    });
+    jobs.push({ ykind: 'word', ytheme: '14', ywn: 3, ytrace: 'lines', ylstyle: 'grayb', seed: 1 });
+    jobs.push({ ykind: 'name', yname: 'やまだ はな', ytrace: 'lines', ylstyle: 'dashf', seed: 1 });
     for (const j of jobs) {
       const s = T.buildYoujiSheet(Object.assign({ no: 1 }, j));
-      const where = `${j.ykind} ${j.yrow || j.ytheme || j.yplay || j.ymatch || j.yname || ''}${j.ywn ? ' ' + j.ywn + 'こ' : ''}${j.yscript ? j.yscript + ' ' + j.ycat + ' ' + j.yhint : ''}${j.ystep ? ' step' + j.ystep : ''} seed${j.seed}`;
+      const where = `${j.ykind}${j.ytrace ? ' ' + j.ytrace : ''}${j.ylstyle ? ' ' + j.ylstyle : ''} ${j.yrow || j.ytheme || j.yplay || j.ymatch || j.yname || ''}${j.ywn ? ' ' + j.ywn + 'こ' : ''}${j.yscript ? j.yscript + ' ' + j.ycat + ' ' + j.yhint : ''}${j.ystep ? ' step' + j.ystep : ''} seed${j.seed}`;
       if (s.ykind === 'word' && s.words.length !== Math.min(7, j.ywn)) bad.push(`${where}: ことばが ${s.words.length}`);
       if (s.ykind === 'match') {
         const want = [0, 3, 4, 5][j.ystep];
@@ -76,6 +85,8 @@ const path = require('path');
         if (h > maxH) { maxH = h; worst = where + (answer ? ' こたえ' : ''); }
         if (h > 297.5) bad.push(`${where}${answer ? ' こたえ' : ''}: ${h.toFixed(1)}mm`);
         if (el.scrollWidth > el.clientWidth + 2) bad.push(`${where}: よこに はみ出し`);
+        if (j.ytrace && j.ytrace !== 'font' && ['hira', 'kata'].includes(j.ykind) && !el.querySelector('svg.ks')) bad.push(`${where}: 画の 線が ない`);
+        if (j.ytrace === 'order') el.querySelectorAll('.masu-line').forEach((ml) => { if (ml.getBoundingClientRect().right > el.getBoundingClientRect().right) bad.push(`${where}: 書き順が はみ出し`); });
         if (s.ykind === 'pic') {
           const imgs = [...el.querySelectorAll('img.pic')];
           if (imgs.some((im) => !im.getAttribute('src'))) bad.push(`${where}: 絵が ない`);

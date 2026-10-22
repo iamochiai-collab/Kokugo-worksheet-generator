@@ -1,0 +1,8 @@
+src/data/kana_strokes.json(ひらがな・カタカナの 画の 線)は KanjiVG から 作りました(tools/make_kana_strokes.py)。
+
+KanjiVG  Copyright (C) 2009-2024 Ulrich Apel
+https://kanjivg.tagaini.net
+Creative Commons Attribution-Share Alike 3.0
+https://creativecommons.org/licenses/by-sa/3.0/
+
+この データ(kana_strokes.json)を 改変・再配布する ときは、同じ CC BY-SA 3.0 に したがって ください。
