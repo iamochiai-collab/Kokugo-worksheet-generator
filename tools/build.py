@@ -71,6 +71,11 @@ sys.path.insert(0, str(root / 'tools'))
 from lineart import to_mono   # 色つきの 絵を、白黒でも わかる 絵(うすい 灰色 + 黒い りんかく)に する
 pics = {f.stem: 'data:image/svg+xml;base64,' + base64.b64encode(to_mono(f.read_text(encoding='utf-8')).encode()).decode()
         for f in sorted((root / 'assets' / 'pics').glob('*.svg'))}
+# 白黒の 線画(assets/pics-line/*.png。tools/prep_line_pics.py で ととのえた もの)が あれば そちらを つかう
+line = sorted((root / 'assets' / 'pics-line').glob('*.png'))
+for f in line:
+    pics[f.stem] = 'data:image/png;base64,' + base64.b64encode(f.read_bytes()).decode()
+print(f'  絵: {len(pics)} まい(うち 線画 {len(line)})')
 blocks.append(f'  var youjiPics = {json.dumps(pics)};')
 
 assert tpl.count('{{DATA}}') == 1

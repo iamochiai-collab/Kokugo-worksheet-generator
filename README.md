@@ -38,7 +38,8 @@
 
 - 「れんしゅうする 行」「テーマ」「あそび」は「じゅんばんに」に すると、シード1 → あ行、2 → か行 … と かわります。「まとめて作る」で 15まい 作れば ひらがな 1さつに なります。
 - プリントには キャラクターや 飾りを 入れません(キャラクターは 画面だけ)。
-- 「え を みて かこう」の 絵は Microsoft の [Fluent Emoji](https://github.com/microsoft/fluentui-emoji)(フラット。MIT ライセンス)を、ビルドの ときに 白黒(うすい 灰色の ぬり + 黒い りんかく)に して 使います(`assets/pics/` → `tools/lineart.py`)。白黒で わかりにくい 絵(みかん・メロン など)は 入れて いません。
+- 「え を みて かこう」「せんで むすぼう」「せんを なぞろう」の 絵は、白黒の 線画(ChatGPT で 描いた もの。`assets/pics-line/*.png`)を 使います。新しく 描いた 絵は `python3 tools/prep_line_pics.py <フォルダ>` で ととのえて(はしの ゴミを けし、まん中に おいて 512×512 に そろえる)入れます。ファイル名は `assets/pics/` の 絵と 同じ 名前に します。
+- 線画が ない 絵は、Microsoft の [Fluent Emoji](https://github.com/microsoft/fluentui-emoji)(フラット。MIT ライセンス)を、ビルドの ときに 白黒(うすい 灰色の ぬり + 黒い りんかく)に して 使います(`assets/pics/` → `tools/lineart.py`)。白黒で わかりにくい 絵(みかん・メロン など)は 入れて いません。
 - ますには 十字の 点線が 入ります。なぞり書きの 字は 教科書体に ちかい [Klee One](https://github.com/fontworks-fonts/Klee)(SIL Open Font License)の かなだけを アプリに 入れて あります(`vendor/klee-kana.woff2`)。
 - ことば あそびは、答えが 1つに なるように 作ります(たりない 字は ほかの 字で ことばに ならない ものだけ、ならべかえは ほかの ことばに ならない ものだけ)。`node tools/test/youji.js` で ぜんぶ 調べます。
 - ことばは `tools/make_youji.py` の 表に あります。直したら `python3 tools/make_youji.py && python3 tools/build.py` を 走らせてください。
@@ -173,7 +174,8 @@
 │     ├─ ruby.json                  ← 長文の ふりがな(tools/furigana.py が 作る)
 │     ├─ youji.json                 ← ようじの 行・ことば(tools/make_youji.py が 作る)
 │     └─ kanji_grades.json          ← 学年別漢字配当表(平成29年告示。小1 80・小2 160・小3 200・小4 202・小5 193・小6 191 字)
-├─ assets/pics/         ← ようじ「え を みて かこう」の 絵(Fluent Emoji。MIT。ビルドで 白黒に する)
+├─ assets/pics-line/    ← ようじの 絵(白黒の 線画 PNG。こちらを 優先)
+├─ assets/pics/         ← ようじの 絵の 予備(Fluent Emoji。MIT。ビルドで 白黒に する)
 ├─ assets/chara/        ← 画面の キャラクター画像(webp。book・guide・cheer・think・idea・maru・banzai の 7枚)
 ├─ assets/icon/         ← アプリの アイコン(タブ・ホーム画面。32・64・180・192・512 の png)
 ├─ vendor/              ← PDF・JPG・zip 用の 道具(html2canvas / jsPDF / JSZip)、ようじの なぞり書きの フォント(Klee One の かなだけ)、ローマ字の フォント(Andika の ラテン文字だけ)と ライセンス
