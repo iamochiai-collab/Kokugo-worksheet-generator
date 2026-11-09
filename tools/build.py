@@ -98,7 +98,7 @@ assert '{{' not in out, out[out.index('{{'):out.index('{{') + 60]
 (root / 'docs').mkdir(exist_ok=True)
 (root / 'docs' / 'index.html').write_text(out, encoding='utf-8')
 
-hook = ('  window.__T = { BANKS, READS, hasLong, buildSheet, sheetHtml, makeRng, splitWord, pickEntries, LAYOUT, fits, maxFor, estHeight, layoutOf, defaultCounts, labelsFor, longSheetFor, rubyHtml, learned, storiesOf, genresOf, genreFor, buildYoujiSheet, youjiSheetHtml, YD, YPOOL, KM, kimariTopics, buildKimariSheet, kimariSheetHtml };\n'
+hook = ('  window.__T = { BANKS, READS, hasLong, buildSheet, sheetHtml, makeRng, splitWord, pickEntries, LAYOUT, fits, maxFor, estHeight, layoutOf, defaultCounts, labelsFor, longSheetFor, rubyHtml, learned, storiesOf, genresOf, genreFor, buildYoujiSheet, youjiSheetHtml, YD, YPOOL, KM, kimariTopics, buildKimariSheet, kimariSheetHtml, fixZoom };\n'
         '  renderHome();')
 assert out.count('  renderHome();') == 1
 (root / 'build').mkdir(exist_ok=True)

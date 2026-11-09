@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="app-version" content="第24版(2026-11-04)">
+<meta name="app-version" content="第25版(2026-11-09)">
 <title>国語プリント</title>
 <link rel="icon" type="image/png" sizes="32x32" href="{{ICON:32}}">
 <link rel="icon" type="image/png" sizes="64x64" href="{{ICON:64}}">
@@ -172,6 +172,7 @@ body[data-view="home"] #sheets { display: none; }
 .kind-card[data-kind="read"] { --k: var(--k-read); }
 .kind-card[data-kind="write"] { --k: var(--k-write); }
 .kind-card[data-kind="long"] { --k: var(--k-long); }
+.kind-card[data-story="1"] { --k: #2f8f8a; }
 .kind-card[data-kind="pic"] { --k: #e0861b; }
 .km-head { grid-column: 1 / -1; margin: 10px 0 -2px; font-weight: bold; font-size: 17px; color: var(--ui-ink); border-top: 1.5px dashed var(--ui-line); padding-top: 14px; }
 .km-head small { font-weight: normal; font-size: 12.5px; color: var(--ui-sub); margin-left: 8px; }
@@ -394,6 +395,9 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
 .ans-list h3 { font-size: 12pt; margin: 0 0 3mm; }
 .ans-list ol { margin: 0; padding-left: 1.6em; columns: 2; column-gap: 10mm; font-size: 11pt; }
 
+.st-zoom { transform-origin: top left; }
+.st-zoom .q-read .q > span:not(.n):not(.paren) { flex: 1 1 0; min-width: 0; }
+.st-zoom .q-read .q .paren { flex: none; }
 .sheet-foot { margin-top: auto; padding-top: 4mm; font-size: 8pt; color: var(--light); display: flex; }
 .sheet-foot .seed { margin-left: auto; }
 
@@ -624,6 +628,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       <option value="read">漢字の 読み</option>
       <option value="write">漢字の 書き</option>
       <option value="long">漢字 ＋ 長文読解</option>
+      <option value="story">文章読解(漢字なし)</option>
       <option value="kimari">ことばの きまり</option>
     </select>
   </label>
@@ -785,6 +790,12 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       <span class="name"><span class="n">4</span>漢字 ＋ 長文読解</span>
       <span class="chara chara-book" aria-hidden="true"></span>
       <span class="desc">漢字の 読み・書きの あとに、長文(物語・説明文・評論)と 三択の 問い、言葉の 意味。1枚で ひととおり できます。<b class="only"></b></span>
+      <span class="go">作る ▶</span>
+    </button>
+    <button class="kind-card kk-card" data-kind="long" data-story="1">
+      <span class="name"><span class="n">5</span>文章読解</span>
+      <span class="chara chara-guide" aria-hidden="true"></span>
+      <span class="desc">漢字の 問題は なしで、文章(物語・説明文・評論)と 三択の 問い、言葉の 意味だけ。<b class="only"></b></span>
       <span class="go">作る ▶</span>
     </button>
   </div>
@@ -1164,7 +1175,9 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
     if (sheet.story) slots += sheet.story.vocab.length ? 2 : 1;
     let used = estHeight(lk, nr, nw, gs, furi, sheet.genre);
     if (sheet.kind === "long" && sheet.storyH) used += sheet.storyH - L.base;
-    const extra = slots ? Math.max(0, Math.min(L.cap, (L.limit - used) / slots)) : 0;
+    // 文章だけ(漢字なし)の ときは、あまった 高さを 字を 大きく する ことに つかう(fixZoom が 1枚に 入る 大きさを きめる)
+    const storyOnly = sheet.kind === "long" && sheet.story && !sheet.groups.length;
+    const extra = storyOnly ? 0 : slots ? Math.max(0, Math.min(L.cap, (L.limit - used) / slots)) : 0;
     return `<div class="sheet g${gs}${opt.answer ? " answer" : ""}${sheet.kind === "long" ? " long" : ""}${sheet.tk ? " tk" : ""}` +
       `${sheet.story && furi !== "none" ? " furi" : ""}"` +
       ` style="--row-extra:${extra.toFixed(2)}mm">` +
@@ -1173,7 +1186,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       `<span class="fields">` +
       `<span class="field"><i>${lab.date}</i><b></b></span>` +
       `<span class="field name"><i>${lab.name}</i><b></b></span></span></div>` +
-      groups + story +
+      groups + (storyOnly ? `<div class="st-zoom">${story}</div>` : story) +
       (opt.answer && opt.list ? ansListHtml(sheet) : "") +
       `<div class="sheet-foot"><span class="seed">シード ${sheet.seed}</span></div></div>`;
   }
@@ -1858,6 +1871,9 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       kind = "both";
       changedId = "f-kind";
     }
+    // 文章読解(漢字なし) = 長文で 読み・書きが 0問
+    const storyOnly = kind === "story";
+    if (storyOnly) kind = "long";
     if (kind === "long" && !hasLong(state.gStory)) kind = "both";
     state.tk = $("f-tk").checked;
     const longChanged = (kind === "long") !== (state.kind === "long");
@@ -1868,6 +1884,8 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       state.nRead = Number($("f-read").value) || 0;
       state.nWrite = Number($("f-write").value) || 0;
     }
+    if (storyOnly && kind === "long") state.nRead = state.nWrite = 0;
+    else if (changedId === "f-kind" && kind === "long" && !state.nRead && !state.nWrite) [state.nRead, state.nWrite] = countsFor(kind);
     state.kind = kind;
     const changed = changedId === "f-write" ? "write" : "read";
     const note = settleCounts(changed);
@@ -1988,7 +2006,9 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
     $("f-furi").closest("label").hidden = !isLong;
     $("f-gread").closest("label").hidden = !state.nRead;
     $("f-gwrite").closest("label").hidden = !state.nWrite;
-    $("f-kind").value = state.kind;
+    const storyOnly = isLong && !state.nRead && !state.nWrite;
+    $("f-kind").value = storyOnly ? "story" : state.kind;
+    for (const id of ["f-read", "f-write", "f-level", "f-model"]) $(id).closest("label").hidden = storyOnly;
     $("f-tk").checked = state.tk;
     $("f-tk").closest("label").hidden = isLong;
     $("f-level").value = String(state.level);
@@ -2057,10 +2077,33 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
     const html = pages(n, startSeed).join("");
     $("sheets").innerHTML = html;
     goSheet();
+    fixZoom($("sheets"));
     fitWidth();
     window.scrollTo(0, 0);
   }
 
+  // 文章だけの プリント: 1枚に 入る いちばん 大きい 倍率(1〜1.5)を さがして 字を 大きく する
+  function fixZoom(root) {
+    const pagePx = (297 * 96) / 25.4 + 0.5;
+    for (const el of (root || document).querySelectorAll(".st-zoom")) {
+      const sheet = el.closest(".sheet");
+      const tr = sheet.style.transform;
+      sheet.style.transform = "";
+      const apply = (z) => {
+        el.style.width = `${100 / z}%`;
+        el.style.transform = `scale(${z})`;
+        el.style.marginBottom = "0px";
+        el.style.marginBottom = `${el.offsetHeight * (z - 1)}px`;
+        return sheet.offsetHeight <= pagePx;
+      };
+      let lo = 1, hi = 1.5;
+      if (apply(hi)) lo = hi;
+      else for (let k = 0; k < 8; k++) { const m = (lo + hi) / 2; if (apply(m)) lo = m; else hi = m; }
+      apply(lo);
+      el.dataset.z = lo.toFixed(3);
+      sheet.style.transform = tr;
+    }
+  }
   function fitWidth() {
     const avail = document.documentElement.clientWidth - 24;
     const paper = 794; // 210mm を 96dpi に したときの ピクセル
@@ -2216,7 +2259,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
     const html = `<div class="km-head">ことばの きまり <small>学習指導要領の 〔知識及び技能〕。教科書の 学習の じゅんに ならんで います</small></div>` +
       list.map((t, i) =>
       `<button class="kind-card kk-card km-card" data-kind="kimari" data-topic="${t.id}" style="--k:${KM_COLORS[i % KM_COLORS.length]}">` +
-      `<span class="name"><span class="n">${i + 5}</span>${rb(t.name)}</span>` +
+      `<span class="name"><span class="n">${i + 6}</span>${rb(t.name)}</span>` +
       `<span class="chara chara-${STAGE_CHARA[(i + 2) % STAGE_CHARA.length]}" aria-hidden="true"></span>` +
       `<span class="desc">${rb(t.desc)}</span><span class="go">作る ▶</span></button>`).join("");
     box.insertAdjacentHTML("beforeend", html);
@@ -2243,8 +2286,8 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
     $("f-gstory").innerHTML = BANKS.map((b, i) => hasLong(i + 1)
       ? `<option value="${i + 1}">${b.label}</option>` : "").join("");
     writeControls();
-    const only = document.querySelector(".kind-card[data-kind='long'] .only");
-    if (only) only.textContent = Object.keys(READS).length >= BANKS.length ? "" : ` いまは ${longGrades()} のみ。`;
+    for (const only of document.querySelectorAll(".kind-card[data-kind='long'] .only"))
+      only.textContent = Object.keys(READS).length >= BANKS.length ? "" : ` いまは ${longGrades()} のみ。`;
 
     $("version").textContent = $("home-version").textContent = document.querySelector('meta[name="app-version"]').content;
     paintGrade();
@@ -2338,7 +2381,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       }
       state.kind = b.dataset.kind;
       state.genre = genreFor(state.gStory, state.genre);
-      [state.nRead, state.nWrite] = countsFor(state.kind);
+      [state.nRead, state.nWrite] = b.dataset.story ? [0, 0] : countsFor(state.kind);
       writeControls();
       setMsg("");
       show(1, state.seed);
