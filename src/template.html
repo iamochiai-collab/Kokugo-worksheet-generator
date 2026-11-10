@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="app-version" content="第25版(2026-11-09)">
+<meta name="app-version" content="第26版(2026-11-10)">
 <title>国語プリント</title>
 <link rel="icon" type="image/png" sizes="32x32" href="{{ICON:32}}">
 <link rel="icon" type="image/png" sizes="64x64" href="{{ICON:64}}">
@@ -224,12 +224,32 @@ body:not([data-stage="1"]) .tk-only, body[data-stage="1"] .no-tk { display: none
 .kind-card .tag { position: relative; align-self: flex-start; font-size: 11px; font-weight: bold; color: var(--k); border: 1.5px solid var(--k); border-radius: 999px; padding: 0 8px; }
 .kind-card.tk-card { --k: var(--gc); min-height: 200px; }
 .kind-card.tk-card .desc { padding-right: 34px; }
+/* さがす(プリントの 種類・ことばの きまりの 単元を、学年を こえて さがす) */
+.home-search { display: flex; gap: 8px; align-items: center; margin: 14px 0 0; max-width: 680px; }
+.home-search input { flex: 1; min-width: 0; font: inherit; font-size: 16px; padding: 10px 14px 10px 38px; border: 2px solid #9aa3b5; border-radius: 24px; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='10' cy='10' r='6.5' fill='none' stroke='%236b7280' stroke-width='2.4'/%3E%3Cpath d='M15 15l5.5 5.5' stroke='%236b7280' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat 13px center / 18px; color: #1f2a40; }
+.home-search input:focus { outline: none; border-color: #2b3a55; box-shadow: 0 0 0 3px rgba(43,58,85,.15); }
+.home-search .hs-clear { flex: none; font: inherit; font-size: 13px; padding: 7px 12px; border-radius: 18px; border: 1px solid #9aa3b5; background: #fff; color: #2b3a55; cursor: pointer; }
+.home-search .hs-clear[hidden], .home-found[hidden] { display: none; }
+.home-search input::-webkit-search-cancel-button { display: none; }
+#home.searching .tk-banner, #home.searching .home-steps, #home.searching .home-mascot,
+#home.searching > .kinds-head, #home.searching > .kinds, #home.searching .home-cheer, #home.searching > .note { display: none; }
+.home-found { margin-top: 18px; }
+.hf-head { font-size: 14px; color: #444; margin: 0 0 10px; }
+.hf-head b { color: #1f2a40; }
+.home-found .kinds { display: grid; }
+.home-found .kind-card { min-height: 0; }
+.home-found .kind-card .go { margin-top: 4px; }
+.hf-grade { position: absolute; top: 12px; right: 12px; font-size: 12px; font-weight: bold; color: #fff; background: var(--k); border-radius: 6px; padding: 1px 8px; }
+.home-found .kind-card .name { padding-right: 60px; }
+.hf-why { font-size: 12px; color: #555; line-height: 1.5; }
+.hf-why::before { content: "内容:"; color: #888; }
+.home-found mark { background: #ffe58a; color: inherit; border-radius: 2px; padding: 0 1px; }
 .home-cheer { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 26px 0 0; color: var(--ui-sub); font-size: 14px; }
 .home-cheer .chara { width: 70px; height: 74px; }
 @media (max-width: 760px) {
   .home-top { flex-direction: column; align-items: stretch; gap: 0; }
   .home-main { display: contents; }
-  .home-hero { order: 1; } .tk-banner { order: 1; } .home-mascot { order: 2; } .home-steps { order: 3; }
+  .home-hero { order: 1; } .home-search { order: 1; } .tk-banner { order: 1; } .home-mascot { order: 2; } .home-steps { order: 3; }
   .home-mascot { width: auto; flex-direction: row-reverse; justify-content: flex-end; align-items: flex-end; gap: 6px; margin-top: 12px; }
   .home-mascot .chara { width: 80px; height: 86px; }
   .bubble { margin-bottom: 26px; font-size: 14px; }
@@ -711,6 +731,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
         <p class="tk-only">特別支援学校(知的障害)の 国語の 段階に 合わせた プリントです。段階を えらんで、内容の カードを おしてください。問題は 少なめ・字は 大きめです。プリントに 段階の 名前は 出ません。</p>
         <p class="yj-only no-tk">ようじ(3〜6さい)の ひらがな・カタカナの なぞり書き、絵を みて ことばを かく プリント、ことば あそびです。おうちの かたが えらんで、いっしょに やって みてください。</p>
       </div>
+      <div class="home-search"><input type="search" id="home-q" autocomplete="off" enterkeyhint="search" aria-label="プリントを さがす"><button type="button" class="hs-clear" id="home-q-clear" hidden>× けす</button></div>
       <button type="button" class="tk-banner" id="tk-banner"></button>
       <div class="home-steps">
         <p class="home-step"><span class="n">1</span><span id="home-step1">学年</span></p>
@@ -732,6 +753,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
     </div>
   </div>
 
+  <div class="home-found" id="home-found" hidden></div>
   <div class="kinds-head">
     <h2><span id="kinds-title">プリントの 種類</span></h2>
     <span>おすと すぐに プリントが できます。数や 学年は あとから かえられます。</span>
@@ -2265,6 +2287,124 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
     box.insertAdjacentHTML("beforeend", html);
   }
 
+  /* ===== さがす =====
+     プリントの 種類(漢字・文章・ようじ)と ことばの きまりの 単元を、学年を こえて ことばで さがす。
+     カタカナ・ひらがな、全角・半角、ことばの あいだの すきまは 同じと みる。ふりがなの 読みでも 見つかる。
+     特別支援の 段階べつの 画面では、段階の 内容だけを さがす(算数プリントと 同じ)。 */
+  const KM_KW = {   // 教科書や 指導要領の よびかた
+    tsunagi: "接続語 接続詞 つなぎことば", tsunagi4: "接続語 接続詞 つなぎことば", kosoado: "指示語 こそあどことば",
+    shushoku: "修飾語 くわしくする", okuri3: "送り仮名", okuri4: "送り仮名", jisho: "辞書 じしょ 国語辞典",
+    kanjijiten: "辞書 じしょ 漢和辞典 部首 画数", shugo: "主語 述語 文の組み立て", bunkumi: "主語 述語 文の組み立て",
+    keitai: "です ます だ である 文末", teinei: "敬体 です ます", keigo: "尊敬語 謙譲語 丁寧語", keigo2: "尊敬語 謙譲語 丁寧語",
+    keigo7: "尊敬語 謙譲語 丁寧語 美化語", kata: "かたかな", kata2: "かたかな", wo: "助詞 くっつきのことば",
+    kuten: "句読点 句点 読点 かぎかっこ", nobasu: "長音", chiisai: "促音 拗音", hiyu: "比喩 たとえ 擬人法 反復 倒置 体言止め",
+    koten: "古典 古文 歴史的仮名遣い", kana: "平仮名 片仮名 万葉仮名", hantai: "反対語 対義語", ruigi: "類義語 対義語 反対語",
+    nakama: "上位語 下位語", ue: "上位語 下位語", kanyoku: "慣用句", kotowaza: "ことわざ", koji: "故事成語",
+    hinshi: "品詞 名詞 動詞 形容詞 副詞", katsuyou: "活用 動詞", jodoushi: "助動詞 れる られる", bunsetsu: "文節 単語",
+    bunsei: "文の成分 主語 述語 修飾語 接続語 独立語", douon: "同音異義語", doukun: "同訓異字 同じ読み", yoji: "四字熟語",
+    jukugo: "熟語の組み立て", jukugo6: "三字熟語 四字熟語", wago: "和語 漢語 外来語", genin: "原因 結果 理由", riyuu: "理由 考え",
+    junjo: "順序 じゅんばん", hougen: "方言 共通語", hanashi: "話し言葉 書き言葉", kanazukai: "仮名遣い じ ぢ ず づ",
+    bushu: "部首 へん つくり", kumitate: "部首 かんむり あし たれ にょう かまえ", onkun: "音読み 訓読み"
+  };
+  const KANJI_CARDS = [
+    { kind: "both", name: "漢字の 読み書き", desc: "大問1が 読み、大問2が 書き。ふだんの 練習に いちばん 使いやすい 形です。", kw: "漢字 読み 書き 練習" },
+    { kind: "read", name: "漢字の 読み", desc: "下線の 漢字の 読みがなを （　）に 書きます。", kw: "漢字 読み 読みがな" },
+    { kind: "write", name: "漢字の 書き", desc: "かこみの 読み方に なるように、ますに 漢字を 書きます。", kw: "漢字 書き取り" },
+    { kind: "long", name: "漢字 ＋ 長文読解", desc: "漢字の 読み・書きの あとに、長文と 三択の 問い、言葉の 意味。", kw: "文章 読解 物語 説明文 評論 長文 三択" },
+    { kind: "long", story: true, name: "文章読解", desc: "漢字の 問題は なしで、文章と 三択の 問い、言葉の 意味だけ。", kw: "文章 読解 物語 説明文 評論 長文 三択 読み取り" }
+  ];
+  const YJ_CARDS = [
+    ["hira", "ひらがな なぞり", "あ行から ぱ行まで。お手本を みて、うすい 字を なぞって、じぶんで かきます。", "ひらがな なぞり書き 書き順 運筆"],
+    ["kata", "カタカナ なぞり", "ア行から パ行まで。アイス・ケーキ などの ことばも なぞります。", "かたかな なぞり書き 書き順"],
+    ["word", "ことば なぞり", "どうぶつ・くだもの など テーマごとの ことばを なぞって 書きます。", "なぞり書き 単語"],
+    ["pic", "え を みて かこう", "絵を みて、なまえを ますに かきます。", "絵 イラスト 名前 単語"],
+    ["play", "ことば あそび", "しりとり・ことば さがし・たりない 字・ならべかえ。", "しりとり 言葉遊び パズル"],
+    ["line", "せんを なぞろう", "●から 絵まで、まっすぐ・なみ・ぎざぎざ・くるくるの 線を なぞります。", "線 運筆 点線 ジグザグ"],
+    ["match", "せんで むすぼう", "絵と ことば(または 同じ 絵)を 線で むすびます。", "線つなぎ 線結び マッチング"],
+    ["name", "じぶんの なまえを かこう", "お手本 → なぞり → じぶんで 書く。", "名前"]
+  ];
+  let SEARCH_INDEX = null;
+  function searchIndex() {
+    if (SEARCH_INDEX) return SEARCH_INDEX;
+    const out = [];
+    for (const [yk, name, desc, kw] of YJ_CARDS)
+      out.push({ stage: false, g: 0, gname: "ようじ", name, desc, kw, p: { grade: 0, y: { ykind: yk } } });
+    BANKS.forEach((b, i) => {
+      const g = i + 1;
+      for (const c of KANJI_CARDS) {
+        if (c.kind === "long" && !hasLong(g)) continue;
+        out.push({ stage: false, g, gname: b.label, name: c.name, desc: c.desc, kw: c.kw,
+                   p: { grade: g, kind: c.kind, counts: c.story ? [0, 0] : null } });
+      }
+      for (const t of kimariTopics(g))
+        out.push({ stage: false, g, gname: b.label, name: t.name, desc: t.desc,
+                   kw: [KM_KW[t.id] || "", ...t.sections.map((x) => x.title), t.id.startsWith("romaji") ? "ローマ字 ろーまじ アルファベット" : ""].join(" "),
+                   p: { grade: g, kind: "kimari", ktopic: t.id } });
+    });
+    for (const st of STAGES) for (const it of st.items)
+      out.push({ stage: true, g: st.key, gname: st.name, name: it.name, desc: it.desc, kw: it.tag + " " + (it.p.ktopic ? KM_KW[it.p.ktopic] || "" : ""), p: it.p });
+    for (const e of out) e.hay = hay(e.name) + "\n" + hay(e.desc) + "\n" + hay(e.kw) + "\n" + hay(e.gname);
+    return (SEARCH_INDEX = out);
+  }
+  const rubyBase = (x) => String(x == null ? "" : x).replace(/｜([^《]+)《[^》]+》/g, "$1");
+  const rubyKana = (x) => String(x == null ? "" : x).replace(/｜[^《]+《([^》]+)》/g, "$1");
+  const normQ = (x) => String(x == null ? "" : x).normalize("NFKC").toLowerCase()
+    .replace(/[\u30a1-\u30f6]/g, (c) => String.fromCharCode(c.charCodeAt(0) - 0x60))
+    .replace(/[\s　・、,.。「」()（）〔〕＋+]/g, "");
+  const hay = (x) => normQ(rubyBase(x)) + "\n" + normQ(rubyKana(x));
+  // 見つかった ところに 色を つける(ふりがなの ついた 字は その まま)
+  function markHit(text, words) {
+    const src = rubyBase(text);
+    const ch = [...src], n = ch.map((c) => normQ(c));
+    const on = new Array(n.length).fill(false);
+    for (const w of words) for (let i = 0; i < n.length; i++) {
+      if (!n[i]) continue;
+      let j = i, acc = "";
+      while (j < n.length && acc.length < w.length) acc += n[j++];
+      if (acc === w) for (let k = i; k < j; k++) on[k] = true;
+    }
+    let out = "", open = false;
+    ch.forEach((c, i) => {
+      if (on[i] && !open) { out += "<mark>"; open = true; }
+      if (!on[i] && open) { out += "</mark>"; open = false; }
+      out += esc(c);
+    });
+    return out + (open ? "</mark>" : "");
+  }
+  let FOUND = [];
+  function renderSearch() {
+    const raw = $("home-q").value;
+    const words = raw.split(/[\s　]+/).map(normQ).filter(Boolean);
+    $("home-q-clear").hidden = !raw;
+    $("home").classList.toggle("searching", words.length > 0);
+    $("home-found").hidden = !words.length;
+    if (!words.length) return;
+    let stageMode = !!state.stageMode, fallback = false;
+    const match = (sm) => searchIndex().filter((e) => e.stage === sm && words.every((w) => e.hay.includes(w)));
+    let list = match(stageMode);
+    // 段階の 内容に ない ときは、学年べつの プリントから さがす
+    if (!list.length && stageMode) { list = match(false); fallback = list.length > 0; stageMode = false; }
+    // 名前で 見つかった ものを 先に
+    const inName = (e) => words.every((w) => hay(e.name).includes(w)) ? 0 : 1;
+    list.sort((a, b) => inName(a) - inName(b));
+    FOUND = list.slice(0, 80);
+    const GC = ["#c9457f", "#d4473b", "#d5761a", "#3b8a4c", "#1f8580", "#2f67b1", "#7150a6", "#b0476b"];
+    const color = (e) => GC[(e.stage ? e.g - 20 : e.g) % GC.length];
+    $("home-found").innerHTML =
+      `<p class="hf-head">「<b>${esc(raw.trim())}</b>」${stageMode ? "(特別支援の 段階)" : fallback ? "(段階の 内容には ないので、学年べつの プリントから)" : ""}:` +
+      (list.length ? `${list.length}この プリントが 見つかりました${list.length > FOUND.length ? `(はじめの ${FOUND.length}こ)` : ""}`
+                   : `見つかりませんでした。ことばを かえて みてください(れい:ローマ字、敬語、主語、物語、なぞり)`) + `</p>` +
+      `<div class="kinds">${FOUND.map((e, i) => {
+        const why = !words.every((w) => hay(e.name).includes(w) || hay(e.desc).includes(w)) ? e.kw.split(" ").filter((k) => words.some((w) => hay(k).includes(w))) : [];
+        return `<button class="kind-card hf-card" data-i="${i}" style="--k:${color(e)}">` +
+          `<span class="hf-grade">${esc(e.gname)}</span>` +
+          `<span class="name">${markHit(e.name, words)}</span>` +
+          `<span class="desc">${markHit(e.desc, words)}</span>` +
+          (why.length ? `<span class="hf-why">${why.map((k) => markHit(k, words)).join("・")}</span>` : "") +
+          `<span class="go">作る ▶</span></button>`;
+      }).join("")}</div>`;
+  }
+
   function renderStageKinds() {
     const st = stageOf(state.stage);
     $("stage-note").textContent = `${st.name}:${st.note}`;
@@ -2318,6 +2458,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       renderGrades();
       writeControls();
       paintGrade(true);
+      renderSearch();
     });
     $("tk-kinds").addEventListener("click", (e) => {
       const b = e.target.closest(".tk-card");
@@ -2387,6 +2528,31 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       show(1, state.seed);
     });
     $("btn-home").addEventListener("click", () => goHome());
+    $("home-q").placeholder = "プリントを さがす(れい:ローマ字、敬語、主語、なぞり)";
+    $("home-q").addEventListener("input", renderSearch);
+    $("home-q").addEventListener("keydown", (e) => { if (e.key === "Enter") e.target.blur(); });
+    $("home-q-clear").addEventListener("click", () => { $("home-q").value = ""; renderSearch(); $("home-q").focus(); });
+    $("home-found").addEventListener("click", (e) => {
+      const b = e.target.closest(".hf-card");
+      if (!b) return;
+      const it = FOUND[Number(b.dataset.i)];
+      if (!it) return;
+      if (it.p.grade === 0 || it.p.kind === "kimari" || it.stage) applyPreset(it);
+      else {
+        // ふつうの 学年の 漢字・文章の カード
+        const g = it.p.grade;
+        state.grade = state.gRead = state.gWrite = state.gStory = g;
+        state.kind = it.p.kind;
+        state.tk = false;
+        state.genre = genreFor(g, state.genre);
+        [state.nRead, state.nWrite] = it.p.counts ? it.p.counts.slice() : countsFor(state.kind);
+        settleCounts("read");
+      }
+      writeControls();
+      paintGrade();
+      setMsg("");
+      show(1, state.seed);
+    });
     $("btn-opts").addEventListener("click", () => {
       const open = document.body.dataset.opts !== "1";
       document.body.dataset.opts = open ? "1" : "";
