@@ -333,7 +333,7 @@ cap_choice = [f'(地名){t}　{{*{M(t, capital=True)}|{M(t)}}} #{t}' for t in TO
              [f'(ふつうの ことば){w}　{{*{M(w)}|{M(w, capital=True)}}} #{w}' for w in 'いぬ さくら やま ねこ うみ はな ほん そら'.split()]
 out.append(topic('romaji10', 'ローマ字⑩ 大文字の 使い方', '人の 名前や 地名は、はじめの 字を 大文字で 書く。', [
     ('大文字で 書き始める もの | 正しい ほうを ○で かこみましょう。 | 4', cap_choice),
-    ('地名や 人の 名前を 書く | 地名や 人の 名前を ローマ字で 書きましょう。 | 4', towns + name_items),
+    ('地名や 人の 名前を 書く | 地名や 人の 名前を ローマ字で 書きましょう。 | 3', towns + name_items),
 ]))
 HROWS = [('し ち つ ふ じ', 'shi chi tsu fu ji'), ('しゃ しゅ しょ', 'sha shu sho'), ('ちゃ ちゅ ちょ', 'cha chu cho'), ('じゃ じゅ じょ', 'ja ju jo')]
 hep_syl = []

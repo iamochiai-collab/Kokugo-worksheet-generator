@@ -1357,18 +1357,18 @@ po　{*ぽ|ぶ|ぐ}
 (地名)みえ　{*«Mie¦Mie¦Mi e»|«mie¦mie¦mi e»} #みえ
 (地名)わかやま　{*«Wakayama¦Wakayama¦Wa ka ya ma»|«wakayama¦wakayama¦wa ka ya ma»} #わかやま
 (地名)ひょうご　{*«Hyôgo¦Hyo-go¦Hyo u go»|«hyôgo¦hyo-go¦hyo u go»} #ひょうご
-(人の 名前)みやざき たろう　{*«Miyazaki Tarô¦Miyazaki Taro-¦Mi ya za ki　Ta ro u»|«miyazaki tarô¦miyazaki taro-¦mi ya za ki　ta ro u»} #みやざきたろう
-(人の 名前)あおき はると　{*«Aoki Haruto¦Aoki Haruto¦A o ki　Ha ru to»|«aoki haruto¦aoki haruto¦a o ki　ha ru to»} #あおきはると
-(人の 名前)きむら はると　{*«Kimura Haruto¦Kimura Haruto¦Ki mu ra　Ha ru to»|«kimura haruto¦kimura haruto¦ki mu ra　ha ru to»} #きむらはると
-(人の 名前)こんどう さくら　{*«Kondô Sakura¦Kondo- Sakura¦Ko n do u　Sa ku ra»|«kondô sakura¦kondo- sakura¦ko n do u　sa ku ra»} #こんどうさくら
-(人の 名前)みやざき かいと　{*«Miyazaki Kaito¦Miyazaki Kaito¦Mi ya za ki　Ka i to»|«miyazaki kaito¦miyazaki kaito¦mi ya za ki　ka i to»} #みやざきかいと
-(人の 名前)さかい けんた　{*«Sakai Kenta¦Sakai Kenta¦Sa ka i　Ke n ta»|«sakai kenta¦sakai kenta¦sa ka i　ke n ta»} #さかいけんた
-(人の 名前)もりた かいと　{*«Morita Kaito¦Morita Kaito¦Mo ri ta　Ka i to»|«morita kaito¦morita kaito¦mo ri ta　ka i to»} #もりたかいと
-(人の 名前)こんどう れん　{*«Kondô Ren¦Kondo- Ren¦Ko n do u　Re n»|«kondô ren¦kondo- ren¦ko n do u　re n»} #こんどうれん
-(人の 名前)えんどう はると　{*«Endô Haruto¦Endo- Haruto¦E n do u　Ha ru to»|«endô haruto¦endo- haruto¦e n do u　ha ru to»} #えんどうはると
-(人の 名前)いけだ りく　{*«Ikeda Riku¦Ikeda Riku¦I ke da　Ri ku»|«ikeda riku¦ikeda riku¦i ke da　ri ku»} #いけだりく
-(人の 名前)わだ ひな　{*«Wada Hina¦Wada Hina¦Wa da　Hi na»|«wada hina¦wada hina¦wa da　hi na»} #わだひな
-(人の 名前)かねこ そうた　{*«Kaneko Sôta¦Kaneko So-ta¦Ka ne ko　So u ta»|«kaneko sôta¦kaneko so-ta¦ka ne ko　so u ta»} #かねこそうた
+(人の 名前)おおた りん　{*«Ôta Rin¦O-ta Rin¦O o ta　Ri n»|«ôta rin¦o-ta rin¦o o ta　ri n»} #おおたりん
+(人の 名前)こんどう なな　{*«Kondô Nana¦Kondo- Nana¦Ko n do u　Na na»|«kondô nana¦kondo- nana¦ko n do u　na na»} #こんどうなな
+(人の 名前)さとう りく　{*«Satô Riku¦Sato- Riku¦Sa to u　Ri ku»|«satô riku¦sato- riku¦sa to u　ri ku»} #さとうりく
+(人の 名前)おかもと ゆうと　{*«Okamoto Yûto¦Okamoto Yu-to¦O ka mo to　Yu u to»|«okamoto yûto¦okamoto yu-to¦o ka mo to　yu u to»} #おかもとゆうと
+(人の 名前)よこやま ゆい　{*«Yokoyama Yui¦Yokoyama Yui¦Yo ko ya ma　Yu i»|«yokoyama yui¦yokoyama yui¦yo ko ya ma　yu i»} #よこやまゆい
+(人の 名前)むらかみ ひな　{*«Murakami Hina¦Murakami Hina¦Mu ra ka mi　Hi na»|«murakami hina¦murakami hina¦mu ra ka mi　hi na»} #むらかみひな
+(人の 名前)うえだ なな　{*«Ueda Nana¦Ueda Nana¦U e da　Na na»|«ueda nana¦ueda nana¦u e da　na na»} #うえだなな
+(人の 名前)よこやま そうた　{*«Yokoyama Sôta¦Yokoyama So-ta¦Yo ko ya ma　So u ta»|«yokoyama sôta¦yokoyama so-ta¦yo ko ya ma　so u ta»} #よこやまそうた
+(人の 名前)くどう はると　{*«Kudô Haruto¦Kudo- Haruto¦Ku do u　Ha ru to»|«kudô haruto¦kudo- haruto¦ku do u　ha ru to»} #くどうはると
+(人の 名前)きむら ゆうと　{*«Kimura Yûto¦Kimura Yu-to¦Ki mu ra　Yu u to»|«kimura yûto¦kimura yu-to¦ki mu ra　yu u to»} #きむらゆうと
+(人の 名前)あおき ゆい　{*«Aoki Yui¦Aoki Yui¦A o ki　Yu i»|«aoki yui¦aoki yui¦a o ki　yu i»} #あおきゆい
+(人の 名前)わたなべ れん　{*«Watanabe Ren¦Watanabe Ren¦Wa ta na be　Re n»|«watanabe ren¦watanabe ren¦wa ta na be　re n»} #わたなべれん
 (ふつうの ことば)いぬ　{*«inu¦inu¦i nu»|«Inu¦Inu¦I nu»} #いぬ
 (ふつうの ことば)さくら　{*«sakura¦sakura¦sa ku ra»|«Sakura¦Sakura¦Sa ku ra»} #さくら
 (ふつうの ことば)やま　{*«yama¦yama¦ya ma»|«Yama¦Yama¦Ya ma»} #やま
@@ -1377,7 +1377,7 @@ po　{*ぽ|ぶ|ぐ}
 (ふつうの ことば)はな　{*«hana¦hana¦ha na»|«Hana¦Hana¦Ha na»} #はな
 (ふつうの ことば)ほん　{*«hon¦hon¦ho n»|«Hon¦Hon¦Ho n»} #ほん
 (ふつうの ことば)そら　{*«sora¦sora¦so ra»|«Sora¦Sora¦So ra»} #そら
-== 地名や 人の 名前を 書く | 地名や 人の 名前を ローマ字で 書きましょう。 | 4
+== 地名や 人の 名前を 書く | 地名や 人の 名前を ローマ字で 書きましょう。 | 3
 (地名)なごや　[=«Nagoya¦Nagoya¦Na go ya»] #なごや
 (地名)きょうと　[=«Kyôto¦Kyo-to¦Kyo u to»] #きょうと
 (地名)おおさか　[=«Ôsaka¦O-saka¦O o sa ka»] #おおさか
@@ -1409,46 +1409,46 @@ po　{*ぽ|ぶ|ぐ}
 (地名)みえ　[=«Mie¦Mie¦Mi e»] #みえ
 (地名)わかやま　[=«Wakayama¦Wakayama¦Wa ka ya ma»] #わかやま
 (地名)ひょうご　[=«Hyôgo¦Hyo-go¦Hyo u go»] #ひょうご
-(人の 名前)みやざき たろう　[=«Miyazaki Tarô¦Miyazaki Taro-¦Mi ya za ki　Ta ro u»] #みやざきたろう
-(人の 名前)あおき はると　[=«Aoki Haruto¦Aoki Haruto¦A o ki　Ha ru to»] #あおきはると
-(人の 名前)きむら はると　[=«Kimura Haruto¦Kimura Haruto¦Ki mu ra　Ha ru to»] #きむらはると
-(人の 名前)こんどう さくら　[=«Kondô Sakura¦Kondo- Sakura¦Ko n do u　Sa ku ra»] #こんどうさくら
-(人の 名前)みやざき かいと　[=«Miyazaki Kaito¦Miyazaki Kaito¦Mi ya za ki　Ka i to»] #みやざきかいと
-(人の 名前)さかい けんた　[=«Sakai Kenta¦Sakai Kenta¦Sa ka i　Ke n ta»] #さかいけんた
-(人の 名前)もりた かいと　[=«Morita Kaito¦Morita Kaito¦Mo ri ta　Ka i to»] #もりたかいと
-(人の 名前)こんどう れん　[=«Kondô Ren¦Kondo- Ren¦Ko n do u　Re n»] #こんどうれん
-(人の 名前)えんどう はると　[=«Endô Haruto¦Endo- Haruto¦E n do u　Ha ru to»] #えんどうはると
-(人の 名前)いけだ りく　[=«Ikeda Riku¦Ikeda Riku¦I ke da　Ri ku»] #いけだりく
-(人の 名前)わだ ひな　[=«Wada Hina¦Wada Hina¦Wa da　Hi na»] #わだひな
-(人の 名前)かねこ そうた　[=«Kaneko Sôta¦Kaneko So-ta¦Ka ne ko　So u ta»] #かねこそうた
-(人の 名前)わだ れん　[=«Wada Ren¦Wada Ren¦Wa da　Re n»] #わだれん
-(人の 名前)みうら さくら　[=«Miura Sakura¦Miura Sakura¦Mi u ra　Sa ku ra»] #みうらさくら
-(人の 名前)わたなべ ひな　[=«Watanabe Hina¦Watanabe Hina¦Wa ta na be　Hi na»] #わたなべひな
-(人の 名前)おおた れん　[=«Ôta Ren¦O-ta Ren¦O o ta　Re n»] #おおたれん
-(人の 名前)こんどう けんた　[=«Kondô Kenta¦Kondo- Kenta¦Ko n do u　Ke n ta»] #こんどうけんた
+(人の 名前)おおた りん　[=«Ôta Rin¦O-ta Rin¦O o ta　Ri n»] #おおたりん
+(人の 名前)こんどう なな　[=«Kondô Nana¦Kondo- Nana¦Ko n do u　Na na»] #こんどうなな
+(人の 名前)さとう りく　[=«Satô Riku¦Sato- Riku¦Sa to u　Ri ku»] #さとうりく
+(人の 名前)おかもと ゆうと　[=«Okamoto Yûto¦Okamoto Yu-to¦O ka mo to　Yu u to»] #おかもとゆうと
+(人の 名前)よこやま ゆい　[=«Yokoyama Yui¦Yokoyama Yui¦Yo ko ya ma　Yu i»] #よこやまゆい
 (人の 名前)むらかみ ひな　[=«Murakami Hina¦Murakami Hina¦Mu ra ka mi　Hi na»] #むらかみひな
-(人の 名前)かとう さくら　[=«Katô Sakura¦Kato- Sakura¦Ka to u　Sa ku ra»] #かとうさくら
-(人の 名前)みやもと めい　[=«Miyamoto Mei¦Miyamoto Mei¦Mi ya mo to　Me i»] #みやもとめい
-(人の 名前)えんどう みお　[=«Endô Mio¦Endo- Mio¦E n do u　Mi o»] #えんどうみお
-(人の 名前)おかもと たろう　[=«Okamoto Tarô¦Okamoto Taro-¦O ka mo to　Ta ro u»] #おかもとたろう
-(人の 名前)おかもと りん　[=«Okamoto Rin¦Okamoto Rin¦O ka mo to　Ri n»] #おかもとりん
-(人の 名前)みやもと なな　[=«Miyamoto Nana¦Miyamoto Nana¦Mi ya mo to　Na na»] #みやもとなな
-(人の 名前)はらだ はなこ　[=«Harada Hanako¦Harada Hanako¦Ha ra da　Ha na ko»] #はらだはなこ
-(人の 名前)おかもと かいと　[=«Okamoto Kaito¦Okamoto Kaito¦O ka mo to　Ka i to»] #おかもとかいと
-(人の 名前)おおた めい　[=«Ôta Mei¦O-ta Mei¦O o ta　Me i»] #おおためい
-(人の 名前)うえだ ゆうと　[=«Ueda Yûto¦Ueda Yu-to¦U e da　Yu u to»] #うえだゆうと
-(人の 名前)みやもと りん　[=«Miyamoto Rin¦Miyamoto Rin¦Mi ya mo to　Ri n»] #みやもとりん
+(人の 名前)うえだ なな　[=«Ueda Nana¦Ueda Nana¦U e da　Na na»] #うえだなな
+(人の 名前)よこやま そうた　[=«Yokoyama Sôta¦Yokoyama So-ta¦Yo ko ya ma　So u ta»] #よこやまそうた
+(人の 名前)くどう はると　[=«Kudô Haruto¦Kudo- Haruto¦Ku do u　Ha ru to»] #くどうはると
+(人の 名前)きむら ゆうと　[=«Kimura Yûto¦Kimura Yu-to¦Ki mu ra　Yu u to»] #きむらゆうと
+(人の 名前)あおき ゆい　[=«Aoki Yui¦Aoki Yui¦A o ki　Yu i»] #あおきゆい
+(人の 名前)わたなべ れん　[=«Watanabe Ren¦Watanabe Ren¦Wa ta na be　Re n»] #わたなべれん
+(人の 名前)くどう ゆうと　[=«Kudô Yûto¦Kudo- Yu-to¦Ku do u　Yu u to»] #くどうゆうと
+(人の 名前)もり めい　[=«Mori Mei¦Mori Mei¦Mo ri　Me i»] #もりめい
+(人の 名前)たむら めい　[=«Tamura Mei¦Tamura Mei¦Ta mu ra　Me i»] #たむらめい
+(人の 名前)さかもと だいき　[=«Sakamoto Daiki¦Sakamoto Daiki¦Sa ka mo to　Da i ki»] #さかもとだいき
+(人の 名前)かねこ りく　[=«Kaneko Riku¦Kaneko Riku¦Ka ne ko　Ri ku»] #かねこりく
+(人の 名前)いとう れん　[=«Itô Ren¦Ito- Ren¦I to u　Re n»] #いとうれん
+(人の 名前)まえだ そうた　[=«Maeda Sôta¦Maeda So-ta¦Ma e da　So u ta»] #まえだそうた
+(人の 名前)いとう だいき　[=«Itô Daiki¦Ito- Daiki¦I to u　Da i ki»] #いとうだいき
+(人の 名前)はらだ ひな　[=«Harada Hina¦Harada Hina¦Ha ra da　Hi na»] #はらだひな
+(人の 名前)いとう はなこ　[=«Itô Hanako¦Ito- Hanako¦I to u　Ha na ko»] #いとうはなこ
+(人の 名前)なかの たろう　[=«Nakano Tarô¦Nakano Taro-¦Na ka no　Ta ro u»] #なかのたろう
 (人の 名前)たむら はなこ　[=«Tamura Hanako¦Tamura Hanako¦Ta mu ra　Ha na ko»] #たむらはなこ
-(人の 名前)はせがわ ゆうと　[=«Hasegawa Yûto¦Hasegawa Yu-to¦Ha se ga wa　Yu u to»] #はせがわゆうと
-(人の 名前)わだ だいき　[=«Wada Daiki¦Wada Daiki¦Wa da　Da i ki»] #わだだいき
-(人の 名前)わたなべ はると　[=«Watanabe Haruto¦Watanabe Haruto¦Wa ta na be　Ha ru to»] #わたなべはると
-(人の 名前)はらだ めい　[=«Harada Mei¦Harada Mei¦Ha ra da　Me i»] #はらだめい
-(人の 名前)すずき かいと　[=«Suzuki Kaito¦Suzuki Kaito¦Su zu ki　Ka i to»] #すずきかいと
-(人の 名前)たむら さくら　[=«Tamura Sakura¦Tamura Sakura¦Ta mu ra　Sa ku ra»] #たむらさくら
-(人の 名前)たなか あおい　[=«Tanaka Aoi¦Tanaka Aoi¦Ta na ka　A o i»] #たなかあおい
-(人の 名前)はせがわ けんた　[=«Hasegawa Kenta¦Hasegawa Kenta¦Ha se ga wa　Ke n ta»] #はせがわけんた
-(人の 名前)おかもと そうた　[=«Okamoto Sôta¦Okamoto So-ta¦O ka mo to　So u ta»] #おかもとそうた
-(人の 名前)えんどう りん　[=«Endô Rin¦Endo- Rin¦E n do u　Ri n»] #えんどうりん
+(人の 名前)みやもと りく　[=«Miyamoto Riku¦Miyamoto Riku¦Mi ya mo to　Ri ku»] #みやもとりく
+(人の 名前)なかやま たろう　[=«Nakayama Tarô¦Nakayama Taro-¦Na ka ya ma　Ta ro u»] #なかやまたろう
+(人の 名前)おの かいと　[=«Ono Kaito¦Ono Kaito¦O no　Ka i to»] #おのかいと
+(人の 名前)なかがわ めい　[=«Nakagawa Mei¦Nakagawa Mei¦Na ka ga wa　Me i»] #なかがわめい
+(人の 名前)さかい みなと　[=«Sakai Minato¦Sakai Minato¦Sa ka i　Mi na to»] #さかいみなと
+(人の 名前)みうら りん　[=«Miura Rin¦Miura Rin¦Mi u ra　Ri n»] #みうらりん
+(人の 名前)おかもと さくら　[=«Okamoto Sakura¦Okamoto Sakura¦O ka mo to　Sa ku ra»] #おかもとさくら
+(人の 名前)うえだ さくら　[=«Ueda Sakura¦Ueda Sakura¦U e da　Sa ku ra»] #うえださくら
+(人の 名前)わだ りく　[=«Wada Riku¦Wada Riku¦Wa da　Ri ku»] #わだりく
+(人の 名前)たむら はると　[=«Tamura Haruto¦Tamura Haruto¦Ta mu ra　Ha ru to»] #たむらはると
+(人の 名前)さとう はると　[=«Satô Haruto¦Sato- Haruto¦Sa to u　Ha ru to»] #さとうはると
+(人の 名前)まえだ さくら　[=«Maeda Sakura¦Maeda Sakura¦Ma e da　Sa ku ra»] #まえださくら
+(人の 名前)わたなべ ゆい　[=«Watanabe Yui¦Watanabe Yui¦Wa ta na be　Yu i»] #わたなべゆい
+(人の 名前)やまもと そうた　[=«Yamamoto Sôta¦Yamamoto So-ta¦Ya ma mo to　So u ta»] #やまもとそうた
+(人の 名前)よこやま みなと　[=«Yokoyama Minato¦Yokoyama Minato¦Yo ko ya ma　Mi na to»] #よこやまみなと
+(人の 名前)みやざき たろう　[=«Miyazaki Tarô¦Miyazaki Taro-¦Mi ya za ki　Ta ro u»] #みやざきたろう
 
 @ romaji11 | 3 | ローマ字⑪ ヘボン式 | 駅や 看板で 見る 書き方。し→shi、ち→chi、つ→tsu、ふ→fu、じ→ji。
 == ヘボン式を なぞる | うすい 字を なぞりましょう。 | 2 | seq
