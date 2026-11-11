@@ -114,11 +114,11 @@ def roman(w, hep=False):
 
 
 def roman_hyphen(w, hep=False):
-    """のばす 音を - に(ノート → no-to)、「ん」の 区切りも - に(てんいん → ten-in)"""
+    """のばす 音を - に(ノート → no-to)、「ん」の 区切りは すきまに(てんいん → ten in)"""
     r = roman(w, hep)
     for a, b in CIRC.items():
         r = r.replace(b, a + '-')
-    return r.replace("'", '-')
+    return r.replace("'", ' ')
 
 
 def roman_sep(w, hep=False):
@@ -315,14 +315,14 @@ w9 = rows_for(9)
 longw = [w for w in w9 if feats(w)['long']]
 sokuw = [w for w in w9 if feats(w)['soku'] and not feats(w)['long']]
 aposw = [w for w in w9 if feats(w)['apos']]
-nonap = 'ほんだな みかん ぶんか せんせい たんぽぽ さんぽ えんそく おんがく'.split()
+nonap = 'ほんだな ぶんか せんせい たんぽぽ さんぽ えんそく おんがく'.split()
 choice = lambda w: f'{w}　{{*{M(w)}|{M(spell_wrong(w)[0])}}} #{w}'
 out.append(topic('romaji09', 'ローマ字⑨ のばす 音・つまる 音・はねる 音',
                  'のばす 音・小さい「っ」・「ん」の 書き方。(教科書では のばす 音は ^、「ん」の 区切りは \')', [
     ('のばす 音 | 正しい ほうを ○で かこみましょう。 | 4 | cols=2', [choice(w) for w in longw]),
     ('つまる 音 | つぎの ことばを ローマ字で 書きましょう。 | 4 | cols=2', [f'{w}　[={M(w)}] #{w}' for w in sokuw if fits(w)]),
     ('はねる 音 | 正しい ほうを ○で かこみましょう。 | 4 | cols=2', [choice(w) for w in aposw] +
-     [f'{w}　{{*{M(w)}|«{roman(w).replace("n", "n\'", 1)}¦{roman(w).replace("n", "n-", 1)}¦{roman_sep(w.replace("ん", "ぬ", 1))}»}} #{w}' for w in nonap]),
+     [f'{w}　{{*{M(w)}|«{roman(w).replace("n", "n\'", 1)}¦{roman(w).replace("n", "n ", 1)}¦{roman_sep(w.replace("ん", "ぬ", 1))}»}} #{w}' for w in nonap]),
 ]))
 towns = [f'(地名){t}　[={M(t, capital=True)}] #{t}' for t in TOWNS]
 rnd = random.Random(5)
