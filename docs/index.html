@@ -85,6 +85,11 @@ body { background: var(--ui-bg); }
 body[data-view="home"] .panel { display: none; }
 .panel label { display: flex; flex-direction: column; gap: 3px; font-size: 12px; color: var(--ui-sub); font-weight: bold; }
 .panel label[hidden] { display: none; }
+/* かきかたの「かく ことば」は 大きく(1れつ ぜんぶ つかう) */
+.panel label.kk-text { flex-basis: 100%; font-size: 14px; }
+.panel #f-ytext { width: 100%; box-sizing: border-box; min-height: 190px; font-size: 28px; line-height: 1.5; padding: 10px 16px;
+  border: 2px solid var(--gc); border-radius: 12px; background: #fff; color: var(--ui-ink);
+  font-family: "KleeKana", "BIZ UDPGothic", sans-serif; font-weight: normal; resize: vertical; }
 .panel select, .panel input[type=number] {
   font: inherit; font-size: 15px; padding: 5px 8px; border: 1.5px solid var(--ui-line); border-radius: 8px;
   background: #fff; color: var(--ui-ink); min-width: 120px; height: 34px;
@@ -262,6 +267,8 @@ body:not([data-stage="1"]) .tk-only, body[data-stage="1"] .no-tk { display: none
   .panel { padding: 6px 8px; gap: 6px 10px; border-top-width: 3px; }
   .panel .title-row { display: none; }
   body:not([data-opts="1"]) .panel > label { display: none; }
+  body:not([data-opts="1"]) .panel > label.kk-text:not([hidden]) { display: flex; }
+  .panel #f-ytext { min-height: 130px; font-size: 24px; }
   body[data-opts="1"] .panel { max-height: 72vh; overflow-y: auto; }
   .panel .buttons { margin-left: 0; width: 100%; gap: 5px; flex-wrap: nowrap; }
   .panel .buttons button { flex: 1 1 0; min-width: 0; padding: 5px 3px; font-size: 12px; line-height: 1.25; border-radius: 8px; white-space: normal; word-break: keep-all; }
@@ -660,7 +667,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
   </label>
   <label class="check sheet-only yj-only"><input id="f-ycorner" type="checkbox"> かどに 点</label>
   <label class="sheet-only yj-only kk-text">かく ことば(1行に 1つ)
-    <textarea id="f-ytext" rows="2" maxlength="300" placeholder="れい: あいうえお"></textarea>
+    <textarea id="f-ytext" rows="5" maxlength="300" placeholder="ここに 字を 入れます(れい: あいうえお)"></textarea>
   </label>
   <label class="sheet-only yj-only">ならべ方
     <select id="f-ylayout"><option value="char">1字ずつ(お手本→なぞり→かく)</option><option value="word">ことばごと</option><option value="trace">なぞりだけ</option></select>
