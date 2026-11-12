@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="app-version" content="第31版(2026-11-12)">
+<meta name="app-version" content="第32版(2026-11-12)">
 <title>国語プリント</title>
 <link rel="icon" type="image/png" sizes="32x32" href="{{ICON:32}}">
 <link rel="icon" type="image/png" sizes="64x64" href="{{ICON:64}}">
@@ -593,6 +593,11 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
 .kk-top { height: 4mm; }
 .kk-band { display: flex; flex-direction: row-reverse; justify-content: center; }
 .kk-grp { display: flex; flex-direction: row-reverse; }
+/* お手本を 左に(右ききの 子が お手本を 見ながら 右へ なぞる) */
+.kk-area.lt .kk-band, .kk-area.lt .kk-grp { flex-direction: row; }
+.kk-rows { display: flex; flex-direction: column; }
+.kk-row { display: flex; }
+.kk-row .kk-c + .kk-c { margin-top: 0; margin-left: -1.4px; }
 .kk-col { display: flex; flex-direction: column; }
 .kk-c { position: relative; display: flex; align-items: center; justify-content: center; border: 1.4px solid #555; box-sizing: border-box;
   background: linear-gradient(#bbb, #bbb) center / 0 0 no-repeat; line-height: 1; }
@@ -703,6 +708,9 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
     <textarea id="f-ytext" rows="5" maxlength="300" placeholder="ここに 字を 入れます(れい: あいうえお)"></textarea>
     <span class="an-tools"><button type="button" id="b-box" class="secondary">えらんだ 字を □に する</button>
       <small>れい: なん[だ]ろう ／ [学校(がっこう)]に いく … ( ) の 中は ふりがな</small></span>
+  </label>
+  <label class="sheet-only yj-only">お手本の いち
+    <select id="f-ypos"><option value="l">左(右へ なぞる・右ききに 見やすい)</option><option value="r">右(たて書きの じゅん・左へ)</option></select>
   </label>
   <label class="sheet-only yj-only">書く むき
     <select id="f-ydir"><option value="v">たて書き</option><option value="h">よこ書き</option></select>
@@ -1823,7 +1831,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
     return shuffled((YD.pics || {})[script] || [], rng)
       .filter((x) => !seenW.has(x.w) && !seenP.has(x.pic) && seenW.add(x.w) && seenP.add(x.pic)).slice(0, n);
   }
-  function buildYoujiSheet({ ykind, yrow, ytheme, yplay, yscript, ycat, yhint, ymatch, ystep, yname, ylimit, ywn, ylstyle, ycorner, ytrace, yn, ythick, yarr, ymid, ysdot, yedot, ytext, ylayout, ysize, ynum, ydir, seed, no }) {
+  function buildYoujiSheet({ ykind, yrow, ytheme, yplay, yscript, ycat, yhint, ymatch, ystep, yname, ylimit, ywn, ylstyle, ycorner, ytrace, yn, ythick, yarr, ymid, ysdot, yedot, ytext, ylayout, ysize, ynum, ydir, ypos, seed, no }) {
     const rng = makeRng(seed * 7919 + 4243);
     // ylstyle: なぞる 線の 種類 / ycorner: かどに 点 / ytrace: font(うすい 字)・lines(線で なぞる)・order(書き順)
     const s = { youji: true, ykind, seed, no, lstyle: ylstyle || "dash", corner: !!ycorner, trace: ytrace || "font" };
@@ -1837,6 +1845,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       s.text = String(ytext || "").replace(/\r/g, "").slice(0, 300);
       s.layout = ["char", "word", "otehon", "trace", "anaume"].includes(ylayout) ? ylayout : "char";
       s.dir = ydir === "h" ? "h" : "v";
+      s.pos = ypos === "r" ? "r" : "l";
       s.size = ["s", "m", "l"].includes(ysize) ? ysize : "m";
       s.lstyle = ylstyle && ylstyle !== "none" ? ylstyle : "fukuro";
       s.mk = { num: ynum !== false, arr: yarr !== false, mid: !!ymid, sdot: ysdot !== false, edot: !!yedot };
@@ -1997,7 +2006,15 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
     const lines = s.text.split("\n").map((l) => l.replace(/[\s\u3000]+/g, "")).filter(Boolean);
     const pagesOut = [];
     const fit = (k) => Math.max(1, k);
-    if (s.layout === "char") {
+    if (s.layout === "char" && s.pos === "l") {
+      // お手本が 左: 1字が 1ぎょう(左から お手本・書き順・うすい 字・書く・書く)。右へ なぞって いく
+      const chars = lines.join("").split("");
+      const gap = B * 0.3, per = fit(Math.floor((AH + gap) / (B + gap)));
+      const list = chars.length ? chars : Array(3).fill("");
+      for (let p = 0; p < list.length; p += per)
+        pagesOut.push(`<div class="kk-rows" style="gap:${gap.toFixed(1)}mm">` + list.slice(p, p + per).map((ch) =>
+          `<div class="kk-row">${["model", "order", "light", "blank", "blank"].map((k) => kakiCell(ch, k, s, B)).join("")}</div>`).join("") + `</div>`);
+    } else if (s.layout === "char") {
       // 1字が 1れつ(上から お手本・書き順・うすい 字・書く・書く)。右から ならべる
       const chars = lines.join("").split("");
       const gap = B * 0.38, cols = fit(Math.floor((AW + gap) / (B + gap))), bands = fit(Math.floor((AH + 8) / (5 * B + 8)));
@@ -2044,7 +2061,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
           `<div class="kk-col">${cs.map((ch) => kakiCell(ch, "order", s, B)).join("")}</div>`).join("") + `</div>`);
       }
     }
-    return pagesOut.map((h, k) => head(k) + `<div class="kk-area">${h}</div>` + foot).join("");
+    return pagesOut.map((h, k) => head(k) + `<div class="kk-area${s.pos === "l" ? " lt" : ""}">${h}</div>` + foot).join("");
   }
   function youjiSheetHtml(s, opt) {
     const ans = !!opt.answer;
@@ -2230,7 +2247,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
   const state = { grade: 3, gRead: 3, gWrite: 3, gStory: 3, furi: "none", genre: "all",
                   kind: "both", level: 2, nRead: 8, nWrite: 8, seed: 1,
                   ykind: "hira", yrow: "auto", ytheme: "auto", yplay: "mix", yscript: "hira", ycat: "all", yhint: "first",
-                  ymatch: "word", ystep: 1, yname: "", ylimit: 0, ywn: 7, ylstyle: "dash", ycorner: false, ytrace: "font", yn: 5, ythick: "mid", yarr: true, ymid: false, ysdot: true, yedot: false, ytext: "", ylayout: "char", ysize: "m", ynum: true, ydir: "v", tk: false, stage: 0, ktopic: "auto", rcase: "lower", rstyle: "std", kfuri: "normal", klearn: "prev" };
+                  ymatch: "word", ystep: 1, yname: "", ylimit: 0, ywn: 7, ylstyle: "dash", ycorner: false, ytrace: "font", yn: 5, ythick: "mid", yarr: true, ymid: false, ysdot: true, yedot: false, ytext: "", ylayout: "char", ysize: "m", ynum: true, ydir: "v", ypos: "l", tk: false, stage: 0, ktopic: "auto", rcase: "lower", rstyle: "std", kfuri: "normal", klearn: "prev" };
   // 学年 0 は ようじ
   const gradeLabel = (g) => (g === 0 ? "ようじ" : BANKS[g - 1].label);
 
@@ -2283,6 +2300,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       state.ylayout = $("f-ylayout").value || "char";
       state.ysize = $("f-ysize").value || "m";
       state.ydir = $("f-ydir").value || "v";
+      state.ypos = $("f-ypos").value || "l";
       if (state.ykind !== "unpitsu" && state.ystep > 3) state.ystep = 3;
       if (!picCats(state.yscript).includes(state.ycat)) state.ycat = "all";
       if (changedId === "f-ykind") state.yrow = "auto";
@@ -2420,6 +2438,8 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       // あなうめ の ときは 書き順の しるしは つかわない。かわりに □の ボタンと むき
       const anK = state.ykind === "kakikata" && state.ylayout === "anaume";
       $("f-ydir").value = state.ydir;
+      $("f-ypos").value = state.ypos;
+      $("f-ypos").closest("label").hidden = state.ykind !== "kakikata" || anK;
       $("f-ydir").closest("label").hidden = !anK;
       document.querySelector(".an-tools").hidden = !anK;
       $("f-ynum").closest("label").hidden = state.ykind !== "kakikata" || anK;
@@ -2917,7 +2937,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
   }
   let THUMB_OBS = null;
   function thumbKey() {
-    return [state.grade, state.level, state.gRead, state.gWrite, state.gStory, state.furi, state.ytext, state.ylayout, state.tk].join("|");
+    return [state.grade, state.level, state.gRead, state.gWrite, state.gStory, state.furi, state.ytext, state.ylayout, state.ypos, state.tk].join("|");
   }
   function makeThumb(b) {
     const key = thumbKey();
@@ -3091,7 +3111,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       clearTimeout(ytTimer);
       ytTimer = setTimeout(() => { readControls("f-ytext"); if (document.body.dataset.view === "sheet") show(1, state.seed); }, 700);
     });
-    for (const id of ["f-grade", "f-gread", "f-gwrite", "f-gstory", "f-genre", "f-furi", "f-kind", "f-ykind", "f-yrow", "f-ytheme", "f-yplay", "f-yscript", "f-ycat", "f-yhint", "f-ymatch", "f-ystep", "f-yname", "f-ylimit", "f-ywn", "f-ytrace", "f-ylstyle", "f-ycorner", "f-yn", "f-ythick", "f-yarr", "f-ymid", "f-ysdot", "f-yedot", "f-ytext", "f-ylayout", "f-ysize", "f-ynum", "f-ydir", "f-tk", "f-level", "f-ktopic", "f-rcase", "f-rstyle", "f-kfuri", "f-klearn",
+    for (const id of ["f-grade", "f-gread", "f-gwrite", "f-gstory", "f-genre", "f-furi", "f-kind", "f-ykind", "f-yrow", "f-ytheme", "f-yplay", "f-yscript", "f-ycat", "f-yhint", "f-ymatch", "f-ystep", "f-yname", "f-ylimit", "f-ywn", "f-ytrace", "f-ylstyle", "f-ycorner", "f-yn", "f-ythick", "f-yarr", "f-ymid", "f-ysdot", "f-yedot", "f-ytext", "f-ylayout", "f-ysize", "f-ynum", "f-ydir", "f-ypos", "f-tk", "f-level", "f-ktopic", "f-rcase", "f-rstyle", "f-kfuri", "f-klearn",
                       "f-read", "f-write", "f-seed", "f-model", "f-ans", "f-anslist"]) {
       $(id).addEventListener("change", () => {
         readControls(id);
