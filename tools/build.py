@@ -54,7 +54,7 @@ if lay.exists():
     blocks.append(f'  var layoutData = {lay.read_text(encoding="utf-8").strip()};')
 
 # --- ふりがな(tools/furigana.py が 作る)と 学年別漢字配当表 ---
-for name, var in [('ruby.json', 'rubyData'), ('kanji_grades.json', 'kanjiGrades'), ('youji.json', 'youjiData'), ('kana_strokes.json', 'kanaStrokes')]:
+for name, var in [('ruby.json', 'rubyData'), ('kanji_grades.json', 'kanjiGrades'), ('youji.json', 'youjiData'), ('kana_strokes.json', 'kanaStrokes'), ('kanji_strokes.json', 'kanjiStrokes')]:
     f = root / 'src' / 'data' / name
     if f.exists():
         blocks.append(f'  var {var} = {json.dumps(json.loads(f.read_text(encoding="utf-8")), ensure_ascii=False)};')
@@ -98,7 +98,7 @@ assert '{{' not in out, out[out.index('{{'):out.index('{{') + 60]
 (root / 'docs').mkdir(exist_ok=True)
 (root / 'docs' / 'index.html').write_text(out, encoding='utf-8')
 
-hook = ('  window.__T = { BANKS, READS, hasLong, buildSheet, sheetHtml, makeRng, splitWord, pickEntries, LAYOUT, fits, maxFor, estHeight, layoutOf, defaultCounts, labelsFor, longSheetFor, rubyHtml, learned, storiesOf, genresOf, genreFor, buildYoujiSheet, youjiSheetHtml, YD, YPOOL, KM, kimariTopics, buildKimariSheet, kimariSheetHtml, fixZoom };\n'
+hook = ('  window.__T = { BANKS, READS, hasLong, buildSheet, sheetHtml, makeRng, splitWord, pickEntries, LAYOUT, fits, maxFor, estHeight, layoutOf, defaultCounts, labelsFor, longSheetFor, rubyHtml, learned, storiesOf, genresOf, genreFor, buildYoujiSheet, youjiSheetHtml, kakiSvg, pathPts, YD, YPOOL, KM, kimariTopics, buildKimariSheet, kimariSheetHtml, fixZoom };\n'
         '  renderHome();')
 assert out.count('  renderHome();') == 1
 (root / 'build').mkdir(exist_ok=True)

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="app-version" content="第29版(2026-11-12)">
+<meta name="app-version" content="第30版(2026-11-12)">
 <title>国語プリント</title>
 <link rel="icon" type="image/png" sizes="32x32" href="{{ICON:32}}">
 <link rel="icon" type="image/png" sizes="64x64" href="{{ICON:64}}">
@@ -565,6 +565,27 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
 .yj-rows.lines { justify-content: space-evenly; gap: 2mm; }
 .line-row { display: flex; align-items: center; gap: 1mm; }
 .line-svg { width: 172mm; height: 38mm; flex: none; }
+.yj-rows.unp { justify-content: space-evenly; }
+/* かきかた(たて書き。右から) */
+.kk-area { flex: 1; display: flex; flex-direction: column; justify-content: space-evenly; align-items: center; }
+.kk-top { height: 4mm; }
+.kk-band { display: flex; flex-direction: row-reverse; justify-content: center; }
+.kk-grp { display: flex; flex-direction: row-reverse; }
+.kk-col { display: flex; flex-direction: column; }
+.kk-c { position: relative; display: flex; align-items: center; justify-content: center; border: 1.4px solid #555; box-sizing: border-box;
+  background: linear-gradient(#bbb, #bbb) center / 0 0 no-repeat; line-height: 1; }
+.kk-c + .kk-c { margin-top: -1.4px; }
+.kk-c::before, .kk-c::after { content: ""; position: absolute; border: 0 dashed #c8c8c8; }
+.kk-c::before { left: 50%; top: 0; bottom: 0; border-left-width: 1px; }
+.kk-c::after { top: 50%; left: 0; right: 0; border-top-width: 1px; }
+.kk-c.bare { border-color: transparent; }
+.kk-c.bare::before, .kk-c.bare::after { display: none; }
+.kk-c .ks { position: absolute; inset: 3%; width: 94%; height: 94%; z-index: 1; overflow: visible; }
+.kk-c i { position: relative; z-index: 1; font-style: normal; }
+.kk-c i.g { color: #c4c4c4; }
+.kk-c i.m { color: #111; }
+.unp-row { display: flex; justify-content: center; }
+.unp-svg { width: 180mm; flex: none; overflow: visible; }
 .yj-rows.match { justify-content: center; align-items: center; }
 .match-svg { width: 182mm; }
 .match-svg .mt-n { font-size: 5px; font-family: "BIZ UDPGothic", sans-serif; }
@@ -626,7 +647,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
     <select id="f-ymatch"></select>
   </label>
   <label class="sheet-only yj-only">むずかしさ
-    <select id="f-ystep"><option value="1">★☆☆</option><option value="2">★★☆</option><option value="3">★★★</option></select>
+    <select id="f-ystep"><option value="1">★☆☆</option><option value="2">★★☆</option><option value="3">★★★</option><option value="4">★★★★</option></select>
   </label>
   <label class="sheet-only yj-only">なまえ(ひらがな)
     <input id="f-yname" type="text" maxlength="10" placeholder="れい: やまだ はな">
@@ -638,6 +659,26 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
     <select id="f-ylstyle"></select>
   </label>
   <label class="check sheet-only yj-only"><input id="f-ycorner" type="checkbox"> かどに 点</label>
+  <label class="sheet-only yj-only kk-text">かく ことば(1行に 1つ)
+    <textarea id="f-ytext" rows="2" maxlength="300" placeholder="れい: あいうえお"></textarea>
+  </label>
+  <label class="sheet-only yj-only">ならべ方
+    <select id="f-ylayout"><option value="char">1字ずつ(お手本→なぞり→かく)</option><option value="word">ことばごと</option><option value="trace">なぞりだけ</option></select>
+  </label>
+  <label class="sheet-only yj-only">字の 大きさ
+    <select id="f-ysize"><option value="s">小</option><option value="m">中</option><option value="l">大</option></select>
+  </label>
+  <label class="check sheet-only yj-only"><input id="f-ynum" type="checkbox"> 書き順の 数字</label>
+  <label class="sheet-only yj-only">線の 本数
+    <select id="f-yn"><option value="3">3本</option><option value="4">4本</option><option value="5">5本</option><option value="6">6本</option><option value="8">8本</option></select>
+  </label>
+  <label class="sheet-only yj-only">線の 太さ
+    <select id="f-ythick"><option value="thin">ほそい</option><option value="mid">ふつう</option><option value="thick">ふとい</option></select>
+  </label>
+  <label class="check sheet-only yj-only"><input id="f-yarr" type="checkbox"> はじめの 矢印</label>
+  <label class="check sheet-only yj-only"><input id="f-ymid" type="checkbox"> とちゅうの 矢印</label>
+  <label class="check sheet-only yj-only"><input id="f-ysdot" type="checkbox"> はじめに ●</label>
+  <label class="check sheet-only yj-only"><input id="f-yedot" type="checkbox"> おわりに ●</label>
   <label class="sheet-only yj-only">1まいの ことば
     <select id="f-ywn"><option value="7">7こ</option><option value="6">6こ</option><option value="5">5こ</option><option value="4">4こ(大きい 字)</option><option value="3">3こ(もっと 大きい 字)</option></select>
   </label>
@@ -790,6 +831,18 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       <span class="name"><span class="n">5</span>ことば あそび</span>
       <span class="chara chara-think" aria-hidden="true"></span>
       <span class="desc">しりとり・ことば さがし・たりない 字・ならべかえ。シードを かえると 何まいでも。こたえの ページつき。</span>
+      <span class="go">作る ▶</span>
+    </button>
+    <button class="kind-card yj-card" data-kind="both" data-ykind="unpitsu">
+      <span class="name"><span class="n">6</span>うんぴつ(線の れんしゅう)</span>
+      <span class="chara chara-maru" aria-hidden="true"></span>
+      <span class="desc">まっすぐ → なみ・ぎざぎざ → くるくる。むずかしさ 4だん。矢印・●・線の 太さ・本数を えらべます。</span>
+      <span class="go">作る ▶</span>
+    </button>
+    <button class="kind-card yj-card" data-kind="both" data-ykind="kakikata">
+      <span class="name"><span class="n">7</span>かきかた(じゆうに 書く)</span>
+      <span class="chara chara-book" aria-hidden="true"></span>
+      <span class="desc">すきな ことばを 入れると、お手本 → 書き順つき なぞり → 書く ますが できます。小学校の 漢字も。</span>
       <span class="go">作る ▶</span>
     </button>
     <button class="kind-card kk-card" data-kind="both">
@@ -1409,7 +1462,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
      データは src/data/youji.json(tools/make_youji.py が 作る)。 */
   const YD = typeof youjiData !== "undefined" ? youjiData : { hira: [], kata: [], themes: [], extra: [] };
   const YKINDS = [["hira", "ひらがな なぞり"], ["kata", "カタカナ なぞり"], ["word", "ことば なぞり"], ["pic", "え と ことば(絵を みて かく)"], ["play", "ことば あそび"],
-                  ["line", "せんを なぞろう"], ["match", "せんで むすぼう"], ["name", "なまえを かこう"]];
+                  ["line", "せんを なぞろう"], ["unpitsu", "うんぴつ(線の れんしゅう)"], ["kakikata", "かきかた(じゆうに 書く)"], ["match", "せんで むすぼう"], ["name", "なまえを かこう"]];
   const YMATCHES = [["word", "え と ひらがな"], ["kata", "え と カタカナ"], ["same", "おなじ え"]];
   const YPICS = typeof youjiPics !== "undefined" ? youjiPics : {};
   const YHINTS = [["first", "さいしょの 字を なぞる"], ["all", "ぜんぶ なぞる(うすい字)"], ["none", "ヒント なし"]];
@@ -1418,7 +1471,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
   const YPLAYS = [["mix", "じゅんばんに(シードで かわる)"], ["shiri", "しりとり"], ["search", "ことば さがし"],
                   ["miss", "たりない 字"], ["sort", "ならべかえ"]];
   const YTITLE = { hira: "ひらがな れんしゅう", kata: "カタカナ れんしゅう", word: "ことば れんしゅう", pic: "え と ことば", play: "ことば あそび",
-                   line: "せんの れんしゅう", match: "むすんで みよう", name: "なまえの れんしゅう" };
+                   line: "せんの れんしゅう", unpitsu: "うんぴつ れんしゅう", kakikata: "かきかた れんしゅう", match: "むすんで みよう", name: "なまえの れんしゅう" };
   // ===== せんを なぞろう(うんぴつ)。かたちは viewBox 180×40(mm)の なかの パス =====
   const LX0 = 34, LX1 = 146, LY = 20;
   function waveD(amp, n) {
@@ -1457,8 +1510,62 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
     2: [() => waveD(8, 4), () => zigD(9, 6), () => humpD(4), () => stepsD(5)],
     3: [() => loopD(9), () => zigD(10, 12), () => waveD(9, 8), () => stepsD(9)]
   };
+  // ===== うんぴつ(はば いっぱいの 線)。かたちは 点の ならび(x 14〜166、まんなか cy、上下の はば A)=====
+  //   むずかしさ 1: まっすぐ・ゆるい カーブ / 2: なみ・やま・ぎざぎざ / 3: こまかい なみ・くるくる / 4: ぐるぐる・こまかい ぎざぎざ
+  const UX0 = 14, UX1 = 166;
+  const usample = (f, n) => Array.from({ length: n + 1 }, (_, i) => f(i / n));
+  const uwave = (k) => (cy, A) => usample((t) => [UX0 + (UX1 - UX0) * t, cy - A * Math.sin(Math.PI * k * t)], 60 * k);
+  const uarch = (k, up) => (cy, A) => usample((t) => [UX0 + (UX1 - UX0) * t, cy + (up ? 1 : -1) * (A - 2 * A * Math.abs(Math.sin(Math.PI * k * t)))], 60 * k);
+  const ucurve = (up) => (cy, A) => usample((t) => [UX0 + (UX1 - UX0) * t, cy + (up ? 1 : -1) * (A * 0.8 - 1.6 * A * Math.sin(Math.PI * t))], 80);
+  const uzig = (k) => (cy, A) => Array.from({ length: k + 1 }, (_, i) => [UX0 + (UX1 - UX0) * i / k, cy + (i % 2 ? -A : A)]);
+  const usteps = (k) => (cy, A) => {
+    const w = (UX1 - UX0) / k, pts = [[UX0, cy + A]];
+    for (let i = 0; i < k; i++) { const y0 = cy + (i % 2 ? -A : A), y1 = cy + (i % 2 ? A : -A); pts.push([UX0 + w * (i + 0.5), y0], [UX0 + w * (i + 0.5), y1], [UX0 + w * (i + 1), y1]); }
+    return pts;
+  };
+  // くるくる(わが 上に できる。down で 下)。rr が 大きいほど わが 大きい
+  const uloop = (k, rr, down) => (cy, A) => {
+    const c = (UX1 - UX0) / (2 * Math.PI * k);
+    return usample((t) => {
+      const th = Math.PI + 2 * Math.PI * k * t;
+      return [UX0 + c * (th - Math.PI) - rr * c * Math.sin(th), cy + (down ? 1 : -1) * A * Math.cos(th)];
+    }, 90 * k);
+  };
+  const ustraight = () => (cy) => [[UX0, cy], [UX1, cy]];
+  const UNP_SHAPES = {
+    1: [ustraight(), ucurve(true), ucurve(false), uwave(2), ustraight(), uarch(1, true)],
+    2: [uwave(4), uzig(6), uarch(3, true), uarch(3, false), usteps(4), uwave(3)],
+    3: [ustraight(), uwave(6), uzig(10), uarch(5, true), uloop(5, 2.3), usteps(7)],
+    4: [uloop(6, 2.2), uloop(4, 2.8), uloop(5, 2, true), uzig(14), usteps(9), uwave(9)]
+  };
+  // 点の ならびの 長さと、とちゅうの 位置・むき
+  function uMeasure(pts) {
+    const L = [0];
+    for (let i = 1; i < pts.length; i++) L.push(L[i - 1] + Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]));
+    const at = (s) => {
+      s = Math.max(0, Math.min(L[L.length - 1], s));
+      let i = 1;
+      while (i < L.length - 1 && L[i] < s) i++;
+      const a = pts[i - 1], b = pts[i], seg = L[i] - L[i - 1] || 1, u = (s - L[i - 1]) / seg;
+      return { x: a[0] + (b[0] - a[0]) * u, y: a[1] + (b[1] - a[1]) * u, tx: (b[0] - a[0]) / seg, ty: (b[1] - a[1]) / seg };
+    };
+    return { len: L[L.length - 1], at };
+  }
+  // 線の よこに そって すすむ 矢印(s0 から s1 まで。off だけ 上に ずらす)
+  function uArrow(m, s0, s1, off, sc = 1) {
+    const pts = [];
+    for (let k = 0; k <= 16; k++) {
+      const p = m.at(s0 + (s1 - s0) * k / 16);
+      pts.push([p.x + p.ty * off, p.y - p.tx * off]);
+    }
+    const e = pts[pts.length - 1], q = pts[pts.length - 3];
+    const d = Math.hypot(e[0] - q[0], e[1] - q[1]) || 1, ux = (e[0] - q[0]) / d, uy = (e[1] - q[1]) / d;
+    const h = 2.4 * sc, w = 1.2 * sc;
+    return `<path d="M${pts.map((p) => p[0].toFixed(2) + "," + p[1].toFixed(2)).join(" L")}" fill="none" stroke="#111" stroke-width="${(0.45 * sc).toFixed(2)}" stroke-linecap="round"/>` +
+      `<path d="M${e[0].toFixed(2)},${e[1].toFixed(2)} L${(e[0] - ux * h - uy * w).toFixed(2)},${(e[1] - uy * h + ux * w).toFixed(2)} L${(e[0] - ux * h + uy * w).toFixed(2)},${(e[1] - uy * h - ux * w).toFixed(2)}Z" fill="#111"/>`;
+  }
   // 線の 種類(なぞる 線)。line = せんを なぞろう(viewBox 180)、kana = 字の 画(viewBox 109)
-  const LSTYLES = [["dash", "点線(ふつう)"], ["dashf", "点線(こまかい)"], ["dot", "点(まるい 点)"], ["gray", "うすい 線"],
+  const LSTYLES = [["fukuro", "ふくろ文字(ふちどり)"], ["dash", "点線(ふつう)"], ["dashf", "点線(こまかい)"], ["dot", "点(まるい 点)"], ["gray", "うすい 線"],
                    ["grayb", "うすい 太い 線"], ["solid", "黒い 線"], ["none", "かかない(空白)"]];
   const LST = {
     line: { dash: [1.1, "#8c8c8c", "2.6 1.8"], dashf: [0.9, "#8c8c8c", "1.1 1.0"], dot: [1.5, "#777", "0.01 2.4"],
@@ -1489,7 +1596,72 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
     });
   }
   // ひらがな・カタカナの 画(KanjiVG © Ulrich Apel, CC BY-SA 3.0)。done 画めまで 黒、のこりは style
-  const KST = typeof kanaStrokes !== "undefined" ? kanaStrokes : {};
+  const KST = Object.assign({}, typeof kanaStrokes !== "undefined" ? kanaStrokes : {}, typeof kanjiStrokes !== "undefined" ? kanjiStrokes : {});
+  // ===== かきかた(じゆうに 書く)。KanjiVG の 画(ひらがな・カタカナ・小学校の 漢字)に 書き順の しるしを つける =====
+  // SVG の path(M・C・S・L…)を 点の ならびに する
+  function pathPts(d) {
+    const tk = d.match(/[a-zA-Z]|-?(?:\d+\.?\d*|\.\d+)(?:e-?\d+)?/g) || [];
+    const out = [];
+    let i = 0, cmd = "", x = 0, y = 0, cx = 0, cy = 0, sx = 0, sy = 0;
+    const num = () => Number(tk[i++]);
+    const bez = (x1, y1, x2, y2, x3, y3) => {
+      for (let k = 1; k <= 12; k++) {
+        const t = k / 12, u = 1 - t;
+        out.push([u * u * u * x + 3 * u * u * t * x1 + 3 * u * t * t * x2 + t * t * t * x3, u * u * u * y + 3 * u * u * t * y1 + 3 * u * t * t * y2 + t * t * t * y3]);
+      }
+      cx = x2; cy = y2; x = x3; y = y3;
+    };
+    while (i < tk.length) {
+      if (/[a-zA-Z]/.test(tk[i])) cmd = tk[i++];
+      const rel = cmd === cmd.toLowerCase(), ox = rel ? x : 0, oy = rel ? y : 0, C = cmd.toUpperCase();
+      if (C === "M") { x = num() + ox; y = num() + oy; sx = x; sy = y; cx = x; cy = y; out.push([x, y]); cmd = rel ? "l" : "L"; }
+      else if (C === "L") { x = num() + ox; y = num() + oy; cx = x; cy = y; out.push([x, y]); }
+      else if (C === "H") { x = num() + ox; cx = x; out.push([x, y]); }
+      else if (C === "V") { y = num() + oy; cy = y; out.push([x, y]); }
+      else if (C === "C") { const a = [num() + ox, num() + oy, num() + ox, num() + oy, num() + ox, num() + oy]; bez(...a); }
+      else if (C === "S") { const r1 = 2 * x - cx, r2 = 2 * y - cy; const a = [num() + ox, num() + oy, num() + ox, num() + oy]; bez(r1, r2, ...a); }
+      else if (C === "Z") { x = sx; y = sy; out.push([x, y]); }
+      else i++;
+    }
+    return out;
+  }
+  // 1字の 書き順なぞり。style: 線の 種類 か fukuro(ふくろ文字)。mk: 数字・矢印・●
+  function kakiSvg(ch, style, mk) {
+    const st = KST[ch];
+    if (!st) return null;
+    let body = "";
+    let half;
+    if (style === "fukuro") {
+      half = 4.6;
+      body = st.map((d) => `<path d="${d}" fill="none" stroke="#333" stroke-width="9.2" stroke-linecap="round" stroke-linejoin="round"/>`).join("") +
+        st.map((d) => `<path d="${d}" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>`).join("");
+    } else if (style === "ink") {
+      half = 2.2;
+      body = st.map((d) => `<path d="${d}" ${lineAttr("kana", "ink")}/>`).join("");
+    } else if (style === "light") {
+      half = 3;
+      body = st.map((d) => `<path d="${d}" fill="none" stroke="#cfcfcf" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>`).join("");
+    } else {
+      half = (LST.kana[style] || LST.kana.dash)[0] / 2;
+      body = st.map((d) => `<path d="${d}" ${lineAttr("kana", style)}/>`).join("");
+    }
+    let marks = "";
+    if (mk) st.forEach((d, n) => {
+      const pts = pathPts(d);
+      if (pts.length < 2) return;
+      const m = uMeasure(pts), a = m.at(0.5), z = pts[pts.length - 1], off = half + 3.2;
+      if (mk.arr && m.len > 14) marks += uArrow(m, 0.5, Math.min(14, m.len * 0.4), off, 2.1);
+      if (mk.mid && m.len > 34) marks += uArrow(m, m.len * 0.55 - 6, m.len * 0.55 + 6, off, 2.1);
+      if (mk.sdot) marks += `<circle cx="${pts[0][0].toFixed(1)}" cy="${pts[0][1].toFixed(1)}" r="2.3" fill="#111"/>`;
+      if (mk.edot) marks += `<circle cx="${z[0].toFixed(1)}" cy="${z[1].toFixed(1)}" r="2.3" fill="#111"/>`;
+      if (mk.num) {
+        // 数字は はじまりの すこし 手前(線の 外がわ)
+        const nx = Math.max(4, Math.min(105, pts[0][0] - a.tx * 7 + a.ty * 5)), ny = Math.max(7, Math.min(106, pts[0][1] - a.ty * 7 - a.tx * 5 + 3));
+        marks += `<text x="${nx.toFixed(1)}" y="${ny.toFixed(1)}" font-size="8.5" text-anchor="middle" fill="#111" font-family="BIZ UDPGothic, sans-serif">${n + 1}</text>`;
+      }
+    });
+    return `<svg class="ks" viewBox="0 0 109 109">${body}${marks}</svg>`;
+  }
   function kanaSvg(ch, done, style) {
     const st = KST[ch];
     if (!st) return null;
@@ -1606,7 +1778,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
     return shuffled((YD.pics || {})[script] || [], rng)
       .filter((x) => !seenW.has(x.w) && !seenP.has(x.pic) && seenW.add(x.w) && seenP.add(x.pic)).slice(0, n);
   }
-  function buildYoujiSheet({ ykind, yrow, ytheme, yplay, yscript, ycat, yhint, ymatch, ystep, yname, ylimit, ywn, ylstyle, ycorner, ytrace, seed, no }) {
+  function buildYoujiSheet({ ykind, yrow, ytheme, yplay, yscript, ycat, yhint, ymatch, ystep, yname, ylimit, ywn, ylstyle, ycorner, ytrace, yn, ythick, yarr, ymid, ysdot, yedot, ytext, ylayout, ysize, ynum, seed, no }) {
     const rng = makeRng(seed * 7919 + 4243);
     // ylstyle: なぞる 線の 種類 / ycorner: かどに 点 / ytrace: font(うすい 字)・lines(線で なぞる)・order(書き順)
     const s = { youji: true, ykind, seed, no, lstyle: ylstyle || "dash", corner: !!ycorner, trace: ytrace || "font" };
@@ -1615,6 +1787,24 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       // ylimit:「じゅんばんに」の ときに つかう 行の かず(10 なら あ〜わ行だけ)
       const rows = Number(ylimit) > 0 ? YD[ykind].slice(0, Number(ylimit)) : YD[ykind];
       s.row = yrow === "auto" || yrow == null ? rows[(seed - 1) % rows.length] : YD[ykind][Number(yrow) % YD[ykind].length];
+    } else if (ykind === "kakikata") {
+      // かきかた: 入れた 文(ひらがな・カタカナ・漢字)。1字ずつ / ことばごと / なぞりだけ
+      s.text = String(ytext || "").replace(/\r/g, "").slice(0, 300);
+      s.layout = ["char", "word", "trace"].includes(ylayout) ? ylayout : "char";
+      s.size = ["s", "m", "l"].includes(ysize) ? ysize : "m";
+      s.lstyle = ylstyle && ylstyle !== "none" ? ylstyle : "fukuro";
+      s.mk = { num: ynum !== false, arr: yarr !== false, mid: !!ymid, sdot: ysdot !== false, edot: !!yedot };
+    } else if (ykind === "unpitsu") {
+      // うんぴつ: はば いっぱいの 線を n 本。矢印・●は えらべる
+      s.step = Math.max(1, Math.min(4, Number(ystep) || 1));
+      s.n = [3, 4, 5, 6, 8].includes(Number(yn)) ? Number(yn) : 5;
+      s.thick = ["thin", "mid", "thick"].includes(ythick) ? ythick : "mid";
+      s.lstyle = ylstyle || "grayb";
+      Object.assign(s, { arr: yarr !== false, mid: !!ymid, sdot: ysdot !== false, edot: !!yedot });
+      const sh = UNP_SHAPES[s.step];
+      // 1まいめは やさしい じゅん、ほかは まぜる
+      const order = seed === 1 ? sh.map((_, i) => i) : shuffled(sh.map((_, i) => i), rng);
+      s.shapes = Array.from({ length: s.n }, (_, i) => order[i % order.length]);
     } else if (ykind === "line") {
       s.step = step;
       const shapes = LINE_SHAPES[step].slice();
@@ -1655,6 +1845,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
   }
 
   // ますめ 1つ(十字の 点線つき)。cls: model(お手本)・trace(うすい字)・blank(書く ところ)・ans(答え)
+  let YK_PREV = "";   // まえに 画面に 出した ようじの しゅるい(うんぴつに かわった ことを 知る)
   let YT = { trace: "font", lstyle: "dash" };   // いま 作って いる プリントの なぞり方(youjiSheetHtml が きめる)
   const ybox = (ch, cls) => {
     if (ch && YT.trace !== "font" && (cls === "trace" || cls === "model")) {
@@ -1670,8 +1861,76 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
   };
   const ywordBoxes = (w, cls) => [...w].map((ch) => ybox(ch, cls)).join("");
 
+  // かきかたの ます 1つ。kind: model(お手本)・order(書き順なぞり)・light(うすい 字)・blank(書く)・bare(わくなし お手本)
+  function kakiCell(ch, kind, s, B) {
+    const fs = `width:${B}mm;height:${B}mm;font-size:${(B * 0.78).toFixed(2)}mm`;
+    if (!ch) return `<span class="kk-c${kind === "bare" ? " bare" : ""}" style="${fs}"></span>`;
+    let inner = null;
+    if (kind === "model" || kind === "bare") inner = kakiSvg(ch, "ink", null);
+    else if (kind === "order") inner = kakiSvg(ch, s.lstyle, s.mk);
+    else if (kind === "light") inner = kakiSvg(ch, "light", null);
+    if (kind === "blank") inner = "";
+    if (inner === null) inner = `<i class="${kind === "model" || kind === "bare" ? "m" : "g"}">${esc(ch)}</i>`;
+    return `<span class="kk-c ${kind}" style="${fs}">${inner}</span>`;
+  }
+  function kakikataSheets(s) {
+    const B = { s: 19.5, m: 30, l: 38 }[s.size], AW = 182, AH = 206;
+    const head = (k) => `<div class="sheet yj yj-kakikata">` +
+      `<div class="sheet-head"><span class="label">${YTITLE.kakikata}</span><span class="no">${s.no}</span>` +
+      `<span class="fields"><span class="field name"><i>なまえ</i><b></b></span></span></div>` +
+      (k === 0 ? `<h3 class="yj-h"><span class="yj-badge">かきかた</span></h3>` +
+        `<p class="yj-inst">${s.text.trim() ? (s.layout === "trace" ? "ばんごうの じゅんに、うすい 字を なぞろう。" : "おてほんを よく みて、ばんごうの じゅんに なぞってから、じぶんで かいて みよう。")
+          : "（「かく ことば」の らんに 字を いれると、おてほんと なぞりがきが でます）"}</p>` : `<div class="kk-top"></div>`);
+    const foot = `<div class="sheet-foot"><span class="seed"></span></div></div>`;
+    const lines = s.text.split("\n").map((l) => l.replace(/[\s\u3000]+/g, "")).filter(Boolean);
+    const pagesOut = [];
+    const fit = (k) => Math.max(1, k);
+    if (s.layout === "char") {
+      // 1字が 1れつ(上から お手本・書き順・うすい 字・書く・書く)。右から ならべる
+      const chars = lines.join("").split("");
+      const gap = B * 0.38, cols = fit(Math.floor((AW + gap) / (B + gap))), bands = fit(Math.floor((AH + 8) / (5 * B + 8)));
+      const per = cols * bands, list = chars.length ? chars : Array(Math.min(per, cols)).fill("");
+      for (let p = 0; p < list.length; p += per) {
+        const pg = list.slice(p, p + per);
+        let h = "";
+        for (let b = 0; b < pg.length; b += cols) {
+          h += `<div class="kk-band" style="gap:${gap.toFixed(1)}mm">` + pg.slice(b, b + cols).map((ch) =>
+            `<div class="kk-col">${["model", "order", "light", "blank", "blank"].map((k) => kakiCell(ch, k, s, B)).join("")}</div>`).join("") + `</div>`;
+        }
+        pagesOut.push(h);
+      }
+    } else if (s.layout === "word") {
+      // ことばごとに 4れつ(右から お手本・書き順・うすい 字・書く)。長い ことばは つづきの れつへ
+      const rows = fit(Math.floor(AH / B)), g1 = B * 0.18, g2 = B * 0.7, gw = 4 * B + 3 * g1;
+      const per = fit(Math.floor((AW + g2) / (gw + g2)));
+      const groups = [];
+      for (const w of (lines.length ? lines : [""])) {
+        const cs = w ? w.split("") : Array(5).fill("");
+        for (let k = 0; k < cs.length; k += rows) groups.push(cs.slice(k, k + rows));
+      }
+      for (let p = 0; p < groups.length; p += per) {
+        pagesOut.push(`<div class="kk-band" style="gap:${g2.toFixed(1)}mm">` + groups.slice(p, p + per).map((cs) =>
+          `<div class="kk-grp" style="gap:${g1.toFixed(1)}mm">` + ["bare", "order", "light", "blank"].map((k) =>
+            `<div class="kk-col">${cs.map((ch) => kakiCell(ch, k, s, B)).join("")}</div>`).join("") + `</div>`).join("") + `</div>`);
+      }
+    } else {
+      // なぞりだけ: 書き順なぞりを 右から たて書きで。1行ごとに あたらしい れつ
+      const rows = fit(Math.floor(AH / B)), gap = B * 0.25, cols = fit(Math.floor((AW + gap) / (B + gap)));
+      const colsList = [];
+      for (const w of (lines.length ? lines : [""])) {
+        const cs = w ? w.split("") : Array(5).fill("");
+        for (let k = 0; k < cs.length; k += rows) colsList.push(cs.slice(k, k + rows));
+      }
+      for (let p = 0; p < colsList.length; p += cols) {
+        pagesOut.push(`<div class="kk-band" style="gap:${gap.toFixed(1)}mm">` + colsList.slice(p, p + cols).map((cs) =>
+          `<div class="kk-col">${cs.map((ch) => kakiCell(ch, "order", s, B)).join("")}</div>`).join("") + `</div>`);
+      }
+    }
+    return pagesOut.map((h, k) => head(k) + `<div class="kk-area">${h}</div>` + foot).join("");
+  }
   function youjiSheetHtml(s, opt) {
     const ans = !!opt.answer;
+    if (s.ykind === "kakikata") return kakikataSheets(s);
     YT = { trace: s.trace || "font", lstyle: s.lstyle || "dash" };
     let body = "";
     if (s.ykind === "hira" || s.ykind === "kata") {
@@ -1754,7 +2013,38 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
         `<p class="yj-inst">じの じゅんばんを かえて、ことばを つくろう。ひだりの ことばが ヒントだよ。</p>` +
         `<div class="yj-rows">${items}</div>`;
     }
-    if (s.ykind === "line") {
+    if (s.ykind === "unpitsu") {
+      // 1本の 高さ(mm)。本数が 多いほど ひくく。A は 線の 上下の はば
+      const H = Math.min(42, (204 - 3 * (s.n - 1)) / s.n), A = Math.min(12, H * 0.3);
+      const k = { thin: 0.6, mid: 1, thick: 1.7 }[s.thick] || 1;
+      const st = s.lstyle === "none" ? "grayb" : s.lstyle;
+      const v = LST.line[st] || LST.line.grayb, sw = v[0] * (st === "grayb" ? 1.3 : 1) * k;
+      const rows = s.shapes.map((si) => {
+        const pts = UNP_SHAPES[s.step][si](H / 2, A), m = uMeasure(pts);
+        const d = "M" + pts.map((p) => +p[0].toFixed(2) + "," + +p[1].toFixed(2)).join(" L");
+        const off = sw / 2 + 2.2, a = pts[0], z = pts[pts.length - 1];
+        let mk = "";
+        // はじめの 矢印は さいしょの かどの 手前まで(折れ線)
+        const first = pts.length < 60 ? Math.hypot(pts[1][0] - a[0], pts[1][1] - a[1]) - 2 : 99;
+        if (s.arr) mk += uArrow(m, 1, Math.max(7, Math.min(15, m.len * 0.12, first)), off);
+        if (s.mid) {
+          // とちゅうの 矢印は まんなか ちかくで、みぎ むきに すすむ ところ(わの 中や かどを さける)
+          const ok = (c) => [-6, -3, 0, 3, 6].every((d) => m.at(c + d).tx > 0.45);
+          let best = null;
+          for (let c = m.len * 0.3; c <= m.len * 0.7; c += 0.5) if (ok(c) && (best === null || Math.abs(c - m.len / 2) < Math.abs(best - m.len / 2))) best = c;
+          if (best !== null) mk += uArrow(m, best - 6, best + 6, off);
+        }
+        if (s.sdot) mk += `<circle cx="${a[0].toFixed(2)}" cy="${a[1].toFixed(2)}" r="1.3" fill="#111"/>`;
+        if (s.edot) mk += `<circle cx="${z[0].toFixed(2)}" cy="${z[1].toFixed(2)}" r="1.3" fill="#111"/>`;
+        if (s.corner && pts.length < 60) mk += cornersOf(d).map(([x, y]) => `<circle cx="${x}" cy="${y}" r="1.1" fill="#111"/>`).join("");
+        return `<div class="unp-row"><svg viewBox="0 0 180 ${H.toFixed(2)}" style="height:${H.toFixed(2)}mm" class="unp-svg">` +
+          `<path d="${d}" fill="none" stroke="${v[1]}" stroke-width="${sw.toFixed(2)}"${v[2] ? ` stroke-dasharray="${v[2]}"` : ""} stroke-linecap="round" stroke-linejoin="round"/>${mk}</svg></div>`;
+      }).join("");
+      const how = [s.sdot ? "●から" : "", s.arr || s.mid ? "やじるしの むきに" : "ひだりから みぎへ"].filter(Boolean).join(" ");
+      body = `<h3 class="yj-h"><span class="yj-badge">せんを なぞろう</span></h3>` +
+        `<p class="yj-inst">${how}、せんを なぞろう。${s.corner ? "・の ところで むきを かえるよ。" : ""}</p>` +
+        `<div class="yj-rows unp">${rows}</div>`;
+    } else if (s.ykind === "line") {
       const rows = s.rows.map((r, i) => {
         const m = /^M([\d.]+),([\d.]+)/.exec(r.d);
         const img = (pic, x) => pic ? `<image href="${YPICS[pic.pic] || ""}" x="${x}" y="4" width="28" height="28"/>` : "";
@@ -1822,7 +2112,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
   const state = { grade: 3, gRead: 3, gWrite: 3, gStory: 3, furi: "none", genre: "all",
                   kind: "both", level: 2, nRead: 8, nWrite: 8, seed: 1,
                   ykind: "hira", yrow: "auto", ytheme: "auto", yplay: "mix", yscript: "hira", ycat: "all", yhint: "first",
-                  ymatch: "word", ystep: 1, yname: "", ylimit: 0, ywn: 7, ylstyle: "dash", ycorner: false, ytrace: "font", tk: false, stage: 0, ktopic: "auto", rcase: "lower", rstyle: "std", kfuri: "normal", klearn: "prev" };
+                  ymatch: "word", ystep: 1, yname: "", ylimit: 0, ywn: 7, ylstyle: "dash", ycorner: false, ytrace: "font", yn: 5, ythick: "mid", yarr: true, ymid: false, ysdot: true, yedot: false, ytext: "", ylayout: "char", ysize: "m", ynum: true, tk: false, stage: 0, ktopic: "auto", rcase: "lower", rstyle: "std", kfuri: "normal", klearn: "prev" };
   // 学年 0 は ようじ
   const gradeLabel = (g) => (g === 0 ? "ようじ" : BANKS[g - 1].label);
 
@@ -1868,6 +2158,13 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       state.ytrace = $("f-ytrace").value || "font";
       state.ylstyle = $("f-ylstyle").value || "dash";
       state.ycorner = $("f-ycorner").checked;
+      state.yn = Number($("f-yn").value) || 5;
+      state.ythick = $("f-ythick").value || "mid";
+      for (const k of ["yarr", "ymid", "ysdot", "yedot", "ynum"]) state[k] = $("f-" + k).checked;
+      state.ytext = $("f-ytext").value || "";
+      state.ylayout = $("f-ylayout").value || "char";
+      state.ysize = $("f-ysize").value || "m";
+      if (state.ykind !== "unpitsu" && state.ystep > 3) state.ystep = 3;
       if (!picCats(state.yscript).includes(state.ycat)) state.ycat = "all";
       if (changedId === "f-ykind") state.yrow = "auto";
       state.seed = Math.max(1, Math.min(999999, Number($("f-seed").value) || 1));
@@ -1974,17 +2271,35 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       $("f-ytrace").querySelector('option[value="order"]').hidden = !kanaK;
       $("f-ytrace").value = state.ytrace;
       $("f-ytrace").closest("label").hidden = !traceK;
-      const lsOk = state.ykind === "line" || (traceK && state.ytrace !== "font");
+      // うんぴつに かえた ときは 太い うすい 線から、ほかに もどる ときは 点線に
+      if (state.ykind !== YK_PREV) {
+        if (state.ykind === "unpitsu") state.ylstyle = "grayb";
+        else if (state.ykind === "kakikata") state.ylstyle = "fukuro";
+        else if (YK_PREV === "unpitsu" || YK_PREV === "kakikata") state.ylstyle = "dash";
+        YK_PREV = state.ykind;
+      }
+      const lsOk = ["line", "unpitsu", "kakikata"].includes(state.ykind) || (traceK && state.ytrace !== "font");
       const allowNone = kanaK && state.ytrace === "order";
       if (!allowNone && state.ylstyle === "none") state.ylstyle = "dash";
-      $("f-ylstyle").innerHTML = LSTYLES.filter(([v]) => v !== "none" || allowNone)
+      if (state.ykind !== "kakikata" && state.ylstyle === "fukuro") state.ylstyle = "dash";
+      $("f-ylstyle").innerHTML = LSTYLES.filter(([v]) => (v !== "none" || allowNone) && (v !== "fukuro" || state.ykind === "kakikata"))
         .map(([v, name]) => `<option value="${v}">${allowNone && v !== "none" ? "のこりの 画: " : ""}${name}</option>`).join("");
       $("f-ylstyle").value = state.ylstyle;
       $("f-ylstyle").closest("label").hidden = !lsOk;
       $("f-ycorner").checked = state.ycorner;
-      $("f-ycorner").closest("label").hidden = state.ykind !== "line";
+      $("f-ycorner").closest("label").hidden = !["line", "unpitsu"].includes(state.ykind);
+      $("f-ystep").querySelector('option[value="4"]').hidden = state.ykind !== "unpitsu";
+      $("f-yn").value = String(state.yn);
+      $("f-ythick").value = state.ythick;
+      for (const k of ["yarr", "ymid", "ysdot", "yedot", "ynum"]) $("f-" + k).checked = state[k];
+      for (const id of ["f-yn", "f-ythick"]) $(id).closest("label").hidden = state.ykind !== "unpitsu";
+      for (const id of ["f-yarr", "f-ymid", "f-ysdot", "f-yedot"]) $(id).closest("label").hidden = !["unpitsu", "kakikata"].includes(state.ykind);
+      if ($("f-ytext").value !== state.ytext) $("f-ytext").value = state.ytext;
+      $("f-ylayout").value = state.ylayout;
+      $("f-ysize").value = state.ysize;
+      for (const id of ["f-ytext", "f-ylayout", "f-ysize", "f-ynum"]) $(id).closest("label").hidden = state.ykind !== "kakikata";
       $("f-ymatch").closest("label").hidden = state.ykind !== "match";
-      $("f-ystep").closest("label").hidden = !["match", "line"].includes(state.ykind);
+      $("f-ystep").closest("label").hidden = !["match", "line", "unpitsu"].includes(state.ykind);
       $("f-yname").closest("label").hidden = state.ykind !== "name";
       $("f-ylimit").closest("label").hidden = !(["hira", "kata"].includes(state.ykind) && state.yrow === "auto");
       $("f-ytheme").closest("label").hidden = state.ykind !== "word";
@@ -2330,6 +2645,8 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
     ["pic", "え を みて かこう", "絵を みて、なまえを ますに かきます。", "絵 イラスト 名前 単語"],
     ["play", "ことば あそび", "しりとり・ことば さがし・たりない 字・ならべかえ。", "しりとり 言葉遊び パズル"],
     ["line", "せんを なぞろう", "●から 絵まで、まっすぐ・なみ・ぎざぎざ・くるくるの 線を なぞります。", "線 運筆 点線 ジグザグ"],
+    ["unpitsu", "うんぴつ(線の れんしゅう)", "はば いっぱいの まっすぐ・なみ・ぎざぎざ・くるくるを なぞります。矢印や ●、線の 太さ・本数を えらべます。", "運筆 うんぴつ 線 なぞり ぐるぐる 鉛筆 練習"],
+    ["kakikata", "かきかた(じゆうに 書く)", "すきな ことばを 入れると、お手本・書き順つきの なぞり・書く ますが できます。ひらがな・カタカナ・小学校の 漢字。", "かきかた 書き方 書き順 なぞり書き 名前 ふくろ文字 好きな言葉"],
     ["match", "せんで むすぼう", "絵と ことば(または 同じ 絵)を 線で むすびます。", "線つなぎ 線結び マッチング"],
     ["name", "じぶんの なまえを かこう", "お手本 → なぞり → じぶんで 書く。", "名前"]
   ];
@@ -2581,7 +2898,13 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       $("b-seed").value = String(state.seed);
       $("batch").showModal();
     });
-    for (const id of ["f-grade", "f-gread", "f-gwrite", "f-gstory", "f-genre", "f-furi", "f-kind", "f-ykind", "f-yrow", "f-ytheme", "f-yplay", "f-yscript", "f-ycat", "f-yhint", "f-ymatch", "f-ystep", "f-yname", "f-ylimit", "f-ywn", "f-ytrace", "f-ylstyle", "f-ycorner", "f-tk", "f-level", "f-ktopic", "f-rcase", "f-rstyle", "f-kfuri", "f-klearn",
+    // かく ことばは 打って いる あいだも すこし まって 出しなおす
+    let ytTimer = 0;
+    $("f-ytext").addEventListener("input", () => {
+      clearTimeout(ytTimer);
+      ytTimer = setTimeout(() => { readControls("f-ytext"); if (document.body.dataset.view === "sheet") show(1, state.seed); }, 700);
+    });
+    for (const id of ["f-grade", "f-gread", "f-gwrite", "f-gstory", "f-genre", "f-furi", "f-kind", "f-ykind", "f-yrow", "f-ytheme", "f-yplay", "f-yscript", "f-ycat", "f-yhint", "f-ymatch", "f-ystep", "f-yname", "f-ylimit", "f-ywn", "f-ytrace", "f-ylstyle", "f-ycorner", "f-yn", "f-ythick", "f-yarr", "f-ymid", "f-ysdot", "f-yedot", "f-ytext", "f-ylayout", "f-ysize", "f-ynum", "f-tk", "f-level", "f-ktopic", "f-rcase", "f-rstyle", "f-kfuri", "f-klearn",
                       "f-read", "f-write", "f-seed", "f-model", "f-ans", "f-anslist"]) {
       $(id).addEventListener("change", () => {
         readControls(id);
