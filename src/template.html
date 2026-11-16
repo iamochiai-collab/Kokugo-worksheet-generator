@@ -1043,14 +1043,15 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
   /* ===== プリント1枚ぶんの 中身を 作る ===== */
   // grade は 子どもの 学年(見出しの 字と ふりがなの 基準)。
   // gRead・gWrite・gStory は 読み・書き・長文の 学年(なければ grade と 同じ)。
-  function buildSheet({ grade, kind, level, count, seed, no, nRead, nWrite, gRead, gWrite, gStory, furi, genre, tk }) {
+  // exclude: 出さない 語(まとめて 何まいも 作る とき、まえの ページと かぶらないように)
+  function buildSheet({ grade, kind, level, count, seed, no, nRead, nWrite, gRead, gWrite, gStory, furi, genre, tk, exclude }) {
     gRead = gRead || grade; gWrite = gWrite || grade; gStory = gStory || grade; furi = furi || "none";
     genre = genreFor(gStory, genre);
     const bankRead = BANKS[gRead - 1].entries;
     const bankWrite = BANKS[gWrite - 1].entries;
     const rng = makeRng(seed * 7919 + grade * 101 + level * 7 + (kind === "read" ? 1 : kind === "write" ? 2 : 3) +
                         (gRead - grade) * 1009 + (gWrite - grade) * 2003 + (gStory - grade) * 3001);
-    const used = new Set();
+    const used = new Set(exclude || []);
     const groups = [];
     // 読み・書きの 問題数(指定が なければ 種類ごとの きまった 数)
     let nr, nw;
