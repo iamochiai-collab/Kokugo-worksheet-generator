@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="app-version" content="第36版(2026-11-18)">
+<meta name="app-version" content="第37版(2026-11-18)">
 <title>国語プリント</title>
 <link rel="icon" type="image/png" sizes="32x32" href="{{ICON:32}}">
 <link rel="icon" type="image/png" sizes="64x64" href="{{ICON:64}}">
@@ -494,9 +494,11 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
 .yj-rows.pics { display: grid; grid-template-columns: 1fr 1fr; align-content: space-evenly; gap: 2mm 8mm; }
 .pic-item { position: relative; display: flex; flex-direction: column; align-items: center; gap: 2mm; }
 .pic-item .yn { position: absolute; left: 0; top: 0; }
-.pic-item .pic { width: 27mm; height: 27mm; object-fit: contain; }
-.pic-item .wline .mb { width: 14mm; height: 14mm; font-size: 10.5mm; }
-.yj .pic-item .wline.long .mb { width: 12.5mm; height: 12.5mm; font-size: 9.5mm; }
+.pic-item .pic { width: var(--pic, 27mm); height: var(--pic, 27mm); object-fit: contain; }
+.yj .pic-item .wline .mb { width: var(--mb, 14mm); height: var(--mb, 14mm); font-size: calc(var(--mb, 14mm) * 0.75); }
+/* 3この ときは 1れつ。絵の よこに ますを おく */
+.yj-rows.pics.one { grid-template-columns: 1fr; }
+.yj-rows.pics.one .pic-item { flex-direction: row; justify-content: flex-start; gap: 8mm; padding-left: 6mm; }
 /* しりとり */
 .shiri { display: flex; gap: 3mm; align-items: flex-start; }
 .shiri-line { display: flex; flex-wrap: wrap; align-items: center; gap: 3mm 2mm; }
@@ -737,6 +739,9 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
   <label class="check sheet-only yj-only"><input id="f-ymid" type="checkbox"> とちゅうの 矢印</label>
   <label class="check sheet-only yj-only"><input id="f-ysdot" type="checkbox"> はじめに ●</label>
   <label class="check sheet-only yj-only"><input id="f-yedot" type="checkbox"> おわりに ●</label>
+  <label class="sheet-only yj-only">えの かず
+    <select id="f-ypn"><option value="8">8もん</option><option value="7">7もん</option><option value="6">6もん</option><option value="5">5もん</option><option value="4">4もん(大きい ます)</option><option value="3">3もん(もっと 大きい ます)</option></select>
+  </label>
   <label class="sheet-only yj-only">1まいの ことば
     <select id="f-ywn"><option value="7">7こ</option><option value="6">6こ</option><option value="5">5こ</option><option value="4">4こ(大きい 字)</option><option value="3">3こ(もっと 大きい 字)</option></select>
   </label>
@@ -1904,7 +1909,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
     return shuffled((YD.pics || {})[script] || [], rng)
       .filter((x) => !seenW.has(x.w) && !seenP.has(x.pic) && seenW.add(x.w) && seenP.add(x.pic)).slice(0, n);
   }
-  function buildYoujiSheet({ ykind, yrow, ytheme, yplay, yscript, ycat, yhint, ymatch, ystep, yname, ylimit, ywn, ylstyle, ycorner, ytrace, yn, ythick, yarr, ymid, ysdot, yedot, ytext, ylayout, ysize, ynum, ydir, ypos, seed, no }) {
+  function buildYoujiSheet({ ykind, yrow, ytheme, yplay, yscript, ycat, yhint, ymatch, ystep, yname, ylimit, ywn, ylstyle, ycorner, ytrace, yn, ythick, yarr, ymid, ysdot, yedot, ytext, ylayout, ysize, ynum, ydir, ypos, ypn, seed, no }) {
     const rng = makeRng(seed * 7919 + 4243);
     // ylstyle: なぞる 線の 種類 / ycorner: かどに 点 / ytrace: font(うすい 字)・lines(線で なぞる)・order(書き順)
     const s = { youji: true, ykind, seed, no, lstyle: ylstyle || "dash", corner: !!ycorner, trace: ytrace || "font" };
@@ -1953,12 +1958,13 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
     } else if (ykind === "name") {
       s.name = String(yname || "").replace(/[\u3000\s]+/g, " ").trim().slice(0, 10);
     } else if (ykind === "pic") {
-      // 絵を 8つ(テーマを しぼって 8つ ない ときは ある だけ)。同じ ことばは 1回だけ
+      // 絵を ypn こ(3〜8。テーマを しぼって たりない ときは ある だけ)。同じ ことばは 1回だけ
       s.script = yscript === "kata" ? "kata" : "hira";
+      s.pn = Math.max(3, Math.min(8, Number(ypn) || 8));
       s.hint = yhint || "first";
       const all = ((YD.pics || {})[s.script] || []).filter((x) => !ycat || ycat === "all" || x.cat === ycat);
       const seen = new Set();
-      s.items = shuffled(all, rng).filter((x) => !seen.has(x.w) && seen.add(x.w)).slice(0, 8);
+      s.items = shuffled(all, rng).filter((x) => !seen.has(x.w) && seen.add(x.w)).slice(0, s.pn);
     } else if (ykind === "word") {
       const t = YD.themes;
       s.theme = t[ytheme === "auto" || ytheme == null ? (seed - 1) % t.length : Number(ytheme) % t.length];
@@ -2161,19 +2167,23 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
         `<p class="yj-inst">${order ? "かきじゅんを みながら、1かくずつ なぞってから、じぶんで かいて みよう。" : "いちばん ひだりの じを よく みて、うすい じを なぞってから、じぶんで かいて みよう。"}</p>` +
         `<div class="yj-rows">${rows}</div>`;
     } else if (s.ykind === "pic") {
+      // 絵の かずで 大きさを かえる。3この ときは 1れつに して、絵の よこに 大きな ますを ならべる
+      const N = s.items.length, one = N <= 3;
+      const P = one ? { pic: 56, mb: 28, w: 112 } : N <= 4 ? { pic: 54, mb: 22, w: 84 } : N <= 6 ? { pic: 38, mb: 18, w: 84 } : { pic: 28, mb: 14.5, w: 84 };
       const items = s.items.map((it, i) => {
+        const len = [...it.w].length, mb = Math.min(P.mb, P.w / len);
         const boxes = [...it.w].map((ch, j) => {
           const show = ans || s.hint === "all" || (s.hint === "first" && j === 0);
           return ybox(show ? ch : "", ans ? "ans" : show ? "trace" : "");
         }).join("");
-        return `<div class="pic-item"><span class="yn">${i + 1}</span>` +
+        return `<div class="pic-item" style="--mb:${mb.toFixed(1)}mm"><span class="yn">${i + 1}</span>` +
           `<img class="pic" src="${YPICS[it.pic] || ""}" alt="">` +
-          `<span class="wline${it.w.length >= 6 ? " long" : ""}">${boxes}</span></div>`;
+          `<span class="wline">${boxes}</span></div>`;
       }).join("");
       const inst = { all: "えの なまえを、うすい じを なぞって かこう。", first: "えの なまえを ますに かこう。さいしょの じは なぞってね。",
                      none: "えの なまえを ますに かこう。ますの かずが じの かずだよ。" }[s.hint];
       body = `<h3 class="yj-h"><span class="yj-badge">え を みて かこう</span></h3>` +
-        `<p class="yj-inst">${inst}</p><div class="yj-rows pics">${items}</div>`;
+        `<p class="yj-inst">${inst}</p><div class="yj-rows pics${one ? " one" : ""}" style="--pic:${P.pic}mm">${items}</div>`;
     } else if (s.ykind === "word") {
       // ことばが 少ない ほど ますを 大きく(はばに 入る 大きさまで)
       const words = s.words || s.theme.words;
@@ -2320,7 +2330,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
   const state = { grade: 3, gRead: 3, gWrite: 3, gStory: 3, furi: "none", genre: "all", vmode: "write",
                   kind: "both", level: 2, nRead: 8, nWrite: 8, seed: 1,
                   ykind: "hira", yrow: "auto", ytheme: "auto", yplay: "mix", yscript: "hira", ycat: "all", yhint: "first",
-                  ymatch: "word", ystep: 1, yname: "", ylimit: 0, ywn: 7, ylstyle: "dash", ycorner: false, ytrace: "font", yn: 5, ythick: "mid", yarr: true, ymid: false, ysdot: true, yedot: false, ytext: "", ylayout: "char", ysize: "m", ynum: true, ydir: "v", ypos: "l", tk: false, stage: 0, ktopic: "auto", rcase: "lower", rstyle: "std", kfuri: "normal", klearn: "prev" };
+                  ymatch: "word", ystep: 1, yname: "", ylimit: 0, ywn: 7, ypn: 8, ylstyle: "dash", ycorner: false, ytrace: "font", yn: 5, ythick: "mid", yarr: true, ymid: false, ysdot: true, yedot: false, ytext: "", ylayout: "char", ysize: "m", ynum: true, ydir: "v", ypos: "l", tk: false, stage: 0, ktopic: "auto", rcase: "lower", rstyle: "std", kfuri: "normal", klearn: "prev" };
   // 学年 0 は ようじ
   const gradeLabel = (g) => (g === 0 ? "ようじ" : BANKS[g - 1].label);
 
@@ -2363,6 +2373,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       state.yname = $("f-yname").value || "";
       state.ylimit = Number($("f-ylimit").value) || 0;
       state.ywn = Number($("f-ywn").value) || 7;
+      state.ypn = Number($("f-ypn").value) || 8;
       state.ytrace = $("f-ytrace").value || "font";
       state.ylstyle = $("f-ylstyle").value || "dash";
       state.ycorner = $("f-ycorner").checked;
@@ -2476,6 +2487,8 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       $("f-ylimit").value = String(state.ylimit);
       $("f-ywn").value = String(state.ywn);
       $("f-ywn").closest("label").hidden = state.ykind !== "word";
+      $("f-ypn").value = String(state.ypn);
+      $("f-ypn").closest("label").hidden = state.ykind !== "pic";
       // なぞり方: ひらがな・カタカナは 書き順も、ことば・なまえは うすい 字か 線
       const kanaK = ["hira", "kata"].includes(state.ykind), traceK = kanaK || ["word", "name"].includes(state.ykind);
       if (!kanaK && state.ytrace === "order") state.ytrace = "lines";
@@ -3211,7 +3224,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       clearTimeout(ytTimer);
       ytTimer = setTimeout(() => { readControls("f-ytext"); if (document.body.dataset.view === "sheet") show(1, state.seed); }, 700);
     });
-    for (const id of ["f-grade", "f-gread", "f-gwrite", "f-gstory", "f-genre", "f-furi", "f-vmode", "f-kind", "f-ykind", "f-yrow", "f-ytheme", "f-yplay", "f-yscript", "f-ycat", "f-yhint", "f-ymatch", "f-ystep", "f-yname", "f-ylimit", "f-ywn", "f-ytrace", "f-ylstyle", "f-ycorner", "f-yn", "f-ythick", "f-yarr", "f-ymid", "f-ysdot", "f-yedot", "f-ytext", "f-ylayout", "f-ysize", "f-ynum", "f-ydir", "f-ypos", "f-tk", "f-level", "f-ktopic", "f-rcase", "f-rstyle", "f-kfuri", "f-klearn",
+    for (const id of ["f-grade", "f-gread", "f-gwrite", "f-gstory", "f-genre", "f-furi", "f-vmode", "f-kind", "f-ykind", "f-yrow", "f-ytheme", "f-yplay", "f-yscript", "f-ycat", "f-yhint", "f-ymatch", "f-ystep", "f-yname", "f-ylimit", "f-ywn", "f-ypn", "f-ytrace", "f-ylstyle", "f-ycorner", "f-yn", "f-ythick", "f-yarr", "f-ymid", "f-ysdot", "f-yedot", "f-ytext", "f-ylayout", "f-ysize", "f-ynum", "f-ydir", "f-ypos", "f-tk", "f-level", "f-ktopic", "f-rcase", "f-rstyle", "f-kfuri", "f-klearn",
                       "f-read", "f-write", "f-seed", "f-model", "f-ans", "f-anslist"]) {
       $(id).addEventListener("change", () => {
         readControls(id);
