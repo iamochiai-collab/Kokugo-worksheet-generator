@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="app-version" content="第33版(2026-11-18)">
+<meta name="app-version" content="第34版(2026-11-18)">
 <title>国語プリント</title>
 <link rel="icon" type="image/png" sizes="32x32" href="{{ICON:32}}">
 <link rel="icon" type="image/png" sizes="64x64" href="{{ICON:64}}">
@@ -432,6 +432,8 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
 .vocab .v .n { min-width: 2.3em; font-size: 9pt; color: #333; }
 .vocab .v .word { min-width: 6em; font-weight: bold; }
 .vocab .v .line { flex: 1; border-bottom: 1.2px solid var(--rule); height: 5mm; }
+.vocab .v .line .ans.vm { font-size: 8.5pt; }
+.q-read.vq-list .q .word { font-weight: bold; margin-right: 0.3em; }
 
 .ans-list { margin-top: 8mm; }
 .ans-list h3 { font-size: 12pt; margin: 0 0 3mm; }
@@ -794,6 +796,12 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       <option value="all">すべての 漢字</option>
     </select>
   </label>
+  <label class="sheet-only kk-only">語句の 問題
+    <select id="f-vmode">
+      <option value="choice">意味を えらぶ(3つから)</option>
+      <option value="write">意味を 調べて 書く</option>
+    </select>
+  </label>
   <label class="sheet-only kk-only">読みの 数
     <select id="f-read"></select>
   </label>
@@ -1044,7 +1052,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
   // grade は 子どもの 学年(見出しの 字と ふりがなの 基準)。
   // gRead・gWrite・gStory は 読み・書き・長文の 学年(なければ grade と 同じ)。
   // exclude: 出さない 語(まとめて 何まいも 作る とき、まえの ページと かぶらないように)
-  function buildSheet({ grade, kind, level, count, seed, no, nRead, nWrite, gRead, gWrite, gStory, furi, genre, tk, exclude }) {
+  function buildSheet({ grade, kind, level, count, seed, no, nRead, nWrite, gRead, gWrite, gStory, furi, genre, tk, exclude, vmode }) {
     gRead = gRead || grade; gWrite = gWrite || grade; gStory = gStory || grade; furi = furi || "none";
     genre = genreFor(gStory, genre);
     const bankRead = BANKS[gRead - 1].entries;
@@ -1100,8 +1108,45 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
           return { q: q.q, c: order.map((i) => q.c[i]), a: order.indexOf(q.a) };
         })
       };
+      // 語句の 問題: えらぶ(3つの 意味から)か 書く(調べて 書く)
+      sheet.vmode = vmode === "write" ? "write" : "choice";
+      sheet.story.vq = vocabQ(story.vocab, gStory, rng, false);
     }
     return sheet;
+  }
+
+  /* ===== 語句の 意味を えらぶ 問題 =====
+     正しい 意味(src/data/vocab_mean.tsv)と、同じ 学年の ほかの 語の 意味 2つを ならべる。
+     まちがいの 意味は、なるべく 同じ なかま(動きの 言葉・ようすの 言葉・ものの 名前)から えらぶ。 */
+  const VM = typeof vocabMean !== "undefined" ? vocabMean : {};
+  function vClass(m) {
+    if (/(ようす|こと|もの|ところ|とき|人|気持ち)$/.test(m)) return "n";
+    if (/い$/.test(m)) return "a";
+    if (/[うくぐすつぬぶむる]$/.test(m)) return "v";
+    return "n";
+  }
+  const VPOOL = {};
+  function vocabPoolOf(g) {
+    if (!VPOOL[g]) {
+      const set = new Set();
+      for (const st of READS[g] || []) for (const w of st.vocab || []) if (VM[w]) set.add(VM[w]);
+      VPOOL[g] = [...set];
+    }
+    return VPOOL[g];
+  }
+  // worst: 高さを はかる ときに、いちばん 長い 意味を まちがいに して 組む
+  function vocabQ(vocab, g, rng, worst) {
+    if (!vocab || !vocab.length || vocab.some((w) => !VM[w])) return null;
+    const pool = vocabPoolOf(g), own = new Set(vocab.map((w) => VM[w]));
+    return vocab.map((w) => {
+      const m = VM[w], cls = vClass(m);
+      let cand = pool.filter((x) => !own.has(x) && vClass(x) === cls);
+      if (cand.length < 2) cand = pool.filter((x) => !own.has(x));
+      const picks = worst ? cand.slice().sort((a, b) => b.length - a.length).slice(0, 2) : shuffled(cand, rng).slice(0, 2);
+      const opts = [m].concat(picks);
+      const order = worst ? [1, 2, 0] : shuffled([0, 1, 2], rng);
+      return { w, c: order.map((i) => opts[i]), a: order.indexOf(0) };
+    });
   }
 
   /* ===== 1枚に 入るかの 見つもり =====
@@ -1195,7 +1240,8 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       writeTitle: "漢字を 書きましょう",
       writeInst: "かこみの 読み方に なるように、ますに 漢字を 書きましょう。",
       story: "次の 文章を 読んで、後の 問いに 答えましょう",
-      vocab: "次の 言葉の 意味を 調べて 書きましょう"
+      vocab: "次の 言葉の 意味を 調べて 書きましょう",
+      vocabC: "次の 言葉の 意味に 合う ものを えらびましょう"
     };
     if (grade === 1) return Object.assign(std, {
       title: "こくご プリント", date: "ひづけ", name: "なまえ",
@@ -1204,7 +1250,8 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       writeTitle: "かんじを かきましょう",
       writeInst: "上の よみかたに なるように、ますに かんじを かきましょう。",
       story: "つぎの ぶんしょうを よんで、もんだいに こたえましょう",
-      vocab: "つぎの ことばの いみを しらべて かきましょう"
+      vocab: "つぎの ことばの いみを しらべて かきましょう",
+      vocabC: "つぎの ことばの いみに あう ものを えらびましょう"
     });
     if (grade === 2) return Object.assign(std, {
       date: "日づけ",
@@ -1213,7 +1260,8 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       writeTitle: "かん字を 書きましょう",
       writeInst: "上の 読み方に なるように、ますに かん字を 書きましょう。",
       story: "つぎの 文しょうを 読んで、もんだいに 答えましょう",
-      vocab: "つぎの ことばの いみを しらべて 書きましょう"
+      vocab: "つぎの ことばの いみを しらべて 書きましょう",
+      vocabC: "つぎの ことばの いみに あう ものを えらびましょう"
     });
     if (grade === 3) return Object.assign(std, {
       date: "日づけ",
@@ -1226,7 +1274,9 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
   function longSheetFor(grade, story, furi) {
     const s = buildSheet({ grade, kind: "long", level: 2, seed: 1, no: 1, nRead: 0, nWrite: 0, furi: furi || "none" });
     s.story = { passage: story.passage, vocab: story.vocab,
-                questions: story.questions.map((q) => ({ q: q.q, c: q.c, a: q.a })) };
+                questions: story.questions.map((q) => ({ q: q.q, c: q.c, a: q.a })),
+                vq: vocabQ(story.vocab, grade, null, true) };
+    s.vmode = "choice";
     s.storyH = 0;
     return s;
   }
@@ -1262,7 +1312,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
 
   const MARK = ["ア", "イ", "ウ", "エ"];
 
-  function storyHtml(story, n, opt, lab, furi, grade) {
+  function storyHtml(story, n, opt, lab, furi, grade, vmode) {
     const R = (s) => rubyHtml(s, furi, grade);
     const qs = story.questions.map((q, i) => {
       const choices = q.c.map((c, j) =>
@@ -1272,15 +1322,26 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
         `<span>${R(q.q)}</span><span class="paren">（<u>${inside}</u>）</span></div>` +
         `<div class="choices">${choices}</div></div>`;
     }).join("");
-    const vocab = story.vocab.map((w, i) =>
-      `<div class="v"><span class="n">(${i + 1})</span><span class="word">${R(w)}</span>` +
-      `<span class="line"></span></div>`).join("");
+    // 語句: えらぶ(3つの 意味から 記号で)か、書く(こたえの ページには 意味の れいを 出す)
+    const choose = vmode !== "write" && story.vq;
+    const vocab = choose
+      ? story.vq.map((v, i) => {
+        const choices = v.c.map((c, j) =>
+          `<span class="choice"><span class="mark">${MARK[j]}</span><span>${R(c)}</span></span>`).join("");
+        const inside = opt.answer ? `<span class="ans">${MARK[v.a]}</span>` : "&nbsp;";
+        return `<div class="q-item vq"><div class="q"><span class="n">(${i + 1})</span>` +
+          `<span class="word">${R(v.w)}</span><span class="paren">（<u>${inside}</u>）</span></div>` +
+          `<div class="choices">${choices}</div></div>`;
+      }).join("")
+      : story.vocab.map((w, i) =>
+        `<div class="v"><span class="n">(${i + 1})</span><span class="word">${R(w)}</span>` +
+        `<span class="line">${opt.answer && VM[w] ? `<span class="ans vm">（れい）${R(VM[w])}</span>` : ""}</span></div>`).join("");
     return `<section class="q-group"><h3><em>${n}</em>${lab.story}</h3>` +
       `<div class="reading-box">${R(story.passage)}</div>` +
       `<div class="q-read">${qs}</div></section>` +
       (story.vocab.length
-        ? `<section class="q-group"><h3><em>${n + 1}</em>${lab.vocab}</h3>` +
-          `<div class="vocab">${vocab}</div></section>`
+        ? `<section class="q-group"><h3><em>${n + 1}</em>${choose ? lab.vocabC : lab.vocab}</h3>` +
+          (choose ? `<div class="q-read vq-list">${vocab}</div>` : `<div class="vocab">${vocab}</div>`) + `</section>`
         : "");
   }
 
@@ -1295,7 +1356,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
         `<div class="items">${items}</div></section>`;
     }).join("");
     const furi = sheet.furi || "none";
-    const story = sheet.story ? storyHtml(sheet.story, sheet.groups.length + 1, opt, lab, furi, sheet.grade) : "";
+    const story = sheet.story ? storyHtml(sheet.story, sheet.groups.length + 1, opt, lab, furi, sheet.grade, sheet.vmode) : "";
     // 問題が 少ないときは、あまった 高さを 行の あいだと 大問の あいだに 同じだけ くばる
     const nr = sheet.groups.filter((g) => g.type === "read").reduce((s, g) => s + g.items.length, 0);
     const nw = sheet.groups.filter((g) => g.type === "write").reduce((s, g) => s + g.items.length, 0);
@@ -2245,7 +2306,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
 
   /* ===== 画面 ===== */
   const $ = (id) => document.getElementById(id);
-  const state = { grade: 3, gRead: 3, gWrite: 3, gStory: 3, furi: "none", genre: "all",
+  const state = { grade: 3, gRead: 3, gWrite: 3, gStory: 3, furi: "none", genre: "all", vmode: "choice",
                   kind: "both", level: 2, nRead: 8, nWrite: 8, seed: 1,
                   ykind: "hira", yrow: "auto", ytheme: "auto", yplay: "mix", yscript: "hira", ycat: "all", yhint: "first",
                   ymatch: "word", ystep: 1, yname: "", ylimit: 0, ywn: 7, ylstyle: "dash", ycorner: false, ytrace: "font", yn: 5, ythick: "mid", yarr: true, ymid: false, ysdot: true, yedot: false, ytext: "", ylayout: "char", ysize: "m", ynum: true, ydir: "v", ypos: "l", tk: false, stage: 0, ktopic: "auto", rcase: "lower", rstyle: "std", kfuri: "normal", klearn: "prev" };
@@ -2318,6 +2379,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       state.gStory = Number($("f-gstory").value) || state.grade;
     }
     state.furi = $("f-furi").value || "none";
+    state.vmode = $("f-vmode").value === "write" ? "write" : "choice";
     // 長文の 学年に ない ジャンルなら 「すべて」に もどす
     state.genre = genreFor(state.gStory, changedId === "f-grade" ? state.genre : ($("f-genre").value || state.genre));
     state.level = Number($("f-level").value);
@@ -2484,7 +2546,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       if (g >= 7) state.klearn = "this";
       $("f-klearn").value = state.klearn;
       $("f-klearn").closest("label").hidden = !!(kt && kt.nofuri) || !["over", "kana"].includes(state.kfuri);
-      for (const id of ["f-gread", "f-gwrite", "f-gstory", "f-genre", "f-furi", "f-tk"]) $(id).closest("label").hidden = true;
+      for (const id of ["f-gread", "f-gwrite", "f-gstory", "f-genre", "f-furi", "f-vmode", "f-tk"]) $(id).closest("label").hidden = true;
       $("f-seed").value = String(state.seed);
       return;
     }
@@ -2492,6 +2554,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
     $("f-gwrite").value = String(state.gWrite);
     $("f-gstory").value = String(state.gStory);
     $("f-furi").value = state.furi;
+    $("f-vmode").value = state.vmode;
     const gen = genresOf(state.gStory);
     $("f-genre").innerHTML = gen.map(([k, name]) =>
       `<option value="${k}">${name}(${storiesOf(state.gStory, k).length}話)</option>`).join("");
@@ -2500,6 +2563,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
     $("f-genre").closest("label").hidden = !isLong;
     $("f-gstory").closest("label").hidden = !isLong;
     $("f-furi").closest("label").hidden = !isLong;
+    $("f-vmode").closest("label").hidden = !isLong || state.gStory < 3;
     $("f-gread").closest("label").hidden = !state.nRead;
     $("f-gwrite").closest("label").hidden = !state.nWrite;
     const storyOnly = isLong && !state.nRead && !state.nWrite;
@@ -3112,7 +3176,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       clearTimeout(ytTimer);
       ytTimer = setTimeout(() => { readControls("f-ytext"); if (document.body.dataset.view === "sheet") show(1, state.seed); }, 700);
     });
-    for (const id of ["f-grade", "f-gread", "f-gwrite", "f-gstory", "f-genre", "f-furi", "f-kind", "f-ykind", "f-yrow", "f-ytheme", "f-yplay", "f-yscript", "f-ycat", "f-yhint", "f-ymatch", "f-ystep", "f-yname", "f-ylimit", "f-ywn", "f-ytrace", "f-ylstyle", "f-ycorner", "f-yn", "f-ythick", "f-yarr", "f-ymid", "f-ysdot", "f-yedot", "f-ytext", "f-ylayout", "f-ysize", "f-ynum", "f-ydir", "f-ypos", "f-tk", "f-level", "f-ktopic", "f-rcase", "f-rstyle", "f-kfuri", "f-klearn",
+    for (const id of ["f-grade", "f-gread", "f-gwrite", "f-gstory", "f-genre", "f-furi", "f-vmode", "f-kind", "f-ykind", "f-yrow", "f-ytheme", "f-yplay", "f-yscript", "f-ycat", "f-yhint", "f-ymatch", "f-ystep", "f-yname", "f-ylimit", "f-ywn", "f-ytrace", "f-ylstyle", "f-ycorner", "f-yn", "f-ythick", "f-yarr", "f-ymid", "f-ysdot", "f-yedot", "f-ytext", "f-ylayout", "f-ysize", "f-ynum", "f-ydir", "f-ypos", "f-tk", "f-level", "f-ktopic", "f-rcase", "f-rstyle", "f-kfuri", "f-klearn",
                       "f-read", "f-write", "f-seed", "f-model", "f-ans", "f-anslist"]) {
       $(id).addEventListener("change", () => {
         readControls(id);

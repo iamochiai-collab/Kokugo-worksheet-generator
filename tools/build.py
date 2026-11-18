@@ -59,6 +59,17 @@ for name, var in [('ruby.json', 'rubyData'), ('kanji_grades.json', 'kanjiGrades'
     if f.exists():
         blocks.append(f'  var {var} = {json.dumps(json.loads(f.read_text(encoding="utf-8")), ensure_ascii=False)};')
 
+# --- 語句の 意味(src/data/vocab_mean.tsv。文章問題の「意味を えらぶ」で 使う) ---
+vm = root / 'src' / 'data' / 'vocab_mean.tsv'
+if vm.exists():
+    vmd = {}
+    for line in vm.read_text(encoding='utf-8').splitlines():
+        if line.strip() and not line.startswith('#'):
+            w, m = line.split('\t')
+            vmd[w] = m
+    blocks.append(f'  var vocabMean = {json.dumps(vmd, ensure_ascii=False)};')
+    print(f'  vocab_mean.tsv: {len(vmd)} 語')
+
 # --- ことばの きまり(src/data/kimari.txt。tools/kimari.py で 読む) ---
 sys.path.insert(0, str(root / 'tools'))
 from kimari import load_kimari
@@ -98,7 +109,7 @@ assert '{{' not in out, out[out.index('{{'):out.index('{{') + 60]
 (root / 'docs').mkdir(exist_ok=True)
 (root / 'docs' / 'index.html').write_text(out, encoding='utf-8')
 
-hook = ('  window.__T = { BANKS, READS, hasLong, buildSheet, sheetHtml, makeRng, splitWord, pickEntries, LAYOUT, fits, maxFor, estHeight, layoutOf, defaultCounts, labelsFor, longSheetFor, rubyHtml, learned, storiesOf, genresOf, genreFor, buildYoujiSheet, youjiSheetHtml, kakiSvg, pathPts, YD, YPOOL, KM, kimariTopics, buildKimariSheet, kimariSheetHtml, fixZoom };\n'
+hook = ('  window.__T = { BANKS, READS, hasLong, buildSheet, sheetHtml, makeRng, splitWord, pickEntries, LAYOUT, fits, maxFor, estHeight, layoutOf, defaultCounts, labelsFor, longSheetFor, rubyHtml, learned, storiesOf, genresOf, genreFor, buildYoujiSheet, youjiSheetHtml, vocabQ, kakiSvg, pathPts, YD, YPOOL, KM, kimariTopics, buildKimariSheet, kimariSheetHtml, fixZoom };\n'
         '  renderHome();')
 assert out.count('  renderHome();') == 1
 (root / 'build').mkdir(exist_ok=True)

@@ -3,7 +3,7 @@
   pip install 'fugashi[unidic-lite]'      # 形態素解析(はじめに 1回)
   python3 tools/furigana.py
 
-src/data/read*.json の 本文・問い・選択肢・語句と、src/data/kimari.txt(ことばの きまり)の 文を 形態素解析して、
+src/data/read*.json の 本文・問い・選択肢・語句と、src/data/vocab_mean.tsv の 語句の 意味と、src/data/kimari.txt(ことばの きまり)の 文を 形態素解析して、
 漢字の ところに 読みを つける。結果は「もとの 文 → ふりがなつきの 文」の 表で、
 ふりがなつきの 文は {漢字|かんじ} の 形で 書く。アプリは ふりがなを つける ときだけ これを 使う。
 
@@ -115,6 +115,21 @@ for path in sorted(root.glob('src/data/read*.json')):
                 lost.append(t[:30])
             else:
                 table[t] = m
+
+# --- 語句の 意味(src/data/vocab_mean.tsv。「意味を えらぶ」問題の 選択肢) ---
+vm = root / 'src' / 'data' / 'vocab_mean.tsv'
+if vm.exists():
+    for line in vm.read_text(encoding='utf-8').splitlines():
+        if not line.strip() or line.startswith('#'):
+            continue
+        t = line.split('\t')[1]
+        if t in table or not HAS_KANJI.search(t):
+            continue
+        m = markup(t)
+        if m is None:
+            lost.append(t[:30])
+        else:
+            table[t] = m
 
 # --- ことばの きまり(src/data/kimari.txt)の 文 ---
 # データに もともと ある ｜漢字《よみ》 は そのまま のこし(アプリが「むずかしい 漢字」と して あつかう)、

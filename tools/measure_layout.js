@@ -35,7 +35,7 @@ const path = require('path');
             el.style.transform = '';
             el.style.minHeight = '0';
             el.style.setProperty('--row-extra', '0mm');
-            const qs = [...el.querySelectorAll('.q-read .q-item')].map((q) => q.getBoundingClientRect().height / mm);
+            const qs = [...el.querySelectorAll('.q-read:not(.vq-list) .q-item')].map((q) => q.getBoundingClientRect().height / mm);
             qs.forEach((v, i) => { qmax[i] = Math.max(qmax[i], v); });
             if (k === 0) { total0 = el.scrollHeight / mm; sum0 = qs.reduce((x, y) => x + y, 0); }
           });
