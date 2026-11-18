@@ -14,10 +14,12 @@ const path = require('path');
     const host = document.getElementById('sheets');
     document.body.dataset.view = 'sheet';
     const mm = 96 / 25.4;
-    const out = { longBase: {}, longBaseR: {}, storyH: {}, storyHR: {} };
-    for (const [furi, baseKey, hKey] of [['none', 'longBase', 'storyH'], ['all', 'longBaseR', 'storyHR']])
+    // 語句の 問題が「書く」(〜)と「えらぶ」(〜C)の 両方を 測る
+    const out = {};
+    for (const [vm, sfx] of [['write', ''], ['choice', 'C']])
+    for (const [furi, baseKey, hKey] of [['none', 'longBase' + sfx, 'storyH' + sfx], ['all', 'longBaseR' + sfx, 'storyHR' + sfx]])
     for (const g of Object.keys(T.READS).map(Number)) {
-      const longBase = out[baseKey], storyH = out[hKey];
+      const longBase = out[baseKey] = out[baseKey] || {}, storyH = out[hKey] = out[hKey] || {};
       const hs = [], byGenre = {};
       // 選択肢の ならびは シードで かわり、ならびに よって 折り返しが かわる。
       // 6通りの ならびを ぜんぶ 組んで、問いごとに いちばん 高い ものを 足しあわせる
@@ -29,6 +31,7 @@ const path = require('path');
           const qmax = st.questions.map(() => 0);
           PERMS.forEach((perm, k) => {
             const s = T.longSheetFor(g, st, furi);
+            s.vmode = vm;
             s.story.questions = st.questions.map((q) => ({ q: q.q, c: perm.map((i) => q.c[i]), a: perm.indexOf(q.a) }));
             host.innerHTML = T.sheetHtml(s, { answer });
             const el = host.querySelector('.sheet');

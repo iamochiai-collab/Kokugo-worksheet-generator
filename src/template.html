@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="app-version" content="第34版(2026-11-18)">
+<meta name="app-version" content="第35版(2026-11-18)">
 <title>国語プリント</title>
 <link rel="icon" type="image/png" sizes="32x32" href="{{ICON:32}}">
 <link rel="icon" type="image/png" sizes="64x64" href="{{ICON:64}}">
@@ -796,10 +796,11 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       <option value="all">すべての 漢字</option>
     </select>
   </label>
-  <label class="sheet-only kk-only">語句の 問題
+  <label class="sheet-only kk-only">語句を 調べる 問題
     <select id="f-vmode">
-      <option value="choice">意味を えらぶ(3つから)</option>
-      <option value="write">意味を 調べて 書く</option>
+      <option value="write">あり(意味を 調べて 書く)</option>
+      <option value="choice">あり(意味を 3つから えらぶ)</option>
+      <option value="none">なし</option>
     </select>
   </label>
   <label class="sheet-only kk-only">読みの 数
@@ -1053,6 +1054,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
   // gRead・gWrite・gStory は 読み・書き・長文の 学年(なければ grade と 同じ)。
   // exclude: 出さない 語(まとめて 何まいも 作る とき、まえの ページと かぶらないように)
   function buildSheet({ grade, kind, level, count, seed, no, nRead, nWrite, gRead, gWrite, gStory, furi, genre, tk, exclude, vmode }) {
+    VM_OVERRIDE = ["choice", "none"].includes(vmode) ? vmode : "write";
     gRead = gRead || grade; gWrite = gWrite || grade; gStory = gStory || grade; furi = furi || "none";
     genre = genreFor(gStory, genre);
     const bankRead = BANKS[gRead - 1].entries;
@@ -1090,7 +1092,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       // えらんだ 漢字の 数と いっしょに 1枚に 入る 話だけから えらぶ
       const L = layoutOf("long", gStory, furi, genre);
       const kanji = estHeight("long", nr, nw, gStory, furi, genre) - L.base;
-      const H = furi === "none" ? STORY_H : STORY_HR;
+      const H = tbl(furi === "none" ? "storyH" : "storyHR");
       const fitsStory = (st) => (H[st.id] || L.base) + kanji <= L.limit;
       const pool = storiesOf(gStory, genre);
       const ok = pool.filter(fitsStory);
@@ -1109,9 +1111,10 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
         })
       };
       // 語句の 問題: えらぶ(3つの 意味から)か 書く(調べて 書く)
-      sheet.vmode = vmode === "write" ? "write" : "choice";
+      sheet.vmode = ["choice", "none"].includes(vmode) ? vmode : "write";
       sheet.story.vq = vocabQ(story.vocab, gStory, rng, false);
     }
+    VM_OVERRIDE = null;
     return sheet;
   }
 
@@ -1157,8 +1160,13 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
   // 学年ごとに 実測して 使う(tools/measure_layout.js が src/data/layout.json に 書く)
   // ふりがなを つけると 行が 高く なるので、ふりがな あり(すべての 漢字)の 高さも 別に 測って ある
   const LD = typeof layoutData !== "undefined" ? layoutData : {};
-  const LONG_BASE = LD.longBase || {}, LONG_BASE_R = LD.longBaseR || {};
-  const STORY_H = LD.storyH || {}, STORY_HR = LD.storyHR || {};
+  // 語句を「えらぶ」に すると 高く なるので、その 高さも 別に 測って ある(〜C)。
+  // buildSheet の 中では その プリントの vmode、それ いがいは 画面の せってい(state.vmode)で えらぶ
+  let VM_OVERRIDE = null;
+  const tbl = (k) => {
+    const vm = VM_OVERRIDE || (typeof state !== "undefined" ? state.vmode : "write");
+    return (vm === "choice" && LD[k + "C"]) || LD[k] || {};
+  };
   const LAYOUT = {
     normal: { base: 48.5, group: 22.5, read: 16.8, write: 25.9, limit: 292, cap: 12, top: 30 },
     long:   { base: 193, group: 16.7, read: 6.9, write: 19.0, limit: 294.5, cap: 2.5, top: 12 },
@@ -1174,9 +1182,9 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
   function layoutOf(kind, grade, furi, genre) {
     if (kind === "tk") return LAYOUT.tk;
     if (kind !== "long") return LAYOUT.normal;
-    const table = furi && furi !== "none" ? LONG_BASE_R : LONG_BASE;
+    const table = tbl(furi && furi !== "none" ? "longBaseR" : "longBase");
     const key = genre && genre !== "all" ? `${grade}:${genre}` : null;
-    const base = (key && table[key]) || table[grade] || LONG_BASE[grade] || LAYOUT.long.base;
+    const base = (key && table[key]) || table[grade] || tbl("longBase")[grade] || LAYOUT.long.base;
     return Object.assign({}, LAYOUT.long, { base });
   }
   const rowsOf = (n) => Math.ceil(n / 2);
@@ -1323,7 +1331,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
         `<div class="choices">${choices}</div></div>`;
     }).join("");
     // 語句: えらぶ(3つの 意味から 記号で)か、書く(こたえの ページには 意味の れいを 出す)
-    const choose = vmode !== "write" && story.vq;
+    const choose = vmode === "choice" && story.vq;
     const vocab = choose
       ? story.vq.map((v, i) => {
         const choices = v.c.map((c, j) =>
@@ -1339,7 +1347,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
     return `<section class="q-group"><h3><em>${n}</em>${lab.story}</h3>` +
       `<div class="reading-box">${R(story.passage)}</div>` +
       `<div class="q-read">${qs}</div></section>` +
-      (story.vocab.length
+      (story.vocab.length && vmode !== "none"
         ? `<section class="q-group"><h3><em>${n + 1}</em>${choose ? lab.vocabC : lab.vocab}</h3>` +
           (choose ? `<div class="q-read vq-list">${vocab}</div>` : `<div class="vocab">${vocab}</div>`) + `</section>`
         : "");
@@ -2306,7 +2314,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
 
   /* ===== 画面 ===== */
   const $ = (id) => document.getElementById(id);
-  const state = { grade: 3, gRead: 3, gWrite: 3, gStory: 3, furi: "none", genre: "all", vmode: "choice",
+  const state = { grade: 3, gRead: 3, gWrite: 3, gStory: 3, furi: "none", genre: "all", vmode: "write",
                   kind: "both", level: 2, nRead: 8, nWrite: 8, seed: 1,
                   ykind: "hira", yrow: "auto", ytheme: "auto", yplay: "mix", yscript: "hira", ycat: "all", yhint: "first",
                   ymatch: "word", ystep: 1, yname: "", ylimit: 0, ywn: 7, ylstyle: "dash", ycorner: false, ytrace: "font", yn: 5, ythick: "mid", yarr: true, ymid: false, ysdot: true, yedot: false, ytext: "", ylayout: "char", ysize: "m", ynum: true, ydir: "v", ypos: "l", tk: false, stage: 0, ktopic: "auto", rcase: "lower", rstyle: "std", kfuri: "normal", klearn: "prev" };
@@ -2379,7 +2387,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       state.gStory = Number($("f-gstory").value) || state.grade;
     }
     state.furi = $("f-furi").value || "none";
-    state.vmode = $("f-vmode").value === "write" ? "write" : "choice";
+    state.vmode = ["choice", "none"].includes($("f-vmode").value) ? $("f-vmode").value : "write";
     // 長文の 学年に ない ジャンルなら 「すべて」に もどす
     state.genre = genreFor(state.gStory, changedId === "f-grade" ? state.genre : ($("f-genre").value || state.genre));
     state.level = Number($("f-level").value);
