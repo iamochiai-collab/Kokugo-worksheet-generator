@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="app-version" content="第35版(2026-11-18)">
+<meta name="app-version" content="第36版(2026-11-18)">
 <title>国語プリント</title>
 <link rel="icon" type="image/png" sizes="32x32" href="{{ICON:32}}">
 <link rel="icon" type="image/png" sizes="64x64" href="{{ICON:64}}">
@@ -648,7 +648,10 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
   body { background: #fff; }
   .panel, #home, .batch { display: none !important; }
   #sheets { padding: 0; }
-  .sheet { box-shadow: none; margin: 0 auto; page-break-after: always; break-after: page; }
+  /* 1まい = 1ページ。スマホの 画面用の ちぢみ(transform)は 印刷では 使わない。
+     はみ出しそうな ときは 印刷の 前に 中身を ちぢめる(fitForPrint)ので、ここでは 高さを きっちり 決めて あふれを かくす */
+  .sheet { box-shadow: none; margin: 0 auto !important; transform: none !important;
+    height: 296.6mm; min-height: 0; overflow: hidden; page-break-after: always; break-after: page; }
   .sheet:last-child { page-break-after: auto; break-after: auto; }
 }
 @media (max-width: 820px) {
@@ -2673,6 +2676,30 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       sheet.style.transform = tr;
     }
   }
+  // 印刷の 前: スマホ用の ちぢみを 外し、1ページに 入らない プリントは 中身を すこし ちぢめる
+  // (フォントの ちがいで ふりがなの 行が 高く なる 機械でも、よぶんな ページや 白い すきまが 出ないように)
+  function fitForPrint() {
+    const pagePx = (296.4 * 96) / 25.4;
+    for (const sheet of document.querySelectorAll("#sheets .sheet")) {
+      sheet.style.transform = ""; sheet.style.marginLeft = ""; sheet.style.marginBottom = "";
+      const kids = [...sheet.children];
+      kids.forEach((k) => { k.style.zoom = ""; });
+      sheet.style.minHeight = "0";
+      const cs = getComputedStyle(sheet), pad = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom);
+      let z = 1;
+      for (let t = 0; t < 4 && sheet.offsetHeight > pagePx; t++) {
+        z = Math.max(0.7, z * ((pagePx - pad) / (sheet.offsetHeight - pad)) * 0.995);
+        kids.forEach((k) => { k.style.zoom = z.toFixed(3); });
+      }
+      sheet.style.minHeight = "";
+    }
+  }
+  function afterPrint() {
+    for (const k of document.querySelectorAll("#sheets .sheet > *")) k.style.zoom = "";
+    fitWidth();
+  }
+  window.addEventListener("beforeprint", fitForPrint);
+  window.addEventListener("afterprint", afterPrint);
   function fitWidth() {
     const avail = document.documentElement.clientWidth - 24;
     const paper = 794; // 210mm を 96dpi に したときの ピクセル
@@ -3162,7 +3189,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
       writeControls();
       show(1, state.seed);
     });
-    $("btn-print").addEventListener("click", () => window.print());
+    $("btn-print").addEventListener("click", () => { fitForPrint(); window.print(); });
     $("btn-batch").addEventListener("click", () => {
       readControls();
       $("b-seed").value = String(state.seed);
