@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="app-version" content="第40版(2026-11-19)">
+<meta name="app-version" content="第41版(2026-11-19)">
 <title>国語プリント</title>
 <link rel="icon" type="image/png" sizes="32x32" href="{{ICON:32}}">
 <link rel="icon" type="image/png" sizes="64x64" href="{{ICON:64}}">
@@ -700,9 +700,6 @@ body[data-orient="l"] { --paper-w: 297mm; --paper-h: 210mm; }
 
   <label class="sheet-only">子どもの 学年
     <select id="f-grade"></select>
-  </label>
-  <label class="sheet-only">紙の むき
-    <select id="f-orient"><option value="p">A4 たて</option><option value="l">A4 よこ</option></select>
   </label>
   <label class="sheet-only yj-only">しゅるい
     <select id="f-ykind"></select>
@@ -2033,8 +2030,6 @@ body[data-orient="l"] { --paper-w: 297mm; --paper-h: 210mm; }
   // かきかたの ます 1つ。kind: model(お手本)・order(書き順なぞり)・light(うすい 字)・blank(書く)・bare(わくなし お手本)
   // たて書きに できる ようじの プリント
   const TATE_KINDS = ["hira", "kata", "word", "pic", "play", "name"];
-  // いまの 紙が よこ(A4 よこ)か。ようじの 大きさの 計算で 使う
-  const LAND = () => typeof state !== "undefined" && state.orient === "l";
   function kakiCell(ch, kind, s, B) {
     const fs = `width:${B}mm;height:${B}mm;font-size:${(B * 0.78).toFixed(2)}mm`;
     if (!ch) return `<span class="kk-c${kind === "bare" ? " bare" : ""}" style="${fs}"></span>`;
@@ -2071,7 +2066,7 @@ body[data-orient="l"] { --paper-w: 297mm; --paper-h: 210mm; }
   function anaumeSheets(s, ans, head, foot) {
     const vert = s.dir !== "h";
     const B = { s: 13, m: 17, l: 22 }[s.size], RB = B * 0.42, LG = B * 0.55;
-    const AW = LAND() ? 262 : 180, AH = LAND() ? 124 : 204;
+    const AW = 180, AH = 204;
     const perLine = Math.max(4, Math.floor((vert ? AH : AW) / B));
     const lineW = B + RB + LG, maxLines = Math.max(1, Math.floor(((vert ? AW : AH) + LG) / lineW));
     // 1行(れつ)ずつ: 長い 行は おりかえす。□の かたまりは わけない
@@ -2107,7 +2102,7 @@ body[data-orient="l"] { --paper-w: 297mm; --paper-h: 210mm; }
   }
   function kakikataSheets(s, ans) {
     if (ans && s.layout !== "anaume") return "";
-    const B = { s: 19.5, m: 30, l: 38 }[s.size], AW = LAND() ? 262 : 182, AH = LAND() ? 124 : 206;
+    const B = { s: 19.5, m: 30, l: 38 }[s.size], AW = 182, AH = 206;
     const an = s.layout === "anaume";
     const inst = !s.text.trim() ? (an ? "（「かく ことば」の らんに 文を いれて、□に したい 字を [ ] で かこみます）" : "（「かく ことば」の らんに 字を いれると、おてほんと なぞりがきが でます）")
       : an ? "□に あてはまる 字を かきましょう。"
@@ -2281,7 +2276,7 @@ body[data-orient="l"] { --paper-w: 297mm; --paper-h: 210mm; }
     }
     if (s.ykind === "unpitsu") {
       // 1本の 高さ(mm)。本数が 多いほど ひくく。A は 線の 上下の はば
-      const H = Math.min(42, ((LAND() ? 124 : 204) - 3 * (s.n - 1)) / s.n), A = Math.min(12, H * 0.3);
+      const H = Math.min(42, (204 - 3 * (s.n - 1)) / s.n), A = Math.min(12, H * 0.3);
       const k = { thin: 0.6, mid: 1, thick: 1.7 }[s.thick] || 1;
       const st = s.lstyle === "none" ? "grayb" : s.lstyle;
       const v = LST.line[st] || LST.line.grayb, sw = v[0] * (st === "grayb" ? 1.3 : 1) * k;
@@ -2377,7 +2372,7 @@ body[data-orient="l"] { --paper-w: 297mm; --paper-h: 210mm; }
 
   /* ===== 画面 ===== */
   const $ = (id) => document.getElementById(id);
-  const state = { grade: 3, gRead: 3, gWrite: 3, gStory: 3, furi: "none", genre: "all", vmode: "write", orient: "p",
+  const state = { grade: 3, gRead: 3, gWrite: 3, gStory: 3, furi: "none", genre: "all", vmode: "write",
                   kind: "both", level: 2, nRead: 8, nWrite: 8, seed: 1,
                   ykind: "hira", yrow: "auto", ytheme: "auto", yplay: "mix", yscript: "hira", ycat: "all", yhint: "first",
                   ymatch: "word", ystep: 1, yname: "", ylimit: 0, ywn: 7, ypn: 8, ytate: "h", ylstyle: "dash", ycorner: false, ytrace: "font", yn: 5, ythick: "mid", yarr: true, ymid: false, ysdot: true, yedot: false, ytext: "", ylayout: "char", ysize: "m", ynum: true, ydir: "v", ypos: "l", tk: false, stage: 0, ktopic: "auto", rcase: "lower", rstyle: "std", kfuri: "normal", klearn: "prev" };
@@ -2408,8 +2403,6 @@ body[data-orient="l"] { --paper-w: 297mm; --paper-h: 210mm; }
   }
 
   function readControls(changedId) {
-    state.orient = $("f-orient").value === "l" ? "l" : "p";
-    setOrient();
     state.grade = Number($("f-grade").value);
     if (state.grade === 0) {
       // ようじ:しゅるい・行・テーマ・あそびと シードだけ
@@ -2428,7 +2421,7 @@ body[data-orient="l"] { --paper-w: 297mm; --paper-h: 210mm; }
       state.ypn = Number($("f-ypn").value) || 8;
       state.ytate = $("f-ytate").value === "v" ? "v" : "h";
       // たて書きは A4 よこで。よこ書きに もどしたら たてに もどす
-      if (TATE_KINDS.includes(state.ykind) && (state.ytate === "v" || changedId === "f-ytate")) { state.orient = state.ytate === "v" ? "l" : "p"; setOrient(); }
+      setOrient();
       state.ytrace = $("f-ytrace").value || "font";
       state.ylstyle = $("f-ylstyle").value || "dash";
       state.ycorner = $("f-ycorner").checked;
@@ -2516,7 +2509,6 @@ body[data-orient="l"] { --paper-w: 297mm; --paper-h: 210mm; }
 
   function writeControls() {
     document.body.dataset.youji = state.grade === 0 ? "1" : "";
-    $("f-orient").value = state.orient;
     $("f-grade").value = String(state.grade);
     if (state.grade === 0) {
       const opts = (list) => list.map(([v, name]) => `<option value="${v}">${name}</option>`).join("");
@@ -2717,6 +2709,7 @@ body[data-orient="l"] { --paper-w: 297mm; --paper-h: 210mm; }
   });
 
   function show(n, startSeed) {
+    setOrient();
     const html = pages(n, startSeed).join("");
     $("sheets").innerHTML = html;
     goSheet();
@@ -2733,14 +2726,15 @@ body[data-orient="l"] { --paper-w: 297mm; --paper-h: 210mm; }
   const PAGE_STYLE = document.createElement("style");
   document.head.appendChild(PAGE_STYLE);
   function setOrient() {
-    const l = state.orient === "l";
+    // A4 よこに するのは、ようじの たて書きの ときだけ
+    const l = state.grade === 0 && state.ytate === "v" && TATE_KINDS.includes(state.ykind);
     document.body.dataset.orient = l ? "l" : "";
     PAGE_STYLE.textContent = l ? "@page { size: A4 landscape; margin: 0; }" : "";
   }
   function applyOrient(root) {
     for (const sheet of root.querySelectorAll(".sheet")) {
       if (sheet.classList.contains("cover")) continue;
-      if (state.orient !== "l" && !sheet.classList.contains("tate")) continue;
+      if (!sheet.classList.contains("tate")) continue;
       sheet.classList.add("land");
       const kids = [...sheet.children].filter((k) => !k.classList.contains("sheet-head") && !k.classList.contains("sheet-foot"));
       if (!kids.length) continue;
@@ -2796,7 +2790,7 @@ body[data-orient="l"] { --paper-w: 297mm; --paper-h: 210mm; }
   // 印刷の 前: スマホ用の ちぢみを 外し、1ページに 入らない プリントは 中身を すこし ちぢめる
   // (フォントの ちがいで ふりがなの 行が 高く なる 機械でも、よぶんな ページや 白い すきまが 出ないように)
   function fitForPrint() {
-    const pagePx = ((state.orient === "l" ? 210 : 297) - 0.6) * 96 / 25.4;
+    const pagePx = ((document.body.dataset.orient === "l" ? 210 : 297) - 0.6) * 96 / 25.4;
     for (const sheet of document.querySelectorAll("#sheets .sheet")) {
       if (sheet.classList.contains("land")) { sheet.style.transform = ""; sheet.style.marginLeft = ""; sheet.style.marginBottom = ""; continue; }
       sheet.style.transform = ""; sheet.style.marginLeft = ""; sheet.style.marginBottom = "";
@@ -2820,7 +2814,7 @@ body[data-orient="l"] { --paper-w: 297mm; --paper-h: 210mm; }
   window.addEventListener("afterprint", afterPrint);
   function fitWidth() {
     const avail = document.documentElement.clientWidth - 24;
-    const paper = state.orient === "l" ? 1123 : 794; // 紙の はばを 96dpi に したときの ピクセル
+    const paper = document.body.dataset.orient === "l" ? 1123 : 794; // 紙の はばを 96dpi に したときの ピクセル
     const scale = Math.min(1, avail / paper);
     for (const el of document.querySelectorAll("#sheets .sheet")) {
       // 小さい 画面では 左上を 起点に ちぢめて、まん中に よせる
@@ -3329,7 +3323,7 @@ body[data-orient="l"] { --paper-w: 297mm; --paper-h: 210mm; }
       clearTimeout(ytTimer);
       ytTimer = setTimeout(() => { readControls("f-ytext"); if (document.body.dataset.view === "sheet") show(1, state.seed); }, 700);
     });
-    for (const id of ["f-grade", "f-orient", "f-gread", "f-gwrite", "f-gstory", "f-genre", "f-furi", "f-vmode", "f-kind", "f-ykind", "f-yrow", "f-ytheme", "f-yplay", "f-yscript", "f-ycat", "f-yhint", "f-ymatch", "f-ystep", "f-yname", "f-ylimit", "f-ywn", "f-ypn", "f-ytate", "f-ytrace", "f-ylstyle", "f-ycorner", "f-yn", "f-ythick", "f-yarr", "f-ymid", "f-ysdot", "f-yedot", "f-ytext", "f-ylayout", "f-ysize", "f-ynum", "f-ydir", "f-ypos", "f-tk", "f-level", "f-ktopic", "f-rcase", "f-rstyle", "f-kfuri", "f-klearn",
+    for (const id of ["f-grade", "f-gread", "f-gwrite", "f-gstory", "f-genre", "f-furi", "f-vmode", "f-kind", "f-ykind", "f-yrow", "f-ytheme", "f-yplay", "f-yscript", "f-ycat", "f-yhint", "f-ymatch", "f-ystep", "f-yname", "f-ylimit", "f-ywn", "f-ypn", "f-ytate", "f-ytrace", "f-ylstyle", "f-ycorner", "f-yn", "f-ythick", "f-yarr", "f-ymid", "f-ysdot", "f-yedot", "f-ytext", "f-ylayout", "f-ysize", "f-ynum", "f-ydir", "f-ypos", "f-tk", "f-level", "f-ktopic", "f-rcase", "f-rstyle", "f-kfuri", "f-klearn",
                       "f-read", "f-write", "f-seed", "f-model", "f-ans", "f-anslist"]) {
       $(id).addEventListener("change", () => {
         readControls(id);
@@ -3379,7 +3373,7 @@ body[data-orient="l"] { --paper-w: 297mm; --paper-h: 210mm; }
       const name = `kokugo-${BANKS[state.grade - 1].label}-${state.kind}-seed${seed}`;
       if (format === "pdf") {
         const { jsPDF } = window.jspdf;
-        const land = state.orient === "l";
+        const land = document.body.dataset.orient === "l";
         const pdf = new jsPDF({ unit: "mm", format: "a4", orientation: land ? "landscape" : "portrait" });
         canvases.forEach((c, i) => {
           if (i) pdf.addPage();
