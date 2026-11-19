@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="app-version" content="第39版(2026-11-18)">
+<meta name="app-version" content="第40版(2026-11-19)">
 <title>国語プリント</title>
 <link rel="icon" type="image/png" sizes="32x32" href="{{ICON:32}}">
 <link rel="icon" type="image/png" sizes="64x64" href="{{ICON:64}}">
@@ -665,7 +665,7 @@ body[data-orient="l"] { --paper-w: 297mm; --paper-h: 210mm; }
 .sheet.yj.tate .yj-row { flex-direction: column; align-items: flex-start; gap: 3mm; }
 .sheet.yj.tate .yj-rows.pics { display: flex; flex-direction: column; justify-content: space-evenly; align-items: flex-start; gap: 4mm; }
 .sheet.yj.tate .yj-rows.pics .pic-item { flex-direction: row; align-items: center; padding: 0; gap: 3mm; }
-.sheet.yj.tate .pic-item .yn { left: auto; right: 0; top: 0; }
+.sheet.yj.tate .pic-item .yn, .yj-rows.pics.one .pic-item .yn { position: static; flex: none; }
 .sheet.yj.tate.land .yj-rows.pics .pic-item { flex-direction: row; padding: 0; gap: 3mm; }
 .sheet.yj.tate .yj-wrow .wline.tr { min-width: 0; min-height: calc(var(--mb, 15mm) * var(--len, 1)); }
 .sheet.yj.tate .yj-wrow.stack { column-gap: 2mm; row-gap: 3mm; }
@@ -2210,7 +2210,7 @@ body[data-orient="l"] { --paper-w: 297mm; --paper-h: 210mm; }
       const N = s.items.length, one = N <= 3;
       const P = one ? { pic: 56, mb: 28, w: 112 } : N <= 4 ? { pic: 54, mb: 22, w: 84 } : N <= 6 ? { pic: 38, mb: 18, w: 84 } : { pic: 28, mb: 14.5, w: 84 };
       // たて書き(A4 よこ): 絵を 上、ますを 下に した れつを 右から ならべる
-      if (s.tate) { P.pic = Math.min(48, 262 / N - 10); P.mb = Math.min(28, P.pic * 0.75 + 4); P.w = 128 - P.pic; }
+      if (s.tate) { P.pic = Math.min(48, 262 / N - 10); P.mb = Math.min(28, P.pic * 0.75 + 4); P.w = 118 - P.pic; }
       const items = s.items.map((it, i) => {
         const len = [...it.w].length, mb = Math.min(P.mb, P.w / len);
         const boxes = [...it.w].map((ch, j) => {
@@ -2754,8 +2754,11 @@ body[data-orient="l"] { --paper-w: 297mm; --paper-h: 210mm; }
   function fitLand(sheet) {
     const box = sheet.querySelector(":scope > .lbody");
     if (!box) return;
+    // 4本線の 字が わくから はみ出す ときも ちぢめる(2だんの はばが せまい ため)
+    const lines = [...box.querySelectorAll(".km-4l")];
     const over = () => box.scrollWidth > box.clientWidth + 2 || box.scrollHeight > box.clientHeight + 2 ||
-      [...box.children].some((k) => k.getBoundingClientRect().right > box.getBoundingClientRect().right + 2);
+      [...box.children].some((k) => k.getBoundingClientRect().right > box.getBoundingClientRect().right + 2) ||
+      lines.some((l) => { const t = l.querySelector(".tx"); return t && t.offsetLeft + t.scrollWidth > l.clientWidth + 1; });
     box.style.zoom = "";
     if (!over()) return;
     let lo = 0.55, hi = 1;
