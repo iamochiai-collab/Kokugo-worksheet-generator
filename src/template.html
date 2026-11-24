@@ -159,7 +159,7 @@ body:not([data-tab="domain"]) .dm-only, body[data-tab="domain"] .no-dm { display
 .hd:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(31,42,64,.12); }
 .dm-grade { grid-column: 1 / -1; margin: 12px 0 -2px; font-size: 16px; font-weight: bold; color: var(--c, var(--ui-ink)); border-top: 1.5px dashed var(--ui-line); padding-top: 12px; }
 .dm-grade:first-child { border-top: none; padding-top: 0; margin-top: 0; }
-.kind-card.dm-card { min-height: 150px; --k: var(--c); }
+.kinds .kind-card.dm-card { min-height: 170px; --k: var(--c); }
 /* 右の 列:あたらしく なったこと と キャラ */
 .home-mascot { flex: none; width: 300px; display: flex; flex-direction: column; gap: 10px; align-items: stretch; }
 .home-news { background: #fffdf3; border: 1.5px solid #e8d89a; border-radius: 12px; padding: 6px 6px 6px 12px; font-size: 13px; }
@@ -264,6 +264,7 @@ body[data-youji="1"] .kind-card { min-height: 250px; }
 .kind-card .thumb-in .sheet { margin: 0 !important; box-shadow: none !important; }
 .kind-card .thumb-in .sheet ~ .sheet { display: none; }
 .kind-card.has-thumb .chara { display: none; }
+.kind-card.has-thumb .desc { padding-right: 82px; }
 .kind-card .desc, .kind-card .name { z-index: 1; }
 .kind-card .go { position: relative; z-index: 1; }
 .kind-card:hover .chara { transform: translateY(-4px) rotate(-4deg); }
@@ -3063,18 +3064,18 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
     const out = [];
     const gl = (g) => g === 0 ? "ようじ" : BANKS[g - 1].label;
     if (d.id === "kana") {
-      for (const [yk, name, desc] of YJ_CARDS) out.push({ g: 0, sel: `.yj-card[data-ykind="${yk}"]`, name, desc });
+      for (const [yk, name, desc] of YJ_CARDS) out.push({ g: 0, sel: `.yj-card[data-ykind="${yk}"]`, name, desc, ds: { ykind: yk } });
       return out;
     }
     for (let g = 1; g <= BANKS.length; g++) {
-      if (d.id === "kanji") out.push({ g, sel: '.kk-card[data-kind="both"]', name: "漢字の 読み書き", desc: `${gl(g)}で 習う 漢字の 読みと 書き。` });
+      if (d.id === "kanji") out.push({ g, sel: '.kk-card[data-kind="both"]', name: "漢字の 読み書き", desc: `${gl(g)}で 習う 漢字の 読みと 書き。`, ds: { kind: "both" } });
       if (d.id === "read" && hasLong(g)) {
-        out.push({ g, sel: '.kk-card[data-kind="long"]:not([data-story])', name: "漢字 ＋ 長文読解", desc: "漢字の 読み・書きの あとに、長文と 三択の 問い。" });
-        out.push({ g, sel: '.kk-card[data-story]', name: "文章読解", desc: "文章と 三択の 問い、言葉の 意味だけ。" });
+        out.push({ g, sel: '.kk-card[data-kind="long"]:not([data-story])', name: "漢字 ＋ 長文読解", desc: "漢字の 読み・書きの あとに、長文と 三択の 問い。", ds: { kind: "long" } });
+        out.push({ g, sel: '.kk-card[data-story]', name: "文章読解", desc: "文章と 三択の 問い、言葉の 意味だけ。", ds: { kind: "long", story: "1" } });
       }
       for (const t of kimariTopics(g)) {
         const ok = d.id === "romaji" ? /^romaji/.test(t.id) : d.km.includes(t.id);
-        if (ok && !out.some((x) => x.topic === t.id)) out.push({ g, sel: `.km-card[data-topic="${t.id}"]`, name: t.name, desc: t.desc, topic: t.id });
+        if (ok && !out.some((x) => x.topic === t.id)) out.push({ g, sel: `.km-card[data-topic="${t.id}"]`, name: t.name, desc: t.desc, topic: t.id, ds: { kind: "kimari", topic: t.id } });
       }
     }
     return out;
@@ -3088,7 +3089,8 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
         last = it.g;
         html += `<h3 class="dm-grade" style="--c:${GRADE_COLORS[it.g]}">${it.g === 0 ? "ようじ" : BANKS[it.g - 1].label}</h3>`;
       }
-      html += `<button class="kind-card dm-card" data-i="${i}" style="--c:${GRADE_COLORS[it.g]}">` +
+      const da = Object.entries(it.ds || {}).map(([k, v]) => ` data-${k}="${v}"`).join("");
+      html += `<button class="kind-card dm-card" data-i="${i}" data-g="${it.g}"${da} style="--c:${GRADE_COLORS[it.g]}">` +
         `<span class="name"><span class="n">${it.g === 0 ? "幼" : BANKS[it.g - 1].label.replace(/^小/, "")}</span>${rb(it.name)}</span>` +
         `<span class="desc">${rb(it.desc)}</span><span class="go">作る ▶</span></button>`;
     });
@@ -3300,6 +3302,7 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
      { d:日づけ, t:文, g:学年(0=ようじ), sel:ホームの カード, opts:{せってい}, tab:"stage"|"domain", domain }
      ★ 機能を 足したら ここにも 1行 足すこと(10こまで 出す) */
   const CHANGES = [
+    { d: "26/11/24", t: "特別支援・分野べつの カードにも プリントの 見本", tab: "stage" },
     { d: "26/11/24", t: "ホームを 算数プリントと おなじ 形に(上の 帯・3つの タブ・分野べつ・右に キャラ)", tab: "domain", domain: "kanji" },
     { d: "26/11/19", t: "ようじ:たて書き(A4 よこ・右から)を えらべる", g: 0, sel: '.yj-card[data-ykind="pic"]', opts: { ytate: "v" } },
     { d: "26/11/18", t: "え を みて かこう:問題数を 3〜8もんから えらべる", g: 0, sel: '.yj-card[data-ykind="pic"]', opts: { ypn: 4 } },
@@ -3352,7 +3355,22 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
   // えらんだ 学年の 色を 画面ぜんたいに つけ、キャラクターの ふきだしを かえる
   // ===== メニューの カードに プリントの 見本を つける(いまの 学年・せっていで。見えた ときに 作る) =====
   function cardSheetHtml(b) {
+    // 特別支援の 段階の カード: その 内容の せってい(applyPreset)で 1まいめを 作る。state は あとで もとに もどす
+    if (b.classList.contains("tk-card")) {
+      const save = JSON.parse(JSON.stringify(state));
+      try {
+        applyPreset(stageOf(state.stage).items[Number(b.dataset.i)]);
+        state.seed = 1;
+        return pages(1, 1)[0] || "";
+      } catch (e) { return ""; } finally { for (const k of Object.keys(state)) if (!(k in save)) delete state[k]; Object.assign(state, save); }
+    }
     const st = Object.assign({}, state, { seed: 1, no: 1 });
+    // 分野べつの カード: その カードの 学年で 作る
+    if (b.dataset.g != null) {
+      st.grade = Number(b.dataset.g);
+      if (st.grade > 0) st.gRead = st.gWrite = st.gStory = st.grade;
+    }
+    const G = st.grade;
     try {
       if (b.dataset.ykind) {
         st.ykind = b.dataset.ykind; st.ytate = "h";
@@ -3362,14 +3380,14 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
         if (st.ykind === "name" && !st.yname) st.yname = "やまだ はな";
         return youjiSheetHtml(buildYoujiSheet(st), {});
       }
-      if (!(state.grade > 0)) return "";
+      if (!(G > 0)) return "";
       if (b.dataset.kind === "kimari") {
-        if (!hasKimari(state.grade)) return "";
+        if (!hasKimari(G)) return "";
         st.kind = "kimari"; st.ktopic = b.dataset.topic || "auto";
         return kimariSheetHtml(buildKimariSheet(st), {});
       }
       st.kind = b.dataset.kind;
-      if (st.kind === "long" && !hasLong(state.grade)) return "";
+      if (st.kind === "long" && !hasLong(G)) return "";
       st.genre = genreFor(st.gStory, st.genre);
       [st.nRead, st.nWrite] = b.dataset.story ? [0, 0] : countsFor(st.kind);
       return sheetHtml(buildSheet(st), { model: false });
@@ -3377,7 +3395,7 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
   }
   let THUMB_OBS = null;
   function thumbKey() {
-    return [state.grade, state.level, state.gRead, state.gWrite, state.gStory, state.furi, state.ytext, state.ylayout, state.ypos, state.tk].join("|");
+    return [state.grade, state.level, state.gRead, state.gWrite, state.gStory, state.furi, state.ytext, state.ylayout, state.ypos, state.tk, state.stage, state.domain].join("|");
   }
   function makeThumb(b) {
     const key = thumbKey();
@@ -3390,7 +3408,7 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
     if (html) b.insertAdjacentHTML("beforeend", `<span class="thumb" aria-hidden="true"><span class="thumb-in">${html}</span></span>`);
   }
   function refreshThumbs() {
-    const cards = [...document.querySelectorAll("#home-kinds .kind-card")];
+    const cards = [...document.querySelectorAll("#home-kinds .kind-card, #tk-kinds .kind-card, #dm-kinds .kind-card")];
     if (!("IntersectionObserver" in window)) { cards.forEach(makeThumb); return; }
     if (!THUMB_OBS) THUMB_OBS = new IntersectionObserver((es) => {
       for (const e of es) if (e.isIntersecting) makeThumb(e.target);
@@ -3412,6 +3430,7 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
     if (state.stageMode) renderStageKinds();
     else renderKimariCards();
     if (dm) renderDomainKinds();
+    for (const c of document.querySelectorAll("#tk-kinds .kind-card, #dm-kinds .kind-card")) delete c.dataset.thumbKey;
     setTimeout(refreshThumbs, 0);
     const c = $("home-chara");
     if (pop) { c.classList.remove("pop"); void c.offsetWidth; c.classList.add("pop"); }
