@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="app-version" content="第41版(2026-11-19)">
+<meta name="app-version" content="第42版(2026-11-24)">
 <title>国語プリント</title>
 <link rel="icon" type="image/png" sizes="32x32" href="{{ICON:32}}">
 <link rel="icon" type="image/png" sizes="64x64" href="{{ICON:64}}">
@@ -123,9 +123,65 @@ body[data-youji="1"] .kk-only, body:not([data-youji="1"]) .yj-only { display: no
 body[data-view="sheet"] #home { display: none; }
 body[data-view="home"] #sheets { display: none; }
 
-/* ===== メニュー ===== */
+/* ===== メニュー(算数プリントと おなじ 形:上の 帯・3つの タブ・わく・右に あたらしく なったこと と キャラ) ===== */
 #home { max-width: 1100px; margin: 0 auto; padding: 26px 16px 30px; color: var(--ui-ink); }
-.home-top { display: flex; align-items: flex-end; gap: 20px; }
+.home-top { display: flex; align-items: stretch; gap: 16px; }
+.home-band { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 18px; background: #fff; border: 1px solid #dfe3ea; border-radius: 14px; padding: 10px 14px; box-sizing: border-box; min-width: 0; max-width: 100%; }
+.home-band .home-hero { margin: 0; }
+.home-band .xsite { margin: 0 0 0 auto; }
+.home-band .home-search { margin: 0; flex: 1 1 100%; max-width: none; box-sizing: border-box; min-width: 0; }
+.hn-btn { display: none; }
+.home-tabs { display: flex; gap: 6px; margin-top: 16px; border-bottom: 3px solid var(--tabc); }
+.htab { display: flex; align-items: center; gap: 8px; font: inherit; font-weight: bold; font-size: 15px; padding: 7px 16px 6px 10px; border: 2px solid #d8dbe2; border-bottom: none; border-radius: 12px 12px 0 0; background: #f4f5f8; color: #556; cursor: pointer; text-align: left; line-height: 1.25; }
+.htab img { width: 34px; height: 34px; object-fit: contain; flex: none; }
+.htab small { display: block; font-size: 11px; font-weight: normal; color: #889; }
+.htab:hover { background: #fff; }
+.htab.on { background: var(--tabc); border-color: var(--tabc); color: #fff; }
+.htab.on small { color: rgba(255,255,255,.85); }
+.htab.on img { background: #fff; border-radius: 8px; padding: 2px; box-sizing: border-box; }
+.htab .tl-short { display: none; }
+.home-steps { background: #fff; border: 1.5px solid var(--tabc); border-top: none; border-radius: 0 0 14px 14px; padding: 4px 16px 16px; }
+.home-row { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 4px 28px; }
+.home-row .step-a { flex: 1 1 auto; min-width: 0; }
+.hg-row { flex: 1 1 100%; }
+.hg-cap2 { display: block; font-size: 12px; color: var(--ui-sub); margin: 0 0 5px; }
+.hg-in { display: flex; flex-wrap: wrap; gap: 8px; }
+body { --tabc: var(--gc); }
+body[data-tab="stage"] { --tabc: #b8406a; }
+body[data-tab="domain"] { --tabc: #2f67b1; }
+body[data-tab="domain"] .home-steps .home-step .n { background: var(--tabc); }
+body:not([data-tab="domain"]) .dm-only, body[data-tab="domain"] .no-dm { display: none !important; }
+/* 分野べつ */
+.hd { font: inherit; font-weight: bold; font-size: 15px; display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px 6px 6px; border-radius: 12px; border: 2px solid var(--c); background: #fff; color: var(--c); cursor: pointer; }
+.hd .mk { width: 30px; height: 30px; border-radius: 7px; border: 2px solid var(--c); display: inline-flex; align-items: center; justify-content: center; font-size: 17px; background: #fff; color: var(--c); }
+.hd small { display: block; font-size: 10.5px; font-weight: normal; opacity: .8; }
+.hd[aria-pressed="true"] { background: var(--c); color: #fff; }
+.hd:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(31,42,64,.12); }
+.dm-grade { grid-column: 1 / -1; margin: 12px 0 -2px; font-size: 16px; font-weight: bold; color: var(--c, var(--ui-ink)); border-top: 1.5px dashed var(--ui-line); padding-top: 12px; }
+.dm-grade:first-child { border-top: none; padding-top: 0; margin-top: 0; }
+.kind-card.dm-card { min-height: 150px; --k: var(--c); }
+/* 右の 列:あたらしく なったこと と キャラ */
+.home-mascot { flex: none; width: 300px; display: flex; flex-direction: column; gap: 10px; align-items: stretch; }
+.home-news { background: #fffdf3; border: 1.5px solid #e8d89a; border-radius: 12px; padding: 6px 6px 6px 12px; font-size: 13px; }
+.home-news:empty { display: none; }
+.nw-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 8px; font-weight: bold; color: #8a6a00; padding-right: 6px; }
+.nw-head img { width: 20px; height: 20px; vertical-align: -4px; margin-right: 3px; }
+.nw-head small { flex-basis: 100%; font-weight: normal; font-size: 11px; color: #a08a40; }
+.nw-list { list-style: none; margin: 4px 0 0; padding: 0 6px 0 0; max-height: 168px; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; }
+.nw-list li { border-top: 1px dashed #eadfb5; }
+.nw-row { display: flex; flex-wrap: wrap; align-items: center; gap: 1px 8px; width: 100%; min-height: 33px; padding: 4px 2px; font: inherit; font-size: 13px; text-align: left; color: #333; background: none; border: none; box-sizing: border-box; }
+button.nw-row { cursor: pointer; border-radius: 6px; }
+button.nw-row:hover { background: #fff3c9; }
+.nw-date { color: #8a6a00; font-variant-numeric: tabular-nums; flex: none; font-size: 12px; }
+.nw-tag { flex: none; font-size: 11px; font-weight: bold; color: #fff; background: var(--tc, #a08a40); border-radius: 999px; padding: 1px 8px; white-space: nowrap; }
+.nw-go { margin-left: auto; flex: none; font-size: 12px; font-weight: bold; color: #2f8a96; white-space: nowrap; }
+.nw-text { order: 3; flex-basis: 100%; white-space: normal; line-height: 1.5; }
+.hm-chara { margin-top: auto; display: flex; align-items: center; justify-content: flex-end; }
+.hm-chara .chara { width: 150px; height: 165px; flex: none; }
+.hm-chara .bubble { font-size: 13px; padding: 8px 10px; max-width: 150px; margin: 0 4px 0 0; transform: translateY(-40px); flex: none; box-sizing: border-box; }
+.hm-chara .bubble::after { left: auto; right: -9px; bottom: auto; top: 50%; transform: translateY(-50%) rotate(-45deg); }
+.kinds-head .chara { width: 40px; height: 46px; align-self: flex-end; margin-right: -4px; }
+.kinds-head h2 { color: var(--tabc); }
 .home-main { flex: 1; min-width: 0; }
 .home-hero h1 { font-size: 30px; display: flex; align-items: center; flex-wrap: wrap; gap: 6px 14px; margin: 0; }
 .home-hero .version { font-size: 12px; color: var(--ui-sub); font-weight: normal; }
@@ -154,8 +210,7 @@ body[data-view="home"] #sheets { display: none; }
 .level-btn:last-child { border-right: 0; }
 .level-btn .st { color: #e2a50b; letter-spacing: 1px; }
 .level-btn[aria-pressed="true"] { background: var(--ui-ink); color: #fff; }
-.home-mascot { flex: none; width: 230px; display: flex; flex-direction: column; align-items: center; }
-.home-mascot .chara { width: 170px; height: 175px; }
+
 .bubble {
   position: relative; background: #fff; border: 2.5px solid var(--gc); border-radius: 18px; padding: 9px 16px;
   font-size: 15px; font-weight: bold; color: var(--ui-ink); line-height: 1.5; text-align: center; margin-bottom: 14px;
@@ -251,7 +306,7 @@ body:not([data-stage="1"]) .tk-only, body[data-stage="1"] .no-tk { display: none
 .home-search .hs-clear { flex: none; font: inherit; font-size: 13px; padding: 7px 12px; border-radius: 18px; border: 1px solid #9aa3b5; background: #fff; color: #2b3a55; cursor: pointer; }
 .home-search .hs-clear[hidden], .home-found[hidden] { display: none; }
 .home-search input::-webkit-search-cancel-button { display: none; }
-#home.searching .tk-banner, #home.searching .home-steps, #home.searching .home-mascot,
+#home.searching .home-tabs, #home.searching .home-steps, #home.searching .home-mascot,
 #home.searching > .kinds-head, #home.searching > .kinds, #home.searching .home-cheer, #home.searching > .note { display: none; }
 .home-found { margin-top: 18px; }
 .hf-head { font-size: 14px; color: #444; margin: 0 0 10px; }
@@ -269,11 +324,25 @@ body:not([data-stage="1"]) .tk-only, body[data-stage="1"] .no-tk { display: none
 @media (max-width: 760px) {
   .home-top { flex-direction: column; align-items: stretch; gap: 0; }
   .home-main { display: contents; }
-  .home-hero { order: 1; } .home-search { order: 1; } .tk-banner { order: 1; } .home-mascot { order: 2; } .home-steps { order: 3; }
-  .home-mascot { width: auto; flex-direction: row-reverse; justify-content: flex-end; align-items: flex-end; gap: 6px; margin-top: 12px; }
-  .home-mascot .chara { width: 80px; height: 86px; }
-  .bubble { margin-bottom: 26px; font-size: 14px; }
-  .bubble::after { left: -10px; bottom: 16px; transform: rotate(135deg); }
+  .home-band { order: 1; } .home-mascot { order: 2; } .home-tabs { order: 3; } .home-steps { order: 3; }
+  .home-band .xsite { margin: 0; order: -1; }
+  .home-band .home-search { flex-wrap: nowrap; }
+  .hn-btn { display: inline-flex; flex: none; align-items: center; gap: 3px; font: inherit; font-weight: bold; font-size: 13px; padding: 5px 10px 5px 6px; border-radius: 18px; border: 1.5px solid #e0cd86; background: #fffdf3; color: #8a6a00; cursor: pointer; }
+  .hn-btn img { width: 22px; height: 22px; object-fit: contain; }
+  .hn-btn b { background: #d9534f; color: #fff; border-radius: 999px; font-size: 11px; padding: 0 6px; margin-left: 2px; }
+  .home-mascot { width: auto; margin: 0; gap: 0; }
+  .hm-chara { display: none; }
+  .home-mascot .home-news { display: none; margin-top: 10px; }
+  #home.news-open .home-mascot .home-news { display: block; }
+  .home-tabs { gap: 4px; margin-top: 12px; }
+  .htab { flex: 1; min-width: 0; flex-direction: column; gap: 2px; padding: 6px 2px 5px; font-size: 12.5px; text-align: center; }
+  .htab img { width: 28px; height: 28px; }
+  .htab small, .htab .tl-long { display: none; }
+  .htab .tl-short { display: inline; }
+  .home-steps { padding: 2px 10px 12px; }
+  .home-row > div { width: 100%; }
+  .hd { font-size: 13px; padding: 5px 10px 5px 5px; }
+  .hd small { display: none; }
   .home-hero h1 { font-size: 24px; }
   .hg { width: calc(25% - 6px); }
   .levels { display: flex; } .level-btn { flex: 1; padding: 8px 4px; font-size: 13px; white-space: nowrap; }
@@ -879,42 +948,47 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
 <main id="home">
   <div class="home-top">
     <div class="home-main">
-<nav class="xsite" aria-label="ほかの教科のプリント"><span class="xsite-lbl">教科</span><span class="xsite-a on" style="--xc:#C23B33" aria-current="page">国語</span><a class="xsite-a" style="--xc:#2B66AE" href="https://iamochiai-collab.github.io/Math-worksheet-generator/">算数・数学</a><a class="xsite-a" style="--xc:#2E8A57" href="https://iamochiai-collab.github.io/Science-worksheet-generator/">理科</a><a class="xsite-a" style="--xc:#A87F00" href="https://iamochiai-collab.github.io/Social-worksheet-generator/">社会</a></nav>
-      <div class="home-hero">
+      <div class="home-band">
+        <div class="home-hero">
         <h1><span class="masu" aria-label="国語プリント"><span class="c1">国</span><span class="c2">語</span><span class="c3">プ</span><span class="c4">リ</span><span class="c5">ン</span><span class="c6">ト</span></span><span class="version" id="home-version"></span></h1>
-        <p class="kk-only no-tk">小学1年から 中学までの 漢字の 読み書きと 長文読解の プリントを、ブラウザだけで 作れます。学年と むずかしさを えらんで、プリントの 種類を おしてください。</p>
-        <p class="tk-only">特別支援学校(知的障害)の 国語の 段階に 合わせた プリントです。段階を えらんで、内容の カードを おしてください。問題は 少なめ・字は 大きめです。プリントに 段階の 名前は 出ません。</p>
-        <p class="yj-only no-tk">ようじ(3〜6さい)の ひらがな・カタカナの なぞり書き、絵を みて ことばを かく プリント、ことば あそびです。おうちの かたが えらんで、いっしょに やって みてください。</p>
+        </div>
+        <nav class="xsite" aria-label="ほかの教科のプリント"><span class="xsite-lbl">教科</span><span class="xsite-a on" style="--xc:#C23B33" aria-current="page">国語</span><a class="xsite-a" style="--xc:#2B66AE" href="https://iamochiai-collab.github.io/Math-worksheet-generator/">算数・数学</a><a class="xsite-a" style="--xc:#2E8A57" href="https://iamochiai-collab.github.io/Science-worksheet-generator/">理科</a><a class="xsite-a" style="--xc:#A87F00" href="https://iamochiai-collab.github.io/Social-worksheet-generator/">社会</a></nav>
+        <div class="home-search"><input type="search" id="home-q" autocomplete="off" enterkeyhint="search" aria-label="プリントを さがす"><button type="button" class="hs-clear" id="home-q-clear" hidden>× けす</button><button type="button" class="hn-btn" id="home-news-btn" aria-expanded="false"><img src="{{UI:new}}" alt="">あたらしく<b id="home-news-n"></b></button></div>
       </div>
-      <div class="home-search"><input type="search" id="home-q" autocomplete="off" enterkeyhint="search" aria-label="プリントを さがす"><button type="button" class="hs-clear" id="home-q-clear" hidden>× けす</button></div>
-      <button type="button" class="tk-banner" id="tk-banner"></button>
+      <div class="home-tabs" id="home-tabs" role="tablist" aria-label="えらび方"></div>
       <div class="home-steps">
-        <p class="home-step"><span class="n">1</span><span id="home-step1">学年</span></p>
-        <div class="grades" id="home-grades"></div>
-        <p class="stage-note tk-only" id="stage-note"></p>
-        <div class="level-step">
-        <p class="home-step"><span class="n">2</span>むずかしさ</p>
-        <div class="levels" id="home-levels">
+        <div class="home-row">
+          <div class="step-a">
+            <p class="home-step"><span class="n">1</span><span id="home-step1">学年</span></p>
+            <div class="grades" id="home-grades"></div>
+            <p class="stage-note tk-only" id="stage-note"></p>
+            <p class="stage-note dm-only" id="dm-note"></p>
+          </div>
+          <div class="level-step">
+            <p class="home-step"><span class="n">2</span>むずかしさ</p>
+            <div class="levels" id="home-levels">
           <button class="level-btn" data-level="1"><span class="st">★☆☆</span> やさしい</button>
           <button class="level-btn" data-level="2" aria-pressed="true"><span class="st">★★☆</span> ふつう</button>
           <button class="level-btn" data-level="3"><span class="st">★★★</span> むずかしい</button>
         </div>
+          </div>
         </div>
       </div>
     </div>
     <div class="home-mascot">
-      <div class="bubble" id="home-bubble">こんにちは！<br>学年と むずかしさを<br>えらんでね</div>
-      <div class="chara chara-book" id="home-chara" aria-hidden="true"></div>
+      <div class="home-news" id="home-news"></div>
+      <div class="hm-chara" aria-hidden="true"><div class="bubble" id="home-bubble">こんにちは！<br>学年と むずかしさを<br>えらんでね</div><div class="chara chara-book" id="home-chara"></div></div>
     </div>
   </div>
 
   <div class="home-found" id="home-found" hidden></div>
   <div class="kinds-head">
-    <h2><span id="kinds-title">プリントの 種類</span></h2>
-    <span>おすと すぐに プリントが できます。数や 学年は あとから かえられます。</span>
+    <div class="chara chara-think" aria-hidden="true"></div><h2><span id="kinds-title">プリントの 種類</span></h2>
+    <span id="kinds-hint">おすと すぐに プリントが できます。数や 学年は あとから かえられます。</span>
   </div>
   <div class="kinds tk-only" id="tk-kinds"></div>
-  <div class="kinds no-tk" id="home-kinds">
+  <div class="kinds dm-only" id="dm-kinds"></div>
+  <div class="kinds no-tk no-dm" id="home-kinds">
     <button class="kind-card yj-card" data-kind="both" data-ykind="hira">
       <span class="name"><span class="n">1</span>ひらがな なぞり</span>
       <span class="chara chara-cheer" aria-hidden="true"></span>
@@ -2945,13 +3019,95 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
     }
   }
 
+  // ===== えらび方の タブ(学年べつ・特別支援(段階べつ)・分野べつ) =====
+  const HOME_TABS = [
+    { id: "grade", label: "学年べつ", sub: "ようじ・小学校・中学", icon: "{{UI:tab_grade}}" },
+    { id: "stage", label: "特別支援(段階べつ)", short: "特別支援", sub: "小学部・中学部・高等部", icon: "{{UI:tab_stage}}" },
+    { id: "domain", label: "分野べつ", sub: "学年を こえて 分野ごとに", icon: "{{UI:tab_domain}}" }
+  ];
+  const homeTab = () => state.stageMode ? "stage" : state.domain ? "domain" : "grade";
+  function renderTabs() {
+    const tab = homeTab();
+    document.body.dataset.tab = tab;
+    $("home-tabs").innerHTML = HOME_TABS.map((t) => `<button type="button" role="tab" class="htab${t.id === tab ? " on" : ""}" data-tab="${t.id}" aria-selected="${t.id === tab}"><img src="${t.icon}" alt=""><span>${t.short ? `<span class="tl-long">${t.label}</span><span class="tl-short">${t.short}</span>` : t.label}<small>${t.sub}</small></span></button>`).join("");
+  }
+  function goTab(t) {
+    if (t === homeTab()) return;
+    state.stageMode = t === "stage";
+    state.domain = t === "domain" ? (DOMAINS.some((d) => d.id === store.get("domain")) ? store.get("domain") : "kanji") : null;
+    store.set("stageMode", state.stageMode ? "1" : "0");
+    store.set("tab", t);
+    if (!state.stageMode) state.tk = false;
+    renderGrades();
+    writeControls();
+    paintGrade(true);
+    renderSearch();
+  }
+
+  /* ===== 分野べつ:学年を こえて、分野ごとに プリントを ならべる =====
+     ことばの きまりの 単元は id で 分野に わける。漢字・読むことは 学年ごとの カードも ならべる。 */
+  const DOMAINS = [
+    { id: "kanji", label: "漢字", sub: "読み書き・音訓・部首・送りがな", mk: "漢", c: "#c0392b",
+      km: ["onkun", "bushu", "kumitate", "okuri3", "okuri4", "doukun", "kanjijiten", "jukugo", "jukugo6", "douon"] },
+    { id: "read", label: "読むこと", sub: "長文読解・文章読解", mk: "読", c: "#2f8f8a", km: ["riyuu", "genin"] },
+    { id: "bunpo", label: "文と 表記", sub: "主語・修飾語・つなぎ言葉・かなづかい", mk: "文", c: "#2f67b1",
+      km: ["nobasu", "chiisai", "wo", "kuten", "kata", "kata2", "kanazukai", "shugo", "shushoku", "kosoado", "tsunagi", "tsunagi4", "keitai", "junjo", "bunkumi", "bunsetsu", "bunsei", "hinshi", "katsuyou", "jodoushi"] },
+    { id: "kotoba", label: "言葉", sub: "敬語・ことわざ・慣用句・語い", mk: "言", c: "#8a4fc1",
+      km: ["nakama", "ue", "hantai", "teinei", "kotoba3", "jisho", "kotowaza", "kanyoku", "koji", "keigo", "keigo2", "keigo7", "wago", "ruigi", "hiyu", "hanashi", "hougen", "kana", "koten", "yoji"] },
+    { id: "romaji", label: "ローマ字", sub: "訓令式・ヘボン式", mk: "Ａ", c: "#e0861b", km: [] },
+    { id: "kana", label: "ひらがな・かきかた", sub: "ようじ", mk: "あ", c: "#c0446f", km: [] }
+  ];
+  const GRADE_COLORS = ["#c0446f", "#c0392b", "#e0861b", "#2f8f5b", "#1f8a8a", "#2f67b1", "#8a4fc1", "#a0365d"];
+  function domainItems(d) {
+    // [{g, sel, name, desc}] を 学年ごとに
+    const out = [];
+    const gl = (g) => g === 0 ? "ようじ" : BANKS[g - 1].label;
+    if (d.id === "kana") {
+      for (const [yk, name, desc] of YJ_CARDS) out.push({ g: 0, sel: `.yj-card[data-ykind="${yk}"]`, name, desc });
+      return out;
+    }
+    for (let g = 1; g <= BANKS.length; g++) {
+      if (d.id === "kanji") out.push({ g, sel: '.kk-card[data-kind="both"]', name: "漢字の 読み書き", desc: `${gl(g)}で 習う 漢字の 読みと 書き。` });
+      if (d.id === "read" && hasLong(g)) {
+        out.push({ g, sel: '.kk-card[data-kind="long"]:not([data-story])', name: "漢字 ＋ 長文読解", desc: "漢字の 読み・書きの あとに、長文と 三択の 問い。" });
+        out.push({ g, sel: '.kk-card[data-story]', name: "文章読解", desc: "文章と 三択の 問い、言葉の 意味だけ。" });
+      }
+      for (const t of kimariTopics(g)) {
+        const ok = d.id === "romaji" ? /^romaji/.test(t.id) : d.km.includes(t.id);
+        if (ok && !out.some((x) => x.topic === t.id)) out.push({ g, sel: `.km-card[data-topic="${t.id}"]`, name: t.name, desc: t.desc, topic: t.id });
+      }
+    }
+    return out;
+  }
+  function renderDomainKinds() {
+    const d = DOMAINS.find((x) => x.id === state.domain) || DOMAINS[0];
+    const items = domainItems(d);
+    let html = "", last = null;
+    items.forEach((it, i) => {
+      if (it.g !== last) {
+        last = it.g;
+        html += `<h3 class="dm-grade" style="--c:${GRADE_COLORS[it.g]}">${it.g === 0 ? "ようじ" : BANKS[it.g - 1].label}</h3>`;
+      }
+      html += `<button class="kind-card dm-card" data-i="${i}" style="--c:${GRADE_COLORS[it.g]}">` +
+        `<span class="name"><span class="n">${it.g === 0 ? "幼" : BANKS[it.g - 1].label.replace(/^小/, "")}</span>${rb(it.name)}</span>` +
+        `<span class="desc">${rb(it.desc)}</span><span class="go">作る ▶</span></button>`;
+    });
+    $("dm-kinds").innerHTML = html || '<p class="note">この 分野の プリントは まだ ありません</p>';
+    $("dm-kinds").dataset.domain = d.id;
+    DOMAIN_ITEMS = items;
+    $("dm-note").textContent = `${d.label}:${d.sub}。学年の じゅんに ならんで います(上ほど やさしい)。`;
+  }
+  let DOMAIN_ITEMS = [];
+
   function renderGrades() {
     const g = $("home-grades");
     document.body.dataset.stage = state.stageMode ? "1" : "";
-    $("home-step1").textContent = state.stageMode ? "段階" : "学年";
-    $("tk-banner").innerHTML = state.stageMode
-      ? '<span class="tk-badge">学年べつ</span><span class="tk-main"><b>学年べつ(ようじ・小学校・中学)に もどる</b><small>ふつうの 学年の プリントは こちら</small></span><span class="tk-go">◀</span>'
-      : '<span class="tk-badge">特別支援</span><span class="tk-main"><b>特別支援学校 各段階の プリントは こちら！</b><small>知的障害の 特別支援学校の 学習指導要領(国語)の 段階に 合わせています。小学部1〜3段階・中学部1・2段階・高等部1・2段階</small></span><span class="tk-go">▶</span>';
+    renderTabs();
+    $("home-step1").textContent = state.domain ? "分野" : state.stageMode ? "段階" : "学年";
+    if (state.domain) {
+      g.innerHTML = DOMAINS.map((d) => `<button type="button" class="hd" data-domain="${d.id}" style="--c:${d.c}" aria-pressed="${d.id === state.domain}"><span class="mk">${d.mk}</span><span>${d.label}<small>${d.sub}</small></span></button>`).join("");
+      return;
+    }
     if (state.stageMode) {
       g.innerHTML = ["小学部", "中学部", "高等部"].map((part) =>
         `<div class="hg-group"><span class="hg-cap">${part}</span>` + STAGES.filter((x) => x.part === part).map((x) =>
@@ -2961,11 +3117,16 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
     }
     // 「小3」は 小さい「小」と 大きい「3」に する
     const big = (label) => label.replace(/^小(\d)$/, "<small>小</small>$1");
-    g.innerHTML = `<button class="hg c0" data-grade="0" aria-pressed="${state.grade === 0}">` +
-      `<span class="name yo">ようじ</span><span class="count">ひらがな</span></button>` + BANKS.map((b, i) =>
+    // 算数プリントと おなじ ように「ようじ・小学校」と「中学」に 分けて ならべる
+    const btn = (b, i) =>
       `<button class="hg c${i + 1}" data-grade="${i + 1}" aria-pressed="${state.grade === i + 1}">` +
       `<span class="name">${big(b.label)}</span>` +
-      `<span class="count">${b.entries.length}語</span></button>`).join("");
+      `<span class="count">${b.entries.length}語</span></button>`;
+    g.innerHTML = `<div class="hg-row"><span class="hg-cap2">ようじ・小学校</span><div class="hg-in">` +
+      `<button class="hg c0" data-grade="0" aria-pressed="${state.grade === 0}">` +
+      `<span class="name yo">ようじ</span><span class="count">ひらがな</span></button>` +
+      BANKS.slice(0, 6).map((b, i) => btn(b, i)).join("") + `</div></div>` +
+      `<div class="hg-row"><span class="hg-cap2">中学</span><div class="hg-in">` + BANKS.slice(6).map((b, i) => btn(b, i + 6)).join("") + `</div></div>`;
   }
 
   // ことばの きまりの 単元を、漢字の カード(1〜4)の あとに 5・6・7 … と ならべる
@@ -3118,6 +3279,8 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
 
   function renderHome() {
     state.stageMode = store.get("stageMode") === "1";
+    state.domain = !state.stageMode && store.get("tab") === "domain" ? (DOMAINS.some((d) => d.id === store.get("domain")) ? store.get("domain") : "kanji") : null;
+    renderNews();
     state.stage = Number(store.get("stage")) || 21;
     renderGrades();
     const gradeOptions = BANKS.map((b, i) => `<option value="${i + 1}">${b.label}</option>`).join("");
@@ -3131,6 +3294,59 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
 
     $("version").textContent = $("home-version").textContent = document.querySelector('meta[name="app-version"]').content;
     paintGrade();
+  }
+
+  /* ===== あたらしく なったこと(ホームの 右)。あたらしい ものを 上に 足す。「つくる ›」で その プリントへ =====
+     { d:日づけ, t:文, g:学年(0=ようじ), sel:ホームの カード, opts:{せってい}, tab:"stage"|"domain", domain }
+     ★ 機能を 足したら ここにも 1行 足すこと(10こまで 出す) */
+  const CHANGES = [
+    { d: "26/11/24", t: "ホームを 算数プリントと おなじ 形に(上の 帯・3つの タブ・分野べつ・右に キャラ)", tab: "domain", domain: "kanji" },
+    { d: "26/11/19", t: "ようじ:たて書き(A4 よこ・右から)を えらべる", g: 0, sel: '.yj-card[data-ykind="pic"]', opts: { ytate: "v" } },
+    { d: "26/11/18", t: "え を みて かこう:問題数を 3〜8もんから えらべる", g: 0, sel: '.yj-card[data-ykind="pic"]', opts: { ypn: 4 } },
+    { d: "26/11/18", t: "文章読解:語句を 調べる 問題を「書く・えらぶ・なし」から", g: 4, sel: '.kk-card[data-story]', opts: { vmode: "choice" } },
+    { d: "26/11/18", t: "印刷で よぶんな ページや 白い すきまが 出ないように", tag: "印刷" },
+    { d: "26/11/12", t: "かきかた:お手本つき・あなうめ(ふりがな・こたえ)", g: 0, sel: '.yj-card[data-ykind="kakikata"]', opts: { ylayout: "anaume", ytext: "きょうは [学校(がっこう)]に いきました。" } },
+    { d: "26/11/12", t: "ようじ:かきかた(すきな ことばを 書き順つきで)", g: 0, sel: '.yj-card[data-ykind="kakikata"]' },
+    { d: "26/11/12", t: "ようじ:うんぴつ(線の れんしゅう)", g: 0, sel: '.yj-card[data-ykind="unpitsu"]' },
+    { d: "26/11/12", t: "メニューの カードに プリントの 見本", tag: "ホーム" },
+    { d: "26/11/11", t: "ローマ字:のばす 音を ハイフンで 書く 形も えらべる", g: 3, sel: '.km-card[data-topic="romaji12"]', opts: { rstyle: "hyp" } }
+  ].slice(0, 10);
+  function renderNews() {
+    const box = $("home-news");
+    $("home-news-n").textContent = String(CHANGES.length);
+    box.innerHTML = `<div class="nw-head"><span><img src="{{UI:bell}}" alt="">あたらしく なったこと</span>${CHANGES.length > 3 ? `<small>スクロールで ${CHANGES.length}こ 見られます</small>` : ""}</div><ul class="nw-list">${CHANGES.map((c, i) => {
+      const tag = c.tag || (c.tab === "domain" ? "分野べつ" : c.g === 0 ? "ようじ" : c.g ? BANKS[c.g - 1].label : "");
+      const tc = c.tab === "domain" ? "#2f67b1" : c.g != null ? GRADE_COLORS[c.g] : "";
+      const inner = `<span class="nw-date">${esc(c.d)}</span>${tag ? `<span class="nw-tag"${tc ? ` style="--tc:${tc}"` : ""}>${esc(tag)}</span>` : ""}<span class="nw-text">${esc(c.t)}</span>`;
+      const link = c.sel || c.tab;
+      return `<li>${link ? `<button type="button" class="nw-row" data-ci="${i}">${inner}<span class="nw-go">${c.tab ? "ひらく" : "つくる"} ›</span></button>` : `<div class="nw-row">${inner}</div>`}</li>`;
+    }).join("")}</ul>`;
+  }
+  function goChange(c) {
+    if (c.tab) {
+      if (c.domain) store.set("domain", c.domain);
+      goTab(c.tab);
+      if (c.domain && state.domain !== c.domain) { state.domain = c.domain; renderGrades(); paintGrade(true); }
+      $("kinds-title").scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
+    openCard(c);
+  }
+  // 学年(g)に して、ホームの カード(sel)を おした ときと おなじ ように プリントを ひらく。opts が あれば その せっていで 作り直す
+  function openCard(it) {
+    if (state.stageMode) { state.stageMode = false; store.set("stageMode", "0"); state.tk = false; }
+    state.grade = it.g;
+    if (it.g > 0) state.gRead = state.gWrite = state.gStory = it.g;
+    writeControls();
+    renderKimariCards();
+    const card = document.querySelector(`#home-kinds ${it.sel}`);
+    if (!card) return;
+    card.click();
+    if (it.opts) {
+      Object.assign(state, it.opts);
+      writeControls();
+      show(1, state.seed);
+    }
   }
 
   // えらんだ 学年の 色を 画面ぜんたいに つけ、キャラクターの ふきだしを かえる
@@ -3189,24 +3405,34 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
     for (const el of document.querySelectorAll(".hg")) el.setAttribute("aria-pressed", String(
       el.dataset.stage ? Number(el.dataset.stage) === state.stage : Number(el.dataset.grade) === g));
     const label = state.stageMode ? stageOf(state.stage).name : gradeLabel(g);
-    $("home-bubble").innerHTML = `<b>${label}</b>の プリントを<br>作ろう！`;
-    $("kinds-title").textContent = state.stageMode ? `${label}の 内容` : `${label}の プリント`;
+    const dm = state.domain && DOMAINS.find((x) => x.id === state.domain);
+    $("home-bubble").innerHTML = dm ? `<b>${dm.label}</b>の<br>プリントを 作ろう！` : `<b>${label}</b>の プリントを<br>作ろう！`;
+    $("kinds-title").textContent = dm ? `分野べつ:${dm.label}` : state.stageMode ? `${label}の 内容` : `${label}の プリント`;
+    $("kinds-hint").textContent = dm ? "カードを おすと、その 学年の プリントが できます。" : "おすと すぐに プリントが できます。数や 学年は あとから かえられます。";
     if (state.stageMode) renderStageKinds();
     else renderKimariCards();
+    if (dm) renderDomainKinds();
     setTimeout(refreshThumbs, 0);
     const c = $("home-chara");
     if (pop) { c.classList.remove("pop"); void c.offsetWidth; c.classList.add("pop"); }
   }
 
   function bind() {
-    $("tk-banner").addEventListener("click", () => {
-      state.stageMode = !state.stageMode;
-      store.set("stageMode", state.stageMode ? "1" : "0");
-      if (!state.stageMode) state.tk = false;
-      renderGrades();
-      writeControls();
-      paintGrade(true);
-      renderSearch();
+    $("home-tabs").addEventListener("click", (e) => {
+      const b = e.target.closest(".htab");
+      if (b) goTab(b.dataset.tab);
+    });
+    $("home-news").addEventListener("click", (e) => {
+      const b = e.target.closest(".nw-row[data-ci]");
+      if (b) goChange(CHANGES[Number(b.dataset.ci)]);
+    });
+    $("home-news-btn").addEventListener("click", () => {
+      const on = $("home").classList.toggle("news-open");
+      $("home-news-btn").setAttribute("aria-expanded", String(on));
+    });
+    $("dm-kinds").addEventListener("click", (e) => {
+      const b = e.target.closest(".dm-card");
+      if (b) openCard(DOMAIN_ITEMS[Number(b.dataset.i)]);
     });
     $("tk-kinds").addEventListener("click", (e) => {
       const b = e.target.closest(".tk-card");
@@ -3217,6 +3443,14 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
       show(1, state.seed);
     });
     $("home-grades").addEventListener("click", (e) => {
+      const hd = e.target.closest(".hd");
+      if (hd) {
+        state.domain = hd.dataset.domain;
+        store.set("domain", state.domain);
+        renderGrades();
+        paintGrade(true);
+        return;
+      }
       const b = e.target.closest(".hg");
       if (!b) return;
       if (b.dataset.stage) {
