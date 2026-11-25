@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="app-version" content="第42版(2026-11-24)">
+<meta name="app-version" content="第43版(2026-11-25)">
 <title>国語プリント</title>
 <link rel="icon" type="image/png" sizes="32x32" href="{{ICON:32}}">
 <link rel="icon" type="image/png" sizes="64x64" href="{{ICON:64}}">
@@ -83,6 +83,18 @@ body { background: var(--ui-bg); }
 .panel .subtitle { font-size: 12px; color: var(--ui-sub); }
 .panel .version { margin-left: auto; font-size: 12px; color: var(--ui-sub); }
 body[data-view="home"] .panel { display: none; }
+/* 設定の パネルを 小さく(1行に)する。もう一度 おすと もとに もどる */
+.panel .btn-mini { flex: none; font-size: 13px; padding: 4px 12px; border-width: 1.5px; }
+.panel .mini-sum { display: none; }
+.panel.mini { padding-top: 6px; padding-bottom: 6px; align-items: center; }
+.panel.mini > label { display: none !important; }
+.panel.mini .title-row { width: auto; flex: 1 1 260px; min-width: 0; flex-wrap: nowrap; }
+.panel.mini .title-row .chara, .panel.mini .title-row .subtitle, .panel.mini .title-row .version { display: none; }
+.panel.mini .title-row h1 { font-size: 12px; flex: none; }
+.panel.mini .mini-sum { display: block; flex: 1; min-width: 0; font-size: 13px; font-weight: bold; color: var(--ui-ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.panel.mini .title-row .btn-mini { margin-left: 0; }
+.panel:not(.mini) .title-row .btn-mini { margin-left: 4px; }
+@media (max-width: 760px) { .panel .btn-mini { display: none; } }
 .panel label { display: flex; flex-direction: column; gap: 3px; font-size: 12px; color: var(--ui-sub); font-weight: bold; }
 .panel label[hidden] { display: none; }
 /* かきかたの「かく ことば」は 大きく(1れつ ぜんぶ つかう) */
@@ -211,6 +223,74 @@ button.nw-row:hover { background: #fff3c9; }
 .level-btn .st { color: #e2a50b; letter-spacing: 1px; }
 .level-btn[aria-pressed="true"] { background: var(--ui-ink); color: #fff; }
 
+/* ===== うごく UI(算数プリントと おなじ) ===== */
+/* えらんだ 色が すっと 横に うごく(タブ・★) */
+.home-tabs, .levels { position: relative; }
+.seg-thumb { position: absolute; left: 0; top: 0; z-index: 0; pointer-events: none; }
+.seg-thumb.anim { transition: transform .42s cubic-bezier(.34,1.45,.5,1), width .42s cubic-bezier(.34,1.45,.5,1), background-color .3s; }
+.levels .seg-thumb { background: var(--ui-ink); }
+.levels .level-btn { position: relative; z-index: 1; background: transparent; transition: color .25s, transform .22s cubic-bezier(.34,1.8,.5,1); }
+.levels .level-btn[aria-pressed="true"] { background: transparent; }
+.home-tabs .seg-thumb { background: var(--tabc); border-radius: 12px 12px 0 0; }
+.home-tabs .htab { position: relative; z-index: 1; background: rgba(244,245,248,.55); transition: color .25s, border-color .25s, transform .22s cubic-bezier(.34,1.8,.5,1); }
+.home-tabs .htab.on { background: transparent; }
+/* 問題数の −/＋ */
+.stepper { display: inline-flex; align-items: center; gap: 4px; }
+.panel .st-btn { flex: none; width: 30px; height: 30px; border-radius: 50%; border: 1.5px solid var(--gc); background: #fff; color: var(--gc); font-size: 18px; font-weight: bold; line-height: 1; padding: 0; display: inline-flex; align-items: center; justify-content: center; }
+.panel .st-btn:hover { background: var(--gc); color: #fff; filter: none; }
+.panel .stepper select { min-width: 84px; }
+.stepper select.pop { animation: st-pop .35s cubic-bezier(.34,1.6,.5,1); }
+@keyframes st-pop { 0% { transform: scale(.82); } 100% { transform: scale(1); } }
+/* おすと ぷにっと へこんで はねる */
+.hg, .htab, .hd, .hds, .nw-row, .fv-chip, .hn-btn, .st-btn, .xsite-a, .panel .buttons button, .hs-clear, .btn-mini { transition: transform .22s cubic-bezier(.34,1.8,.5,1), box-shadow .12s ease; }
+.hg:active, .hd:active, .hds:active, .nw-row:active, .fv-chip:active, .hn-btn:active, .panel .st-btn:active, .xsite-a:active, .panel .buttons button:active, .hs-clear:active, .btn-mini:active { transform: scale(.9); transition-duration: .06s; }
+.level-btn:active, .htab:active { transform: scale(.95); transition-duration: .06s; }
+.kind-card { transition: transform .22s cubic-bezier(.34,1.8,.5,1), box-shadow .12s ease; }
+.kind-card:active { transform: scale(.97); transition-duration: .06s; }
+@media (prefers-reduced-motion: reduce) {
+  .seg-thumb.anim, .stepper select.pop { transition: none; animation: none; }
+  .hg, .level-btn, .htab, .hd, .hds, .nw-row, .fv-chip, .hn-btn, .st-btn, .xsite-a, .panel .buttons button, .hs-clear, .btn-mini, .kind-card { transition: none; transform: none !important; }
+}
+@media print { .seg-thumb, .st-btn, .home-favs, .fav-btn, .hov-pop { display: none !important; } }
+
+/* ===== お気に入り(この 端末に ほぞん) ===== */
+.home-favs { margin-top: 12px; background: #fff; border: 1.5px solid #f0c94a; border-radius: 12px; padding: 8px 12px 10px; }
+.home-favs[hidden] { display: none; }
+.fv-head { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0 8px; font-weight: bold; color: #a07800; font-size: 13px; }
+.fv-head small { font-weight: normal; color: #a99a6a; font-size: 11px; }
+.fv-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; max-height: 92px; overflow-y: auto; }
+.fv-chip { position: relative; display: inline-flex; align-items: center; gap: 6px; max-width: 100%; font: inherit; font-size: 13px; padding: 5px 28px 5px 6px; border-radius: 999px; border: 1.5px solid #ecd98f; background: #fffbea; color: #333; cursor: pointer; text-align: left; }
+.fv-chip:hover { background: #fff3c4; }
+.fv-chip .nw-tag { font-size: 11px; }
+.fv-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+.fv-kind { color: #777; font-size: 11px; white-space: nowrap; }
+.fv-x { position: absolute; right: 4px; top: 50%; transform: translateY(-50%); width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: #a99a6a; font-size: 13px; line-height: 1; }
+.fv-x:hover { background: #f3e2a6; color: #6a5000; }
+.panel .fav-btn .fav-star { display: inline-block; margin-right: 3px; color: #d9a400; transition: transform .3s cubic-bezier(.34,1.8,.5,1); }
+.panel .fav-btn.on { background: #fff6cf; border-color: #d9a400; color: #6a5000; }
+.panel .fav-btn.on .fav-star { transform: scale(1.25) rotate(-12deg); }
+@media (max-width: 760px) { .fv-list { flex-wrap: nowrap; overflow-x: auto; max-height: none; padding-bottom: 2px; } .fv-chip { flex: none; max-width: 80vw; } .panel .fav-btn .lg { display: none; } .panel .fav-btn .fav-star { margin: 0; font-size: 16px; } .panel .buttons button.fav-btn { flex: 0 0 38px; } }
+
+/* ===== 見本の ポップアップ(PC で カードに カーソルを おくと 大きく 見せる) ===== */
+.hov-pop { position: fixed; z-index: 60; background: #fff; border: 2px solid var(--tabc, var(--gc)); border-radius: 12px; box-shadow: 0 10px 28px rgba(0,0,0,.25); padding: 8px; pointer-events: none; opacity: 0; transform: scale(.92); transition: opacity .12s, transform .12s; }
+.hov-pop.show { opacity: 1; transform: none; }
+.hov-pop .hp-cap { font-size: 12px; font-weight: bold; color: var(--ui-ink); margin: 0 2px 6px; max-width: 320px; line-height: 1.35; }
+.hov-pop .hp-cap small { display: block; font-weight: normal; color: #777; }
+.hov-pop .hp-page { overflow: hidden; border: 1px solid #ccc; background: #fff; position: relative; width: 318px; height: 449px; }
+.hov-pop .hp-in { position: absolute; left: 0; top: 0; width: 210mm; transform: scale(.4); transform-origin: 0 0; }
+.hov-pop .hp-in .sheet { margin: 0 !important; box-shadow: none !important; }
+
+/* ===== 分野べつの 小分類 と 絵 ===== */
+.hd img { width: 30px; height: 30px; flex: none; background: #fff; border-radius: 7px; }
+.hg-dsubs { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 10px; flex-basis: 100%; }
+.hg-dsubs .hg-cap3 { font-size: 12px; color: var(--ui-sub); margin-right: 2px; flex-basis: 100%; }
+.hds { font: inherit; font-size: 13px; font-weight: bold; padding: 4px 12px 4px 6px; border-radius: 999px; border: 1.5px solid var(--c); background: #fff; color: var(--c); cursor: pointer; display: inline-flex; align-items: center; gap: 4px; }
+.hds.all { padding-left: 12px; }
+.hds img { width: 22px; height: 22px; flex: none; }
+.hds small { font-weight: normal; opacity: .8; }
+.hds[aria-pressed="true"] { background: var(--c); color: #fff; }
+.hds[aria-pressed="true"] img { background: #fff; border-radius: 50%; }
+
 .bubble {
   position: relative; background: #fff; border: 2.5px solid var(--gc); border-radius: 18px; padding: 9px 16px;
   font-size: 15px; font-weight: bold; color: var(--ui-ink); line-height: 1.5; text-align: center; margin-bottom: 14px;
@@ -307,7 +387,7 @@ body:not([data-stage="1"]) .tk-only, body[data-stage="1"] .no-tk { display: none
 .home-search .hs-clear { flex: none; font: inherit; font-size: 13px; padding: 7px 12px; border-radius: 18px; border: 1px solid #9aa3b5; background: #fff; color: #2b3a55; cursor: pointer; }
 .home-search .hs-clear[hidden], .home-found[hidden] { display: none; }
 .home-search input::-webkit-search-cancel-button { display: none; }
-#home.searching .home-tabs, #home.searching .home-steps, #home.searching .home-mascot,
+#home.searching .home-tabs, #home.searching .home-steps, #home.searching .home-mascot, #home.searching .home-favs,
 #home.searching > .kinds-head, #home.searching > .kinds, #home.searching .home-cheer, #home.searching > .note { display: none; }
 .home-found { margin-top: 18px; }
 .hf-head { font-size: 14px; color: #444; margin: 0 0 10px; }
@@ -325,7 +405,7 @@ body:not([data-stage="1"]) .tk-only, body[data-stage="1"] .no-tk { display: none
 @media (max-width: 760px) {
   .home-top { flex-direction: column; align-items: stretch; gap: 0; }
   .home-main { display: contents; }
-  .home-band { order: 1; } .home-mascot { order: 2; } .home-tabs { order: 3; } .home-steps { order: 3; }
+  .home-band { order: 1; } .home-mascot { order: 2; } .home-favs { order: 3; } .home-tabs { order: 4; } .home-steps { order: 4; }
   .home-band .xsite { margin: 0; order: -1; }
   .home-band .home-search { flex-wrap: nowrap; }
   .hn-btn { display: inline-flex; flex: none; align-items: center; gap: 3px; font: inherit; font-weight: bold; font-size: 13px; padding: 5px 10px 5px 6px; border-radius: 18px; border: 1.5px solid #e0cd86; background: #fffdf3; color: #8a6a00; cursor: pointer; }
@@ -777,6 +857,8 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
     <h1 class="masu" aria-label="国語プリント"><span class="c1">国</span><span class="c2">語</span><span class="c3">プ</span><span class="c4">リ</span><span class="c5">ン</span><span class="c6">ト</span></h1>
     <span class="subtitle">学年と 種類を えらぶと、そのたびに 問題が かわります</span>
     <span class="version" id="version"></span>
+    <span class="mini-sum" id="mini-sum"></span>
+    <button type="button" class="secondary btn-mini" id="btn-mini" aria-expanded="true" title="設定の パネルを 小さく する">▲ 小さく</button>
   </div>
 
   <label class="sheet-only">子どもの 学年
@@ -837,8 +919,8 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
     <select id="f-ysize"><option value="s">小</option><option value="m">中</option><option value="l">大</option></select>
   </label>
   <label class="check sheet-only yj-only"><input id="f-ynum" type="checkbox"> 書き順の 数字</label>
-  <label class="sheet-only yj-only">線の 本数
-    <select id="f-yn"><option value="3">3本</option><option value="4">4本</option><option value="5">5本</option><option value="6">6本</option><option value="8">8本</option></select>
+  <label class="sheet-only yj-only" for="f-yn">線の 本数
+    <span class="stepper"><button type="button" class="st-btn" data-for="f-yn" data-step="-1" aria-label="1つ へらす">−</button><select id="f-yn"><option value="3">3本</option><option value="4">4本</option><option value="5">5本</option><option value="6">6本</option><option value="8">8本</option></select><button type="button" class="st-btn" data-for="f-yn" data-step="1" aria-label="1つ ふやす">＋</button></span>
   </label>
   <label class="sheet-only yj-only">線の 太さ
     <select id="f-ythick"><option value="thin">ほそい</option><option value="mid">ふつう</option><option value="thick">ふとい</option></select>
@@ -850,11 +932,11 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
   <label class="sheet-only yj-only">書く むき
     <select id="f-ytate"><option value="h">よこ書き</option><option value="v">たて書き</option></select>
   </label>
-  <label class="sheet-only yj-only">えの かず
-    <select id="f-ypn"><option value="8">8もん</option><option value="7">7もん</option><option value="6">6もん</option><option value="5">5もん</option><option value="4">4もん(大きい ます)</option><option value="3">3もん(もっと 大きい ます)</option></select>
+  <label class="sheet-only yj-only" for="f-ypn">えの かず
+    <span class="stepper"><button type="button" class="st-btn" data-for="f-ypn" data-step="-1" aria-label="1つ へらす">−</button><select id="f-ypn"><option value="8">8もん</option><option value="7">7もん</option><option value="6">6もん</option><option value="5">5もん</option><option value="4">4もん(大きい ます)</option><option value="3">3もん(もっと 大きい ます)</option></select><button type="button" class="st-btn" data-for="f-ypn" data-step="1" aria-label="1つ ふやす">＋</button></span>
   </label>
-  <label class="sheet-only yj-only">1まいの ことば
-    <select id="f-ywn"><option value="7">7こ</option><option value="6">6こ</option><option value="5">5こ</option><option value="4">4こ(大きい 字)</option><option value="3">3こ(もっと 大きい 字)</option></select>
+  <label class="sheet-only yj-only" for="f-ywn">1まいの ことば
+    <span class="stepper"><button type="button" class="st-btn" data-for="f-ywn" data-step="-1" aria-label="1つ へらす">−</button><select id="f-ywn"><option value="7">7こ</option><option value="6">6こ</option><option value="5">5こ</option><option value="4">4こ(大きい 字)</option><option value="3">3こ(もっと 大きい 字)</option></select><button type="button" class="st-btn" data-for="f-ywn" data-step="1" aria-label="1つ ふやす">＋</button></span>
   </label>
   <label class="sheet-only yj-only">じゅんばんに つかう 行
     <select id="f-ylimit"><option value="0">ぜんぶ(が・ざ・だ・ば・ぱ行も)</option><option value="10">あ〜わ行だけ</option></select>
@@ -922,11 +1004,11 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
       <option value="none">なし</option>
     </select>
   </label>
-  <label class="sheet-only kk-only">読みの 数
-    <select id="f-read"></select>
+  <label class="sheet-only kk-only" for="f-read">読みの 数
+    <span class="stepper"><button type="button" class="st-btn" data-for="f-read" data-step="-1" aria-label="1つ へらす">−</button><select id="f-read"></select><button type="button" class="st-btn" data-for="f-read" data-step="1" aria-label="1つ ふやす">＋</button></span>
   </label>
-  <label class="sheet-only kk-only">書きの 数
-    <select id="f-write"></select>
+  <label class="sheet-only kk-only" for="f-write">書きの 数
+    <span class="stepper"><button type="button" class="st-btn" data-for="f-write" data-step="-1" aria-label="1つ へらす">−</button><select id="f-write"></select><button type="button" class="st-btn" data-for="f-write" data-step="1" aria-label="1つ ふやす">＋</button></span>
   </label>
   <label class="sheet-only">シード
     <input id="f-seed" type="number" min="1" max="999999" value="1">
@@ -935,12 +1017,14 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
   <label class="check sheet-only kk-only"><input id="f-tk" type="checkbox"> 大きい 字(1れつ)</label>
   <label class="check sheet-only"><input id="f-ans" type="checkbox" checked> 答えのページ</label>
   <label class="check sheet-only kk-only"><input id="f-anslist" type="checkbox"> 答えは 一覧で</label>
+  <label class="check sheet-only" title="文章や 絵の プリントで 下が 大きく あいた ときに、中身を すこし 大きく します"><input id="f-fit" type="checkbox" checked> 下が あいたら 大きく する</label>
 
   <div class="buttons">
     <button class="secondary sheet-only" id="btn-home">← メニュー</button>
     <button class="secondary sheet-only" id="btn-opts" aria-expanded="false">せってい ▼</button>
     <button class="secondary sheet-only" id="btn-again">べつの問題</button>
     <button class="secondary sheet-only" id="btn-batch">まとめて作る・保存</button>
+    <button class="secondary sheet-only fav-btn" id="btn-fav" aria-pressed="false" title="この 設定を お気に入りに 入れる(この 端末に ほぞん)"><span class="fav-star">☆</span><span class="lg">お気に入り</span></button>
     <button class="sheet-only" id="btn-print">印刷</button>
   </div>
   <div class="msg" id="msg"></div>
@@ -956,6 +1040,7 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
         <nav class="xsite" aria-label="ほかの教科のプリント"><span class="xsite-lbl">教科</span><span class="xsite-a on" style="--xc:#C23B33" aria-current="page">国語</span><a class="xsite-a" style="--xc:#2B66AE" href="https://iamochiai-collab.github.io/Math-worksheet-generator/">算数・数学</a><a class="xsite-a" style="--xc:#2E8A57" href="https://iamochiai-collab.github.io/Science-worksheet-generator/">理科</a><a class="xsite-a" style="--xc:#A87F00" href="https://iamochiai-collab.github.io/Social-worksheet-generator/">社会</a></nav>
         <div class="home-search"><input type="search" id="home-q" autocomplete="off" enterkeyhint="search" aria-label="プリントを さがす"><button type="button" class="hs-clear" id="home-q-clear" hidden>× けす</button><button type="button" class="hn-btn" id="home-news-btn" aria-expanded="false"><img src="{{UI:new}}" alt="">あたらしく<b id="home-news-n"></b></button></div>
       </div>
+      <div class="home-favs" id="home-favs" hidden></div>
       <div class="home-tabs" id="home-tabs" role="tablist" aria-label="えらび方"></div>
       <div class="home-steps">
         <div class="home-row">
@@ -2786,8 +2871,9 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
     }
     document.body.dataset.view = "home";
     setMsg("");
+    renderFavs();
     window.scrollTo(0, homeScroll);
-    setTimeout(refreshThumbs, 0);
+    setTimeout(() => { reSeg(); refreshThumbs(); }, 0);
   }
   window.addEventListener("popstate", (e) => {
     if (e.state && e.state.view === "sheet") {
@@ -2802,7 +2888,10 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
     goSheet();
     applyOrient($("sheets"));
     fixZoom($("sheets"));
+    fillSheets($("sheets"));
     fitWidth();
+    favSync();
+    updateMini();
     window.scrollTo(0, 0);
   }
 
@@ -2882,10 +2971,10 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
       if (sheet.classList.contains("land")) { sheet.style.transform = ""; sheet.style.marginLeft = ""; sheet.style.marginBottom = ""; continue; }
       sheet.style.transform = ""; sheet.style.marginLeft = ""; sheet.style.marginBottom = "";
       const kids = [...sheet.children];
-      kids.forEach((k) => { k.style.zoom = ""; });
+      // 下が あいて 大きく した ぶん(fz)は のこす
+      let z = restoreFill(sheet);
       sheet.style.minHeight = "0";
       const cs = getComputedStyle(sheet), pad = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom);
-      let z = 1;
       for (let t = 0; t < 4 && sheet.offsetHeight > pagePx; t++) {
         z = Math.max(0.7, z * ((pagePx - pad) / (sheet.offsetHeight - pad)) * 0.995);
         kids.forEach((k) => { k.style.zoom = z.toFixed(3); });
@@ -2894,7 +2983,7 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
     }
   }
   function afterPrint() {
-    for (const k of document.querySelectorAll("#sheets .sheet:not(.land) > *")) k.style.zoom = "";
+    for (const s of document.querySelectorAll("#sheets .sheet:not(.land)")) restoreFill(s);
     fitWidth();
   }
   window.addEventListener("beforeprint", fitForPrint);
@@ -3031,6 +3120,7 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
     const tab = homeTab();
     document.body.dataset.tab = tab;
     $("home-tabs").innerHTML = HOME_TABS.map((t) => `<button type="button" role="tab" class="htab${t.id === tab ? " on" : ""}" data-tab="${t.id}" aria-selected="${t.id === tab}"><img src="${t.icon}" alt=""><span>${t.short ? `<span class="tl-long">${t.label}</span><span class="tl-short">${t.short}</span>` : t.label}<small>${t.sub}</small></span></button>`).join("");
+    segSlide($("home-tabs"));
   }
   function goTab(t) {
     if (t === homeTab()) return;
@@ -3059,6 +3149,83 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
     { id: "kana", label: "ひらがな・かきかた", sub: "ようじ", mk: "あ", c: "#c0446f", km: [] }
   ];
   const GRADE_COLORS = ["#c0446f", "#c0392b", "#e0861b", "#2f8f5b", "#1f8a8a", "#2f67b1", "#8a4fc1", "#a0365d"];
+  // 分野と 小分類の 絵(算数プリントの 絵と おなじ 色づかい:こん色の 線・クリーム・きいろ・水色)
+  const IC = (() => {
+    const C = "#f7e8c8", Y = "#f5b324", B = "#7fbfe8", W = "#fff";
+    const pencil = (tf) => `<g transform="${tf}"><rect x="-6" y="-16" width="12" height="28" fill="${Y}"/><path d="M-6 12h12l-6 11z" fill="${C}"/><path d="M-2 19.5h4l-2 3.5z" fill="#1f2a40"/><rect x="-6" y="-22" width="12" height="6" fill="${B}"/></g>`;
+    const P = {
+      kanji: `<rect x="6" y="14" width="40" height="44" rx="4" fill="${C}"/><path d="M26 16v40M8 36h36" stroke-width="2" stroke-dasharray="3 4"/><g transform="rotate(35 48 22)"><rect x="43" y="0" width="10" height="28" rx="3" fill="${Y}"/><path d="M43 28h10l-2 9q-3 8-6 0z" fill="#1f2a40"/></g>`,
+      read: `<path d="M32 18C24 12 14 12 6 14v38c8-2 18-2 26 4z" fill="${C}"/><path d="M32 18c8-6 18-6 26-4v38c-8-2-18-2-26 4z" fill="${B}"/><path d="M12 24h12M12 31h12M12 38h12" stroke-width="2.5"/>`,
+      bunpo: `<rect x="10" y="8" width="44" height="50" rx="5" fill="${C}"/><path d="M18 20h28M18 30h28M18 40h14"/><circle cx="43" cy="44" r="5.5" fill="${Y}"/>`,
+      kotoba: `<path d="M11 10h28a5 5 0 0 1 5 5v15a5 5 0 0 1-5 5H21l-8 8v-8h-2a5 5 0 0 1-5-5V15a5 5 0 0 1 5-5z" fill="${C}"/><path d="M33 30h21a4 4 0 0 1 4 4v12a4 4 0 0 1-4 4h-3v7l-7-7H33a4 4 0 0 1-4-4V34a4 4 0 0 1 4-4z" fill="${B}"/><circle cx="16" cy="22" r="1.6" fill="#1f2a40"/><circle cx="25" cy="22" r="1.6" fill="#1f2a40"/><circle cx="34" cy="22" r="1.6" fill="#1f2a40"/>`,
+      romaji: `<rect x="8" y="10" width="48" height="46" rx="8" fill="${Y}"/><path d="M21 47l11-29 11 29M25 37h14" stroke-width="4.5"/>`,
+      kana: `<path d="M6 52c10-22 20 4 30-16" stroke-width="3" stroke-dasharray="4 5"/>${pencil("translate(46 24) rotate(40)")}`,
+      rw: `<rect x="6" y="10" width="36" height="36" rx="3" fill="${C}"/><path d="M24 12v32M8 28h32" stroke-width="2" stroke-dasharray="3 4"/>${pencil("translate(46 36) rotate(35)")}`,
+      onkun: `<path d="M8 26h10l13-11v34L18 38H8z" fill="${Y}"/><path d="M39 24q6 8 0 16M46 17q11 15 0 30"/>`,
+      bushu: `<rect x="10" y="8" width="38" height="48" rx="4" fill="${B}"/><path d="M10 48h38M18 18h22M18 26h14"/><rect x="48" y="14" width="7" height="9" rx="1.5" fill="${Y}"/><rect x="48" y="27" width="7" height="9" rx="1.5" fill="${C}"/>`,
+      okuri: `<rect x="6" y="12" width="32" height="32" rx="3" fill="${C}"/><path d="M22 14v28M8 28h28" stroke-width="2" stroke-dasharray="3 4"/><rect x="42" y="30" width="16" height="16" rx="2" fill="${Y}"/>`,
+      jukugo: `<rect x="5" y="19" width="24" height="24" rx="3" fill="${C}"/><rect x="35" y="19" width="24" height="24" rx="3" fill="${B}"/><path d="M29 31h6" stroke-width="4"/>`,
+      long: `<rect x="12" y="6" width="40" height="52" rx="4" fill="${C}"/><path d="M19 16h26M19 24h26M19 32h26M19 40h26M19 48h16" stroke-width="2.5"/>`,
+      story: `<rect x="8" y="6" width="36" height="46" rx="4" fill="${C}"/><path d="M15 16h22M15 24h22M15 32h12" stroke-width="2.5"/><circle cx="40" cy="40" r="10" fill="${B}"/><path d="M47 47l9 9" stroke-width="5"/>`,
+      riyuu: `<path d="M32 7a16 16 0 0 0-9 29v7h18v-7A16 16 0 0 0 32 7z" fill="${Y}"/><rect x="24" y="45" width="16" height="9" rx="2" fill="${C}"/><path d="M28 58h8"/>`,
+      hyouki: `<path d="M24 10H13v22M40 54h11V32" stroke-width="5"/><circle cx="32" cy="32" r="7" fill="${Y}"/>`,
+      shugo: `<rect x="3" y="22" width="22" height="20" rx="4" fill="${Y}"/><rect x="39" y="22" width="22" height="20" rx="4" fill="${B}"/><path d="M26 32h10M31 27l5 5-5 5"/>`,
+      tsunagi: `<rect x="5" y="22" width="30" height="20" rx="10" fill="${C}"/><rect x="29" y="22" width="30" height="20" rx="10" fill="${B}" fill-opacity=".85"/><path d="M29 32h6" stroke-width="4"/>`,
+      hinshi: `<path d="M8 14h26l22 18-22 18H8z" fill="${Y}"/><circle cx="18" cy="32" r="4" fill="${W}"/>`,
+      keigo: `<rect x="8" y="16" width="48" height="34" rx="4" fill="${C}"/><path d="M9 18l23 18 23-18"/><circle cx="48" cy="18" r="7" fill="${Y}"/>`,
+      kotowaza: `<rect x="14" y="10" width="36" height="44" fill="${C}"/><rect x="10" y="5" width="44" height="9" rx="4.5" fill="${Y}"/><rect x="10" y="50" width="44" height="9" rx="4.5" fill="${Y}"/><path d="M24 21v24M32 21v24M40 21v16" stroke-width="2.5"/>`,
+      goi: `<rect x="18" y="8" width="38" height="26" rx="4" fill="${B}"/><rect x="8" y="22" width="38" height="34" rx="4" fill="${C}"/><path d="M15 33h24M15 42h16" stroke-width="2.5"/>`,
+      hyougen: `<path d="M32 56L6 22a34 34 0 0 1 52 0z" fill="${Y}"/><path d="M32 56L18 12M32 56V9M32 56l14-44" stroke-width="2.5"/>`,
+      abc: `<rect x="8" y="10" width="48" height="46" rx="8" fill="${B}"/><path d="M21 47l11-29 11 29M25 37h14" stroke-width="4.5"/>`,
+      line4: `<rect x="6" y="12" width="52" height="40" rx="4" fill="${C}"/><path d="M10 22h44M10 30h44M10 38h44M10 46h44" stroke-width="1.6"/><path d="M14 38q5-12 9 0t9 0t9 0t9 0" stroke="#2b6cb0" stroke-width="3.5"/>`,
+      hebon: `<rect x="12" y="8" width="40" height="48" rx="4" fill="${C}"/><path d="M20 32l8 8 16-18" stroke-width="5"/>`,
+      nazori: `<path d="M6 52c10-22 20 4 30-16" stroke-width="3" stroke-dasharray="4 5"/>${pencil("translate(46 24) rotate(40)")}`,
+      sen: `<circle cx="9" cy="45" r="5" fill="${Y}"/><path d="M14 41l10-17 10 17 10-17 10 17" stroke-dasharray="4 5"/>`,
+      e: `<rect x="8" y="12" width="48" height="40" rx="4" fill="${B}"/><path d="M8 46l16-16 12 12 8-8 12 12v6H8z" fill="${C}"/><circle cx="44" cy="24" r="5" fill="${Y}"/>`
+    };
+    const out = {};
+    for (const [k, v] of Object.entries(P))
+      out[k] = "data:image/svg+xml," + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="#1f2a40" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">${v}</svg>`);
+    return out;
+  })();
+  // 分野の 中の 小分類(算数プリントの「○○の 中で しぼる」と おなじ)。t:ことばの きまりの 単元 id、kind/story/yk:カードの 種類
+  const DOMAIN_SUBS = {
+    kanji: [
+      { id: "rw", label: "読み書き", f: (it) => !it.topic },
+      { id: "onkun", label: "音訓・同じ 読み", t: ["onkun", "doukun", "douon"] },
+      { id: "bushu", label: "部首・漢字辞典", t: ["bushu", "kumitate", "kanjijiten"] },
+      { id: "okuri", label: "送りがな", t: ["okuri3", "okuri4"] },
+      { id: "jukugo", label: "熟語", t: ["jukugo", "jukugo6"] }
+    ],
+    read: [
+      { id: "long", label: "漢字 ＋ 長文", f: (it) => it.ds && it.ds.kind === "long" && !it.ds.story },
+      { id: "story", label: "文章読解", f: (it) => it.ds && it.ds.story },
+      { id: "riyuu", label: "考えと 理由", t: ["riyuu", "genin"] }
+    ],
+    bunpo: [
+      { id: "hyouki", label: "かなづかい・表記", t: ["nobasu", "chiisai", "wo", "kuten", "kata", "kata2", "kanazukai"] },
+      { id: "shugo", label: "主語・述語・修飾語", t: ["shugo", "shushoku", "bunkumi", "bunsetsu", "bunsei"] },
+      { id: "tsunagi", label: "つなぎ・こそあど", t: ["kosoado", "tsunagi", "tsunagi4", "junjo"] },
+      { id: "hinshi", label: "文末・品詞・活用", t: ["keitai", "hinshi", "katsuyou", "jodoushi"] }
+    ],
+    kotoba: [
+      { id: "keigo", label: "敬語・ていねい", t: ["teinei", "keigo", "keigo2", "keigo7", "hanashi"] },
+      { id: "kotowaza", label: "ことわざ・慣用句", t: ["kotowaza", "kanyoku", "koji", "yoji"] },
+      { id: "goi", label: "語い(なかま・反対)", t: ["nakama", "ue", "hantai", "ruigi", "kotoba3", "wago", "jisho"] },
+      { id: "hyougen", label: "方言・古典・表現", t: ["hougen", "koten", "kana", "hiyu"] }
+    ],
+    romaji: [
+      { id: "abc", label: "アルファベット", t: ["romaji01", "romaji02", "romaji03", "romaji10"] },
+      { id: "line4", label: "ローマ字の 書き方", t: ["romaji04", "romaji05", "romaji06", "romaji07", "romaji08", "romaji09"] },
+      { id: "hebon", label: "ヘボン式・まとめ", t: ["romaji11", "romaji12"] }
+    ],
+    kana: [
+      { id: "nazori", label: "なぞり書き", yk: ["hira", "kata", "word", "name", "kakikata"] },
+      { id: "sen", label: "線・うんぴつ", yk: ["line", "unpitsu"] },
+      { id: "e", label: "え・ことば", yk: ["pic", "match", "play"] }
+    ]
+  };
+  const subHit = (x, it) => x.f ? !!x.f(it) : x.t ? x.t.includes(it.topic) : x.yk ? !!(it.ds && x.yk.includes(it.ds.ykind)) : false;
   function domainItems(d) {
     // [{g, sel, name, desc}] を 学年ごとに
     const out = [];
@@ -3082,7 +3249,8 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
   }
   function renderDomainKinds() {
     const d = DOMAINS.find((x) => x.id === state.domain) || DOMAINS[0];
-    const items = domainItems(d);
+    const ds = (DOMAIN_SUBS[d.id] || []).find((x) => x.id === state.dsub);
+    const items = domainItems(d).filter((it) => !ds || subHit(ds, it));
     let html = "", last = null;
     items.forEach((it, i) => {
       if (it.g !== last) {
@@ -3097,7 +3265,7 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
     $("dm-kinds").innerHTML = html || '<p class="note">この 分野の プリントは まだ ありません</p>';
     $("dm-kinds").dataset.domain = d.id;
     DOMAIN_ITEMS = items;
-    $("dm-note").textContent = `${d.label}:${d.sub}。学年の じゅんに ならんで います(上ほど やさしい)。`;
+    $("dm-note").textContent = `${d.label}${ds ? ` › ${ds.label}` : ""}:${ds ? `${items.length}この プリント` : d.sub}。学年の じゅんに ならんで います(上ほど やさしい)。`;
   }
   let DOMAIN_ITEMS = [];
 
@@ -3107,7 +3275,13 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
     renderTabs();
     $("home-step1").textContent = state.domain ? "分野" : state.stageMode ? "段階" : "学年";
     if (state.domain) {
-      g.innerHTML = DOMAINS.map((d) => `<button type="button" class="hd" data-domain="${d.id}" style="--c:${d.c}" aria-pressed="${d.id === state.domain}"><span class="mk">${d.mk}</span><span>${d.label}<small>${d.sub}</small></span></button>`).join("");
+      const cur = DOMAINS.find((d) => d.id === state.domain) || DOMAINS[0];
+      const subs = DOMAIN_SUBS[cur.id] || [];
+      const all = domainItems(cur);
+      if (!subs.some((x) => x.id === state.dsub)) state.dsub = null;
+      g.innerHTML = DOMAINS.map((d) => `<button type="button" class="hd" data-domain="${d.id}" style="--c:${d.c}" aria-pressed="${d.id === state.domain}">${IC[d.id] ? `<img src="${IC[d.id]}" alt="">` : `<span class="mk">${d.mk}</span>`}<span>${d.label}<small>${d.sub}</small></span></button>`).join("") +
+        (subs.length ? `<div class="hg-dsubs" style="--c:${cur.c}"><span class="hg-cap3">${cur.label}の 中で しぼる</span>` +
+          [null, ...subs].map((x) => `<button type="button" class="hds${x ? "" : " all"}" data-dsub="${x ? x.id : ""}" aria-pressed="${(x ? x.id : null) === state.dsub}">${x && IC[x.id] ? `<img src="${IC[x.id]}" alt="">` : ""}${x ? x.label : "ぜんぶ"}${x ? `<small>(${all.filter((it) => subHit(x, it)).length})</small>` : `<small>(${all.length})</small>`}</button>`).join("") + `</div>` : "");
       return;
     }
     if (state.stageMode) {
@@ -3283,6 +3457,8 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
     state.stageMode = store.get("stageMode") === "1";
     state.domain = !state.stageMode && store.get("tab") === "domain" ? (DOMAINS.some((d) => d.id === store.get("domain")) ? store.get("domain") : "kanji") : null;
     renderNews();
+    renderFavs();
+    state.dsub = store.get("dsub") || null;
     state.stage = Number(store.get("stage")) || 21;
     renderGrades();
     const gradeOptions = BANKS.map((b, i) => `<option value="${i + 1}">${b.label}</option>`).join("");
@@ -3302,6 +3478,12 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
      { d:日づけ, t:文, g:学年(0=ようじ), sel:ホームの カード, opts:{せってい}, tab:"stage"|"domain", domain }
      ★ 機能を 足したら ここにも 1行 足すこと(10こまで 出す) */
   const CHANGES = [
+    { d: "26/11/25", t: "お気に入り:プリント画面の「☆ お気に入り」で 入れると、メニューから すぐ 作れる", tag: "ホーム" },
+    { d: "26/11/25", t: "分野べつ:分野の 中で しぼれる(小分類)・分野の 絵", tab: "domain", domain: "kotoba" },
+    { d: "26/11/25", t: "下が あいた プリントは 中身を 大きく する(文章読解 など。くわしい 設定で OFF)", g: 1, sel: '.kk-card[data-story]' },
+    { d: "26/11/25", t: "カードに カーソルを おくと プリントの 見本が 大きく 出る(PC)", tag: "ホーム" },
+    { d: "26/11/25", t: "うごく UI:タブ・★が すっと うごく/数の −・＋/おすと ぷにっと", tag: "ホーム" },
+    { d: "26/11/25", t: "設定の パネルを 1行に 小さく できる(▲ 小さく/▼ ひらく)", tag: "印刷画面" },
     { d: "26/11/24", t: "特別支援・分野べつの カードにも プリントの 見本", tab: "stage" },
     { d: "26/11/24", t: "ホームを 算数プリントと おなじ 形に(上の 帯・3つの タブ・分野べつ・右に キャラ)", tab: "domain", domain: "kanji" },
     { d: "26/11/19", t: "ようじ:たて書き(A4 よこ・右から)を えらべる", g: 0, sel: '.yj-card[data-ykind="pic"]', opts: { ytate: "v" } },
@@ -3356,14 +3538,7 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
   // ===== メニューの カードに プリントの 見本を つける(いまの 学年・せっていで。見えた ときに 作る) =====
   function cardSheetHtml(b) {
     // 特別支援の 段階の カード: その 内容の せってい(applyPreset)で 1まいめを 作る。state は あとで もとに もどす
-    if (b.classList.contains("tk-card")) {
-      const save = JSON.parse(JSON.stringify(state));
-      try {
-        applyPreset(stageOf(state.stage).items[Number(b.dataset.i)]);
-        state.seed = 1;
-        return pages(1, 1)[0] || "";
-      } catch (e) { return ""; } finally { for (const k of Object.keys(state)) if (!(k in save)) delete state[k]; Object.assign(state, save); }
-    }
+    if (b.classList.contains("tk-card")) return presetSheetHtml(stageOf(state.stage).items[Number(b.dataset.i)]);
     const st = Object.assign({}, state, { seed: 1, no: 1 });
     // 分野べつの カード: その カードの 学年で 作る
     if (b.dataset.g != null) {
@@ -3422,6 +3597,8 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
     document.body.dataset.youji = g === 0 ? "1" : "";
     for (const el of document.querySelectorAll(".hg")) el.setAttribute("aria-pressed", String(
       el.dataset.stage ? Number(el.dataset.stage) === state.stage : Number(el.dataset.grade) === g));
+    for (const el of document.querySelectorAll(".level-btn")) el.setAttribute("aria-pressed", String(Number(el.dataset.level) === state.level));
+    segSlide($("home-levels"));
     const label = state.stageMode ? stageOf(state.stage).name : gradeLabel(g);
     const dm = state.domain && DOMAINS.find((x) => x.id === state.domain);
     $("home-bubble").innerHTML = dm ? `<b>${dm.label}</b>の<br>プリントを 作ろう！` : `<b>${label}</b>の プリントを<br>作ろう！`;
@@ -3436,7 +3613,305 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
     if (pop) { c.classList.remove("pop"); void c.offsetWidth; c.classList.add("pop"); }
   }
 
+  /* ===== お気に入り(この 端末の ブラウザに ほぞん。プリント画面の「☆ お気に入り」で 入れる・はずす) ===== */
+  const FAV_MAX = 30;
+  const FAV_Y = Object.keys(state).filter((k) => k[0] === "y");
+  function favPick(st) {
+    const keys = st.grade === 0 ? ["grade", ...FAV_Y]
+      : st.kind === "kimari" ? ["grade", "kind", "ktopic", "rcase", "rstyle", "kfuri", "klearn"]
+      : ["grade", "gRead", "gWrite", "gStory", "furi", "genre", "vmode", "kind", "level", "nRead", "nWrite", "tk"];
+    const o = {};
+    for (const k of keys) o[k] = st[k];
+    return o;
+  }
+  const favKey = (st) => JSON.stringify(favPick(st));
+  // プリントの 名前(お気に入り・小さく した パネルに 出す)
+  function favName(st) {
+    if (st.grade === 0) {
+      const c = YJ_CARDS.find((x) => x[0] === st.ykind);
+      let n = c ? c[1].replace(/\(.*\)$/, "") : "ようじ";
+      const t = (st.ytext || "").trim().split(/\n/)[0].replace(/\[([^\]]*)\]/g, "$1").replace(/\([^)]*\)/g, "");
+      if (st.ykind === "kakikata" && t) n += `「${t.length > 8 ? t.slice(0, 8) + "…" : t}」`;
+      return n;
+    }
+    if (st.kind === "kimari") {
+      const t = kimariTopics(st.grade).find((x) => x.id === st.ktopic);
+      return t ? rubyBase(t.name) : "ことばの きまり";
+    }
+    if (st.kind === "long") return !st.nRead && !st.nWrite ? "文章読解" : "漢字 ＋ 長文読解";
+    return ((KANJI_CARDS.find((c) => c.kind === st.kind) || {}).name || "漢字") + (st.tk ? "(大きい 字)" : "");
+  }
+  const favStars = (st) => st.grade > 0 && st.kind !== "kimari" && !(st.kind === "long" && !st.nRead && !st.nWrite) ? "★".repeat(st.level) + "☆".repeat(3 - st.level) : "";
+  function favList() {
+    try {
+      const a = JSON.parse(store.get("favs") || "[]");
+      return Array.isArray(a) ? a.filter((f) => f && f.st && (f.st.grade === 0 || BANKS[f.st.grade - 1])) : [];
+    } catch (e) { return []; }
+  }
+  const favSave = (a) => store.set("favs", JSON.stringify(a.slice(0, FAV_MAX)));
+  function favSync() {
+    const b = $("btn-fav");
+    const on = favList().some((f) => favKey(f.st) === favKey(state));
+    b.classList.toggle("on", on);
+    b.setAttribute("aria-pressed", String(on));
+    b.querySelector(".fav-star").textContent = on ? "★" : "☆";
+    b.title = on ? "お気に入りから はずす" : "この 設定を お気に入りに 入れる(この 端末に ほぞん)";
+  }
+  function favToggle() {
+    readControls();
+    const k = favKey(state), a = favList(), i = a.findIndex((f) => favKey(f.st) === k);
+    if (i >= 0) a.splice(i, 1);
+    else a.unshift({ st: favPick(state), model: $("f-model").checked, ans: $("f-ans").checked, anslist: $("f-anslist").checked });
+    favSave(a);
+    favSync();
+    renderFavs();
+    setMsg(i >= 0 ? "お気に入りから はずしました。" : "お気に入りに 入れました(この 端末に ほぞん)。メニューの「★ お気に入り」から すぐ 作れます。");
+  }
+  function renderFavs() {
+    const box = $("home-favs"), a = favList();
+    box.hidden = !a.length;
+    if (!a.length) { box.innerHTML = ""; return; }
+    box.innerHTML = `<div class="fv-head"><span>★ お気に入り</span><small>この 端末に ほぞん して います。おすと すぐ 作れます</small></div><div class="fv-list">${a.map((f, i) => {
+      const g = f.st.grade;
+      return `<button type="button" class="fv-chip" data-fi="${i}" title="${esc(gradeLabel(g) + " ・ " + favName(f.st))}"><span class="nw-tag" style="--tc:${GRADE_COLORS[g]}">${esc(gradeLabel(g))}</span><span class="fv-name">${esc(favName(f.st))}</span><span class="fv-kind">${favStars(f.st)}</span><span class="fv-x" data-fx="${i}" role="button" aria-label="お気に入りから はずす">×</span></button>`;
+    }).join("")}</div>`;
+  }
+  function goFav(f) {
+    Object.assign(state, f.st);
+    $("f-model").checked = !!f.model;
+    $("f-ans").checked = f.ans !== false;
+    $("f-anslist").checked = !!f.anslist;
+    writeControls();
+    paintGrade();
+    setMsg("");
+    show(1, state.seed);
+  }
+
+  /* ===== うごく UI:えらんだ ところ(.on / aria-pressed)の うしろに 色の 板を おいて、まえの 場所から すっと うごかす ===== */
+  function segSlide(box) {
+    if (!box || !box.offsetParent) return;
+    const on = box.querySelector('.on, [aria-pressed="true"]');
+    let th = box.querySelector(":scope > .seg-thumb");
+    if (!on) { if (th) th.remove(); box._seg = null; return; }
+    const fresh = !th;
+    if (fresh) { th = document.createElement("span"); th.className = "seg-thumb"; box.prepend(th); }
+    const to = { x: on.offsetLeft, y: on.offsetTop, w: on.offsetWidth, h: on.offsetHeight };
+    const place = (r) => { th.style.transform = `translate(${r.x}px, ${r.y}px)`; th.style.width = `${r.w}px`; th.style.height = `${r.h}px`; };
+    const from = box._seg;
+    box._seg = to;
+    if (!from || from.h !== to.h || from.y !== to.y) {
+      th.classList.remove("anim");
+      place(to);
+      requestAnimationFrame(() => th.classList.add("anim"));
+      return;
+    }
+    if (fresh) { place(from); th.getBoundingClientRect(); }
+    th.classList.add("anim");
+    place(to);
+  }
+  // 画面の 大きさが かわったり、メニューに もどったり したときは、うごかさずに おきなおす
+  function reSeg() {
+    for (const box of [$("home-levels"), $("home-tabs")]) {
+      const th = box.querySelector(":scope > .seg-thumb");
+      if (th) th.remove();
+      box._seg = null;
+      segSlide(box);
+    }
+  }
+
+  /* ===== 数の −/＋:となりの 数に うごかして、数字を ぴょこっと ===== */
+  function stepCount(b) {
+    const sel = $(b.dataset.for);
+    if (!sel || sel.disabled) return;
+    const opts = [...sel.options].filter((o) => !o.hidden).map((o) => [Number(o.value), o.value]).sort((a, z) => a[0] - z[0]);
+    const cur = Number(sel.value), up = Number(b.dataset.step) > 0;
+    const next = up ? opts.find((o) => o[0] > cur) : opts.slice().reverse().find((o) => o[0] < cur);
+    if (!next) return;
+    sel.value = next[1];
+    sel.dispatchEvent(new Event("change", { bubbles: true }));
+    sel.classList.remove("pop");
+    void sel.offsetWidth;
+    sel.classList.add("pop");
+  }
+
+  /* ===== 設定の パネルを 小さく(1行に)する・もどす。えらんだ 形は おぼえて おく ===== */
+  function setMini(on) {
+    document.querySelector(".panel").classList.toggle("mini", on);
+    $("btn-mini").textContent = on ? "▼ ひらく" : "▲ 小さく";
+    $("btn-mini").title = on ? "設定の パネルを ひらく" : "設定の パネルを 小さく する";
+    $("btn-mini").setAttribute("aria-expanded", String(!on));
+  }
+  function updateMini() {
+    const parts = [gradeLabel(state.grade), favName(state)];
+    if (favStars(state)) parts.push(favStars(state));
+    if (state.grade > 0 && state.kind !== "kimari" && (state.nRead || state.nWrite)) parts.push(`読み ${state.nRead}問・書き ${state.nWrite}問`);
+    parts.push(`シード ${state.seed}`);
+    $("mini-sum").textContent = parts.join(" ・ ");
+  }
+
+  /* ===== 下が あいた プリント:中身を すこし 大きく して、ページを うめる(くわしい 設定「下が あいたら 大きく する」で OFF) =====
+     文章読解・ことば あそび・せんで むすぼう など、下が 1わり より 多く あいた ページだけ。
+     中身(見出しと シードの 間)を zoom で 1.3倍まで。よこに はみ出さず、下に 少し すき間を のこす。 */
+  const fitOn = () => $("f-fit").checked;
+  function fillSheets(root) {
+    if (!fitOn()) return;
+    const pagePx = 297 * 96 / 25.4;
+    for (const sheet of root.querySelectorAll(".sheet")) {
+      sheet.dataset.fz = "";
+      if (sheet.matches(".land, .km, .cover, .yj-kakikata, .yj-name")) continue;
+      const head = sheet.querySelector(":scope > .sheet-head"), foot = sheet.querySelector(":scope > .sheet-foot");
+      if (!head || !foot) continue;
+      const kids = [...sheet.children].filter((k) => k !== head && k !== foot);
+      if (!kids.length) continue;
+      const tr = sheet.style.transform;
+      sheet.style.transform = "";
+      const leafs = [];
+      for (const e of sheet.querySelectorAll("*")) {
+        if (head.contains(e) || foot.contains(e)) continue;
+        const inSvg = e.parentElement && e.parentElement.closest("svg");
+        if (inSvg) continue;
+        if (e.tagName === "svg" || e.tagName === "IMG" || !e.children.length || [...e.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim())) leafs.push(e);
+      }
+      const boxes = [...sheet.querySelectorAll("div, section, p, li")].filter((e) => !foot.contains(e) && !(e.parentElement && e.parentElement.closest("svg")));
+      const measure = () => {
+        const ft = foot.getBoundingClientRect().top, hb = head.getBoundingClientRect().bottom;
+        let mb = hb, mr = 0;
+        for (const e of leafs) {
+          const r = e.getBoundingClientRect();
+          if (!r.height && !r.width) continue;
+          mb = Math.max(mb, r.bottom);
+          mr = Math.max(mr, r.right);
+        }
+        return { gap: ft - mb, span: ft - hb, right: mr };
+      };
+      const m0 = measure();
+      if (m0.gap / m0.span < 0.1) { sheet.style.transform = tr; continue; }
+      const sr = sheet.getBoundingClientRect(), cs = getComputedStyle(sheet);
+      const rightMax = Math.max(m0.right, sr.right - parseFloat(cs.paddingRight)) + 1.5;
+      const over0 = boxes.map((e) => Math.max(0, e.scrollWidth - e.clientWidth));
+      const set = (z) => kids.forEach((k) => { k.style.zoom = z > 1.001 ? z.toFixed(3) : ""; });
+      const ok = () => {
+        if (sheet.offsetHeight > pagePx + 1) return false;
+        const m = measure();
+        if (m.gap < m.span * 0.03 || m.right > rightMax) return false;
+        return boxes.every((e, i) => e.scrollWidth - e.clientWidth <= over0[i] + 1);
+      };
+      const zmax = sheet.querySelector(".st-zoom") ? 1.2 : 1.3;
+      let lo = 1, hi = zmax;
+      set(hi);
+      if (ok()) lo = hi;
+      else for (let i = 0; i < 7; i++) { const z = (lo + hi) / 2; set(z); if (ok()) lo = z; else hi = z; }
+      set(lo);
+      if (lo > 1.001) sheet.dataset.fz = lo.toFixed(3);
+      sheet.style.transform = tr;
+    }
+  }
+  // 大きく した ぶん(fz)を、見出しと シード いがいに もどす
+  function restoreFill(sheet) {
+    const fz = Number(sheet.dataset.fz) || 1;
+    for (const k of sheet.children) k.style.zoom = fz > 1 && !k.matches(".sheet-head, .sheet-foot") ? String(fz) : "";
+    return fz;
+  }
+
+  /* ===== 見本の ポップアップ:カードや お気に入りに カーソルを おくと、その プリントの 1ページめを 大きく 見せる(PC だけ) ===== */
+  function withState(fn) {
+    const save = JSON.parse(JSON.stringify(state));
+    try { return fn(); } catch (e) { return ""; } finally {
+      for (const k of Object.keys(state)) if (!(k in save)) delete state[k];
+      Object.assign(state, save);
+    }
+  }
+  const presetSheetHtml = (it) => withState(() => { applyPreset(it); state.seed = 1; state.ytate = "h"; return pages(1, 1)[0] || ""; });
+  const stateSheetHtml = (st) => withState(() => { Object.assign(state, st); state.seed = 1; state.ytate = "h"; return pages(1, 1)[0] || ""; });
+  const HOV = { cache: new Map(), timer: 0, el: null, pop: null };
+  const canHover = !!(window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches);
+  function hovSource(b) {
+    if (b.classList.contains("fv-chip")) {
+      const f = favList()[Number(b.dataset.fi)];
+      return f ? { key: "fv" + favKey(f.st), title: `${gradeLabel(f.st.grade)} ・ ${favName(f.st)}`, html: () => stateSheetHtml(f.st) } : null;
+    }
+    if (b.classList.contains("hf-card")) {
+      const it = FOUND[Number(b.dataset.i)];
+      return it ? { key: "hf" + it.gname + it.name, title: `${it.gname} ・ ${rubyBase(it.name)}`, html: () => presetSheetHtml(it) } : null;
+    }
+    const nm = b.querySelector(".name");
+    const title = (b.dataset.g != null ? `${b.dataset.g === "0" ? "ようじ" : BANKS[b.dataset.g - 1].label} ・ ` : "") + (nm ? nm.textContent.slice(nm.querySelector(".n") ? nm.querySelector(".n").textContent.length : 0).trim() : "");
+    return { key: thumbKey() + "|" + b.parentElement.id + "|" + (b.dataset.i || "") + JSON.stringify(b.dataset), title, html: () => cardSheetHtml(b) };
+  }
+  function hovHide() {
+    clearTimeout(HOV.timer);
+    HOV.el = null;
+    if (HOV.pop) HOV.pop.classList.remove("show");
+  }
+  function hovShow(b) {
+    if (HOV.el !== b) return;
+    const src = hovSource(b);
+    if (!src) return;
+    if (!HOV.cache.has(src.key)) HOV.cache.set(src.key, src.html());
+    const html = HOV.cache.get(src.key);
+    if (!html) return;
+    if (!HOV.pop) {
+      HOV.pop = document.createElement("div");
+      HOV.pop.className = "hov-pop";
+      document.body.appendChild(HOV.pop);
+    }
+    HOV.pop.innerHTML = `<div class="hp-cap">${esc(src.title)}<small>見本(1ページめ)。おすと 作れます。問題は シードで かわります</small></div><div class="hp-page"><div class="hp-in">${html}</div></div>`;
+    for (const s of HOV.pop.querySelectorAll(".hp-in .sheet ~ .sheet")) s.remove();
+    // カードの 右(入らなければ 左)に 出す。上下は 画面に 入るように
+    const r = b.getBoundingClientRect(), pw = HOV.pop.offsetWidth, ph = HOV.pop.offsetHeight;
+    let x = r.right + 12;
+    if (x + pw > window.innerWidth - 8) x = r.left - pw - 12;
+    if (x < 8) x = Math.max(8, Math.min(window.innerWidth - pw - 8, r.left));
+    const y = Math.max(8, Math.min(window.innerHeight - ph - 8, r.top + r.height / 2 - ph / 2));
+    HOV.pop.style.left = `${x}px`;
+    HOV.pop.style.top = `${y}px`;
+    requestAnimationFrame(() => HOV.pop && HOV.pop.classList.add("show"));
+  }
+
   function bind() {
+    $("btn-fav").addEventListener("click", favToggle);
+    $("home-favs").addEventListener("click", (e) => {
+      const x = e.target.closest(".fv-x");
+      if (x) {
+        const a = favList();
+        a.splice(Number(x.dataset.fx), 1);
+        favSave(a);
+        hovHide();
+        renderFavs();
+        return;
+      }
+      const b = e.target.closest(".fv-chip");
+      if (!b) return;
+      const f = favList()[Number(b.dataset.fi)];
+      if (f) goFav(f);
+    });
+    for (const b of document.querySelectorAll(".stepper .st-btn")) b.addEventListener("click", (e) => { e.preventDefault(); stepCount(b); });
+    $("btn-mini").addEventListener("click", () => {
+      const on = !document.querySelector(".panel").classList.contains("mini");
+      setMini(on);
+      store.set("panelMini", on ? "1" : "0");
+    });
+    if (store.get("panelMini") === "1") setMini(true);
+    if (store.get("autoFit") === "0") $("f-fit").checked = false;
+    $("f-fit").addEventListener("change", () => {
+      store.set("autoFit", $("f-fit").checked ? "1" : "0");
+      if (document.body.dataset.view === "sheet") show(1, state.seed);
+    });
+    $("home").addEventListener("mouseover", (e) => {
+      if (!canHover) return;
+      const b = e.target.closest(".kind-card, .fv-chip");
+      if (b === HOV.el) return;
+      hovHide();
+      if (!b || e.target.closest(".fv-x")) return;
+      HOV.el = b;
+      HOV.timer = setTimeout(() => hovShow(b), 350);
+    });
+    $("home").addEventListener("mouseleave", hovHide);
+    $("home").addEventListener("click", hovHide, true);
+    window.addEventListener("scroll", hovHide, { passive: true });
+    let segT = 0;
+    window.addEventListener("resize", () => { clearTimeout(segT); segT = setTimeout(reSeg, 120); });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(reSeg);
     $("home-tabs").addEventListener("click", (e) => {
       const b = e.target.closest(".htab");
       if (b) goTab(b.dataset.tab);
@@ -3462,8 +3937,17 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
       show(1, state.seed);
     });
     $("home-grades").addEventListener("click", (e) => {
+      const hds = e.target.closest(".hds");
+      if (hds) {
+        state.dsub = hds.dataset.dsub || null;
+        store.set("dsub", state.dsub || "");
+        renderGrades();
+        paintGrade();
+        return;
+      }
       const hd = e.target.closest(".hd");
       if (hd) {
+        if (state.domain !== hd.dataset.domain) { state.dsub = null; store.set("dsub", ""); }
         state.domain = hd.dataset.domain;
         store.set("domain", state.domain);
         renderGrades();
@@ -3491,6 +3975,7 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
       state.level = Number(b.dataset.level);
       for (const el of document.querySelectorAll(".level-btn"))
         el.setAttribute("aria-pressed", String(el === b));
+      segSlide($("home-levels"));
       writeControls();
     });
     $("home-kinds").addEventListener("click", (e) => {
@@ -3618,6 +4103,18 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
     libsReady = true;
   }
 
+  // html2canvas は zoom を うまく かけないので、うつしの 中だけ「下が あいたら 大きく」の zoom を transform に かえる
+  function zoomToTransform(doc) {
+    for (const k of doc.querySelectorAll(".sheet[data-fz] > *")) {
+      const z = Number(k.style.zoom);
+      if (!(z > 1)) continue;
+      k.style.zoom = "";
+      k.style.width = `${100 / z}%`;
+      k.style.transformOrigin = "0 0";
+      k.style.transform = `scale(${z})`;
+      k.style.marginBottom = `${k.offsetHeight * (z - 1)}px`;
+    }
+  }
   async function save(format) {
     const n = Number($("b-pages").value) || 1;
     const seed = Number($("b-seed").value) || 1;
@@ -3633,9 +4130,9 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
       for (let i = 0; i < sheets.length; i++) {
         stateEl.textContent = `${i + 1} / ${sheets.length} ページを 画像に しています…`;
         await new Promise((r) => setTimeout(r, 0));
-        canvases.push(await window.html2canvas(sheets[i], { scale: 2, backgroundColor: "#fff" }));
+        canvases.push(await window.html2canvas(sheets[i], { scale: 2, backgroundColor: "#fff", onclone: zoomToTransform }));
       }
-      const name = `kokugo-${BANKS[state.grade - 1].label}-${state.kind}-seed${seed}`;
+      const name = `kokugo-${gradeLabel(state.grade)}-${state.grade === 0 ? state.ykind : state.kind}-seed${seed}`;
       if (format === "pdf") {
         const { jsPDF } = window.jspdf;
         const land = document.body.dataset.orient === "l";
