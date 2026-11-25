@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="app-version" content="第43版(2026-11-25)">
+<meta name="app-version" content="第44版(2026-11-25)">
 <title>国語プリント</title>
 <link rel="icon" type="image/png" sizes="32x32" href="{{ICON:32}}">
 <link rel="icon" type="image/png" sizes="64x64" href="{{ICON:64}}">
@@ -265,7 +265,13 @@ button.nw-row:hover { background: #fff3c9; }
 .fv-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
 .fv-kind { color: #777; font-size: 11px; white-space: nowrap; }
 .fv-x { position: absolute; right: 4px; top: 50%; transform: translateY(-50%); width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: #a99a6a; font-size: 13px; line-height: 1; }
-.fv-x:hover { background: #f3e2a6; color: #6a5000; }
+.fv-x:hover, .fv-ed:hover { background: #f3e2a6; color: #6a5000; }
+.fv-chip { padding-right: 50px; }
+.fv-ed { position: absolute; right: 25px; top: 50%; transform: translateY(-50%); width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: #a99a6a; font-size: 12px; line-height: 1; }
+.fv-edit { display: inline-flex; align-items: center; gap: 4px; }
+.fv-edit input { font: inherit; font-size: 13px; padding: 4px 10px; border: 1.5px solid #d9a400; border-radius: 999px; width: 13em; max-width: 60vw; background: #fff; }
+.fv-edit button { font: inherit; font-size: 12px; padding: 4px 10px; border-radius: 999px; border: 1.5px solid #d9a400; background: #fff6cf; color: #6a5000; cursor: pointer; flex: none; }
+.panel .msg .fv-edit { margin-left: 4px; }
 .panel .fav-btn .fav-star { display: inline-block; margin-right: 3px; color: #d9a400; transition: transform .3s cubic-bezier(.34,1.8,.5,1); }
 .panel .fav-btn.on { background: #fff6cf; border-color: #d9a400; color: #6a5000; }
 .panel .fav-btn.on .fav-star { transform: scale(1.25) rotate(-12deg); }
@@ -703,6 +709,8 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
 .km-br { display: block; height: 0; }
 .km-lbl { font-size: 9.5pt; color: #333; margin-left: 5mm; }
 .km-w u { text-align: center; }
+/* 答えの ふりがなで 行が 高く ならないように(ふりがなは 上の すき間に はみ出させる) */
+.sheet.km u .ans:has(ruby) { display: inline-block; margin-top: -0.75em; }
 .km-bank, .km-legend { border: 1.4px solid #000; border-radius: 3px; padding: 2mm 5mm; margin: 0 0 2mm; }
 .km-bank { display: flex; flex-wrap: wrap; justify-content: center; gap: 1mm 7mm; font-size: 12.5pt; }
 .km-legend { display: grid; grid-template-columns: 1fr 1fr; gap: 1mm 6mm; font-size: 11pt; }
@@ -800,6 +808,7 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
 body[data-orient="l"] { --paper-w: 297mm; --paper-h: 210mm; }
 .sheet.land { height: var(--paper-h); overflow: hidden; --row-extra: 0mm !important; }
 .sheet.land > .lbody { flex: 1; min-height: 0; overflow: hidden; }
+.sheet.land.stv > .lbody { margin-top: 4mm; }
 .sheet.land > .lbody.cols { column-count: 2; column-gap: 12mm; column-fill: auto; column-rule: 1px dashed #bbb; }
 .sheet.land > .lbody.one { display: flex; flex-direction: column; }
 .sheet.land .lbody.cols .item, .sheet.land .lbody.cols .q-item, .sheet.land .lbody.cols .km-item,
@@ -811,6 +820,25 @@ body[data-orient="l"] { --paper-w: 297mm; --paper-h: 210mm; }
 .sheet.land .st-zoom { transform: none !important; width: auto !important; margin-bottom: 0 !important; }
 /* ようじの たて書き: 問題の ならびを まるごと たて書きに する(行は 右から、字は 上から) */
 .sheet.yj.tate .yj-rows { writing-mode: vertical-rl; flex: 1; min-height: 0; }
+/* 文章読解の たて書き(A4 よこ):見出しは よこの まま、中身を 右から 左へ */
+.sheet.stv > .lbody.vt { writing-mode: vertical-rl; padding-left: 1.5mm; }
+.sheet.stv .tcy { text-combine-upright: all; }
+.sheet.stv .q-group { margin: 0; margin-block-start: 5mm; }
+.sheet.stv .q-group:first-child { margin-block-start: 0; }
+.sheet.stv .q-group > h3 { margin: 0; margin-block-end: 1.5mm; font-size: 10pt; }
+.sheet.stv .q-group > h3 em { font-style: normal; }
+.sheet.stv .reading-box { padding: 3mm 2.6mm; line-height: 1.85; }
+.sheet.stv .q-read { margin: 0; margin-block-start: 3mm; gap: 1.6mm; }
+.sheet.stv .q-read .q { align-items: baseline; }
+.sheet.stv .q-read .q > span:not(.n):not(.paren) { flex: 0 1 auto; min-width: 0; }
+.sheet.stv .q-read .q .n, .sheet.stv .vocab .v .n { min-width: 0; min-inline-size: 2.2em; }
+.sheet.stv .q-read .q .paren { margin: 0; margin-inline-start: 2mm; min-width: 0; }
+.sheet.stv .paren u { width: auto; min-width: 0; inline-size: 3.2em; block-size: 2em; border: 1px solid #888; border-radius: 1mm; text-align: center; }
+.sheet.stv .q-read .choices { padding: 0; padding-inline-start: 2.2em; gap: 0.8mm 5mm; }
+.sheet.stv .vocab { display: flex; flex-direction: column; gap: 2mm; margin: 0; margin-block-start: 1mm; }
+.sheet.stv .vocab .v { align-items: flex-start; }
+.sheet.stv .vocab .v .word { min-width: 0; min-inline-size: 5em; }
+.sheet.stv .vocab .v .line { height: auto; width: auto; flex: 1; block-size: 7mm; border: 0; border-inline-start: 0; border-left: 1.2px solid var(--rule); }
 .sheet.yj.tate .yj-rows .yn { writing-mode: horizontal-tb; }
 .sheet.yj.tate .yj-row { flex-direction: column; align-items: flex-start; gap: 3mm; }
 .sheet.yj.tate .yj-rows.pics { display: flex; flex-direction: column; justify-content: space-evenly; align-items: flex-start; gap: 4mm; }
@@ -997,6 +1025,12 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
       <option value="all">すべての 漢字</option>
     </select>
   </label>
+  <label class="sheet-only kk-only">文章の 書き方
+    <select id="f-stdir">
+      <option value="h">よこ書き(A4 たて)</option>
+      <option value="v">たて書き(A4 よこ)</option>
+    </select>
+  </label>
   <label class="sheet-only kk-only">語句を 調べる 問題
     <select id="f-vmode">
       <option value="write">あり(意味を 調べて 書く)</option>
@@ -1022,8 +1056,8 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
   <div class="buttons">
     <button class="secondary sheet-only" id="btn-home">← メニュー</button>
     <button class="secondary sheet-only" id="btn-opts" aria-expanded="false">せってい ▼</button>
-    <button class="secondary sheet-only" id="btn-again">べつの問題</button>
-    <button class="secondary sheet-only" id="btn-batch">まとめて作る・保存</button>
+    <button class="secondary sheet-only" id="btn-again">べつの<wbr>問題</button>
+    <button class="secondary sheet-only" id="btn-batch">まとめて<wbr>作る・<wbr>保存</button>
     <button class="secondary sheet-only fav-btn" id="btn-fav" aria-pressed="false" title="この 設定を お気に入りに 入れる(この 端末に ほぞん)"><span class="fav-star">☆</span><span class="lg">お気に入り</span></button>
     <button class="sheet-only" id="btn-print">印刷</button>
   </div>
@@ -1263,7 +1297,7 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
   // grade は 子どもの 学年(見出しの 字と ふりがなの 基準)。
   // gRead・gWrite・gStory は 読み・書き・長文の 学年(なければ grade と 同じ)。
   // exclude: 出さない 語(まとめて 何まいも 作る とき、まえの ページと かぶらないように)
-  function buildSheet({ grade, kind, level, count, seed, no, nRead, nWrite, gRead, gWrite, gStory, furi, genre, tk, exclude, vmode }) {
+  function buildSheet({ grade, kind, level, count, seed, no, nRead, nWrite, gRead, gWrite, gStory, furi, genre, tk, exclude, vmode, stdir }) {
     VM_OVERRIDE = ["choice", "none"].includes(vmode) ? vmode : "write";
     gRead = gRead || grade; gWrite = gWrite || grade; gStory = gStory || grade; furi = furi || "none";
     genre = genreFor(gStory, genre);
@@ -1303,7 +1337,8 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
       const L = layoutOf("long", gStory, furi, genre);
       const kanji = estHeight("long", nr, nw, gStory, furi, genre) - L.base;
       const H = tbl(furi === "none" ? "storyH" : "storyHR");
-      const fitsStory = (st) => (H[st.id] || L.base) + kanji <= L.limit;
+      // ふりがな すべての ときは 見つもりより 少し 高く なる ことが あるので 1.5mm よゆうを みる
+      const fitsStory = (st) => (H[st.id] || L.base) + kanji + (furi === "all" ? 1.5 : 0) <= L.limit;
       const pool = storiesOf(gStory, genre);
       const ok = pool.filter(fitsStory);
       const list = ok.length ? ok : pool;
@@ -1323,6 +1358,8 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
       // 語句の 問題: えらぶ(3つの 意味から)か 書く(調べて 書く)
       sheet.vmode = ["choice", "none"].includes(vmode) ? vmode : "write";
       sheet.story.vq = vocabQ(story.vocab, gStory, rng, false);
+      // 文章だけの ときは たて書き(A4 よこ)にも できる
+      sheet.tate = stdir === "v" && !nr && !nw;
     }
     VM_OVERRIDE = null;
     return sheet;
@@ -1530,13 +1567,15 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
 
   const MARK = ["ア", "イ", "ウ", "エ"];
 
-  function storyHtml(story, n, opt, lab, furi, grade, vmode) {
+  function storyHtml(story, n, opt, lab, furi, grade, vmode, tate) {
     const R = (s) => rubyHtml(s, furi, grade);
+    // たて書きの 番号は 数字を たてに 1つに まとめる
+    const N = (k) => tate ? `（<span class="tcy">${k}</span>）` : `(${k})`;
     const qs = story.questions.map((q, i) => {
       const choices = q.c.map((c, j) =>
         `<span class="choice"><span class="mark">${MARK[j]}</span><span>${R(c)}</span></span>`).join("");
       const inside = opt.answer ? `<span class="ans">${MARK[q.a]}</span>` : "&nbsp;";
-      return `<div class="q-item"><div class="q"><span class="n">(${i + 1})</span>` +
+      return `<div class="q-item"><div class="q"><span class="n">${N(i + 1)}</span>` +
         `<span>${R(q.q)}</span><span class="paren">（<u>${inside}</u>）</span></div>` +
         `<div class="choices">${choices}</div></div>`;
     }).join("");
@@ -1547,18 +1586,19 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
         const choices = v.c.map((c, j) =>
           `<span class="choice"><span class="mark">${MARK[j]}</span><span>${R(c)}</span></span>`).join("");
         const inside = opt.answer ? `<span class="ans">${MARK[v.a]}</span>` : "&nbsp;";
-        return `<div class="q-item vq"><div class="q"><span class="n">(${i + 1})</span>` +
+        return `<div class="q-item vq"><div class="q"><span class="n">${N(i + 1)}</span>` +
           `<span class="word">${R(v.w)}</span><span class="paren">（<u>${inside}</u>）</span></div>` +
           `<div class="choices">${choices}</div></div>`;
       }).join("")
       : story.vocab.map((w, i) =>
-        `<div class="v"><span class="n">(${i + 1})</span><span class="word">${R(w)}</span>` +
+        `<div class="v"><span class="n">${N(i + 1)}</span><span class="word">${R(w)}</span>` +
         `<span class="line">${opt.answer && VM[w] ? `<span class="ans vm">（れい）${R(VM[w])}</span>` : ""}</span></div>`).join("");
-    return `<section class="q-group"><h3><em>${n}</em>${lab.story}</h3>` +
+    const E = (k) => tate ? `<em><span class="tcy">${k}</span></em>` : `<em>${k}</em>`;
+    return `<section class="q-group"><h3>${E(n)}${lab.story}</h3>` +
       `<div class="reading-box">${R(story.passage)}</div>` +
       `<div class="q-read">${qs}</div></section>` +
       (story.vocab.length && vmode !== "none"
-        ? `<section class="q-group"><h3><em>${n + 1}</em>${choose ? lab.vocabC : lab.vocab}</h3>` +
+        ? `<section class="q-group"><h3>${E(n + 1)}${choose ? lab.vocabC : lab.vocab}</h3>` +
           (choose ? `<div class="q-read vq-list">${vocab}</div>` : `<div class="vocab">${vocab}</div>`) + `</section>`
         : "");
   }
@@ -1574,7 +1614,7 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
         `<div class="items">${items}</div></section>`;
     }).join("");
     const furi = sheet.furi || "none";
-    const story = sheet.story ? storyHtml(sheet.story, sheet.groups.length + 1, opt, lab, furi, sheet.grade, sheet.vmode) : "";
+    const story = sheet.story ? storyHtml(sheet.story, sheet.groups.length + 1, opt, lab, furi, sheet.grade, sheet.vmode, sheet.tate) : "";
     // 問題が 少ないときは、あまった 高さを 行の あいだと 大問の あいだに 同じだけ くばる
     const nr = sheet.groups.filter((g) => g.type === "read").reduce((s, g) => s + g.items.length, 0);
     const nw = sheet.groups.filter((g) => g.type === "write").reduce((s, g) => s + g.items.length, 0);
@@ -1585,18 +1625,20 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
     if (sheet.story) slots += sheet.story.vocab.length ? 2 : 1;
     let used = estHeight(lk, nr, nw, gs, furi, sheet.genre);
     if (sheet.kind === "long" && sheet.storyH) used += sheet.storyH - L.base;
+    if (sheet.kind === "long" && furi === "all") used += 1.5;
     // 文章だけ(漢字なし)の ときは、あまった 高さを 字を 大きく する ことに つかう(fixZoom が 1枚に 入る 大きさを きめる)
     const storyOnly = sheet.kind === "long" && sheet.story && !sheet.groups.length;
+    const tate = storyOnly && sheet.tate;
     const extra = storyOnly ? 0 : slots ? Math.max(0, Math.min(L.cap, (L.limit - used) / slots)) : 0;
     return `<div class="sheet g${gs}${opt.answer ? " answer" : ""}${sheet.kind === "long" ? " long" : ""}${sheet.tk ? " tk" : ""}` +
-      `${sheet.story && furi !== "none" ? " furi" : ""}"` +
+      `${sheet.story && furi !== "none" ? " furi" : ""}${tate ? " tate stv" : ""}"` +
       ` style="--row-extra:${extra.toFixed(2)}mm">` +
       `<div class="sheet-head"><span class="label">${lab.title}</span>` +
       `<span class="no">${sheet.no}</span>` +
       `<span class="fields">` +
       `<span class="field"><i>${lab.date}</i><b></b></span>` +
       `<span class="field name"><i>${lab.name}</i><b></b></span></span></div>` +
-      groups + (storyOnly ? `<div class="st-zoom">${story}</div>` : story) +
+      groups + (storyOnly && !tate ? `<div class="st-zoom">${story}</div>` : story) +
       (opt.answer && opt.list ? ansListHtml(sheet) : "") +
       `<div class="sheet-foot"><span class="seed">シード ${sheet.seed}</span></div></div>`;
   }
@@ -2547,7 +2589,7 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
   const state = { grade: 3, gRead: 3, gWrite: 3, gStory: 3, furi: "none", genre: "all", vmode: "write",
                   kind: "both", level: 2, nRead: 8, nWrite: 8, seed: 1,
                   ykind: "hira", yrow: "auto", ytheme: "auto", yplay: "mix", yscript: "hira", ycat: "all", yhint: "first",
-                  ymatch: "word", ystep: 1, yname: "", ylimit: 0, ywn: 7, ypn: 8, ytate: "h", ylstyle: "dash", ycorner: false, ytrace: "font", yn: 5, ythick: "mid", yarr: true, ymid: false, ysdot: true, yedot: false, ytext: "", ylayout: "char", ysize: "m", ynum: true, ydir: "v", ypos: "l", tk: false, stage: 0, ktopic: "auto", rcase: "lower", rstyle: "std", kfuri: "normal", klearn: "prev" };
+                  ymatch: "word", ystep: 1, yname: "", ylimit: 0, ywn: 7, ypn: 8, ytate: "h", ylstyle: "dash", ycorner: false, ytrace: "font", yn: 5, ythick: "mid", yarr: true, ymid: false, ysdot: true, yedot: false, ytext: "", ylayout: "char", ysize: "m", ynum: true, ydir: "v", ypos: "l", stdir: "h", tk: false, stage: 0, ktopic: "auto", rcase: "lower", rstyle: "std", kfuri: "normal", klearn: "prev" };
   // 学年 0 は ようじ
   const gradeLabel = (g) => (g === 0 ? "ようじ" : BANKS[g - 1].label);
 
@@ -2622,6 +2664,7 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
     }
     state.furi = $("f-furi").value || "none";
     state.vmode = ["choice", "none"].includes($("f-vmode").value) ? $("f-vmode").value : "write";
+    state.stdir = $("f-stdir").value === "v" ? "v" : "h";
     // 長文の 学年に ない ジャンルなら 「すべて」に もどす
     state.genre = genreFor(state.gStory, changedId === "f-grade" ? state.genre : ($("f-genre").value || state.genre));
     state.level = Number($("f-level").value);
@@ -2792,7 +2835,7 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
       if (g >= 7) state.klearn = "this";
       $("f-klearn").value = state.klearn;
       $("f-klearn").closest("label").hidden = !!(kt && kt.nofuri) || !["over", "kana"].includes(state.kfuri);
-      for (const id of ["f-gread", "f-gwrite", "f-gstory", "f-genre", "f-furi", "f-vmode", "f-tk"]) $(id).closest("label").hidden = true;
+      for (const id of ["f-gread", "f-gwrite", "f-gstory", "f-genre", "f-furi", "f-vmode", "f-tk", "f-stdir"]) $(id).closest("label").hidden = true;
       $("f-seed").value = String(state.seed);
       return;
     }
@@ -2815,6 +2858,8 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
     const storyOnly = isLong && !state.nRead && !state.nWrite;
     $("f-kind").value = storyOnly ? "story" : state.kind;
     for (const id of ["f-read", "f-write", "f-level", "f-model"]) $(id).closest("label").hidden = storyOnly;
+    $("f-stdir").value = state.stdir;
+    $("f-stdir").closest("label").hidden = !storyOnly;
     $("f-tk").checked = state.tk;
     $("f-tk").closest("label").hidden = isLong;
     $("f-level").value = String(state.level);
@@ -2903,7 +2948,8 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
   document.head.appendChild(PAGE_STYLE);
   function setOrient() {
     // A4 よこに するのは、ようじの たて書きの ときだけ
-    const l = state.grade === 0 && state.ytate === "v" && TATE_KINDS.includes(state.ykind);
+    const l = state.grade === 0 ? state.ytate === "v" && TATE_KINDS.includes(state.ykind)
+      : state.kind === "long" && !state.nRead && !state.nWrite && state.stdir === "v";
     document.body.dataset.orient = l ? "l" : "";
     PAGE_STYLE.textContent = l ? "@page { size: A4 landscape; margin: 0; }" : "";
   }
@@ -2915,7 +2961,7 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
       const kids = [...sheet.children].filter((k) => !k.classList.contains("sheet-head") && !k.classList.contains("sheet-foot"));
       if (!kids.length) continue;
       const box = document.createElement("div");
-      box.className = "lbody " + (sheet.classList.contains("yj") ? "one" : "cols");
+      box.className = "lbody " + (sheet.classList.contains("yj") ? "one" : sheet.classList.contains("stv") ? "vt" : "cols");
       kids[0].before(box);
       kids.forEach((k) => box.appendChild(k));
       fitLand(sheet);
@@ -2924,6 +2970,17 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
   function fitLand(sheet) {
     const box = sheet.querySelector(":scope > .lbody");
     if (!box) return;
+    // 文章の たて書きは、1枚に 入る いちばん 大きい 倍率(0.5〜1.6)に する(右から 左へ ながれて、左に はみ出さない)
+    if (box.classList.contains("vt")) {
+      const over = () => box.scrollWidth > box.clientWidth + 1 || box.scrollHeight > box.clientHeight + 1;
+      let lo = 0.5, hi = 1.6;
+      box.style.zoom = hi;
+      if (!over()) lo = hi;
+      else for (let k = 0; k < 10; k++) { const m = (lo + hi) / 2; box.style.zoom = m.toFixed(3); if (over()) hi = m; else lo = m; }
+      box.style.zoom = lo.toFixed(3);
+      box.dataset.z = lo.toFixed(3);
+      return;
+    }
     // 4本線の 字が わくから はみ出す ときも ちぢめる(2だんの はばが せまい ため)
     const lines = [...box.querySelectorAll(".km-4l")];
     const over = () => box.scrollWidth > box.clientWidth + 2 || box.scrollHeight > box.clientHeight + 2 ||
@@ -3478,6 +3535,8 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
      { d:日づけ, t:文, g:学年(0=ようじ), sel:ホームの カード, opts:{せってい}, tab:"stage"|"domain", domain }
      ★ 機能を 足したら ここにも 1行 足すこと(10こまで 出す) */
   const CHANGES = [
+    { d: "26/11/25", t: "文章読解を たて書き(A4 よこ)で 作れる(設定の「文章の 書き方」)", g: 4, sel: '.kk-card[data-story]' },
+    { d: "26/11/25", t: "お気に入りに 名前を つけられる(入れた ときか、メニューの ✎ から)", tag: "ホーム" },
     { d: "26/11/25", t: "お気に入り:プリント画面の「☆ お気に入り」で 入れると、メニューから すぐ 作れる", tag: "ホーム" },
     { d: "26/11/25", t: "分野べつ:分野の 中で しぼれる(小分類)・分野の 絵", tab: "domain", domain: "kotoba" },
     { d: "26/11/25", t: "下が あいた プリントは 中身を 大きく する(文章読解 など。くわしい 設定で OFF)", g: 1, sel: '.kk-card[data-story]' },
@@ -3619,7 +3678,7 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
   function favPick(st) {
     const keys = st.grade === 0 ? ["grade", ...FAV_Y]
       : st.kind === "kimari" ? ["grade", "kind", "ktopic", "rcase", "rstyle", "kfuri", "klearn"]
-      : ["grade", "gRead", "gWrite", "gStory", "furi", "genre", "vmode", "kind", "level", "nRead", "nWrite", "tk"];
+      : ["grade", "gRead", "gWrite", "gStory", "furi", "genre", "vmode", "kind", "level", "nRead", "nWrite", "tk", "stdir"];
     const o = {};
     for (const k of keys) o[k] = st[k];
     return o;
@@ -3665,15 +3724,34 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
     favSave(a);
     favSync();
     renderFavs();
-    setMsg(i >= 0 ? "お気に入りから はずしました。" : "お気に入りに 入れました(この 端末に ほぞん)。メニューの「★ お気に入り」から すぐ 作れます。");
+    if (i >= 0) { setMsg("お気に入りから はずしました。"); return; }
+    // 入れた ときは、すぐ 名前を つけられる(つけなくても いい)
+    $("msg").innerHTML = `お気に入りに 入れました(この 端末に ほぞん)。名前を つける なら:<span class="fv-edit"><input type="text" id="fav-name" maxlength="24" placeholder="${esc(favName(state))}" aria-label="お気に入りの 名前"><button type="button" class="secondary" id="fav-name-ok">つける</button></span>`;
+    const inp = $("fav-name"), k0 = k;
+    const done = () => {
+      favRename(k0, inp.value);
+      setMsg(inp.value.trim() ? `「${inp.value.trim()}」と いう 名前で お気に入りに 入れました。` : "お気に入りに 入れました(この 端末に ほぞん)。");
+    };
+    inp.addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); done(); } });
+    $("fav-name-ok").addEventListener("click", done);
   }
+  // お気に入りの 名前を かえる(から なら もとの 名前に もどす)
+  function favRename(key, name) {
+    const a = favList(), f = a.find((x) => favKey(x.st) === key);
+    if (!f) return;
+    const n = String(name || "").trim().slice(0, 24);
+    if (n) f.name = n; else delete f.name;
+    favSave(a);
+    renderFavs();
+  }
+  const favLabel = (f) => f.name || favName(f.st);
   function renderFavs() {
     const box = $("home-favs"), a = favList();
     box.hidden = !a.length;
     if (!a.length) { box.innerHTML = ""; return; }
-    box.innerHTML = `<div class="fv-head"><span>★ お気に入り</span><small>この 端末に ほぞん して います。おすと すぐ 作れます</small></div><div class="fv-list">${a.map((f, i) => {
+    box.innerHTML = `<div class="fv-head"><span>★ お気に入り</span><small>この 端末に ほぞん して います。おすと すぐ 作れます。✎で 名前を かえる</small></div><div class="fv-list">${a.map((f, i) => {
       const g = f.st.grade;
-      return `<button type="button" class="fv-chip" data-fi="${i}" title="${esc(gradeLabel(g) + " ・ " + favName(f.st))}"><span class="nw-tag" style="--tc:${GRADE_COLORS[g]}">${esc(gradeLabel(g))}</span><span class="fv-name">${esc(favName(f.st))}</span><span class="fv-kind">${favStars(f.st)}</span><span class="fv-x" data-fx="${i}" role="button" aria-label="お気に入りから はずす">×</span></button>`;
+      return `<button type="button" class="fv-chip" data-fi="${i}" title="${esc(gradeLabel(g) + " ・ " + favName(f.st) + (f.name ? `(${f.name})` : ""))}"><span class="nw-tag" style="--tc:${GRADE_COLORS[g]}">${esc(gradeLabel(g))}</span><span class="fv-name">${esc(favLabel(f))}</span><span class="fv-kind">${f.name ? esc(favName(f.st)) + " " : ""}${favStars(f.st)}</span><span class="fv-ed" data-fe="${i}" role="button" aria-label="名前を かえる" title="名前を かえる">✎</span><span class="fv-x" data-fx="${i}" role="button" aria-label="お気に入りから はずす">×</span></button>`;
     }).join("")}</div>`;
   }
   function goFav(f) {
@@ -3828,7 +3906,7 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
   function hovSource(b) {
     if (b.classList.contains("fv-chip")) {
       const f = favList()[Number(b.dataset.fi)];
-      return f ? { key: "fv" + favKey(f.st), title: `${gradeLabel(f.st.grade)} ・ ${favName(f.st)}`, html: () => stateSheetHtml(f.st) } : null;
+      return f ? { key: "fv" + favKey(f.st), title: `${gradeLabel(f.st.grade)} ・ ${favLabel(f)}${f.name ? `(${favName(f.st)})` : ""}`, html: () => stateSheetHtml(f.st) } : null;
     }
     if (b.classList.contains("hf-card")) {
       const it = FOUND[Number(b.dataset.i)];
@@ -3871,6 +3949,28 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
   function bind() {
     $("btn-fav").addEventListener("click", favToggle);
     $("home-favs").addEventListener("click", (e) => {
+      const ed = e.target.closest(".fv-ed");
+      if (ed) {
+        const f = favList()[Number(ed.dataset.fe)];
+        if (!f) return;
+        hovHide();
+        const key = favKey(f.st), chip = ed.closest(".fv-chip");
+        const box = document.createElement("span");
+        box.className = "fv-edit";
+        box.innerHTML = `<input type="text" maxlength="24" placeholder="${esc(favName(f.st))}" aria-label="お気に入りの 名前"><button type="button" class="fv-ok">OK</button>`;
+        chip.replaceWith(box);
+        const inp = box.querySelector("input");
+        inp.value = f.name || "";
+        inp.focus();
+        inp.select();
+        let fin = false;
+        const done = (save) => { if (fin) return; fin = true; if (save) favRename(key, inp.value); else renderFavs(); };
+        inp.addEventListener("keydown", (ev) => { if (ev.key === "Enter") { ev.preventDefault(); done(true); } else if (ev.key === "Escape") done(false); });
+        inp.addEventListener("blur", () => setTimeout(() => done(true), 150));
+        box.querySelector(".fv-ok").addEventListener("click", () => done(true));
+        return;
+      }
+      if (e.target.closest(".fv-edit")) return;
       const x = e.target.closest(".fv-x");
       if (x) {
         const a = favList();
@@ -4073,7 +4173,7 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
       clearTimeout(ytTimer);
       ytTimer = setTimeout(() => { readControls("f-ytext"); if (document.body.dataset.view === "sheet") show(1, state.seed); }, 700);
     });
-    for (const id of ["f-grade", "f-gread", "f-gwrite", "f-gstory", "f-genre", "f-furi", "f-vmode", "f-kind", "f-ykind", "f-yrow", "f-ytheme", "f-yplay", "f-yscript", "f-ycat", "f-yhint", "f-ymatch", "f-ystep", "f-yname", "f-ylimit", "f-ywn", "f-ypn", "f-ytate", "f-ytrace", "f-ylstyle", "f-ycorner", "f-yn", "f-ythick", "f-yarr", "f-ymid", "f-ysdot", "f-yedot", "f-ytext", "f-ylayout", "f-ysize", "f-ynum", "f-ydir", "f-ypos", "f-tk", "f-level", "f-ktopic", "f-rcase", "f-rstyle", "f-kfuri", "f-klearn",
+    for (const id of ["f-grade", "f-gread", "f-gwrite", "f-gstory", "f-genre", "f-furi", "f-vmode", "f-stdir", "f-kind", "f-ykind", "f-yrow", "f-ytheme", "f-yplay", "f-yscript", "f-ycat", "f-yhint", "f-ymatch", "f-ystep", "f-yname", "f-ylimit", "f-ywn", "f-ypn", "f-ytate", "f-ytrace", "f-ylstyle", "f-ycorner", "f-yn", "f-ythick", "f-yarr", "f-ymid", "f-ysdot", "f-yedot", "f-ytext", "f-ylayout", "f-ysize", "f-ynum", "f-ydir", "f-ypos", "f-tk", "f-level", "f-ktopic", "f-rcase", "f-rstyle", "f-kfuri", "f-klearn",
                       "f-read", "f-write", "f-seed", "f-model", "f-ans", "f-anslist"]) {
       $(id).addEventListener("change", () => {
         readControls(id);
@@ -4119,6 +4219,11 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
     const n = Number($("b-pages").value) || 1;
     const seed = Number($("b-seed").value) || 1;
     const stateEl = $("b-state");
+    // たて書きの 文章は 画像に すると 字が くずれる(html2canvas が たて書きを かけない)ので、印刷から PDF に して もらう
+    if (state.grade > 0 && state.kind === "long" && !state.nRead && !state.nWrite && state.stdir === "v") {
+      stateEl.textContent = "たて書きの 文章は ここでは PDF・JPG に できません。「画面に 出す」で 作ってから「印刷」を おし、プリンターを「PDF に 保存」に して ください。";
+      return;
+    }
     try {
       stateEl.textContent = "道具を よみこんでいます…";
       loadLibs();
