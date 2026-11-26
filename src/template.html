@@ -2195,7 +2195,7 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
     const pagesN = Math.max(1, Math.ceil(list.length / n));
     const p = (Math.max(1, seed) - 1) % pagesN;
     const chars = list.slice(p * n, p * n + n);
-    return { grade, n, own, total: list.length, from: p * n + 1, chars, seed, no };
+    return { grade, n, own, total: list.length, page: p + 1, from: p * n + 1, chars, seed, no };
   }
   // 書き順の 1こま:前の 画は うすく、いまの 画は こく
   function strokeStep(ch, i) {
@@ -2235,8 +2235,9 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
         `<div class="rs-order"><b>${L.order}</b><span class="rs-sts">${steps}</span></div>` +
         `</div></div>${masu}</div>`;
     }).join("");
-    const head = s.own ? (kana ? "えらんだ かんじ" : "えらんだ 漢字") : `${BANKS[g - 1].label}の ${kana ? "かんじ" : "漢字"}`;
-    const range = `${s.from}〜${s.from + s.chars.length - 1}${kana ? "じめ" : "字め"}(${s.total}${kana ? "じ" : "字"}の うち)`;
+    // 学年は 書かない(「漢字練習 No.1」)
+    const head = `${kana ? "かんじ れんしゅう" : "漢字練習"} No.${s.page}`;
+    const range = `${s.from}〜${s.from + s.chars.length - 1}${kana ? "じめ" : "字め"}`;
     return `<div class="sheet rs g${g}${s.n >= 4 ? " c" : ""}" style="--rt:${T.toFixed(1)}mm;--rm:${M.toFixed(1)}mm">` +
       `<div class="sheet-head"><span class="label">${L.title}</span><span class="no">${s.no}</span>` +
       `<span class="fields"><span class="field"><i>${lab.date}</i><b></b></span>` +
@@ -4037,6 +4038,7 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
      { d:日づけ, t:文, g:学年(0=ようじ), sel:ホームの カード, opts:{せってい}, tab:"stage"|"domain", domain }
      ★ 機能を 足したら ここにも 1行 足すこと(10こまで 出す) */
   const CHANGES = [
+    { d: "26/11/26", t: "漢字練習帳:学年を 書かずに「漢字練習 No.1」に", g: 3, sel: '.kk-card[data-kind="renshu"]' },
     { d: "26/11/26", t: "ことば あそび:クロスワード(絵が ヒント)・しりとり めいろ・ことばの かいだん", g: 0, sel: '.yj-card[data-ykind="play"]' },
     { d: "26/11/26", t: "漢字練習帳(1字ずつ):書き順・音訓・画数・ことば → なぞって 書く", g: 3, sel: '.kk-card[data-kind="renshu"]' },
     { d: "26/11/26", t: "ことばの きまり:ものの かぞえかた(小1・2)", g: 1, sel: '.km-card[data-topic="kazoe"]' },
