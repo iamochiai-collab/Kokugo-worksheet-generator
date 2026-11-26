@@ -105,6 +105,16 @@ PICS_HIRA = '''
 しぜん やま mountain|つき crescent-moon|ほし star|にじ rainbow|ゆき snowflake|くも cloud|かみなり high-voltage
 しぜん さくら cherry-blossom|ひまわり sunflower|もみじ maple-leaf|はな tulip|き deciduous-tree|いえ house
 からだ め eye|みみ ear-default|はな nose-default|くち mouth|て raised-hand-default|あし leg-default
+どうぶつ おうむ parrot
+もの らっぱ trumpet
+'''
+# あなうめ(頭の 字)で 足りない 字を うめる ことば。絵は ChatGPT の 線画を まって いる もの(assets/pics-line/<名前>.png が とどいたら つかわれる)
+PICS_HIRA_WAIT = '''
+どうぶつ しまうま zebra|やぎ goat|けむし caterpillar|せみ cicada
+たべもの すし sushi|みかん tangerine|れもん lemon|わたあめ cotton-candy
+もの おばけ ghost|おの axe|けいと yarn|こま spinning-top|こっぷ cup|せっけん soap|そり sled|ちず map|つくえ desk|つみき blocks
+もの なべ pot|ぬいぐるみ teddy-bear|のこぎり saw|のり glue-stick|まど window|まくら pillow|むしめがね magnifier|ゆびわ ring
+もの れいぞうこ fridge|ろうそく candle
 '''
 PICS_KATA = '''
 どうぶつ コアラ koala|ライオン lion|パンダ panda|ペンギン penguin|ゴリラ gorilla|カンガルー kangaroo|フラミンゴ flamingo|インコ parrot
@@ -117,7 +127,10 @@ PICS_KATA = '''
 '''
 
 
-def pics(spec):
+WAIT = []
+
+
+def pics(spec, wait=False):
     out = []
     for line in spec.strip().split('\n'):
         cat, rest = line.split(' ', 1)
@@ -126,7 +139,11 @@ def pics(spec):
             if not item or item.endswith('?'):
                 continue
             w, f = item.split()
-            assert (root / 'assets' / 'pics' / f'{f}.svg').exists(), f'絵が ない: {f}'
+            have = (root / 'assets' / 'pics' / f'{f}.svg').exists() or (root / 'assets' / 'pics-line' / f'{f}.png').exists()
+            if wait and not have:
+                WAIT.append(f'{w}({f})')   # 絵が まだ ない ことばも 入れて おく(アプリが 絵の ない ものは つかわない)
+            else:
+                assert have, f'絵が ない: {f}'
             assert len(w) <= 6, w
             out.append({'w': w, 'cat': cat, 'pic': f})
     return out
@@ -136,7 +153,7 @@ def boxes(w):
     return len(w)
 
 data = {'hira': HIRA, 'kata': KATA, 'themes': [{'name': n, 'words': ws.split()} for n, ws in THEMES],
-        'extra': EXTRA, 'pics': {'hira': pics(PICS_HIRA), 'kata': pics(PICS_KATA)}}
+        'extra': EXTRA, 'pics': {'hira': pics(PICS_HIRA) + pics(PICS_HIRA_WAIT, True), 'kata': pics(PICS_KATA)}}
 for t in data['themes']:
     assert len(t['words']) == 7, t
     for w in t['words']:
@@ -147,3 +164,5 @@ for r in HIRA + KATA:
 (root / 'src' / 'data' / 'youji.json').write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding='utf-8')
 print('youji.json: ひらがな', len(HIRA), '行 / カタカナ', len(KATA), '行 / テーマ', len(THEMES), '/ あそびの ことば', len(EXTRA),
       '/ 絵', len(data['pics']['hira']), '+', len(data['pics']['kata']))
+if WAIT:
+    print('  絵を まって いる ことば', len(WAIT), ':', ' '.join(WAIT))

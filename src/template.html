@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="app-version" content="第44版(2026-11-25)">
+<meta name="app-version" content="第45版(2026-11-26)">
 <title>国語プリント</title>
 <link rel="icon" type="image/png" sizes="32x32" href="{{ICON:32}}">
 <link rel="icon" type="image/png" sizes="64x64" href="{{ICON:64}}">
@@ -654,6 +654,22 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
 .yj .pic-item .wline .mb { width: var(--mb, 14mm); height: var(--mb, 14mm); font-size: calc(var(--mb, 14mm) * 0.75); }
 /* 3この ときは 1れつ。絵の よこに ますを おく */
 .yj-rows.pics.one { grid-template-columns: 1fr; }
+/* あなうめ:絵 → ことばの ます(1つ あな)→(○で えらぶ ときは こたえ 3つ)。カードは 下に きりとり線 */
+.yj-rows.ana { display: flex; flex-direction: column; justify-content: space-evenly; gap: 1mm; }
+.ana-item { display: flex; align-items: center; gap: 4mm; }
+.ana-item .yn { position: static; flex: none; }
+.ana-item .pic { width: var(--pic); height: var(--pic); object-fit: contain; flex: none; }
+.yj .ana-item .wline .mb, .yj .ana-cards .acard { width: var(--mb); height: var(--mb); font-size: calc(var(--mb) * 0.75); }
+.yj .ana-item .mb.blank { background: #fff; }
+.ana-ch { display: flex; gap: 2.5mm; margin-inline-start: auto; flex: none; }
+.ana-ch .c { width: var(--ch); height: var(--ch); border-radius: 50%; border: 1.2px solid #999; display: inline-flex; align-items: center; justify-content: center; font-size: calc(var(--ch) * 0.68); line-height: 1; }
+.ana-ch .c.on { border: 2.4px solid #000; font-weight: bold; }
+.ana-cards { margin-top: 3mm; border-top: 1.5px dashed #777; padding-top: 2mm; }
+.ana-cards .cut { font-size: 3.6mm; color: #333; }
+.ana-cards .cards { display: flex; flex-wrap: wrap; justify-content: center; gap: 4mm; margin-top: 2mm; }
+.yj .ana-cards .acard { display: inline-flex; align-items: center; justify-content: center; border: 1.4px dashed #222; box-sizing: border-box; }
+.yj .ana-cards .acard i { font-style: normal; line-height: 1; transform: translateY(-0.04em); }
+.yj .ana-cards .acard { overflow: hidden; }
 .yj-rows.pics.one .pic-item { flex-direction: row; justify-content: flex-start; gap: 8mm; padding-left: 6mm; }
 /* しりとり */
 .shiri { display: flex; gap: 3mm; align-items: flex-start; }
@@ -841,6 +857,9 @@ body[data-orient="l"] { --paper-w: 297mm; --paper-h: 210mm; }
 .sheet.stv .vocab .v .line { height: auto; width: auto; flex: 1; block-size: 7mm; border: 0; border-inline-start: 0; border-left: 1.2px solid var(--rule); }
 .sheet.yj.tate .yj-rows .yn { writing-mode: horizontal-tb; }
 .sheet.yj.tate .yj-row { flex-direction: column; align-items: flex-start; gap: 3mm; }
+.sheet.yj.tate .yj-rows.ana { flex-direction: column; justify-content: space-evenly; align-items: flex-start; overflow: hidden; }
+.sheet.yj.tate .ana-item { gap: 3mm; }
+.sheet.yj.tate .ana-ch { gap: 1.5mm; writing-mode: horizontal-tb; margin-inline-start: 0; margin-block-start: 3mm; }
 .sheet.yj.tate .yj-rows.pics { display: flex; flex-direction: column; justify-content: space-evenly; align-items: flex-start; gap: 4mm; }
 .sheet.yj.tate .yj-rows.pics .pic-item { flex-direction: row; align-items: center; padding: 0; gap: 3mm; }
 .sheet.yj.tate .pic-item .yn, .yj-rows.pics.one .pic-item .yn { position: static; flex: none; }
@@ -962,6 +981,12 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
   </label>
   <label class="sheet-only yj-only" for="f-ypn">えの かず
     <span class="stepper"><button type="button" class="st-btn" data-for="f-ypn" data-step="-1" aria-label="1つ へらす">−</button><select id="f-ypn"><option value="8">8もん</option><option value="7">7もん</option><option value="6">6もん</option><option value="5">5もん</option><option value="4">4もん(大きい ます)</option><option value="3">3もん(もっと 大きい ます)</option></select><button type="button" class="st-btn" data-for="f-ypn" data-step="1" aria-label="1つ ふやす">＋</button></span>
+  </label>
+  <label class="sheet-only yj-only">あなの ばしょ
+    <select id="f-yapos"><option value="head">さいしょの じ</option><option value="any">どこでも</option></select>
+  </label>
+  <label class="sheet-only yj-only">こたえかた
+    <select id="f-yans"><option value="write">ますに かく</option><option value="card">きって はる(カード)</option><option value="circle">えらんで ○</option></select>
   </label>
   <label class="sheet-only yj-only" for="f-ywn">1まいの ことば
     <span class="stepper"><button type="button" class="st-btn" data-for="f-ywn" data-step="-1" aria-label="1つ へらす">−</button><select id="f-ywn"><option value="7">7こ</option><option value="6">6こ</option><option value="5">5こ</option><option value="4">4こ(大きい 字)</option><option value="3">3こ(もっと 大きい 字)</option></select><button type="button" class="st-btn" data-for="f-ywn" data-step="1" aria-label="1つ ふやす">＋</button></span>
@@ -1149,6 +1174,12 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
       <span class="name"><span class="n">7</span>かきかた(じゆうに 書く)</span>
       <span class="chara chara-book" aria-hidden="true"></span>
       <span class="desc">すきな ことばを 入れると、お手本 → 書き順つき なぞり → 書く ますが できます。小学校の 漢字も。</span>
+      <span class="go">作る ▶</span>
+    </button>
+    <button class="kind-card yj-card" data-kind="pic" data-ykind="ana">
+      <span class="name"><span class="n">8</span>あなうめ(あ行・か行…)</span>
+      <span class="chara chara-think" aria-hidden="true"></span>
+      <span class="desc">絵を みて、あいた ますに 入る 字を 書く・カードを きって はる・○を つける。あ行〜わ行。</span>
       <span class="go">作る ▶</span>
     </button>
     <button class="kind-card kk-card" data-kind="both">
@@ -1837,7 +1868,7 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
      データは src/data/youji.json(tools/make_youji.py が 作る)。 */
   const YD = typeof youjiData !== "undefined" ? youjiData : { hira: [], kata: [], themes: [], extra: [] };
   const YKINDS = [["hira", "ひらがな なぞり"], ["kata", "カタカナ なぞり"], ["word", "ことば なぞり"], ["pic", "え と ことば(絵を みて かく)"], ["play", "ことば あそび"],
-                  ["line", "せんを なぞろう"], ["unpitsu", "うんぴつ(線の れんしゅう)"], ["kakikata", "かきかた(じゆうに 書く)"], ["match", "せんで むすぼう"], ["name", "なまえを かこう"]];
+                  ["line", "せんを なぞろう"], ["unpitsu", "うんぴつ(線の れんしゅう)"], ["kakikata", "かきかた(じゆうに 書く)"], ["match", "せんで むすぼう"], ["name", "なまえを かこう"], ["ana", "あなうめ(絵を みて 字を いれる)"]];
   const YMATCHES = [["word", "え と ひらがな"], ["kata", "え と カタカナ"], ["same", "おなじ え"]];
   const YPICS = typeof youjiPics !== "undefined" ? youjiPics : {};
   const YHINTS = [["first", "さいしょの 字を なぞる"], ["all", "ぜんぶ なぞる(うすい字)"], ["none", "ヒント なし"]];
@@ -1846,7 +1877,7 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
   const YPLAYS = [["mix", "じゅんばんに(シードで かわる)"], ["shiri", "しりとり"], ["search", "ことば さがし"],
                   ["miss", "たりない 字"], ["sort", "ならべかえ"]];
   const YTITLE = { hira: "ひらがな れんしゅう", kata: "カタカナ れんしゅう", word: "ことば れんしゅう", pic: "え と ことば", play: "ことば あそび",
-                   line: "せんの れんしゅう", unpitsu: "うんぴつ れんしゅう", kakikata: "かきかた れんしゅう", match: "むすんで みよう", name: "なまえの れんしゅう" };
+                   line: "せんの れんしゅう", unpitsu: "うんぴつ れんしゅう", kakikata: "かきかた れんしゅう", match: "むすんで みよう", name: "なまえの れんしゅう", ana: "あなうめ" };
   // ===== せんを なぞろう(うんぴつ)。かたちは viewBox 180×40(mm)の なかの パス =====
   const LX0 = 34, LX1 = 146, LY = 20;
   function waveD(amp, n) {
@@ -2150,10 +2181,10 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
   // 絵(ひらがな・カタカナの なまえつき)を n こ。同じ ことば・同じ 絵は 1かいだけ
   function pickPics(script, n, rng, extra) {
     const seenW = new Set(), seenP = new Set(extra || []);
-    return shuffled((YD.pics || {})[script] || [], rng)
+    return shuffled(((YD.pics || {})[script] || []).filter((x) => YPICS[x.pic]), rng)
       .filter((x) => !seenW.has(x.w) && !seenP.has(x.pic) && seenW.add(x.w) && seenP.add(x.pic)).slice(0, n);
   }
-  function buildYoujiSheet({ ykind, yrow, ytheme, yplay, yscript, ycat, yhint, ymatch, ystep, yname, ylimit, ywn, ylstyle, ycorner, ytrace, yn, ythick, yarr, ymid, ysdot, yedot, ytext, ylayout, ysize, ynum, ydir, ypos, ypn, ytate, seed, no }) {
+  function buildYoujiSheet({ ykind, yrow, ytheme, yplay, yscript, ycat, yhint, ymatch, ystep, yname, ylimit, ywn, ylstyle, ycorner, ytrace, yn, ythick, yarr, ymid, ysdot, yedot, ytext, ylayout, ysize, ynum, ydir, ypos, ypn, ytate, yapos, yans, seed, no }) {
     const rng = makeRng(seed * 7919 + 4243);
     // ylstyle: なぞる 線の 種類 / ycorner: かどに 点 / ytrace: font(うすい 字)・lines(線で なぞる)・order(書き順)
     const s = { youji: true, ykind, seed, no, lstyle: ylstyle || "dash", corner: !!ycorner, trace: ytrace || "font" };
@@ -2208,9 +2239,53 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
       s.script = yscript === "kata" ? "kata" : "hira";
       s.pn = Math.max(3, Math.min(8, Number(ypn) || 8));
       s.hint = yhint || "first";
-      const all = ((YD.pics || {})[s.script] || []).filter((x) => !ycat || ycat === "all" || x.cat === ycat);
+      const all = ((YD.pics || {})[s.script] || []).filter((x) => YPICS[x.pic] && (!ycat || ycat === "all" || x.cat === ycat));
       const seen = new Set();
       s.items = shuffled(all, rng).filter((x) => !seen.has(x.w) && seen.add(x.w)).slice(0, s.pn);
+    } else if (ykind === "ana") {
+      // あなうめ:絵の なまえの 1字を あなに する。あなに なるのは えらんだ 行(あ行〜わ行)の 字だけ
+      const rows = YD.hira.slice(0, 10);
+      const ri = Number(yrow);
+      s.mix = yrow === "mix";
+      s.row = s.mix ? { name: "あ〜わ行", chars: rows.flatMap((r) => r.chars) }
+        : yrow === "auto" || yrow == null || !(ri >= 0 && ri < rows.length) ? rows[(seed - 1) % rows.length] : rows[ri];
+      s.apos = yapos === "any" ? "any" : "head";
+      s.ans = ["card", "circle"].includes(yans) ? yans : "write";
+      s.pn = Math.max(3, Math.min(8, Number(ypn) || 5));
+      const chars = s.row.chars;
+      const pool = shuffled(((YD.pics || {}).hira || []).filter((x) => YPICS[x.pic]), rng);
+      const hits = (w, any) => [...w].map((c, i) => (i === 0 || any) && chars.includes(c) ? i : -1).filter((i) => i >= 0);
+      // 字が かたよらない ように、あなの 字を じゅんばんに まわして えらぶ。
+      // さいしょの 字で たりない ときは、ことばの 中の 字で おぎなう(わ行の「ん」など)
+      const used = new Set(), items = [];
+      const take = (any) => {
+        const cand = pool.filter((x) => !used.has(x.w) && hits(x.w, any).length).map((x) => {
+          const hs = hits(x.w, any), pos = hs[Math.floor(rng() * hs.length)];
+          return { w: x.w, pic: x.pic, pos, ch: [...x.w][pos] };
+        });
+        const order = shuffled(chars, rng);
+        let again = true;
+        while (items.length < s.pn && again) {
+          again = false;
+          for (const c of order) {
+            if (items.length >= s.pn) break;
+            const k = cand.findIndex((x) => x.ch === c && !used.has(x.w) && !items.some((y) => y.pic === x.pic));
+            if (k < 0) continue;
+            used.add(cand[k].w);
+            items.push(cand[k]);
+            again = true;
+          }
+        }
+      };
+      take(s.apos === "any");
+      if (items.length < s.pn && s.apos === "head") take(true);
+      // ○で えらぶ ときの こたえ 3つ(おなじ 行の ほかの 字を 2つ)
+      for (const it of items) {
+        const r = rows.find((x) => x.chars.includes(it.ch)) || s.row;
+        it.opts = shuffled([it.ch, ...shuffled(r.chars.filter((c) => c !== it.ch), rng).slice(0, 2)], rng);
+      }
+      s.items = items;
+      s.cards = shuffled(items.map((it) => it.ch), rng);
     } else if (ykind === "word") {
       const t = YD.themes;
       s.theme = t[ytheme === "auto" || ytheme == null ? (seed - 1) % t.length : Number(ytheme) % t.length];
@@ -2243,7 +2318,7 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
 
   // かきかたの ます 1つ。kind: model(お手本)・order(書き順なぞり)・light(うすい 字)・blank(書く)・bare(わくなし お手本)
   // たて書きに できる ようじの プリント
-  const TATE_KINDS = ["hira", "kata", "word", "pic", "play", "name"];
+  const TATE_KINDS = ["hira", "kata", "word", "pic", "play", "name", "ana"];
   function kakiCell(ch, kind, s, B) {
     const fs = `width:${B}mm;height:${B}mm;font-size:${(B * 0.78).toFixed(2)}mm`;
     if (!ch) return `<span class="kk-c${kind === "bare" ? " bare" : ""}" style="${fs}"></span>`;
@@ -2434,6 +2509,42 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
                      none: "えの なまえを ますに かこう。ますの かずが じの かずだよ。" }[s.hint];
       body = `<h3 class="yj-h"><span class="yj-badge">え を みて かこう</span></h3>` +
         `<p class="yj-inst">${inst}</p><div class="yj-rows pics${one ? " one" : ""}" style="--pic:${P.pic}mm">${items}</div>`;
+    } else if (s.ykind === "ana") {
+      // 1もんの たかさ(よこ書き)・はば(たて書き)から 絵と ますの 大きさを きめる。カードの ときは カードの ぶん へらす
+      const N = Math.max(1, s.items.length), L = Math.max(2, ...s.items.map((it) => [...it.w].length));
+      const circ = s.ans === "circle", card = s.ans === "card" && !ans;
+      let mb = 26, pic = 40, ch = 12;
+      for (let k = 0; k < 3; k++) {
+        const cardH = card ? (Math.ceil(N * (mb + 4) / (s.tate ? 255 : 182)) * (mb + 4) + 12) : 0;
+        if (!s.tate) {
+          const H = 226 - cardH, rowH = H / N;
+          pic = Math.min(42, rowH * 0.9);
+          ch = Math.min(13, rowH * 0.42);
+          mb = Math.min(28, rowH * 0.8, (178 - 10 - pic - (circ ? 3 * (ch + 2.5) + 6 : 0) - 12) / L);
+        } else {
+          // たて書きの ○は 字の 下に よこ 1れつ(れつの はばに 3つ 入る 大きさ)
+          const H = 138 - cardH, colW = 262 / N;
+          pic = Math.min(40, colW * 0.85, H * 0.3);
+          ch = Math.min(12, (colW - 4) / 3.5);
+          mb = Math.min(26, colW * 0.72, (H - 8 - pic - (circ ? ch + 5 : 0) - 6) / L);
+        }
+      }
+      mb = Math.max(9, mb);
+      const items = s.items.map((it, i) => {
+        const boxes = [...it.w].map((c, j) => j === it.pos ? ybox(ans ? c : "", ans ? "ans blank" : "blank") : ybox(c, "plain")).join("");
+        const opts = circ ? `<span class="ana-ch">${it.opts.map((c) => `<span class="c${ans && c === it.ch ? " on" : ""}">${esc(c)}</span>`).join("")}</span>` : "";
+        return `<div class="ana-item"><span class="yn">${i + 1}</span>` +
+          `<img class="pic" src="${YPICS[it.pic] || ""}" alt="">` +
+          `<span class="wline">${boxes}</span>${opts}</div>`;
+      }).join("");
+      const cards = card ? `<div class="ana-cards" style="--mb:${mb.toFixed(1)}mm"><div class="cut">✂ きりとって、あいて いる ますに はろう</div>` +
+        `<div class="cards">${s.cards.map((c) => `<span class="acard"><i>${esc(c)}</i></span>`).join("")}</div></div>` : "";
+      const inst = { write: "えを みて、あいて いる ますに はいる じを かこう。", card: "したの カードを きりとって、あいて いる ますに はろう。",
+                     circle: "あいて いる ますに はいる じを えらんで、○で かこもう。" }[s.ans];
+      const rowName = s.mix ? "あ〜わ ぎょう" : s.row.name.replace("行", " ぎょう");
+      body = `<h3 class="yj-h"><span class="yj-badge">${esc(rowName)}</span>の あなうめ</h3>` +
+        `<p class="yj-inst">${inst}</p>` +
+        `<div class="yj-rows ana" style="--mb:${mb.toFixed(1)}mm;--pic:${pic.toFixed(1)}mm;--ch:${ch.toFixed(1)}mm">${items}</div>` + cards;
     } else if (s.ykind === "word") {
       // ことばが 少ない ほど ますを 大きく(はばに 入る 大きさまで)
       const words = s.words || s.theme.words;
@@ -2589,12 +2700,12 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
   const state = { grade: 3, gRead: 3, gWrite: 3, gStory: 3, furi: "none", genre: "all", vmode: "write",
                   kind: "both", level: 2, nRead: 8, nWrite: 8, seed: 1,
                   ykind: "hira", yrow: "auto", ytheme: "auto", yplay: "mix", yscript: "hira", ycat: "all", yhint: "first",
-                  ymatch: "word", ystep: 1, yname: "", ylimit: 0, ywn: 7, ypn: 8, ytate: "h", ylstyle: "dash", ycorner: false, ytrace: "font", yn: 5, ythick: "mid", yarr: true, ymid: false, ysdot: true, yedot: false, ytext: "", ylayout: "char", ysize: "m", ynum: true, ydir: "v", ypos: "l", stdir: "h", tk: false, stage: 0, ktopic: "auto", rcase: "lower", rstyle: "std", kfuri: "normal", klearn: "prev" };
+                  ymatch: "word", ystep: 1, yname: "", ylimit: 0, ywn: 7, ypn: 8, ytate: "h", ylstyle: "dash", ycorner: false, ytrace: "font", yn: 5, ythick: "mid", yarr: true, ymid: false, ysdot: true, yedot: false, ytext: "", ylayout: "char", ysize: "m", ynum: true, ydir: "v", ypos: "l", yapos: "head", yans: "write", stdir: "h", tk: false, stage: 0, ktopic: "auto", rcase: "lower", rstyle: "std", kfuri: "normal", klearn: "prev" };
   // 学年 0 は ようじ
   const gradeLabel = (g) => (g === 0 ? "ようじ" : BANKS[g - 1].label);
 
   function setMsg(t) { $("msg").textContent = t || ""; }
-  const YANS = ["play", "pic", "match"];
+  const YANS = ["play", "pic", "match", "ana"];
 
   // 読みと 書きの 数を そろえる。入らない ときは、さわって いない ほうを へらす
   function settleCounts(changed) {
@@ -2633,6 +2744,8 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
       state.ylimit = Number($("f-ylimit").value) || 0;
       state.ywn = Number($("f-ywn").value) || 7;
       state.ypn = Number($("f-ypn").value) || 8;
+      state.yapos = $("f-yapos").value === "any" ? "any" : "head";
+      state.yans = ["card", "circle"].includes($("f-yans").value) ? $("f-yans").value : "write";
       state.ytate = $("f-ytate").value === "v" ? "v" : "h";
       // たて書きは A4 よこで。よこ書きに もどしたら たてに もどす
       setOrient();
@@ -2730,7 +2843,11 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
       $("f-ykind").innerHTML = opts(YKINDS);
       $("f-ykind").value = state.ykind;
       const rows = YD[state.ykind === "kata" ? "kata" : "hira"];
-      $("f-yrow").innerHTML = opts([["auto", "じゅんばんに(シードで かわる)"]].concat(rows.map((r, i) => [String(i), r.name])));
+      // あなうめは あ行〜わ行と「ぜんぶ まぜる」
+      const isAna = state.ykind === "ana";
+      if (isAna && !(state.yrow === "auto" || state.yrow === "mix" || Number(state.yrow) < 10)) state.yrow = "auto";
+      $("f-yrow").innerHTML = opts([["auto", "じゅんばんに(シードで かわる)"]].concat((isAna ? rows.slice(0, 10) : rows).map((r, i) => [String(i), r.name]),
+        isAna ? [["mix", "あ〜わ行 ぜんぶ まぜる"]] : []));
       $("f-yrow").value = state.yrow;
       $("f-ytheme").innerHTML = opts([["auto", "じゅんばんに(シードで かわる)"]].concat(YD.themes.map((t, i) => [String(i), t.name])));
       $("f-ytheme").value = state.ytheme;
@@ -2742,7 +2859,7 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
       $("f-yhint").innerHTML = opts(YHINTS);
       $("f-yhint").value = state.yhint;
       for (const id of ["f-yscript", "f-ycat", "f-yhint"]) $(id).closest("label").hidden = state.ykind !== "pic";
-      $("f-yrow").closest("label").hidden = !["hira", "kata"].includes(state.ykind);
+      $("f-yrow").closest("label").hidden = !["hira", "kata", "ana"].includes(state.ykind);
       $("f-ymatch").innerHTML = opts(YMATCHES);
       $("f-ymatch").value = state.ymatch;
       $("f-ystep").value = String(state.ystep);
@@ -2751,7 +2868,10 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
       $("f-ywn").value = String(state.ywn);
       $("f-ywn").closest("label").hidden = state.ykind !== "word";
       $("f-ypn").value = String(state.ypn);
-      $("f-ypn").closest("label").hidden = state.ykind !== "pic";
+      $("f-ypn").closest("label").hidden = !["pic", "ana"].includes(state.ykind);
+      $("f-yapos").value = state.yapos;
+      $("f-yans").value = state.yans;
+      for (const id of ["f-yapos", "f-yans"]) $(id).closest("label").hidden = state.ykind !== "ana";
       $("f-ytate").value = state.ytate;
       $("f-ytate").closest("label").hidden = !TATE_KINDS.includes(state.ykind);
       // なぞり方: ひらがな・カタカナは 書き順も、ことば・なまえは うすい 字か 線
@@ -3279,7 +3399,7 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
     kana: [
       { id: "nazori", label: "なぞり書き", yk: ["hira", "kata", "word", "name", "kakikata"] },
       { id: "sen", label: "線・うんぴつ", yk: ["line", "unpitsu"] },
-      { id: "e", label: "え・ことば", yk: ["pic", "match", "play"] }
+      { id: "e", label: "え・ことば", yk: ["pic", "match", "play", "ana"] }
     ]
   };
   const subHit = (x, it) => x.f ? !!x.f(it) : x.t ? x.t.includes(it.topic) : x.yk ? !!(it.ds && x.yk.includes(it.ds.ykind)) : false;
@@ -3415,7 +3535,8 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
     ["unpitsu", "うんぴつ(線の れんしゅう)", "はば いっぱいの まっすぐ・なみ・ぎざぎざ・くるくるを なぞります。矢印や ●、線の 太さ・本数を えらべます。", "運筆 うんぴつ 線 なぞり ぐるぐる 鉛筆 練習"],
     ["kakikata", "かきかた(じゆうに 書く)", "すきな ことばを 入れると、お手本・書き順つきの なぞり・書く ますが できます。ひらがな・カタカナ・小学校の 漢字。", "かきかた 書き方 書き順 なぞり書き 名前 ふくろ文字 好きな言葉"],
     ["match", "せんで むすぼう", "絵と ことば(または 同じ 絵)を 線で むすびます。", "線つなぎ 線結び マッチング"],
-    ["name", "じぶんの なまえを かこう", "お手本 → なぞり → じぶんで 書く。", "名前"]
+    ["name", "じぶんの なまえを かこう", "お手本 → なぞり → じぶんで 書く。", "名前"],
+    ["ana", "あなうめ(あ行・か行…)", "絵を みて、ことばの あいた ますに 入る 字を 書く・カードを はる・○を つける。", "あなうめ 穴埋め 頭文字 あ行 か行 五十音 カード 切って貼る"]
   ];
   let SEARCH_INDEX = null;
   function searchIndex() {
@@ -3535,6 +3656,7 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
      { d:日づけ, t:文, g:学年(0=ようじ), sel:ホームの カード, opts:{せってい}, tab:"stage"|"domain", domain }
      ★ 機能を 足したら ここにも 1行 足すこと(10こまで 出す) */
   const CHANGES = [
+    { d: "26/11/26", t: "ようじ:あなうめ(あ行〜わ行。かく・カードを きって はる・○で えらぶ)", g: 0, sel: '.yj-card[data-ykind="ana"]' },
     { d: "26/11/25", t: "文章読解を たて書き(A4 よこ)で 作れる(設定の「文章の 書き方」)", g: 4, sel: '.kk-card[data-story]' },
     { d: "26/11/25", t: "お気に入りに 名前を つけられる(入れた ときか、メニューの ✎ から)", tag: "ホーム" },
     { d: "26/11/25", t: "お気に入り:プリント画面の「☆ お気に入り」で 入れると、メニューから すぐ 作れる", tag: "ホーム" },
@@ -3612,6 +3734,7 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
         else if (st.ykind === "kakikata") { st.ylstyle = "fukuro"; if (!st.ytext.trim()) st.ytext = "なのはな"; st.ylayout = st.ylayout === "anaume" ? "char" : st.ylayout; }
         else if (["fukuro", "grayb"].includes(st.ylstyle)) st.ylstyle = "dash";
         if (st.ykind === "name" && !st.yname) st.yname = "やまだ はな";
+        if (st.ykind === "ana") st.ypn = 5;
         return youjiSheetHtml(buildYoujiSheet(st), {});
       }
       if (!(G > 0)) return "";
@@ -4082,6 +4205,8 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
       const b = e.target.closest(".kind-card");
       if (!b) return;
       if (b.dataset.ykind) {
+        // あなうめは 5もんから(ほかの 絵の プリントの 8もんを ひきつがない)
+        if (b.dataset.ykind === "ana" && state.ykind !== "ana") state.ypn = 5;
         state.ykind = b.dataset.ykind;
         writeControls();
         setMsg("");
@@ -4173,7 +4298,7 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
       clearTimeout(ytTimer);
       ytTimer = setTimeout(() => { readControls("f-ytext"); if (document.body.dataset.view === "sheet") show(1, state.seed); }, 700);
     });
-    for (const id of ["f-grade", "f-gread", "f-gwrite", "f-gstory", "f-genre", "f-furi", "f-vmode", "f-stdir", "f-kind", "f-ykind", "f-yrow", "f-ytheme", "f-yplay", "f-yscript", "f-ycat", "f-yhint", "f-ymatch", "f-ystep", "f-yname", "f-ylimit", "f-ywn", "f-ypn", "f-ytate", "f-ytrace", "f-ylstyle", "f-ycorner", "f-yn", "f-ythick", "f-yarr", "f-ymid", "f-ysdot", "f-yedot", "f-ytext", "f-ylayout", "f-ysize", "f-ynum", "f-ydir", "f-ypos", "f-tk", "f-level", "f-ktopic", "f-rcase", "f-rstyle", "f-kfuri", "f-klearn",
+    for (const id of ["f-grade", "f-gread", "f-gwrite", "f-gstory", "f-genre", "f-furi", "f-vmode", "f-stdir", "f-kind", "f-ykind", "f-yrow", "f-ytheme", "f-yplay", "f-yscript", "f-ycat", "f-yhint", "f-ymatch", "f-ystep", "f-yname", "f-ylimit", "f-ywn", "f-ypn", "f-yapos", "f-yans", "f-ytate", "f-ytrace", "f-ylstyle", "f-ycorner", "f-yn", "f-ythick", "f-yarr", "f-ymid", "f-ysdot", "f-yedot", "f-ytext", "f-ylayout", "f-ysize", "f-ynum", "f-ydir", "f-ypos", "f-tk", "f-level", "f-ktopic", "f-rcase", "f-rstyle", "f-kfuri", "f-klearn",
                       "f-read", "f-write", "f-seed", "f-model", "f-ans", "f-anslist"]) {
       $(id).addEventListener("change", () => {
         readControls(id);
