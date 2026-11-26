@@ -1984,6 +1984,21 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
     return `fill="none" stroke="${v[1]}" stroke-width="${v[0]}"${v[2] ? ` stroke-dasharray="${v[2]}"` : ""} stroke-linecap="round" stroke-linejoin="round"`;
   };
   // 折れ線(M・L・H・V だけの 線)の かど。ジグザグや かいだんの 節に 点を うつ
+  // パスの おわりの 点(M L H V Q T S C A。小文字は そうたい)
+  function endOf(d) {
+    let x = 0, y = 0;
+    const W = { M: 2, L: 2, T: 2, H: 1, V: 1, Q: 4, S: 4, C: 6, A: 7, Z: 0 };
+    for (const [, c, a] of d.matchAll(/([MLHVQTSCAZmlhvqtscaz])([^MLHVQTSCAZmlhvqtscaz]*)/g)) {
+      const n = (a.match(/-?[\d.]+(?:e-?\d+)?/g) || []).map(Number), C = c.toUpperCase(), rel = c !== C, w = W[C];
+      for (let i = 0; w && i + w <= n.length; i += w) {
+        const seg = n.slice(i, i + w);
+        if (C === "H") x = (rel ? x : 0) + seg[0];
+        else if (C === "V") y = (rel ? y : 0) + seg[0];
+        else { const px = seg[w - 2], py = seg[w - 1]; x = (rel ? x : 0) + px; y = (rel ? y : 0) + py; }
+      }
+    }
+    return [x, y];
+  }
   function cornersOf(d) {
     if (/[^MLHV\d.,\s-]/.test(d)) return [];
     const pts = [];
@@ -2638,10 +2653,12 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
           `<svg viewBox="0 0 180 40" class="line-svg">${img(r.from, 2)}${img(r.to, 150)}` +
           `<path d="${r.d}" ${lineAttr("line", s.lstyle === "none" ? "dash" : s.lstyle)}/>` +
           (s.corner ? cornersOf(r.d).map(([x, y]) => `<circle cx="${x}" cy="${y}" r="1.3" fill="#111"/>`).join("") : "") +
-          `<circle cx="${m[1]}" cy="${m[2]}" r="2" fill="#111"/></svg></div>`;
+          `<circle cx="${m[1]}" cy="${m[2]}" r="2" fill="#111"/>` +
+          // おわりにも ●(どこまで なぞるか わかる ように)
+          (([ex, ey]) => `<circle cx="${ex.toFixed(1)}" cy="${ey.toFixed(1)}" r="2" fill="#111"/>`)(endOf(r.d)) + `</svg></div>`;
       }).join("");
       body = `<h3 class="yj-h"><span class="yj-badge">せんを なぞろう</span></h3>` +
-        `<p class="yj-inst">●から はじめて、ひだりの えから みぎの えまで、せんを なぞろう。${s.corner ? "・の ところで むきを かえるよ。" : ""}</p>` +
+        `<p class="yj-inst">●から はじめて、ひだりの えから みぎの ●まで、せんを なぞろう。${s.corner ? "・の ところで むきを かえるよ。" : ""}</p>` +
         `<div class="yj-rows lines">${rows}</div>`;
     } else if (s.ykind === "match") {
       // ●と ●の あいだを ひろく とって、線が 長く なるように(交わっても 見分けやすい)
@@ -3656,6 +3673,7 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
      { d:日づけ, t:文, g:学年(0=ようじ), sel:ホームの カード, opts:{せってい}, tab:"stage"|"domain", domain }
      ★ 機能を 足したら ここにも 1行 足すこと(10こまで 出す) */
   const CHANGES = [
+    { d: "26/11/26", t: "せんを なぞろう:おわりにも ●", tag: "ようじ" },
     { d: "26/11/26", t: "ようじ:あなうめ(あ行〜わ行。かく・カードを きって はる・○で えらぶ)", g: 0, sel: '.yj-card[data-ykind="ana"]' },
     { d: "26/11/25", t: "文章読解を たて書き(A4 よこ)で 作れる(設定の「文章の 書き方」)", g: 4, sel: '.kk-card[data-story]' },
     { d: "26/11/25", t: "お気に入りに 名前を つけられる(入れた ときか、メニューの ✎ から)", tag: "ホーム" },
