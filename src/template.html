@@ -1164,20 +1164,38 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
       <span class="desc">しりとり・ことば さがし・たりない 字・ならべかえ。シードを かえると 何まいでも。こたえの ページつき。</span>
       <span class="go">作る ▶</span>
     </button>
+    <button class="kind-card yj-card" data-kind="both" data-ykind="line">
+      <span class="name"><span class="n">6</span>せんを なぞろう</span>
+      <span class="chara chara-maru" aria-hidden="true"></span>
+      <span class="desc">●から ●まで、まっすぐ・なみ・ぎざぎざ・くるくるの 線を なぞります。左と 右に 絵。むずかしさ 3だん。</span>
+      <span class="go">作る ▶</span>
+    </button>
     <button class="kind-card yj-card" data-kind="both" data-ykind="unpitsu">
-      <span class="name"><span class="n">6</span>うんぴつ(線の れんしゅう)</span>
+      <span class="name"><span class="n">7</span>うんぴつ(線の れんしゅう)</span>
       <span class="chara chara-maru" aria-hidden="true"></span>
       <span class="desc">まっすぐ → なみ・ぎざぎざ → くるくる。むずかしさ 4だん。矢印・●・線の 太さ・本数を えらべます。</span>
       <span class="go">作る ▶</span>
     </button>
     <button class="kind-card yj-card" data-kind="both" data-ykind="kakikata">
-      <span class="name"><span class="n">7</span>かきかた(じゆうに 書く)</span>
+      <span class="name"><span class="n">8</span>かきかた(じゆうに 書く)</span>
       <span class="chara chara-book" aria-hidden="true"></span>
       <span class="desc">すきな ことばを 入れると、お手本 → 書き順つき なぞり → 書く ますが できます。小学校の 漢字も。</span>
       <span class="go">作る ▶</span>
     </button>
+    <button class="kind-card yj-card" data-kind="read" data-ykind="match">
+      <span class="name"><span class="n">9</span>せんで むすぼう</span>
+      <span class="chara chara-guide" aria-hidden="true"></span>
+      <span class="desc">絵と ことば(ひらがな・カタカナ)や、同じ 絵どうしを 線で むすびます。こたえの ページつき。</span>
+      <span class="go">作る ▶</span>
+    </button>
+    <button class="kind-card yj-card" data-kind="write" data-ykind="name">
+      <span class="name"><span class="n">10</span>なまえを かこう</span>
+      <span class="chara chara-cheer" aria-hidden="true"></span>
+      <span class="desc">じぶんの なまえを 入れると、お手本 → なぞり → じぶんで 書く ますが できます。</span>
+      <span class="go">作る ▶</span>
+    </button>
     <button class="kind-card yj-card" data-kind="pic" data-ykind="ana">
-      <span class="name"><span class="n">8</span>あなうめ(あ行・か行…)</span>
+      <span class="name"><span class="n">11</span>あなうめ(あ行・か行…)</span>
       <span class="chara chara-think" aria-hidden="true"></span>
       <span class="desc">絵を みて、あいた ますに 入る 字を 書く・カードを きって はる・○を つける。あ行〜わ行。</span>
       <span class="go">作る ▶</span>
@@ -3673,6 +3691,7 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
      { d:日づけ, t:文, g:学年(0=ようじ), sel:ホームの カード, opts:{せってい}, tab:"stage"|"domain", domain }
      ★ 機能を 足したら ここにも 1行 足すこと(10こまで 出す) */
   const CHANGES = [
+    { d: "26/11/26", t: "ようじの メニューに せんを なぞろう・せんで むすぼう・なまえを かこう の カード(しゅるい 11こ ぜんぶ)", g: 0, sel: '.yj-card[data-ykind="match"]' },
     { d: "26/11/26", t: "せんを なぞろう:おわりにも ●", tag: "ようじ" },
     { d: "26/11/26", t: "ようじ:あなうめ(あ行〜わ行。かく・カードを きって はる・○で えらぶ)", g: 0, sel: '.yj-card[data-ykind="ana"]' },
     { d: "26/11/25", t: "文章読解を たて書き(A4 よこ)で 作れる(設定の「文章の 書き方」)", g: 4, sel: '.kk-card[data-story]' },
