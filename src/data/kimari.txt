@@ -21,12 +21,12 @@
 # 小1 の 問題は ひらがな・カタカナだけ。小2 は 小2 までの 漢字(tools/check_kimari.py で 調べる)。
 
 # 学年ごとの ならび(ホームの カードの じゅん。教科書の 学習の じゅんを 目安に した)
-% 1 | nobasu chiisai wo kuten kata nakama teinei
-% 2 | wo kuten junjo kata2 ue shugo hantai teinei
-% 3 | jisho onkun romaji01 romaji02 romaji03 romaji04 romaji05 romaji06 romaji07 romaji08 romaji09 romaji10 romaji11 romaji12 kosoado kotoba3 tsunagi shushoku okuri3 keitai bushu kotowaza riyuu
-% 4 | kanjijiten shushoku kanyoku tsunagi4 okuri4 kumitate doukun koji kotoba3 keitai riyuu
-% 5 | koten keigo keigo2 jukugo ruigi wago hanashi genin hougen kanazukai kana hiyu
-% 6 | koten jukugo6 bunkumi keigo keigo2 hiyu hanashi kanazukai kana jukugo
+% 1 | nobasu chiisai wo kuten kata nakama kazoe teinei
+% 2 | wo kuten junjo kata2 ue giongo shugo hantai kazoe teinei
+% 3 | jisho onkun romaji01 romaji02 romaji03 romaji04 romaji05 romaji06 romaji07 romaji08 romaji09 romaji10 romaji11 romaji12 kosoado kotoba3 tsunagi shushoku okuri3 keitai bushu kotowaza giongo riyuu
+% 4 | kanjijiten shushoku kanyoku tsunagi4 okuri4 kumitate doukun machigai koji kotoba3 keitai riyuu
+% 5 | koten keigo keigo2 jukugo ruigi wago hanashi genin hougen kanazukai kana hiyu machigai
+% 6 | koten jukugo6 bunkumi keigo keigo2 hiyu hanashi kanazukai kana jukugo machigai
 % 7 | bunsetsu bunsei hinshi katsuyou jodoushi douon keigo7 yoji
 
 @ nobasu | 1 | のばす おと | おとうさん・こおり・ぼうし など、のばす おとの かきかた。
@@ -3390,3 +3390,83 @@ po　{*ぽ|ぶ|ぐ}
 自分の考えをもたず、他人の意見にすぐ同調すること。// [付和雷同] #付和雷同
 言葉では言い表せないほどひどいこと。// [言語道断] #言語道断
 大人物は、ゆっくり時間をかけて大成すること。// [大器晩成] #大器晩成
+
+@ kazoe | 1,2 | ものの かぞえかた | えんぴつは「ほん」、かみは「まい」。ものに あった かぞえかたを えらびます。
+== かぞえかた | ただしい ほうを ○で かこみましょう。 | 8
+えんぴつが ２{*ほん|まい} ある。
+かみが ３{*まい|ほん} ある。
+くるまが ２{*だい|ひき} とまって いる。
+いぬが ４{*ひき|わ} いる。
+とりが ２{*わ|だい} とんで いる。
+ほんが ３{*さつ|まい} ある。
+りんごが ５{*こ|ほん} ある。
+ジュースを ２{*はい|まい} のんだ。
+おさらが ４{*まい|さつ} ある。
+かえるが ３{*びき|わ} いる。
+== あう ことばを えらぼう | □から えらんで （　）に かきましょう。 | 6 | bank
+えんぴつが ４[ほん] ある。
+かみが ２[まい] ある。
+くるまが ５[だい] ならんで いる。
+ねこが ２[ひき] いる。
+すずめが ４[わ] いる。
+ほんを ２[さつ] かりた。
+みかんを ５[こ] たべた。
+ぎゅうにゅうを ２[はい] のんだ。
+
+@ giongo | 2,3 | 音や ようすを あらわす ことば | ワンワン・ザーザーは 音や 声、にこにこ・きらきらは ようす。音や 声は カタカナで 書きます。
+== 音か ようすか | ――の ことばは 音・声か、ようすか。正しい ほうを ○で かこみましょう。 | 4
+犬が <ワンワン> ほえる。　{*音・声|ようす}
+赤ちゃんが <にこにこ> わらう。　{音・声|*ようす}
+雨が <ザーザー> ふる。　{*音・声|ようす}
+星が <きらきら> 光る。　{音・声|*ようす}
+ドアを <トントン> たたく。　{*音・声|ようす}
+かみなりが <ゴロゴロ> なる。　{*音・声|ようす}
+くもが <ふわふわ> うかぶ。　{音・声|*ようす}
+電車が <ガタンゴトン> 走る。　{*音・声|ようす}
+<ぐっすり> ねむる。　{音・声|*ようす}
+<のろのろ> 歩く。　{音・声|*ようす}
+== ぴったりの ことば | □から えらんで （　）に 書きましょう。 | 5 | bank
+雨が [ザーザー] ふって きた。
+夜空に 星が [きらきら] 光る。
+犬が [ワンワン] ほえた。
+赤ちゃんが [にこにこ] わらう。
+ひよこが [ピヨピヨ] なく。
+こおりの 上で [つるつる] すべる。
+くもが [ふわふわ] うかぶ。
+つかれて [ぐっすり] ねむった。
+== カタカナで 書こう | 音や 声を あらわす ことばを カタカナに 直して （　）に 書きましょう。 | 4
+とんとん → [トントン]
+ごろごろ(かみなり) → [ゴロゴロ]
+ぴよぴよ → [ピヨピヨ]
+がたんごとん → [ガタンゴトン]
+ちりんちりん → [チリンチリン]
+ぱちぱち(はく手) → [パチパチ]
+ざあざあ → [ザアザア]
+わんわん → [ワンワン]
+
+@ machigai | 4,5,6 | まちがえやすい 漢字 | 会う・合う、早い・速い、図書館・感想 など。同じ 読みで まちがえやすい 漢字を 正しく 直します。 | nofuri
+== 正しく 直そう | ――の 漢字の まちがいを 正しい 漢字に 直して （　）に 書きましょう。 | 5
+体重を <計>る。→ [量]
+駅で 友だちに <合>う。→ [会]
+せきに <付>く。→ [着]
+朝 六時に 目が <冷>める。→ [覚]
+運動会が <初>まる。→ [始]
+<熱>い 夏が 来た。→ [暑]
+まどを <空>ける。→ [開]
+学校から 家に <返>る。→ [帰]
+赤ちゃんが <鳴>く。→ [泣]
+朝 <速>く 起きる。→ [早]
+== ｜熟語《じゅくご》の まちがい | ――の 漢字の まちがいを 正しい 漢字に 直して （　）に 書きましょう。 | 5
+図書<感>で 本を かりる。→ [館]
+読書<館>想文を 書く。→ [感]
+<期>械を 動かす。→ [機]
+夏休みの <科>題を する。→ [課]
+食事の 時<感>に なった。→ [間]
+<機>間を 決めて 練習する。→ [期]
+== 正しい ほうは どっち | 正しい 漢字を ○で かこみましょう。 | 6
+体重を {*量る|計る}。
+時間を {*計る|量る}。
+答えが {*合う|会う}。
+先生に {*会う|合う}。
+足が {*速い|早い}。
+朝が {*早い|速い}。

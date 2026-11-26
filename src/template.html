@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="app-version" content="第45版(2026-11-26)">
+<meta name="app-version" content="第46版(2026-11-26)">
 <title>国語プリント</title>
 <link rel="icon" type="image/png" sizes="32x32" href="{{ICON:32}}">
 <link rel="icon" type="image/png" sizes="64x64" href="{{ICON:64}}">
@@ -600,6 +600,35 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
 .st-zoom .q-read .q .paren { flex: none; }
 .sheet-foot { margin-top: auto; padding-top: 4mm; font-size: 8pt; color: var(--light); display: flex; }
 .sheet-foot .seed { margin-left: auto; }
+/* 漢字練習帳 */
+.sheet.rs .rs-h { display: flex; align-items: baseline; flex-wrap: wrap; gap: 2mm 3mm; font-size: 10.5pt; margin: 3mm 0 2mm; font-weight: normal; }
+.sheet.rs .rs-badge { background: #111; color: #fff; border-radius: 1.5mm; padding: 0.6mm 2.4mm; font-weight: bold; }
+.sheet.rs .rs-range { font-size: 9.5pt; }
+.sheet.rs .rs-how { font-size: 9pt; color: #333; margin-left: auto; }
+.sheet.rs .rs-list { flex: 1; display: flex; flex-direction: column; justify-content: space-evenly; gap: 3mm; }
+.sheet.rs .rs-item { border: 1.2px solid #444; border-radius: 2mm; padding: 2mm; display: flex; flex-direction: column; gap: 2mm; }
+.sheet.rs .rs-top { display: flex; gap: 3mm; align-items: stretch; }
+.sheet.rs .rs-big { flex: none; width: var(--rt); height: var(--rt); border: 1.4px solid #222; position: relative; background:
+  linear-gradient(to right, transparent calc(50% - 0.3px), #bbb calc(50% - 0.3px), #bbb calc(50% + 0.3px), transparent calc(50% + 0.3px)),
+  linear-gradient(to bottom, transparent calc(50% - 0.3px), #bbb calc(50% - 0.3px), #bbb calc(50% + 0.3px), transparent calc(50% + 0.3px)); }
+.sheet.rs .rs-big .ks, .sheet.rs .rs-m .ks, .sheet.rs .rs-st .ks { position: absolute; inset: 0; width: 100%; height: 100%; }
+.sheet.rs .rs-info { flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 0.8mm; font-size: 9.5pt; line-height: 1.35; }
+.sheet.rs.c .rs-info { font-size: 8.5pt; line-height: 1.25; gap: 0.4mm; }
+.sheet.rs.c .rs-item { padding: 1.5mm; gap: 1.5mm; }
+.sheet.rs .rs-row { display: flex; align-items: baseline; gap: 2mm; }
+.sheet.rs .rs-row b, .sheet.rs .rs-order b { flex: none; display: inline-block; min-width: 2.2em; font-size: 8pt; border: 1px solid #555; border-radius: 1mm; padding: 0 1mm; text-align: center; font-weight: bold; }
+.sheet.rs .rs-row .rs-wl { margin-left: 3mm; }
+.sheet.rs .rs-row .ok { font-size: 0.82em; color: #555; }
+.sheet.rs .rs-ws { display: flex; flex-wrap: wrap; gap: 0 3mm; }
+.sheet.rs .rs-w small { font-size: 0.78em; color: #444; }
+.sheet.rs .rs-order { display: flex; align-items: center; gap: 2mm; }
+.sheet.rs .rs-sts { display: flex; flex-wrap: wrap; gap: 0.8mm; }
+.sheet.rs .rs-st { position: relative; border: 0.8px solid #888; flex: none; }
+.sheet.rs .rs-masu { display: flex; justify-content: space-between; }
+.sheet.rs .rs-m { position: relative; width: var(--rm); height: var(--rm); border: 1px solid #333; flex: none; background:
+  linear-gradient(to right, transparent calc(50% - 0.3px), #c8c8c8 calc(50% - 0.3px), #c8c8c8 calc(50% + 0.3px), transparent calc(50% + 0.3px)),
+  linear-gradient(to bottom, transparent calc(50% - 0.3px), #c8c8c8 calc(50% - 0.3px), #c8c8c8 calc(50% + 0.3px), transparent calc(50% + 0.3px)); }
+.sheet.rs .rs-m + .rs-m { margin-left: -1px; }
 
 /* ===== ようじの プリント(.sheet.yj)=====
    なぞり書きの 字は 教科書体に ちかい Klee One(かなだけ)。ますは 十字の 点線つき */
@@ -1002,7 +1031,14 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
       <option value="long">漢字 ＋ 長文読解</option>
       <option value="story">文章読解(漢字なし)</option>
       <option value="kimari">ことばの きまり</option>
+      <option value="renshu">漢字練習帳(1字ずつ)</option>
     </select>
+  </label>
+  <label class="sheet-only kk-only">1まいの 字の 数
+    <select id="f-rn"><option value="2">2字</option><option value="3">3字</option><option value="4">4字</option><option value="5">5字</option></select>
+  </label>
+  <label class="sheet-only kk-only">じぶんで えらぶ 漢字
+    <input id="f-rtext" type="text" maxlength="60" placeholder="れい:海山川(からなら 学年の じゅん)" autocomplete="off">
   </label>
   <label class="sheet-only kk-only">内容
     <select id="f-ktopic"></select>
@@ -1228,6 +1264,12 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
       <span class="name"><span class="n">5</span>文章読解</span>
       <span class="chara chara-guide" aria-hidden="true"></span>
       <span class="desc">漢字の 問題は なしで、文章(物語・説明文・評論)と 三択の 問い、言葉の 意味だけ。<b class="only"></b></span>
+      <span class="go">作る ▶</span>
+    </button>
+    <button class="kind-card kk-card" data-kind="renshu">
+      <span class="name"><span class="n">6</span>漢字練習帳(1字ずつ)</span>
+      <span class="chara chara-maru" aria-hidden="true"></span>
+      <span class="desc">大きな お手本と 書き順、音・訓・画数・ことば。なぞってから 書きます。学年の 漢字を じゅんばんに(小1〜小6)。</span>
       <span class="go">作る ▶</span>
     </button>
   </div>
@@ -2101,6 +2143,74 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
     });
     return `<svg class="ks" viewBox="0 0 109 109">${body}${marks}</svg>`;
   }
+  /* ===== 漢字練習帳(1字ずつ):大きな お手本(書き順の 番号)・音・訓・画数・ことば・書き順・なぞり → 書く =====
+     音訓・画数は src/data/kanji_info.json(tools/make_kanji_info.py。常用漢字表、joyo-kanji-counts MIT)。
+     じゅんばんは 学年別漢字配当表の じゅん。シード n の ページは n まいめ(1まいに rn 字)。 */
+  const KINFO = typeof kanjiInfo !== "undefined" ? kanjiInfo : {};
+  const hasRenshu = (g) => g >= 1 && g <= 6;
+  function renshuList(g, text) {
+    const own = [...new Set([...String(text || "")].filter((c) => KINFO[c] && KST[c]))];
+    if (own.length) return { own: true, list: own };
+    const gl = typeof kanjiGrades !== "undefined" && kanjiGrades[g] ? [...kanjiGrades[g]] : [];
+    return { own: false, list: gl.filter((c) => KINFO[c] && KST[c]) };
+  }
+  function buildRenshuSheet({ grade, rn, rtext, seed, no }) {
+    const n = Math.max(2, Math.min(5, Number(rn) || 3));
+    const { own, list } = renshuList(grade, rtext);
+    const pagesN = Math.max(1, Math.ceil(list.length / n));
+    const p = (Math.max(1, seed) - 1) % pagesN;
+    const chars = list.slice(p * n, p * n + n);
+    return { grade, n, own, total: list.length, from: p * n + 1, chars, seed, no };
+  }
+  // 書き順の 1こま:前の 画は うすく、いまの 画は こく
+  function strokeStep(ch, i) {
+    const st = KST[ch];
+    return `<svg class="ks" viewBox="0 0 109 109">` + st.map((d, j) =>
+      j < i ? `<path d="${d}" fill="none" stroke="#9a9a9a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>`
+        : j === i ? `<path d="${d}" fill="none" stroke="#000" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>` : "").join("") + `</svg>`;
+  }
+  const kunHtml = (r) => { const [a, b] = r.split("-"); return b ? `${esc(a)}<span class="ok">(${esc(b)})</span>` : esc(a); };
+  function renshuSheetHtml(s) {
+    const g = s.grade, lab = labelsFor(g), kana = g <= 2;
+    const L = kana ? { on: "おん", kun: "くん", kaku: "かくすう", word: "ことば", order: "かきじゅん", tr: "なぞる", wr: "かく", title: "かんじ れんしゅうちょう" }
+      : { on: "音", kun: "訓", kaku: "画数", word: "ことば", order: "書き順", tr: "なぞる", wr: "書く", title: "漢字 練習帳" };
+    // 1字の わく:上に 大きな お手本と 説明、下に なぞり → 書く ます
+    const H = 236 / s.n - 4;
+    const T = Math.min(40, H * 0.55);
+    const M = Math.min(22, Math.max(12, (H - T - 6) / ((H - T - 6) >= 44 ? 2 : 1)));
+    const rows = (H - T - 6) >= 2 * M + 2 ? 2 : 1;
+    const per = Math.floor(186 / (M + 0.3));
+    const items = s.chars.map((k) => {
+      const [kaku, on, kun, ex] = KINFO[k];
+      const b = Math.min(9, T * 0.3, (186 - T - 22) / kaku - 0.8);
+      // 訓が 多い 字(生・上 など)は 4字いじょうの ページでは はじめの いくつかだけ
+      const kmax = s.n >= 4 ? 4 : 8, kunS = kun.length > kmax ? kun.slice(0, kmax).map(kunHtml).join("・") + " など" : kun.map(kunHtml).join("・");
+      const steps = Array.from({ length: kaku }, (_, i) => `<span class="rs-st" style="width:${b.toFixed(2)}mm;height:${b.toFixed(2)}mm">${strokeStep(k, i)}</span>`).join("");
+      const masu = Array.from({ length: rows }, (_, r) => `<div class="rs-masu">` + Array.from({ length: per }, (_, i) =>
+        `<span class="rs-m">${r === 0 && i < 2 ? kakiSvg(k, "light") : ""}</span>`).join("") + `</div>`).join("");
+      const words = (ex || []).map((w) => { const [a, y] = w.split("|"); return `<span class="rs-w">${esc(a)}<small>(${esc(y)})</small></span>`; }).join("");
+      return `<div class="rs-item">` +
+        `<div class="rs-top"><span class="rs-big">${kakiSvg(k, "ink", { num: true })}</span>` +
+        `<div class="rs-info">` +
+        (s.n >= 4
+          ? `<div class="rs-row"><b>${L.on}</b><span>${on.length ? on.map(esc).join("・") : "―"}</span><b class="rs-wl">${L.kun}</b><span>${kun.length ? kunS : "―"}</span></div>`
+          : `<div class="rs-row"><b>${L.on}</b><span>${on.length ? on.map(esc).join("・") : "―"}</span></div>` +
+            `<div class="rs-row"><b>${L.kun}</b><span>${kun.length ? kunS : "―"}</span></div>`) +
+        `<div class="rs-row"><b>${L.kaku}</b><span>${kaku}${kana ? "かく" : "画"}</span>${words ? `<b class="rs-wl">${L.word}</b><span class="rs-ws">${words}</span>` : ""}</div>` +
+        `<div class="rs-order"><b>${L.order}</b><span class="rs-sts">${steps}</span></div>` +
+        `</div></div>${masu}</div>`;
+    }).join("");
+    const head = s.own ? (kana ? "えらんだ かんじ" : "えらんだ 漢字") : `${BANKS[g - 1].label}の ${kana ? "かんじ" : "漢字"}`;
+    const range = `${s.from}〜${s.from + s.chars.length - 1}${kana ? "じめ" : "字め"}(${s.total}${kana ? "じ" : "字"}の うち)`;
+    return `<div class="sheet rs g${g}${s.n >= 4 ? " c" : ""}" style="--rt:${T.toFixed(1)}mm;--rm:${M.toFixed(1)}mm">` +
+      `<div class="sheet-head"><span class="label">${L.title}</span><span class="no">${s.no}</span>` +
+      `<span class="fields"><span class="field"><i>${lab.date}</i><b></b></span>` +
+      `<span class="field name"><i>${lab.name}</i><b></b></span></span></div>` +
+      `<h3 class="rs-h"><span class="rs-badge">${head}</span><span class="rs-range">${range}</span><span class="rs-how">${kana ? "かきじゅんの とおりに なぞってから、じぶんで かこう。" : "書き順の とおりに なぞってから、自分で 書こう。"}</span></h3>` +
+      `<div class="rs-list">${items}</div>` +
+      `<div class="sheet-foot"><span class="seed">シード ${s.seed}</span></div></div>`;
+  }
+
   function kanaSvg(ch, done, style) {
     const st = KST[ch];
     if (!st) return null;
@@ -2735,7 +2845,7 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
   const state = { grade: 3, gRead: 3, gWrite: 3, gStory: 3, furi: "none", genre: "all", vmode: "write",
                   kind: "both", level: 2, nRead: 8, nWrite: 8, seed: 1,
                   ykind: "hira", yrow: "auto", ytheme: "auto", yplay: "mix", yscript: "hira", ycat: "all", yhint: "first",
-                  ymatch: "word", ystep: 1, yname: "", ylimit: 0, ywn: 7, ypn: 8, ytate: "h", ylstyle: "dash", ycorner: false, ytrace: "font", yn: 5, ythick: "mid", yarr: true, ymid: false, ysdot: true, yedot: false, ytext: "", ylayout: "char", ysize: "m", ynum: true, ydir: "v", ypos: "l", yapos: "head", yans: "write", stdir: "h", tk: false, stage: 0, ktopic: "auto", rcase: "lower", rstyle: "std", kfuri: "normal", klearn: "prev" };
+                  ymatch: "word", ystep: 1, yname: "", ylimit: 0, ywn: 7, ypn: 8, ytate: "h", ylstyle: "dash", ycorner: false, ytrace: "font", yn: 5, ythick: "mid", yarr: true, ymid: false, ysdot: true, yedot: false, ytext: "", ylayout: "char", ysize: "m", ynum: true, ydir: "v", ypos: "l", yapos: "head", yans: "write", stdir: "h", rn: 3, rtext: "", tk: false, stage: 0, ktopic: "auto", rcase: "lower", rstyle: "std", kfuri: "normal", klearn: "prev" };
   // 学年 0 は ようじ
   const gradeLabel = (g) => (g === 0 ? "ようじ" : BANKS[g - 1].label);
 
@@ -2818,6 +2928,18 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
     state.level = Number($("f-level").value);
     state.seed = Math.max(1, Math.min(999999, Number($("f-seed").value) || 1));
     let kind = $("f-kind").value;
+    if (kind === "renshu") {
+      if (hasRenshu(state.grade)) {
+        state.kind = "renshu";
+        state.rn = Number($("f-rn").value) || 3;
+        state.rtext = $("f-rtext").value.trim();
+        setMsg(state.rtext && !renshuList(state.grade, state.rtext).own ? "えらんだ 字に 小学校の 漢字が ないので、学年の じゅんで 作りました。" : "");
+        return;
+      }
+      setMsg("漢字練習帳は 小1〜小6で 作れます。");
+      kind = "both";
+      changedId = "f-kind";
+    }
     if (kind === "kimari") {
       if (hasKimari(state.grade)) {
         state.kind = "kimari";
@@ -2965,6 +3087,17 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
       return;
     }
     $("f-ans").closest("label").hidden = false;
+    const isRs = state.kind === "renshu";
+    for (const id of ["f-rn", "f-rtext"]) $(id).closest("label").hidden = !isRs;
+    if (isRs) {
+      $("f-kind").value = "renshu";
+      $("f-rn").value = String(state.rn);
+      $("f-rtext").value = state.rtext;
+      for (const id of ["f-level", "f-read", "f-write", "f-model", "f-anslist", "f-ans", "f-ktopic", "f-rcase", "f-rstyle", "f-kfuri", "f-klearn",
+                        "f-gread", "f-gwrite", "f-gstory", "f-genre", "f-furi", "f-vmode", "f-tk", "f-stdir"]) $(id).closest("label").hidden = true;
+      $("f-seed").value = String(state.seed);
+      return;
+    }
     const isKm = state.kind === "kimari";
     for (const id of ["f-level", "f-read", "f-write", "f-model", "f-anslist"]) $(id).closest("label").hidden = isKm;
     $("f-ktopic").closest("label").hidden = !isKm;
@@ -3035,6 +3168,11 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
         out.push(youjiSheetHtml(s, {}));
         if (withAns && (YANS.includes(s.ykind) || (s.ykind === "kakikata" && s.layout === "anaume"))) out.push(youjiSheetHtml(s, { answer: true }));
       }
+      return out;
+    }
+    if (state.kind === "renshu") {
+      const out = [];
+      for (let i = 0; i < n; i++) out.push(renshuSheetHtml(buildRenshuSheet(Object.assign({}, state, { seed: startSeed + i, no: i + 1 }))));
       return out;
     }
     if (state.kind === "kimari") {
@@ -3305,6 +3443,11 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
       state.grade = 0;
       Object.assign(state, { yrow: "auto", ytheme: "auto", yplay: "mix", ylimit: 0, ywn: 7 }, p.y);
       state.ystep = state.level;
+    } else if (p.kind === "renshu") {
+      state.grade = state.gRead = state.gWrite = state.gStory = p.grade;
+      state.kind = "renshu";
+      state.rtext = "";
+      state.tk = false;
     } else if (p.kind === "kimari") {
       state.grade = state.gRead = state.gWrite = state.gStory = p.grade;
       state.kind = "kimari";
@@ -3351,12 +3494,12 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
      ことばの きまりの 単元は id で 分野に わける。漢字・読むことは 学年ごとの カードも ならべる。 */
   const DOMAINS = [
     { id: "kanji", label: "漢字", sub: "読み書き・音訓・部首・送りがな", mk: "漢", c: "#c0392b",
-      km: ["onkun", "bushu", "kumitate", "okuri3", "okuri4", "doukun", "kanjijiten", "jukugo", "jukugo6", "douon"] },
+      km: ["onkun", "bushu", "kumitate", "okuri3", "okuri4", "doukun", "kanjijiten", "jukugo", "jukugo6", "douon", "machigai"] },
     { id: "read", label: "読むこと", sub: "長文読解・文章読解", mk: "読", c: "#2f8f8a", km: ["riyuu", "genin"] },
     { id: "bunpo", label: "文と 表記", sub: "主語・修飾語・つなぎ言葉・かなづかい", mk: "文", c: "#2f67b1",
       km: ["nobasu", "chiisai", "wo", "kuten", "kata", "kata2", "kanazukai", "shugo", "shushoku", "kosoado", "tsunagi", "tsunagi4", "keitai", "junjo", "bunkumi", "bunsetsu", "bunsei", "hinshi", "katsuyou", "jodoushi"] },
     { id: "kotoba", label: "言葉", sub: "敬語・ことわざ・慣用句・語い", mk: "言", c: "#8a4fc1",
-      km: ["nakama", "ue", "hantai", "teinei", "kotoba3", "jisho", "kotowaza", "kanyoku", "koji", "keigo", "keigo2", "keigo7", "wago", "ruigi", "hiyu", "hanashi", "hougen", "kana", "koten", "yoji"] },
+      km: ["nakama", "ue", "hantai", "teinei", "kotoba3", "jisho", "kotowaza", "kanyoku", "koji", "keigo", "keigo2", "keigo7", "wago", "ruigi", "hiyu", "hanashi", "hougen", "kana", "koten", "yoji", "giongo", "kazoe"] },
     { id: "romaji", label: "ローマ字", sub: "訓令式・ヘボン式", mk: "Ａ", c: "#e0861b", km: [] },
     { id: "kana", label: "ひらがな・かきかた", sub: "ようじ", mk: "あ", c: "#c0446f", km: [] }
   ];
@@ -3404,7 +3547,7 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
   const DOMAIN_SUBS = {
     kanji: [
       { id: "rw", label: "読み書き", f: (it) => !it.topic },
-      { id: "onkun", label: "音訓・同じ 読み", t: ["onkun", "doukun", "douon"] },
+      { id: "onkun", label: "音訓・同じ 読み", t: ["onkun", "doukun", "douon", "machigai"] },
       { id: "bushu", label: "部首・漢字辞典", t: ["bushu", "kumitate", "kanjijiten"] },
       { id: "okuri", label: "送りがな", t: ["okuri3", "okuri4"] },
       { id: "jukugo", label: "熟語", t: ["jukugo", "jukugo6"] }
@@ -3423,7 +3566,7 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
     kotoba: [
       { id: "keigo", label: "敬語・ていねい", t: ["teinei", "keigo", "keigo2", "keigo7", "hanashi"] },
       { id: "kotowaza", label: "ことわざ・慣用句", t: ["kotowaza", "kanyoku", "koji", "yoji"] },
-      { id: "goi", label: "語い(なかま・反対)", t: ["nakama", "ue", "hantai", "ruigi", "kotoba3", "wago", "jisho"] },
+      { id: "goi", label: "語い(なかま・反対)", t: ["nakama", "ue", "hantai", "ruigi", "kotoba3", "wago", "jisho", "giongo", "kazoe"] },
       { id: "hyougen", label: "方言・古典・表現", t: ["hougen", "koten", "kana", "hiyu"] }
     ],
     romaji: [
@@ -3448,6 +3591,7 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
     }
     for (let g = 1; g <= BANKS.length; g++) {
       if (d.id === "kanji") out.push({ g, sel: '.kk-card[data-kind="both"]', name: "漢字の 読み書き", desc: `${gl(g)}で 習う 漢字の 読みと 書き。`, ds: { kind: "both" } });
+      if (d.id === "kanji" && hasRenshu(g)) out.push({ g, sel: '.kk-card[data-kind="renshu"]', name: "漢字練習帳(1字ずつ)", desc: `${gl(g)}の 漢字を 1字ずつ。書き順・音訓・画数。`, ds: { kind: "renshu" } });
       if (d.id === "read" && hasLong(g)) {
         out.push({ g, sel: '.kk-card[data-kind="long"]:not([data-story])', name: "漢字 ＋ 長文読解", desc: "漢字の 読み・書きの あとに、長文と 三択の 問い。", ds: { kind: "long" } });
         out.push({ g, sel: '.kk-card[data-story]', name: "文章読解", desc: "文章と 三択の 問い、言葉の 意味だけ。", ds: { kind: "long", story: "1" } });
@@ -3517,7 +3661,7 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
       `<div class="hg-row"><span class="hg-cap2">中学</span><div class="hg-in">` + BANKS.slice(6).map((b, i) => btn(b, i + 6)).join("") + `</div></div>`;
   }
 
-  // ことばの きまりの 単元を、漢字の カード(1〜4)の あとに 5・6・7 … と ならべる
+  // ことばの きまりの 単元を、漢字の カード(1〜6)の あとに 7・8・9 … と ならべる
   const KM_COLORS = ["#e0861b", "#2f8f5b", "#2f67b1", "#8a4fc1", "#c0446f", "#1f8a8a"];
   function renderKimariCards() {
     const box = $("home-kinds");
@@ -3528,7 +3672,7 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
     const html = `<div class="km-head">ことばの きまり <small>学習指導要領の 〔知識及び技能〕。教科書の 学習の じゅんに ならんで います</small></div>` +
       list.map((t, i) =>
       `<button class="kind-card kk-card km-card" data-kind="kimari" data-topic="${t.id}" style="--k:${KM_COLORS[i % KM_COLORS.length]}">` +
-      `<span class="name"><span class="n">${i + 6}</span>${rb(t.name)}</span>` +
+      `<span class="name"><span class="n">${i + 7}</span>${rb(t.name)}</span>` +
       `<span class="chara chara-${STAGE_CHARA[(i + 2) % STAGE_CHARA.length]}" aria-hidden="true"></span>` +
       `<span class="desc">${rb(t.desc)}</span><span class="go">作る ▶</span></button>`).join("");
     box.insertAdjacentHTML("beforeend", html);
@@ -3539,6 +3683,7 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
      カタカナ・ひらがな、全角・半角、ことばの あいだの すきまは 同じと みる。ふりがなの 読みでも 見つかる。
      特別支援の 段階べつの 画面では、段階の 内容だけを さがす(算数プリントと 同じ)。 */
   const KM_KW = {   // 教科書や 指導要領の よびかた
+    giongo: "擬音語 擬態語 擬声語 オノマトペ 様子を表す言葉", kazoe: "助数詞 数え方 かぞえかた", machigai: "同音異字 同訓異字 まちがえやすい漢字 間違い 直す",
     tsunagi: "接続語 接続詞 つなぎことば", tsunagi4: "接続語 接続詞 つなぎことば", kosoado: "指示語 こそあどことば",
     shushoku: "修飾語 くわしくする", okuri3: "送り仮名", okuri4: "送り仮名", jisho: "辞書 じしょ 国語辞典",
     kanjijiten: "辞書 じしょ 漢和辞典 部首 画数", shugo: "主語 述語 文の組み立て", bunkumi: "主語 述語 文の組み立て",
@@ -3558,7 +3703,8 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
     { kind: "read", name: "漢字の 読み", desc: "下線の 漢字の 読みがなを （　）に 書きます。", kw: "漢字 読み 読みがな" },
     { kind: "write", name: "漢字の 書き", desc: "かこみの 読み方に なるように、ますに 漢字を 書きます。", kw: "漢字 書き取り" },
     { kind: "long", name: "漢字 ＋ 長文読解", desc: "漢字の 読み・書きの あとに、長文と 三択の 問い、言葉の 意味。", kw: "文章 読解 物語 説明文 評論 長文 三択" },
-    { kind: "long", story: true, name: "文章読解", desc: "漢字の 問題は なしで、文章と 三択の 問い、言葉の 意味だけ。", kw: "文章 読解 物語 説明文 評論 長文 三択 読み取り" }
+    { kind: "long", story: true, name: "文章読解", desc: "漢字の 問題は なしで、文章と 三択の 問い、言葉の 意味だけ。", kw: "文章 読解 物語 説明文 評論 長文 三択 読み取り" },
+    { kind: "renshu", name: "漢字練習帳(1字ずつ)", desc: "大きな お手本と 書き順、音・訓・画数・ことば。なぞってから 書きます。", kw: "漢字 練習帳 ドリル 書き順 筆順 画数 音読み 訓読み なぞり 漢字ノート" }
   ];
   const YJ_CARDS = [
     ["hira", "ひらがな なぞり", "あ行から ぱ行まで。お手本を みて、うすい 字を なぞって、じぶんで かきます。", "ひらがな なぞり書き 書き順 運筆"],
@@ -3583,6 +3729,7 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
       const g = i + 1;
       for (const c of KANJI_CARDS) {
         if (c.kind === "long" && !hasLong(g)) continue;
+        if (c.kind === "renshu" && !hasRenshu(g)) continue;
         out.push({ stage: false, g, gname: b.label, name: c.name, desc: c.desc, kw: c.kw,
                    p: { grade: g, kind: c.kind, counts: c.story ? [0, 0] : null } });
       }
@@ -3691,6 +3838,10 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
      { d:日づけ, t:文, g:学年(0=ようじ), sel:ホームの カード, opts:{せってい}, tab:"stage"|"domain", domain }
      ★ 機能を 足したら ここにも 1行 足すこと(10こまで 出す) */
   const CHANGES = [
+    { d: "26/11/26", t: "漢字練習帳(1字ずつ):書き順・音訓・画数・ことば → なぞって 書く", g: 3, sel: '.kk-card[data-kind="renshu"]' },
+    { d: "26/11/26", t: "ことばの きまり:ものの かぞえかた(小1・2)", g: 1, sel: '.km-card[data-topic="kazoe"]' },
+    { d: "26/11/26", t: "ことばの きまり:音や ようすを あらわす ことば(小2・3)", g: 2, sel: '.km-card[data-topic="giongo"]' },
+    { d: "26/11/26", t: "ことばの きまり:まちがえやすい 漢字(小4〜6)", g: 4, sel: '.km-card[data-topic="machigai"]' },
     { d: "26/11/26", t: "ようじの メニューに せんを なぞろう・せんで むすぼう・なまえを かこう の カード(しゅるい 11こ ぜんぶ)", g: 0, sel: '.yj-card[data-ykind="match"]' },
     { d: "26/11/26", t: "せんを なぞろう:おわりにも ●", tag: "ようじ" },
     { d: "26/11/26", t: "ようじ:あなうめ(あ行〜わ行。かく・カードを きって はる・○で えらぶ)", g: 0, sel: '.yj-card[data-ykind="ana"]' },
@@ -3780,6 +3931,11 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
         st.kind = "kimari"; st.ktopic = b.dataset.topic || "auto";
         return kimariSheetHtml(buildKimariSheet(st), {});
       }
+      if (b.dataset.kind === "renshu") {
+        if (!hasRenshu(G)) return "";
+        st.kind = "renshu"; st.rtext = "";
+        return renshuSheetHtml(buildRenshuSheet(st));
+      }
       st.kind = b.dataset.kind;
       if (st.kind === "long" && !hasLong(G)) return "";
       st.genre = genreFor(st.gStory, st.genre);
@@ -3817,6 +3973,8 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
     for (const el of document.querySelectorAll(".hg")) el.setAttribute("aria-pressed", String(
       el.dataset.stage ? Number(el.dataset.stage) === state.stage : Number(el.dataset.grade) === g));
     for (const el of document.querySelectorAll(".level-btn")) el.setAttribute("aria-pressed", String(Number(el.dataset.level) === state.level));
+    // 漢字練習帳は 小1〜小6 だけ
+    for (const el of document.querySelectorAll('#home-kinds .kk-card[data-kind="renshu"]')) el.style.display = hasRenshu(state.grade) ? "" : "none";
     segSlide($("home-levels"));
     const label = state.stageMode ? stageOf(state.stage).name : gradeLabel(g);
     const dm = state.domain && DOMAINS.find((x) => x.id === state.domain);
@@ -3838,6 +3996,7 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
   function favPick(st) {
     const keys = st.grade === 0 ? ["grade", ...FAV_Y]
       : st.kind === "kimari" ? ["grade", "kind", "ktopic", "rcase", "rstyle", "kfuri", "klearn"]
+      : st.kind === "renshu" ? ["grade", "kind", "rn", "rtext"]
       : ["grade", "gRead", "gWrite", "gStory", "furi", "genre", "vmode", "kind", "level", "nRead", "nWrite", "tk", "stdir"];
     const o = {};
     for (const k of keys) o[k] = st[k];
@@ -3860,7 +4019,7 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
     if (st.kind === "long") return !st.nRead && !st.nWrite ? "文章読解" : "漢字 ＋ 長文読解";
     return ((KANJI_CARDS.find((c) => c.kind === st.kind) || {}).name || "漢字") + (st.tk ? "(大きい 字)" : "");
   }
-  const favStars = (st) => st.grade > 0 && st.kind !== "kimari" && !(st.kind === "long" && !st.nRead && !st.nWrite) ? "★".repeat(st.level) + "☆".repeat(3 - st.level) : "";
+  const favStars = (st) => st.grade > 0 && st.kind !== "kimari" && st.kind !== "renshu" && !(st.kind === "long" && !st.nRead && !st.nWrite) ? "★".repeat(st.level) + "☆".repeat(3 - st.level) : "";
   function favList() {
     try {
       const a = JSON.parse(store.get("favs") || "[]");
@@ -3982,7 +4141,7 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
   function updateMini() {
     const parts = [gradeLabel(state.grade), favName(state)];
     if (favStars(state)) parts.push(favStars(state));
-    if (state.grade > 0 && state.kind !== "kimari" && (state.nRead || state.nWrite)) parts.push(`読み ${state.nRead}問・書き ${state.nWrite}問`);
+    if (state.grade > 0 && !["kimari", "renshu"].includes(state.kind) && (state.nRead || state.nWrite)) parts.push(`読み ${state.nRead}問・書き ${state.nWrite}問`);
     parts.push(`シード ${state.seed}`);
     $("mini-sum").textContent = parts.join(" ・ ");
   }
@@ -4268,6 +4427,15 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
         show(1, state.seed);
         return;
       }
+      if (b.dataset.kind === "renshu") {
+        if (!hasRenshu(state.grade)) { setMsg("漢字練習帳は 小1〜小6で 作れます。"); goSheet(); return; }
+        state.kind = "renshu";
+        state.rtext = "";
+        writeControls();
+        setMsg("");
+        show(1, state.seed);
+        return;
+      }
       state.kind = b.dataset.kind;
       state.genre = genreFor(state.gStory, state.genre);
       [state.nRead, state.nWrite] = b.dataset.story ? [0, 0] : countsFor(state.kind);
@@ -4285,7 +4453,7 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
       if (!b) return;
       const it = FOUND[Number(b.dataset.i)];
       if (!it) return;
-      if (it.p.grade === 0 || it.p.kind === "kimari" || it.stage) applyPreset(it);
+      if (it.p.grade === 0 || it.p.kind === "kimari" || it.p.kind === "renshu" || it.stage) applyPreset(it);
       else {
         // ふつうの 学年の 漢字・文章の カード
         const g = it.p.grade;
@@ -4335,7 +4503,7 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
       clearTimeout(ytTimer);
       ytTimer = setTimeout(() => { readControls("f-ytext"); if (document.body.dataset.view === "sheet") show(1, state.seed); }, 700);
     });
-    for (const id of ["f-grade", "f-gread", "f-gwrite", "f-gstory", "f-genre", "f-furi", "f-vmode", "f-stdir", "f-kind", "f-ykind", "f-yrow", "f-ytheme", "f-yplay", "f-yscript", "f-ycat", "f-yhint", "f-ymatch", "f-ystep", "f-yname", "f-ylimit", "f-ywn", "f-ypn", "f-yapos", "f-yans", "f-ytate", "f-ytrace", "f-ylstyle", "f-ycorner", "f-yn", "f-ythick", "f-yarr", "f-ymid", "f-ysdot", "f-yedot", "f-ytext", "f-ylayout", "f-ysize", "f-ynum", "f-ydir", "f-ypos", "f-tk", "f-level", "f-ktopic", "f-rcase", "f-rstyle", "f-kfuri", "f-klearn",
+    for (const id of ["f-grade", "f-gread", "f-gwrite", "f-gstory", "f-genre", "f-furi", "f-vmode", "f-stdir", "f-kind", "f-rn", "f-rtext", "f-ykind", "f-yrow", "f-ytheme", "f-yplay", "f-yscript", "f-ycat", "f-yhint", "f-ymatch", "f-ystep", "f-yname", "f-ylimit", "f-ywn", "f-ypn", "f-yapos", "f-yans", "f-ytate", "f-ytrace", "f-ylstyle", "f-ycorner", "f-yn", "f-ythick", "f-yarr", "f-ymid", "f-ysdot", "f-yedot", "f-ytext", "f-ylayout", "f-ysize", "f-ynum", "f-ydir", "f-ypos", "f-tk", "f-level", "f-ktopic", "f-rcase", "f-rstyle", "f-kfuri", "f-klearn",
                       "f-read", "f-write", "f-seed", "f-model", "f-ans", "f-anslist"]) {
       $(id).addEventListener("change", () => {
         readControls(id);
