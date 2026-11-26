@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="app-version" content="第46版(2026-11-26)">
+<meta name="app-version" content="第47版(2026-11-26)">
 <title>国語プリント</title>
 <link rel="icon" type="image/png" sizes="32x32" href="{{ICON:32}}">
 <link rel="icon" type="image/png" sizes="64x64" href="{{ICON:64}}">
@@ -712,6 +712,41 @@ ruby rt { font-size: 0.5em; font-weight: normal; letter-spacing: 0; line-height:
   font-size: 13mm; line-height: 1;
 }
 .ygrid td.hit { background: #d9d9d9; color: #000; font-weight: bold; }
+/* クロスワード */
+.yj-board { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly; gap: 6mm; }
+.cw-grid { border-collapse: collapse; }
+.cw-grid td { width: var(--c); height: var(--c); padding: 0; position: relative; text-align: center; vertical-align: middle; }
+.cw-grid td.on { border: 1.6px solid #000; background: #fff; }
+.cw-grid td i { position: absolute; left: 0.6mm; top: 0.2mm; font-style: normal; font-size: calc(var(--c) * 0.24); line-height: 1; }
+.cw-grid td b { font-size: calc(var(--c) * 0.62); font-weight: normal; }
+.cw-clues { display: flex; gap: 10mm; width: 100%; justify-content: center; }
+.cw-col { display: flex; flex-wrap: wrap; gap: 3mm 5mm; align-content: flex-start; max-width: 50%; }
+.cw-col p { flex-basis: 100%; margin: 0; font-weight: bold; font-size: 12pt; }
+.cw-clue { display: inline-flex; align-items: center; gap: 1.5mm; }
+.cw-clue b { display: inline-flex; align-items: center; justify-content: center; width: 6mm; height: 6mm; border: 1.2px solid #000; border-radius: 50%; font-size: 10pt; }
+.cw-clue img { width: 22mm; height: 22mm; object-fit: contain; }
+.cw-clue small { font-size: 9pt; letter-spacing: 0.08em; color: #444; }
+/* しりとり めいろ */
+.mz-wrap { position: relative; }
+.mz-grid { border-collapse: separate; border-spacing: 7mm; position: relative; z-index: 1; }
+.mz-grid td { width: 34mm; height: 34mm; border: 1.6px solid #000; border-radius: 4mm; background: #fff; text-align: center; vertical-align: middle; position: relative; padding: 1mm; }
+.mz-grid .rd { position: absolute; display: block; border: 1.3px solid #000; background: #fff; }
+.mz-grid .rd.r { left: 100%; top: calc(50% - 3mm); width: 7.4mm; height: 6mm; border-left: 0; border-right: 0; }
+.mz-grid .rd.b { top: 100%; left: calc(50% - 3mm); height: 7.4mm; width: 6mm; border-top: 0; border-bottom: 0; }
+.mz-grid td img { width: 23mm; height: 23mm; object-fit: contain; display: block; margin: 0 auto; }
+.mz-grid td small { display: block; font-size: 10pt; }
+.mz-tag { position: absolute; top: -3.4mm; left: 50%; transform: translateX(-50%); background: #000; color: #fff; font-size: 9pt; font-weight: bold; padding: 0.3mm 2mm; border-radius: 1.5mm; white-space: nowrap; }
+.mz-line { position: absolute; left: 7mm; top: 7mm; width: calc(100% - 14mm); height: calc(100% - 14mm); pointer-events: none; z-index: 2; }
+/* ことばの かいだん */
+.kdw { align-items: stretch; }
+.kd { display: flex; gap: 3mm; align-items: flex-start; }
+.kd .yn { position: static; flex: none; }
+.kd-steps { display: flex; flex-direction: column; gap: 2.5mm; }
+.kd-row { display: flex; align-items: center; gap: 4mm; --mb: 19mm; }
+.yj .kd-row .mb { width: var(--mb); height: var(--mb); font-size: calc(var(--mb) * 0.72); }
+.kd-hint img { width: 19mm; height: 19mm; object-fit: contain; }
+.kd + .kd { padding-top: 5mm; border-top: 1px dashed #999; }
+.kd-hint small { font-size: 9pt; color: #555; }
 .chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 3mm 5mm; max-width: 160mm; }
 .chip { display: inline-flex; align-items: center; gap: 2mm; font-size: 17pt; border: 1.2px solid #444; border-radius: 99px; padding: 1mm 5mm 1.5mm 3mm; }
 .chip .ck { width: 5mm; height: 5mm; border: 1.2px solid #444; border-radius: 50%; }
@@ -1935,7 +1970,7 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
   // え を みて かこう の テーマ(その 字の しゅるいに ある ものだけ 出す)
   const picCats = (script) => [...new Set(((YD.pics || {})[script] || []).map((x) => x.cat))];
   const YPLAYS = [["mix", "じゅんばんに(シードで かわる)"], ["shiri", "しりとり"], ["search", "ことば さがし"],
-                  ["miss", "たりない 字"], ["sort", "ならべかえ"]];
+                  ["miss", "たりない 字"], ["sort", "ならべかえ"], ["cross", "クロスワード(絵が ヒント)"], ["maze", "しりとり めいろ"], ["kaidan", "ことばの かいだん"]];
   const YTITLE = { hira: "ひらがな れんしゅう", kata: "カタカナ れんしゅう", word: "ことば れんしゅう", pic: "え と ことば", play: "ことば あそび",
                    line: "せんの れんしゅう", unpitsu: "うんぴつ れんしゅう", kakikata: "かきかた れんしゅう", match: "むすんで みよう", name: "なまえの れんしゅう", ana: "あなうめ" };
   // ===== せんを なぞろう(うんぴつ)。かたちは viewBox 180×40(mm)の なかの パス =====
@@ -2317,8 +2352,139 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
     }
     return { items };
   }
-  const PLAYS = { shiri: playShiri, search: playSearch, miss: playMiss, sort: playSort };
-  const PLAY_ORDER = ["shiri", "search", "miss", "sort"];
+  const PLAYS = { shiri: playShiri, search: playSearch, miss: playMiss, sort: playSort, cross: playCross, maze: playMaze, kaidan: playKaidan };
+  // 絵の ある ひらがなの ことば(クロスワード・しりとり めいろ・ことばの かいだんの ヒント)
+  const picWords = () => ((YD.pics || {}).hira || []).filter((x) => YPICS[x.pic]);
+
+  // クロスワード:絵が ヒント。よこ・たての ことばを 4〜6こ 組みあわせる(となりの ますと くっつかない ように)
+  function playCross(rng) {
+    const N = 8;
+    const pool0 = picWords().filter((x) => plainWord(x.w) && x.w.length >= 2 && x.w.length <= 5);
+    let best = null;
+    for (let attempt = 0; attempt < 80; attempt++) {
+      const pool = shuffled(pool0, rng);
+      const g = Array.from({ length: N }, () => Array(N).fill(""));
+      const placed = [];
+      const at = (y, x) => (y >= 0 && x >= 0 && y < N && x < N ? g[y][x] : "");
+      const fits = (w, y, x, dir) => {
+        const dy = dir === "v" ? 1 : 0, dx = dir === "h" ? 1 : 0;
+        if (y < 0 || x < 0 || y + dy * (w.length - 1) >= N || x + dx * (w.length - 1) >= N) return false;
+        if (at(y - dy, x - dx) || at(y + dy * w.length, x + dx * w.length)) return false;
+        let cross = 0;
+        for (let i = 0; i < w.length; i++) {
+          const yy = y + dy * i, xx = x + dx * i, c = g[yy][xx];
+          if (c) { if (c !== w[i]) return false; cross++; continue; }
+          // あたらしい ますの 横(たての ことばなら 左右)に 字が あると、べつの ことばに 見えて しまう
+          if (at(yy + dx, xx + dy) || at(yy - dx, xx - dy)) return false;
+        }
+        return cross > 0 || !placed.length;
+      };
+      const put = (w, y, x, dir, pic) => {
+        for (let i = 0; i < w.length; i++) g[y + (dir === "v" ? i : 0)][x + (dir === "h" ? i : 0)] = w[i];
+        placed.push({ w, y, x, dir, pic });
+      };
+      const first = pool.find((p) => p.w.length >= 4) || pool[0];
+      put(first.w, 3, Math.floor(rng() * (N - first.w.length + 1)), "h", first.pic);
+      for (const p of pool) {
+        if (placed.length >= 6) break;
+        if (placed.some((q) => q.w === p.w || q.pic === p.pic)) continue;
+        const opts = [];
+        for (const q of placed) for (let i = 0; i < p.w.length; i++) for (let j = 0; j < q.w.length; j++) {
+          if (p.w[i] !== q.w[j]) continue;
+          const dir = q.dir === "h" ? "v" : "h";
+          const y = q.dir === "h" ? q.y - i : q.y + j, x = q.dir === "h" ? q.x + j : q.x - i;
+          if (fits(p.w, y, x, dir)) opts.push([y, x, dir]);
+        }
+        if (opts.length) { const [y, x, dir] = opts[Math.floor(rng() * opts.length)]; put(p.w, y, x, dir, p.pic); }
+      }
+      if (!best || placed.length > best.placed.length) best = { g, placed };
+      if (placed.length >= 5) break;
+    }
+    // つかって いる ところだけ 切りとって、はじまりの ますに 番号(上から、左から)
+    const { g, placed } = best;
+    let y0 = N, y1 = 0, x0 = N, x1 = 0;
+    for (let y = 0; y < N; y++) for (let x = 0; x < N; x++) if (g[y][x]) { y0 = Math.min(y0, y); y1 = Math.max(y1, y); x0 = Math.min(x0, x); x1 = Math.max(x1, x); }
+    const starts = [...new Set(placed.map((p) => p.y * N + p.x))].sort((a, b) => a - b);
+    const words = placed.map((p) => ({ w: p.w, pic: p.pic, dir: p.dir, y: p.y - y0, x: p.x - x0, n: starts.indexOf(p.y * N + p.x) + 1 }))
+      .sort((a, b) => a.n - b.n || (a.dir === "h" ? -1 : 1));
+    return { rows: y1 - y0 + 1, cols: x1 - x0 + 1, grid: g.slice(y0, y1 + 1).map((r) => r.slice(x0, x1 + 1)), words };
+  }
+
+  // しりとり めいろ:4×4の 絵。スタートから しりとりで となりへ すすんで ゴールまで(ちがう 絵には つながらない)
+  function playMaze(rng) {
+    const R = 4, C = 4;
+    const ws = picWords().filter((x) => !x.w.endsWith("ん") && !x.w.endsWith("ー") && x.w.length <= 5);
+    const byHead = {};
+    for (const p of ws) (byHead[p.w[0]] = byHead[p.w[0]] || []).push(p);
+    const nb = (y, x) => [[y - 1, x], [y + 1, x], [y, x - 1], [y, x + 1]].filter(([a, b]) => a >= 0 && b >= 0 && a < R && b < C);
+    for (let attempt = 0; attempt < 400; attempt++) {
+      // スタート(左上)から ゴール(右下)までの みち(7〜10ます)
+      const path = [[0, 0]], seen = new Set(["0,0"]);
+      const walk = () => {
+        const [y, x] = path[path.length - 1];
+        if (y === R - 1 && x === C - 1) return path.length >= 7;
+        if (path.length >= 10) return false;
+        for (const [a, b] of shuffled(nb(y, x), rng)) {
+          if (seen.has(a + "," + b)) continue;
+          // みちが 自分の となりに もどって こない(よこの みちに まよわない)
+          if (nb(a, b).some(([c, d]) => seen.has(c + "," + d) && !(c === y && d === x))) continue;
+          path.push([a, b]); seen.add(a + "," + b);
+          if (walk()) return true;
+          path.pop(); seen.delete(a + "," + b);
+        }
+        return false;
+      };
+      if (!walk()) continue;
+      // みちに しりとりの ことばを ならべる
+      const chain = [];
+      const used = new Set();
+      const fill = (i) => {
+        if (i === path.length) return true;
+        const cand = i === 0 ? shuffled(ws, rng) : shuffled(byHead[lastKana(chain[i - 1].w)] || [], rng);
+        for (const p of cand.slice(0, 30)) {
+          if (used.has(p.w) || used.has(p.pic)) continue;
+          chain.push(p); used.add(p.w); used.add(p.pic);
+          if (fill(i + 1)) return true;
+          chain.pop(); used.delete(p.w); used.delete(p.pic);
+        }
+        return false;
+      };
+      if (!fill(0)) continue;
+      const cells = Array.from({ length: R }, () => Array(C).fill(null));
+      path.forEach(([y, x], i) => { cells[y][x] = chain[i]; });
+      // ほかの ますは、となりの みちの ことばから つながらない 絵に する
+      let ok = true;
+      for (let y = 0; y < R && ok; y++) for (let x = 0; x < C && ok; x++) {
+        if (cells[y][x]) continue;
+        const ends = nb(y, x).filter(([a, b]) => cells[a][b] && path.some(([c, d]) => c === a && d === b)).map(([a, b]) => lastKana(cells[a][b].w));
+        const p = shuffled(ws, rng).find((q) => !used.has(q.w) && !used.has(q.pic) && !ends.includes(q.w[0]));
+        if (!p) ok = false; else { cells[y][x] = p; used.add(p.w); used.add(p.pic); }
+      }
+      if (!ok) continue;
+      return { R, C, cells, path };
+    }
+    return { R, C, cells: [], path: [] };
+  }
+
+  // ことばの かいだん:おなじ 字で はじまる 2字・3字・4字(・5字)の ことばを 書く(絵が ある ことばは 絵を ヒントに)
+  function playKaidan(rng) {
+    const pics = new Map(picWords().map((p) => [p.w, p.pic]));
+    const words = [...new Set([...YPOOL.map((x) => x.w), ...pics.keys()])].filter((w) => plainWord(w));
+    const by = {};
+    for (const w of words) ((by[w[0]] = by[w[0]] || {})[w.length] = by[w[0]][w.length] || []).push(w);
+    const heads = shuffled(Object.keys(by).filter((h) => [2, 3, 4].every((n) => (by[h][n] || []).length)), rng);
+    const stairs = heads.slice(0, 2).map((h) => {
+      const lens = [2, 3, 4].concat((by[h][5] || []).length ? [5] : []);
+      return { head: h, steps: lens.map((n) => {
+        const list = by[h][n], withPic = list.filter((w) => pics.has(w));
+        const w = (withPic.length ? shuffled(withPic, rng) : shuffled(list, rng))[0];
+        return { w, pic: pics.get(w) || null };
+      }) };
+    });
+    return { stairs };
+  }
+
+  const PLAY_ORDER = ["shiri", "search", "miss", "sort", "cross", "maze", "kaidan"];
 
   // 行・テーマ・あそびは "auto"/"mix" なら シードで じゅんばんに かわる(シード1 → あ行、2 → か行 …)
   // 絵(ひらがな・カタカナの なまえつき)を n こ。同じ ことば・同じ 絵は 1かいだけ
@@ -2733,6 +2899,39 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
       body = `<h3 class="yj-h"><span class="yj-badge">たりない じ</span>は どれ？</h3>` +
         `<p class="yj-inst">□に はいる じを みぎから えらんで、○で かこもう。□にも かいて みよう。</p>` +
         `<div class="yj-rows two">${items}</div>`;
+    } else if (s.play === "cross") {
+      const d = s.data, cell = Math.min(20, 168 / d.cols, 120 / d.rows);
+      const num = {};
+      for (const w of d.words) num[w.y + "," + w.x] = w.n;
+      const grid = d.grid.map((row, y) => `<tr>${row.map((ch, x) => ch
+        ? `<td class="on">${num[y + "," + x] ? `<i>${num[y + "," + x]}</i>` : ""}${ans ? `<b>${esc(ch)}</b>` : ""}</td>` : `<td></td>`).join("")}</tr>`).join("");
+      const clue = (dir) => d.words.filter((w) => w.dir === dir).map((w) =>
+        `<span class="cw-clue"><b>${w.n}</b><img src="${YPICS[w.pic] || ""}" alt=""><small>${[...w.w].map(() => "□").join("")}</small></span>`).join("");
+      body = `<h3 class="yj-h"><span class="yj-badge">クロスワード</span></h3>` +
+        `<p class="yj-inst">えを みて、ばんごうの ますから なまえを かこう。よこは ひだりから みぎ、たては うえから したへ。</p>` +
+        `<div class="yj-board cw"><table class="cw-grid" style="--c:${cell.toFixed(1)}mm">${grid}</table>` +
+        `<div class="cw-clues"><div class="cw-col"><p>たての かぎ ↓</p>${clue("v")}</div><div class="cw-col"><p>よこの かぎ →</p>${clue("h")}</div></div></div>`;
+    } else if (s.play === "maze") {
+      const d = s.data, cw = 40, ch = 40;
+      const cells = d.cells.map((row, y) => `<tr>${row.map((p, x) => {
+        const st = y === 0 && x === 0 ? `<span class="mz-tag">スタート</span>` : y === d.R - 1 && x === d.C - 1 ? `<span class="mz-tag">ゴール</span>` : "";
+        // となりの えへの みち(右と 下)
+        const rd = (x + 1 < d.C ? `<i class="rd r"></i>` : "") + (y + 1 < d.R ? `<i class="rd b"></i>` : "");
+        return `<td>${rd}${st}<img src="${p ? YPICS[p.pic] || "" : ""}" alt=""><small>${p ? esc(p.w) : ""}</small></td>`;
+      }).join("")}</tr>`).join("");
+      const line = ans && d.path.length ? `<svg class="mz-line" viewBox="0 0 ${d.C * cw} ${d.R * ch}" preserveAspectRatio="none"><polyline points="${d.path.map(([y, x]) => `${x * cw + cw / 2},${y * ch + ch / 2}`).join(" ")}" fill="none" stroke="#000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/></svg>` : "";
+      body = `<h3 class="yj-h"><span class="yj-badge">しりとり めいろ</span></h3>` +
+        `<p class="yj-inst">スタートから しりとりで となりの えに すすんで、ゴールまで せんを ひこう。(ななめには すすめないよ)</p>` +
+        `<div class="yj-board mz"><div class="mz-wrap"><table class="mz-grid">${cells}</table>${line}</div></div>`;
+    } else if (s.play === "kaidan") {
+      const st = s.data.stairs.map((a, k) => `<div class="kd"><span class="yn">${k + 1}</span><div class="kd-steps">` +
+        a.steps.map((p) => `<div class="kd-row">` +
+          `<span class="wline">${[...p.w].map((c, j) => j === 0 ? ybox(c, "plain") : ybox(ans ? c : "", ans ? "ans" : "blank")).join("")}</span>` +
+          `<span class="kd-hint">${p.pic ? `<img src="${YPICS[p.pic] || ""}" alt="">` : `<small>${p.w.length}もじ</small>`}</span></div>`).join("") +
+        `</div></div>`).join("");
+      body = `<h3 class="yj-h"><span class="yj-badge">ことばの かいだん</span></h3>` +
+        `<p class="yj-inst">はじめの じから はじまる ことばを かこう。だんだん ながく なるよ。えが ヒント(ほかの ことばでも いいよ)。</p>` +
+        `<div class="yj-board kdw">${st}</div>`;
     } else if (s.play === "sort") {
       const items = s.data.items.map((it, i) => `<div class="sort"><span class="yn">${i + 1}</span>` +
         `<span class="hint">${esc(it.cat)}</span>` +
@@ -3711,7 +3910,7 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
     ["kata", "カタカナ なぞり", "ア行から パ行まで。アイス・ケーキ などの ことばも なぞります。", "かたかな なぞり書き 書き順"],
     ["word", "ことば なぞり", "どうぶつ・くだもの など テーマごとの ことばを なぞって 書きます。", "なぞり書き 単語"],
     ["pic", "え を みて かこう", "絵を みて、なまえを ますに かきます。", "絵 イラスト 名前 単語"],
-    ["play", "ことば あそび", "しりとり・ことば さがし・たりない 字・ならべかえ。", "しりとり 言葉遊び パズル"],
+    ["play", "ことば あそび", "しりとり・ことば さがし・たりない 字・ならべかえ・クロスワード・しりとり めいろ・ことばの かいだん。", "しりとり 言葉遊び パズル クロスワード 迷路 めいろ かいだん 階段"],
     ["line", "せんを なぞろう", "●から 絵まで、まっすぐ・なみ・ぎざぎざ・くるくるの 線を なぞります。", "線 運筆 点線 ジグザグ"],
     ["unpitsu", "うんぴつ(線の れんしゅう)", "はば いっぱいの まっすぐ・なみ・ぎざぎざ・くるくるを なぞります。矢印や ●、線の 太さ・本数を えらべます。", "運筆 うんぴつ 線 なぞり ぐるぐる 鉛筆 練習"],
     ["kakikata", "かきかた(じゆうに 書く)", "すきな ことばを 入れると、お手本・書き順つきの なぞり・書く ますが できます。ひらがな・カタカナ・小学校の 漢字。", "かきかた 書き方 書き順 なぞり書き 名前 ふくろ文字 好きな言葉"],
@@ -3838,6 +4037,7 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
      { d:日づけ, t:文, g:学年(0=ようじ), sel:ホームの カード, opts:{せってい}, tab:"stage"|"domain", domain }
      ★ 機能を 足したら ここにも 1行 足すこと(10こまで 出す) */
   const CHANGES = [
+    { d: "26/11/26", t: "ことば あそび:クロスワード(絵が ヒント)・しりとり めいろ・ことばの かいだん", g: 0, sel: '.yj-card[data-ykind="play"]' },
     { d: "26/11/26", t: "漢字練習帳(1字ずつ):書き順・音訓・画数・ことば → なぞって 書く", g: 3, sel: '.kk-card[data-kind="renshu"]' },
     { d: "26/11/26", t: "ことばの きまり:ものの かぞえかた(小1・2)", g: 1, sel: '.km-card[data-topic="kazoe"]' },
     { d: "26/11/26", t: "ことばの きまり:音や ようすを あらわす ことば(小2・3)", g: 2, sel: '.km-card[data-topic="giongo"]' },
