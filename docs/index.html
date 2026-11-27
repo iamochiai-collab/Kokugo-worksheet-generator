@@ -4241,10 +4241,15 @@ a.xsite-a:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
     // 文章の たて書きは、1枚に 入る いちばん 大きい 倍率(0.5〜1.6)に する(右から 左へ ながれて、左に はみ出さない)
     if (box.classList.contains("vt")) {
       const over = () => box.scrollWidth > box.clientWidth + 1 || box.scrollHeight > box.clientHeight + 1;
-      let lo = 0.5, hi = 1.6;
-      box.style.zoom = hi;
-      if (!over()) lo = hi;
-      else for (let k = 0; k < 10; k++) { const m = (lo + hi) / 2; box.style.zoom = m.toFixed(3); if (over()) hi = m; else lo = m; }
+      // まず 1倍で どれだけ あまる・はみ出すかを みて、だいたいの 倍率を よそうしてから、その まわりだけ しらべる(たくさん 作る ときに はやく)
+      box.style.zoom = "1";
+      const r = Math.max(box.scrollWidth / box.clientWidth, 0.2);
+      const g = Math.min(1.6, Math.max(0.5, 1 / Math.sqrt(r)));
+      let lo = Math.max(0.5, g * 0.8), hi = Math.min(1.6, g * 1.25);
+      box.style.zoom = lo.toFixed(3);
+      if (over()) { hi = lo; lo = 0.5; }
+      else { box.style.zoom = hi.toFixed(3); if (!over()) { lo = hi; hi = 1.6; } }
+      for (let k = 0; k < 6 && hi - lo > 0.008; k++) { const m = (lo + hi) / 2; box.style.zoom = m.toFixed(3); if (over()) hi = m; else lo = m; }
       box.style.zoom = lo.toFixed(3);
       box.dataset.z = lo.toFixed(3);
       return;
